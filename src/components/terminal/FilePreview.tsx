@@ -1,5 +1,3 @@
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
-import { vscDarkPlus } from 'react-syntax-highlighter/dist/esm/styles/prism';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Card } from '@/components/ui/card';
 
@@ -19,18 +17,12 @@ export const FilePreview = ({ filename, content, language }: FilePreviewProps) =
         <span className="text-xs text-muted-foreground">{detectedLanguage}</span>
       </div>
       <ScrollArea className="h-[400px] rounded border">
-        <SyntaxHighlighter
-          language={detectedLanguage}
-          style={vscDarkPlus}
-          customStyle={{
-            margin: 0,
-            borderRadius: '0.375rem',
-            fontSize: '0.875rem',
-          }}
-          showLineNumbers
-        >
-          {content}
-        </SyntaxHighlighter>
+        <pre className="m-0 rounded-md text-sm leading-relaxed overflow-x-auto p-4" style={{
+          backgroundColor: 'hsl(var(--terminal-surface))',
+          color: 'hsl(var(--terminal-text))'
+        }}>
+{content}
+        </pre>
       </ScrollArea>
     </Card>
   );
@@ -60,3 +52,4 @@ const detectLanguage = (filename: string): string => {
   
   return languageMap[ext || ''] || 'text';
 };
+

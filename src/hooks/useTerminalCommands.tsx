@@ -381,6 +381,19 @@ export const useTerminalCommands = () => {
       },
     },
     {
+      name: 'import',
+      aliases: ['upload'],
+      description: 'Import a .zip or .json file (opens uploader)',
+      usage: '/import',
+      category: 'system',
+      handler: async () => {
+        return [
+          { type: 'info', content: 'Open the uploader with ⌘U / Ctrl+U or drag & drop a file into the terminal.' },
+          { type: 'system', content: 'Supported: .zip, .json, .yaml, .txt, .md (max 50MB)' },
+        ];
+      },
+    },
+    {
       name: 'files',
       aliases: ['ls'],
       description: 'List imported files',
