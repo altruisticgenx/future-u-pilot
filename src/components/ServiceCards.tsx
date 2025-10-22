@@ -72,14 +72,9 @@ export const ServiceCards = () => {
           viewport={{ once: true }}
           className="text-center space-y-4 mb-16"
         >
-          <div className="inline-block mb-2">
-            <span className="text-sm font-mono text-primary bg-primary/10 px-3 py-1 rounded border border-primary/20">
-              &gt; OFFERINGS_VAULT.ACCESS()
-            </span>
-          </div>
-          <h2 className="text-4xl sm:text-5xl font-bold">The Offerings Vault</h2>
+          <h2 className="text-4xl sm:text-5xl font-bold">What We Help With</h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Four quantum-powered modules bridging policy, AI, and cryptographic readiness—launched from your terminal.
+            Four core services designed to bridge quantum computing, policy, and applied AI—responsibly.
           </p>
         </motion.div>
 

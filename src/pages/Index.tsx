@@ -1,4 +1,3 @@
-import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { LogoRow } from "@/components/LogoRow";
 import { ServiceCards } from "@/components/ServiceCards";
@@ -12,7 +11,6 @@ import { motion } from "framer-motion";
 const Index = () => {
   return (
     <div className="min-h-screen">
-      <Navbar />
       <Hero />
       <LogoRow />
       <ServiceCards />

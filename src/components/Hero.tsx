@@ -4,14 +4,14 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Play } from "lucide-react";
 
 const terminalLines = [
-  "> PULSE_PORTAL.INIT()",
-  "> Loading Quantum Navigator modules...",
-  "> Syncing real-time policy radar...",
-  "> Connecting to Sandboxverse environments...",
-  "> Initializing AI simulation engine...",
-  "> Mapping global regulatory landscape...",
-  "> Establishing quantum-safe protocols...",
-  "> Status: READY | Welcome to the future.",
+  "> Initializing Quantum/AI Consultancy Platform…",
+  "> Loading quantum computing frameworks…",
+  "> Connecting to research partnerships…",
+  "> Scanning public-sector implementation protocols…",
+  "> Analyzing organizational readiness for quantum technologies…",
+  "> Establishing quantum-safe cryptography protocols…",
+  "> Syncing with institutional databases…",
+  "> System ready. Empowering practical quantum/AI adoption.",
 ];
 
 export const Hero = () => {
@@ -78,27 +78,19 @@ export const Hero = () => {
 
             {/* Headline */}
             <div className="space-y-4">
-              <div className="inline-block mb-2">
-                <span className="text-sm font-mono text-primary bg-primary/10 px-3 py-1 rounded border border-primary/20">
-                  &gt; PULSE_PORTAL.INIT()
-                </span>
-              </div>
               <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight">
-                <span className="block text-foreground">Navigate The</span>
-                <span className="block bg-gradient-to-r from-[hsl(var(--quantum-cyan))] via-[hsl(var(--accent))] to-[hsl(var(--primary-glow))] bg-clip-text text-transparent">
-                  Quantum-AI Future
+                <span className="block text-foreground">B2B Consultancy</span>
+                <span className="block bg-gradient-hero bg-clip-text text-transparent">
+                  For The Quantum-AI Era
                 </span>
               </h1>
               
               <p className="text-xl sm:text-2xl text-muted-foreground max-w-2xl">
-                Real-time policy radar. AI-powered simulations. Quantum-safe migrations. 
-                <span className="block mt-2 text-primary font-semibold">
-                  Turn regulatory chaos into strategic advantage.
-                </span>
+                We help organizations adapt to quantum computing and AI with practical, test-bed consulting—turning pilots into reusable, reliable systems.
               </p>
               
-              <p className="text-sm text-muted-foreground italic border-l-2 border-primary/30 pl-4">
-                "Quantum is coming. AI's already here. We help you not panic."
+              <p className="text-sm text-muted-foreground italic">
+                Quantum is coming. AI's already here. We help you not panic.
               </p>
             </div>
 
