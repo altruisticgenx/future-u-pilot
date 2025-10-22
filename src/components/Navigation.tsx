@@ -37,16 +37,20 @@ export const Navigation = () => {
     }
     setIsMobileMenuOpen(false);
   };
-  return <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-lg bg-background/80 border-b border-border/50 shadow-lg">
+  return <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-background/90 border-b border-primary/20 shadow-2xl">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <div className="flex items-center justify-between h-16 sm:h-20">
+        <div className="flex items-center justify-between h-16 sm:h-18">
           {/* Logo */}
-          <motion.a href="/" className="text-xl sm:text-2xl font-bold bg-gradient-hero bg-clip-text text-transparent" whileHover={{
-          scale: 1.05
-        }} whileTap={{
-          scale: 0.95
-        }}>
-            AltruisticXAI
+          <motion.a 
+            href="/" 
+            className="text-lg sm:text-xl lg:text-2xl font-bold bg-gradient-hero bg-clip-text text-transparent relative"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <span className="relative">
+              AltruisticXAI
+              <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-accent/20 blur-lg opacity-0 group-hover:opacity-100 transition-opacity -z-10" />
+            </span>
           </motion.a>
 
           {/* Desktop Navigation */}

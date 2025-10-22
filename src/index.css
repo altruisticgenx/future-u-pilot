@@ -2,6 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Glitch text effect */
+@keyframes glitch {
+  0% {
+    text-shadow: 2px 2px 0 hsl(var(--primary)), -2px -2px 0 hsl(var(--accent));
+  }
+  25% {
+    text-shadow: -2px -2px 0 hsl(var(--primary)), 2px 2px 0 hsl(var(--accent));
+  }
+  50% {
+    text-shadow: 2px -2px 0 hsl(var(--primary)), -2px 2px 0 hsl(var(--accent));
+  }
+  75% {
+    text-shadow: -2px 2px 0 hsl(var(--primary)), 2px -2px 0 hsl(var(--accent));
+  }
+  100% {
+    text-shadow: 2px 2px 0 hsl(var(--primary)), -2px -2px 0 hsl(var(--accent));
+  }
+}
+
+.glitch-text {
+  animation: glitch 0.3s infinite;
+  animation-timing-function: steps(2, end);
+}
+
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
 All colors MUST be HSL.
 */
