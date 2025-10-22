@@ -13,7 +13,7 @@ export const Navigation = () => {
     href: "/about"
   }, {
     label: "Initiatives",
-    href: "/initiatives"
+    href: "https://keen-hardboard-afe.notion.site/28cf142372ef8050ac86f4a3b4c813db?v=28cf142372ef8073b8cf000c0ebfca06&source=copy_link"
   }, {
     label: "Terminal",
     href: "/terminal"
@@ -22,7 +22,10 @@ export const Navigation = () => {
     href: "#contact"
   }];
   const handleNavClick = (href: string) => {
-    if (href.startsWith("#")) {
+    if (href.startsWith("http")) {
+      // External link
+      window.open(href, "_blank", "noopener,noreferrer");
+    } else if (href.startsWith("#")) {
       const element = document.getElementById(href.substring(1));
       element?.scrollIntoView({
         behavior: "smooth"
