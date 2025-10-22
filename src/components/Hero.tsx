@@ -95,7 +95,6 @@ export const Hero = () => {
             >
               <span
                 className="w-2 h-2 rounded-full bg-primary animate-pulse-soft"
-                aria-label="Active status indicator"
               />
               <span className="text-sm font-medium text-primary">
                 Experiment status: active
@@ -126,7 +125,6 @@ export const Hero = () => {
                 size="lg"
                 onClick={scrollToContact}
                 className="text-base group shadow-xl hover:shadow-2xl hover:shadow-primary/20 transition-all hover:scale-105"
-                aria-label="Book a strategy session"
               >
                 Book Strategy Session
                 <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
