@@ -3,9 +3,6 @@ import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { GraduationCap, Zap, Heart, Scale, TrendingUp, Users, Brain, Shield } from "lucide-react";
-import { Timeline } from "@/components/About/Timeline";
-import { Testimonials } from "@/components/About/Testimonials";
-import { ROIVisualization } from "@/components/About/ROIVisualization";
 
 const stakeholders = [
   {
@@ -176,14 +173,63 @@ const About = () => {
         </div>
       </section>
 
-      {/* ROI Metrics - Replaced with Interactive Visualization */}
-      <ROIVisualization />
+      {/* ROI Metrics */}
+      <section className="py-20">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+              Projected Return on Investment
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              Economic models and case study data demonstrate robust, sector-specific ROI for quantum implementation across Pennsylvania's key sectors.
+            </p>
+          </motion.div>
 
-      {/* Timeline Section - NEW */}
-      <Timeline />
-
-      {/* Testimonials Section - NEW */}
-      <Testimonials />
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {investmentMetrics.map((metric, index) => {
+              const Icon = metric.icon;
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  whileHover={{ y: -5 }}
+                >
+                  <Card className="backdrop-blur-md bg-card/60 border-2 border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-xl">
+                    <CardContent className="p-6 text-center space-y-4">
+                      <div className="flex justify-center">
+                        <div className="p-3 rounded-xl bg-primary/10">
+                          <Icon className="h-8 w-8 text-primary" />
+                        </div>
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-bold mb-2">{metric.sector}</h3>
+                        <div className="space-y-2">
+                          <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
+                            <TrendingUp className="h-4 w-4 text-green-500" />
+                            <span>Payback: <strong className="text-foreground">{metric.payback}</strong></span>
+                          </div>
+                          <div className="text-2xl font-bold text-primary">
+                            {metric.roi}
+                          </div>
+                          <p className="text-xs text-muted-foreground">Return on Investment</p>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
 
       {/* Vision Statement */}
       <section className="py-20 bg-muted/30">

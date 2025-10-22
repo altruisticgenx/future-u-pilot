@@ -24,7 +24,6 @@ export type Database = {
           output: string | null
           project_id: string | null
           status: string | null
-          user_id: string | null
         }
         Insert: {
           args?: Json | null
@@ -35,7 +34,6 @@ export type Database = {
           output?: string | null
           project_id?: string | null
           status?: string | null
-          user_id?: string | null
         }
         Update: {
           args?: Json | null
@@ -46,7 +44,6 @@ export type Database = {
           output?: string | null
           project_id?: string | null
           status?: string | null
-          user_id?: string | null
         }
         Relationships: [
           {
@@ -58,42 +55,6 @@ export type Database = {
           },
         ]
       }
-      file_imports: {
-        Row: {
-          created_at: string | null
-          extracted_files: Json | null
-          file_path: string
-          file_size: number | null
-          filename: string
-          id: string
-          metadata: Json | null
-          mime_type: string | null
-          user_id: string | null
-        }
-        Insert: {
-          created_at?: string | null
-          extracted_files?: Json | null
-          file_path: string
-          file_size?: number | null
-          filename: string
-          id?: string
-          metadata?: Json | null
-          mime_type?: string | null
-          user_id?: string | null
-        }
-        Update: {
-          created_at?: string | null
-          extracted_files?: Json | null
-          file_path?: string
-          file_size?: number | null
-          filename?: string
-          id?: string
-          metadata?: Json | null
-          mime_type?: string | null
-          user_id?: string | null
-        }
-        Relationships: []
-      }
       git_actions: {
         Row: {
           action: string
@@ -104,7 +65,6 @@ export type Database = {
           id: string
           message: string | null
           project_id: string
-          user_id: string | null
         }
         Insert: {
           action: string
@@ -115,7 +75,6 @@ export type Database = {
           id?: string
           message?: string | null
           project_id: string
-          user_id?: string | null
         }
         Update: {
           action?: string
@@ -126,7 +85,6 @@ export type Database = {
           id?: string
           message?: string | null
           project_id?: string
-          user_id?: string | null
         }
         Relationships: [
           {
@@ -138,33 +96,6 @@ export type Database = {
           },
         ]
       }
-      profiles: {
-        Row: {
-          avatar_url: string | null
-          created_at: string | null
-          email: string | null
-          full_name: string | null
-          id: string
-          updated_at: string | null
-        }
-        Insert: {
-          avatar_url?: string | null
-          created_at?: string | null
-          email?: string | null
-          full_name?: string | null
-          id: string
-          updated_at?: string | null
-        }
-        Update: {
-          avatar_url?: string | null
-          created_at?: string | null
-          email?: string | null
-          full_name?: string | null
-          id?: string
-          updated_at?: string | null
-        }
-        Relationships: []
-      }
       projects: {
         Row: {
           created_at: string | null
@@ -175,7 +106,6 @@ export type Database = {
           status: string | null
           tags: string[] | null
           updated_at: string | null
-          user_id: string | null
         }
         Insert: {
           created_at?: string | null
@@ -186,7 +116,6 @@ export type Database = {
           status?: string | null
           tags?: string[] | null
           updated_at?: string | null
-          user_id?: string | null
         }
         Update: {
           created_at?: string | null
@@ -197,7 +126,6 @@ export type Database = {
           status?: string | null
           tags?: string[] | null
           updated_at?: string | null
-          user_id?: string | null
         }
         Relationships: []
       }
@@ -209,7 +137,6 @@ export type Database = {
           message_type: string
           metadata: Json | null
           project_id: string | null
-          user_id: string | null
         }
         Insert: {
           content: string
@@ -218,7 +145,6 @@ export type Database = {
           message_type: string
           metadata?: Json | null
           project_id?: string | null
-          user_id?: string | null
         }
         Update: {
           content?: string
@@ -227,7 +153,6 @@ export type Database = {
           message_type?: string
           metadata?: Json | null
           project_id?: string | null
-          user_id?: string | null
         }
         Relationships: [
           {

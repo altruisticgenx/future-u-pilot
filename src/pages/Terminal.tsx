@@ -161,11 +161,7 @@ const Terminal = () => {
       >
         <div className="flex flex-col h-full">
           <MessageStream messages={allMessages} />
-          <CommandInput 
-            onSubmit={handleCommandSubmit} 
-            disabled={loading}
-            projectName={currentProject?.name}
-          />
+          <CommandInput onSubmit={handleCommandSubmit} disabled={loading} />
         </div>
       </TerminalLayout>
 
