@@ -55,39 +55,6 @@ export type Database = {
           },
         ]
       }
-      file_imports: {
-        Row: {
-          created_at: string | null
-          extracted_files: Json | null
-          file_path: string
-          file_size: number | null
-          filename: string
-          id: string
-          metadata: Json | null
-          mime_type: string | null
-        }
-        Insert: {
-          created_at?: string | null
-          extracted_files?: Json | null
-          file_path: string
-          file_size?: number | null
-          filename: string
-          id?: string
-          metadata?: Json | null
-          mime_type?: string | null
-        }
-        Update: {
-          created_at?: string | null
-          extracted_files?: Json | null
-          file_path?: string
-          file_size?: number | null
-          filename?: string
-          id?: string
-          metadata?: Json | null
-          mime_type?: string | null
-        }
-        Relationships: []
-      }
       git_actions: {
         Row: {
           action: string

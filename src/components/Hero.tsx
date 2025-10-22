@@ -39,8 +39,8 @@ export const Hero = () => {
     contactSection?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const navigateToProposals = () => {
-    window.location.href = "/proposals";
+  const navigateToDemo = () => {
+    window.location.href = "/demo";
   };
 
   return (
@@ -133,12 +133,12 @@ export const Hero = () => {
               <Button
                 size="lg"
                 variant="outline"
-                onClick={navigateToProposals}
+                onClick={navigateToDemo}
                 className="text-base group border-2 hover:scale-105 transition-transform"
-                aria-label="View our proposals"
+                aria-label="Try the Policy Engine demo"
               >
                 <Play className="mr-2 h-5 w-5" />
-                Proposals
+                Try the Policy Engine
               </Button>
             </div>
           </motion.div>

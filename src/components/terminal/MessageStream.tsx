@@ -1,9 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Message } from '@/types/terminal';
-import { Terminal, CheckCircle2, XCircle, Info, Code, List, Loader2, FileText } from 'lucide-react';
-import { FilePreview } from './FilePreview';
-import { FileViewer } from './FileViewer';
+import { Terminal, CheckCircle2, XCircle, Info, Code, List, Loader2 } from 'lucide-react';
 
 interface MessageStreamProps {
   messages: Message[];
@@ -25,10 +23,6 @@ const MessageIcon = ({ type }: { type: Message['type'] }) => {
       return <List {...iconProps} style={{ color: 'hsl(var(--terminal-text))' }} />;
     case 'loading':
       return <Loader2 {...iconProps} className="animate-spin" style={{ color: 'hsl(var(--cmd-info))' }} />;
-    case 'file-preview':
-      return <FileText {...iconProps} style={{ color: 'hsl(var(--syntax-string))' }} />;
-    case 'file-tree':
-      return <FileText {...iconProps} style={{ color: 'hsl(var(--cmd-info))' }} />;
     default:
       return <Info {...iconProps} style={{ color: 'hsl(var(--terminal-text))' }} />;
   }
@@ -57,39 +51,6 @@ const MessageBubble = ({ message, index }: { message: Message; index: number }) 
         return { color: 'hsl(var(--terminal-text))', opacity: 0.8 };
     }
   };
-
-  // Handle special message types with custom rendering
-  if (message.type === 'file-preview' && message.metadata) {
-    return (
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.2, delay: index * 0.02 }}
-        className="py-2 px-4"
-      >
-        <FilePreview
-          filename={message.metadata.filename || message.content}
-          content={message.metadata.content || ''}
-          language={message.metadata.language}
-        />
-      </motion.div>
-    );
-  }
-
-  if (message.type === 'file-tree' && message.metadata?.files) {
-    return (
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.2, delay: index * 0.02 }}
-        className="py-2 px-4"
-      >
-        <div className="border rounded-lg overflow-hidden" style={{ borderColor: 'hsl(var(--terminal-surface))' }}>
-          <FileViewer files={message.metadata.files} />
-        </div>
-      </motion.div>
-    );
-  }
 
   return (
     <motion.div

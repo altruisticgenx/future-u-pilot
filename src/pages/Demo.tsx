@@ -69,7 +69,7 @@ const mockPolicies = [
   },
 ];
 
-const Proposals = () => {
+const Demo = () => {
   const [showReport, setShowReport] = useState(false);
   const [expandedPolicy, setExpandedPolicy] = useState<number | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
@@ -103,9 +103,9 @@ const Proposals = () => {
                 Back
               </Button>
               <div>
-                <h1 className="text-2xl font-bold">Proposals</h1>
+                <h1 className="text-2xl font-bold">PolicyEngine Demo</h1>
                 <p className="text-sm text-muted-foreground">
-                  AI-assisted regulation tracking and policy initiatives
+                  AI-assisted regulation tracking
                 </p>
               </div>
             </div>
@@ -410,14 +410,10 @@ const Proposals = () => {
             </div>
             
             <div className="p-4 rounded-lg bg-primary/5 border border-primary/20">
-              <h4 className="font-semibold mb-2 flex items-center gap-2">
-                <Shield className="h-4 w-4 text-primary" />
-                Evidence Chain
-              </h4>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                Each policy mapping includes source regulation, internal policy document reference, 
-                responsible department, compliance status, and audit timestamp. All evidence is 
-                cryptographically signed and immutably stored.
+              <p className="text-sm">
+                <strong>Evidence Chain:</strong> All policy mappings include timestamped
+                decision records, responsible parties, and rationale documentation
+                suitable for regulatory review.
               </p>
             </div>
 
@@ -431,4 +427,4 @@ const Proposals = () => {
   );
 };
 
-export default Proposals;
+export default Demo;

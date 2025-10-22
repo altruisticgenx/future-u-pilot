@@ -4,10 +4,8 @@ import { Sidebar } from '@/components/terminal/Sidebar';
 import { MessageStream } from '@/components/terminal/MessageStream';
 import { CommandInput } from '@/components/terminal/CommandInput';
 import { CommandPalette } from '@/components/terminal/CommandPalette';
-import { FileUploader } from '@/components/terminal/FileUploader';
 import { useTerminalCommands } from '@/hooks/useTerminalCommands';
 import { useTerminalMessages } from '@/hooks/useTerminalMessages';
-import { useFileManager } from '@/hooks/useFileManager';
 import { supabase } from '@/integrations/supabase/client';
 import { Project, Message, TerminalContext } from '@/types/terminal';
 import { toast } from 'sonner';
@@ -15,7 +13,6 @@ import { toast } from 'sonner';
 const Terminal = () => {
   const [currentProject, setCurrentProject] = useState<Project | null>(null);
   const [paletteOpen, setPaletteOpen] = useState(false);
-  const [showUploader, setShowUploader] = useState(false);
   const [localMessages, setLocalMessages] = useState<Message[]>([
     {
       type: 'success',
@@ -30,10 +27,6 @@ const Terminal = () => {
       content: 'Type /help to see available commands, or press ⌘K (Ctrl+K) to open the command palette.',
     },
     {
-      type: 'info',
-      content: 'Drag & drop files to import, or type /files to browse.',
-    },
-    {
       type: 'system',
       content: '',
     },
@@ -41,7 +34,6 @@ const Terminal = () => {
 
   const { messages: dbMessages, loading, addMessage, clearMessages: clearDbMessages } = useTerminalMessages(currentProject?.id || null);
   const { executeCommand, commands } = useTerminalCommands();
-  const { importFile, fileTree } = useFileManager();
 
   const allMessages = currentProject ? dbMessages : localMessages;
 
@@ -138,40 +130,6 @@ const Terminal = () => {
     handleCommandSubmit(command);
   }, [handleCommandSubmit]);
 
-  const handleFileUpload = useCallback(async (file: File) => {
-    setShowUploader(false);
-    
-    await addMessageToStream({ 
-      type: 'info', 
-      content: `Importing ${file.name}...` 
-    });
-
-    const result = await importFile(file);
-
-    if (result.success) {
-      await addMessageToStream({ 
-        type: 'success', 
-        content: result.message 
-      });
-
-      if (fileTree.length > 0) {
-        await addMessageToStream({
-          type: 'file-tree',
-          content: 'Imported files:',
-          metadata: { files: fileTree }
-        });
-      }
-
-      toast.success(result.message);
-    } else {
-      await addMessageToStream({ 
-        type: 'error', 
-        content: result.message 
-      });
-      toast.error(result.message);
-    }
-  }, [importFile, fileTree, addMessageToStream]);
-
   // Keyboard shortcuts
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -184,15 +142,11 @@ const Terminal = () => {
         clearAllMessages();
         toast.success('Terminal cleared');
       }
-      if ((e.metaKey || e.ctrlKey) && e.key === 'u') {
-        e.preventDefault();
-        setShowUploader(!showUploader);
-      }
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [clearAllMessages, showUploader]);
+  }, [clearAllMessages]);
 
   return (
     <>
@@ -206,11 +160,6 @@ const Terminal = () => {
         }
       >
         <div className="flex flex-col h-full">
-          {showUploader && (
-            <div className="p-4 border-b" style={{ borderColor: 'hsl(var(--terminal-surface))' }}>
-              <FileUploader onFileSelect={handleFileUpload} disabled={loading} />
-            </div>
-          )}
           <MessageStream messages={allMessages} />
           <CommandInput onSubmit={handleCommandSubmit} disabled={loading} />
         </div>
