@@ -39,8 +39,8 @@ export const Hero = () => {
     contactSection?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const navigateToDemo = () => {
-    window.location.href = "/demo";
+  const navigateToAbout = () => {
+    window.location.href = "/about";
   };
 
   return (
@@ -133,12 +133,12 @@ export const Hero = () => {
               <Button
                 size="lg"
                 variant="outline"
-                onClick={navigateToDemo}
+                onClick={navigateToAbout}
                 className="text-base group border-2 hover:scale-105 transition-transform"
-                aria-label="Try the Policy Engine demo"
+                aria-label="Learn about Pennsylvania's Quantum Initiative"
               >
                 <Play className="mr-2 h-5 w-5" />
-                Try the Policy Engine
+                About Us
               </Button>
             </div>
           </motion.div>

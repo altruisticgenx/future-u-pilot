@@ -36,12 +36,6 @@ export const Footer = () => {
                 Experiments
               </a>
               <a
-                href="/demo"
-                className="text-sm text-muted-foreground hover:text-primary transition-colors"
-              >
-                Demo
-              </a>
-              <a
                 href="#contact"
                 className="text-sm text-muted-foreground hover:text-primary transition-colors"
                 onClick={(e) => {
