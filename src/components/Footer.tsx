@@ -30,24 +30,6 @@ export const Footer = () => {
                 Services
               </a>
               <a
-                href="/policy-dashboard"
-                className="text-sm text-muted-foreground hover:text-primary transition-colors"
-              >
-                Policy Dashboard
-              </a>
-              <a
-                href="/fedramp-sandbox"
-                className="text-sm text-muted-foreground hover:text-primary transition-colors"
-              >
-                FedRAMP Sandbox
-              </a>
-              <a
-                href="/pqc-module"
-                className="text-sm text-muted-foreground hover:text-primary transition-colors"
-              >
-                PQC Module
-              </a>
-              <a
                 href="/experiments"
                 className="text-sm text-muted-foreground hover:text-primary transition-colors"
               >

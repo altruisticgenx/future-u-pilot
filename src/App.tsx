@@ -6,9 +6,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import Demo from "./pages/Demo";
 import Experiments from "./pages/Experiments";
-import PolicyDashboard from "./pages/PolicyDashboard";
-import FedRAMPSandbox from "./pages/FedRAMPSandbox";
-import PQCModule from "./pages/PQCModule";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -23,9 +20,6 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/demo" element={<Demo />} />
           <Route path="/experiments" element={<Experiments />} />
-          <Route path="/policy-dashboard" element={<PolicyDashboard />} />
-          <Route path="/fedramp-sandbox" element={<FedRAMPSandbox />} />
-          <Route path="/pqc-module" element={<PQCModule />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
