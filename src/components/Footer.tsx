@@ -59,27 +59,27 @@ export const Footer = () => {
             <h4 className="font-semibold text-foreground">Connect</h4>
             <div className="flex gap-4">
               <a
-                href="mailto:hello@altruisticxai.com"
-                aria-label="Email us"
-                className="p-2 rounded-lg bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
+                href="mailto:altruisticxai@gmail.com"
+                aria-label="Email us at altruisticxai@gmail.com"
+                className="p-2 rounded-lg bg-primary/10 text-primary hover:bg-primary/20 hover:scale-110 transition-all duration-300"
               >
                 <Mail className="h-5 w-5" />
               </a>
               <a
-                href="https://github.com"
+                href="https://github.com/altruisticgenx/projectz#readme"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="GitHub profile"
-                className="p-2 rounded-lg bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
+                aria-label="Visit our GitHub repository"
+                className="p-2 rounded-lg bg-primary/10 text-primary hover:bg-primary/20 hover:scale-110 transition-all duration-300"
               >
                 <Github className="h-5 w-5" />
               </a>
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/in/inga-kaltak-11i41141/"
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="LinkedIn profile"
-                className="p-2 rounded-lg bg-primary/10 text-primary hover:bg-primary/20 transition-colors"
+                aria-label="Connect on LinkedIn"
+                className="p-2 rounded-lg bg-primary/10 text-primary hover:bg-primary/20 hover:scale-110 transition-all duration-300"
               >
                 <Linkedin className="h-5 w-5" />
               </a>

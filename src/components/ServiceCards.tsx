@@ -78,7 +78,7 @@ export const ServiceCards = () => {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 gap-6 sm:gap-8">
           {services.map((service, index) => {
             const Icon = service.icon;
             return (
@@ -88,9 +88,13 @@ export const ServiceCards = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
+                whileHover={{ scale: 1.02, y: -5 }}
               >
-                <Card className="group h-full backdrop-blur-md bg-card/60 border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10">
-                  <CardContent className="p-8 space-y-6">
+                <Card className="group h-full backdrop-blur-md bg-card/60 border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:shadow-primary/10 overflow-hidden relative">
+                  {/* Animated background shimmer */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent opacity-0 group-hover:opacity-100 animate-shimmer" />
+                  
+                  <CardContent className="p-6 sm:p-8 space-y-4 sm:space-y-6 relative z-10">
                     {/* Tag */}
                     <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20">
                       <code className="text-xs font-mono text-primary">
