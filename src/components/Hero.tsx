@@ -45,20 +45,46 @@ export const Hero = () => {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-background via-primary/5 to-accent/10" />
+      {/* Background gradient with animation */}
+      <div className="absolute inset-0 bg-gradient-to-br from-background via-primary/5 to-accent/10 animate-gradient" />
+      
+      {/* Floating orbs for depth */}
+      <motion.div
+        className="absolute top-20 left-10 w-72 h-72 bg-primary/20 rounded-full blur-3xl"
+        animate={{
+          y: [0, 30, 0],
+          scale: [1, 1.1, 1],
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+      <motion.div
+        className="absolute bottom-20 right-10 w-96 h-96 bg-accent/20 rounded-full blur-3xl"
+        animate={{
+          y: [0, -40, 0],
+          scale: [1, 1.2, 1],
+        }}
+        transition={{
+          duration: 10,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
       
       {/* Grid overlay */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--border))_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--border))_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,#000_70%,transparent_110%)]" />
 
-      <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-20">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-12 sm:py-20">
+        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center">
           {/* Left column - Content */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="space-y-8"
+            className="space-y-6 sm:space-y-8"
           >
             {/* Status tag */}
             <motion.div
@@ -99,7 +125,7 @@ export const Hero = () => {
               <Button
                 size="lg"
                 onClick={scrollToContact}
-                className="text-base group shadow-xl hover:shadow-2xl hover:shadow-primary/20 transition-all"
+                className="text-base group shadow-xl hover:shadow-2xl hover:shadow-primary/20 transition-all hover:scale-105"
                 aria-label="Book a strategy session"
               >
                 Book Strategy Session
@@ -110,7 +136,7 @@ export const Hero = () => {
                 size="lg"
                 variant="outline"
                 onClick={navigateToDemo}
-                className="text-base group border-2"
+                className="text-base group border-2 hover:scale-105 transition-transform"
                 aria-label="Try the Policy Engine demo"
               >
                 <Play className="mr-2 h-5 w-5" />
@@ -119,14 +145,25 @@ export const Hero = () => {
             </div>
           </motion.div>
 
-          {/* Right column - Terminal */}
+          {/* Right column - Terminal with 3D effect */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="relative"
+            className="relative perspective-1000"
+            whileHover={{ scale: 1.02 }}
           >
-            <div className="rounded-2xl backdrop-blur-md bg-card/60 border border-border/50 shadow-2xl overflow-hidden">
+            <motion.div
+              className="rounded-2xl backdrop-blur-md bg-card/60 border border-border/50 shadow-2xl overflow-hidden"
+              whileHover={{
+                rotateY: 2,
+                rotateX: -2,
+              }}
+              transition={{ duration: 0.3 }}
+              style={{
+                transformStyle: "preserve-3d",
+              }}
+            >
               {/* Terminal header */}
               <div className="bg-muted/50 border-b border-border/50 px-4 py-3 flex items-center gap-2">
                 <div className="flex gap-2">
@@ -140,7 +177,7 @@ export const Hero = () => {
               </div>
               
               {/* Terminal content */}
-              <div className="p-6 font-mono text-sm space-y-2 min-h-[300px]">
+              <div className="p-4 sm:p-6 font-mono text-xs sm:text-sm space-y-2 min-h-[250px] sm:min-h-[300px]">
                 {displayedLines.map((line, index) => (
                   <motion.div
                     key={index}
@@ -160,7 +197,7 @@ export const Hero = () => {
                   />
                 )}
               </div>
-            </div>
+            </motion.div>
           </motion.div>
         </div>
       </div>
