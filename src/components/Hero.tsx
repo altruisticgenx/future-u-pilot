@@ -1,38 +1,35 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Play } from "lucide-react";
+import { ArrowRight, Play, Terminal as TerminalIcon } from "lucide-react";
+import { TypeAnimation } from 'react-type-animation';
 
-const terminalLines = [
-  "> Initializing Quantum/AI Consultancy Platform…",
-  "> Loading quantum computing frameworks…",
-  "> Connecting to research partnerships…",
-  "> Scanning public-sector implementation protocols…",
-  "> Analyzing organizational readiness for quantum technologies…",
-  "> Establishing quantum-safe cryptography protocols…",
-  "> Syncing with institutional databases…",
-  "> System ready. Empowering practical quantum/AI adoption.",
+const terminalCommands = [
+  "$ quantum-check --infrastructure",
+  "⚡ Scanning quantum readiness...",
+  "✓ Crypto inventory complete",
+  "✓ Migration path mapped",
+  "",
+  "$ ai-deploy --compliance",
+  "🤖 Testing explainability...",
+  "✓ Policy gaps identified",
+  "✓ Pilot ready in 8 weeks",
+  "",
+  "$ testbed-run --live",
+  "🔬 Real project, real results",
+  "✓ Lessons captured",
+  "✓ Framework refined",
 ];
 
 export const Hero = () => {
-  const [displayedLines, setDisplayedLines] = useState<string[]>([]);
-  const [currentLineIndex, setCurrentLineIndex] = useState(0);
+  const [cmdIndex, setCmdIndex] = useState(0);
 
   useEffect(() => {
-    if (currentLineIndex < terminalLines.length) {
-      const timer = setTimeout(() => {
-        setDisplayedLines((prev) => [...prev, terminalLines[currentLineIndex]]);
-        setCurrentLineIndex((prev) => prev + 1);
-      }, 400);
-      return () => clearTimeout(timer);
-    } else {
-      const resetTimer = setTimeout(() => {
-        setDisplayedLines([]);
-        setCurrentLineIndex(0);
-      }, 3000);
-      return () => clearTimeout(resetTimer);
-    }
-  }, [currentLineIndex]);
+    const interval = setInterval(() => {
+      setCmdIndex((prev) => (prev + 1) % terminalCommands.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
 
   const scrollToContact = () => {
     const contactSection = document.getElementById("contact");
@@ -103,43 +100,66 @@ export const Hero = () => {
 
             {/* Headline */}
             <div className="space-y-4">
-              <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight">
-                <span className="block text-foreground">B2B Consultancy</span>
-                <span className="block bg-gradient-hero bg-clip-text text-transparent">
-                  For The Quantum-AI Era
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight">
+                <span className="block text-foreground mb-2">Practical Consulting for</span>
+                <span className="block bg-gradient-hero bg-clip-text text-transparent glitch-text">
+                  <TypeAnimation
+                    sequence={[
+                      'Quantum Computing',
+                      2000,
+                      'AI Deployment',
+                      2000,
+                      'Policy Compliance',
+                      2000,
+                      'Security Migration',
+                      2000,
+                    ]}
+                    wrapper="span"
+                    speed={50}
+                    repeat={Infinity}
+                  />
                 </span>
               </h1>
               
-              <p className="text-xl sm:text-2xl text-muted-foreground max-w-2xl">
-                We help organizations adapt to quantum computing and AI with practical, test-bed consulting—turning pilots into reusable, reliable systems.
+              <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl leading-relaxed">
+                AltruisticXAI helps organizations adapt to quantum computing and AI through practical consulting—think of it as a <span className="text-primary font-semibold">testbed for emerging technology adoption</span>. We work with government agencies, businesses, and legislative bodies to streamline workflows, secure infrastructure, and deploy AI that actually works.
               </p>
               
-              <p className="text-sm text-muted-foreground italic">
-                Quantum is coming. AI's already here. We help you not panic.
+              <p className="text-base text-muted-foreground italic border-l-2 border-primary pl-4">
+                Each project refines proven, reusable solutions. Quantum is coming. AI's already here. We help you not panic.
               </p>
             </div>
 
-            {/* CTAs */}
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button
-                size="lg"
-                onClick={scrollToContact}
-                className="text-base group shadow-xl hover:shadow-2xl hover:shadow-primary/20 transition-all hover:scale-105"
+            {/* CTAs - 3D Glowing Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
+              <motion.div
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.98 }}
               >
-                Book Strategy Session
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
+                <Button
+                  size="lg"
+                  onClick={scrollToContact}
+                  className="btn-3d-primary text-base sm:text-lg px-6 sm:px-8 py-5 sm:py-6 font-bold group w-full sm:w-auto"
+                >
+                  📅 Book Session
+                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+                </Button>
+              </motion.div>
               
-              <Button
-                size="lg"
-                variant="outline"
-                onClick={navigateToAbout}
-                className="text-base group border-2 hover:scale-105 transition-transform"
-                aria-label="Learn about Pennsylvania's Quantum Initiative"
+              <motion.div
+                whileHover={{ scale: 1.05, y: -2 }}
+                whileTap={{ scale: 0.98 }}
               >
-                <Play className="mr-2 h-5 w-5" />
-                About Us
-              </Button>
+                <Button
+                  size="lg"
+                  onClick={navigateToAbout}
+                  className="btn-3d-accent text-base sm:text-lg px-6 sm:px-8 py-5 sm:py-6 font-bold group w-full sm:w-auto"
+                  aria-label="Learn about our approach"
+                >
+                  <Play className="mr-2 h-5 w-5" />
+                  About Us
+                </Button>
+              </motion.div>
             </div>
           </motion.div>
 
@@ -175,25 +195,38 @@ export const Hero = () => {
               </div>
               
               {/* Terminal content */}
-              <div className="p-4 sm:p-6 font-mono text-xs sm:text-sm space-y-2 min-h-[250px] sm:min-h-[300px]">
-                {displayedLines.map((line, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, x: -10 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="text-primary"
-                  >
-                    {line}
-                  </motion.div>
-                ))}
-                {currentLineIndex < terminalLines.length && (
+              <div className="relative p-4 sm:p-6 font-mono text-xs sm:text-sm min-h-[280px] sm:min-h-[350px] bg-terminal-bg/50">
+                {/* Scan lines effect */}
+                <div className="absolute inset-0 bg-[linear-gradient(transparent_50%,rgba(0,255,255,0.03)_50%)] bg-[length:100%_4px] pointer-events-none animate-scan" />
+                
+                {/* Floating particles */}
+                <div className="absolute top-4 right-4 w-1 h-1 bg-cmd-success rounded-full animate-pulse" />
+                <div className="absolute bottom-8 left-8 w-1 h-1 bg-cmd-info rounded-full animate-pulse delay-150" />
+                <div className="absolute top-1/2 right-1/3 w-1 h-1 bg-cmd-warning rounded-full animate-pulse delay-300" />
+                
+                <div className="relative z-10 space-y-1.5">
+                  {terminalCommands.slice(0, cmdIndex + 1).map((cmd, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.2, delay: i * 0.05 }}
+                      className={`${
+                        cmd.startsWith('$') ? 'text-cmd-info font-bold' :
+                        cmd.startsWith('⚡') || cmd.startsWith('🤖') || cmd.startsWith('🔬') ? 'text-cmd-warning' :
+                        cmd.startsWith('✓') ? 'text-cmd-success' :
+                        'text-terminal-text/50'
+                      }`}
+                    >
+                      {cmd}
+                    </motion.div>
+                  ))}
                   <motion.span
-                    animate={{ opacity: [1, 0] }}
-                    transition={{ duration: 0.8, repeat: Infinity }}
-                    className="inline-block w-2 h-4 bg-primary ml-1"
+                    animate={{ opacity: [1, 0, 1] }}
+                    transition={{ duration: 1, repeat: Infinity }}
+                    className="inline-block w-2 h-4 bg-cmd-success ml-1 align-middle"
                   />
-                )}
+                </div>
               </div>
             </motion.div>
           </motion.div>
