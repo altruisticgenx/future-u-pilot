@@ -12,6 +12,7 @@ export const Navigation = () => {
     { label: "About Us", href: "/about" },
     { label: "Initiatives", href: "/initiatives" },
     { label: "Case Studies", href: "/case-studies" },
+    { label: "Terminal", href: "/terminal" },
     { label: "Demo", href: "/demo" },
     { label: "Contact", href: "#contact" },
   ];

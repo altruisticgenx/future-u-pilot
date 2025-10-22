@@ -8,6 +8,25 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
+    /* Terminal colors */
+    --terminal-bg: 222 47% 7%;
+    --terminal-surface: 217 33% 12%;
+    --terminal-border: 215 16% 22%;
+    --terminal-text: 210 20% 98%;
+    
+    /* Command colors */
+    --cmd-success: 142 76% 60%;
+    --cmd-error: 0 84% 60%;
+    --cmd-info: 199 89% 65%;
+    --cmd-warning: 43 96% 56%;
+    
+    /* Syntax highlighting */
+    --syntax-keyword: 280 100% 80%;
+    --syntax-string: 142 76% 60%;
+    --syntax-number: 43 96% 56%;
+    --syntax-comment: 215 16% 42%;
+    
+    /* Core colors */
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
 

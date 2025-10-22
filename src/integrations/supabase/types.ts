@@ -14,7 +14,156 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      command_logs: {
+        Row: {
+          args: Json | null
+          command: string
+          created_at: string | null
+          execution_time_ms: number | null
+          id: string
+          output: string | null
+          project_id: string | null
+          status: string | null
+        }
+        Insert: {
+          args?: Json | null
+          command: string
+          created_at?: string | null
+          execution_time_ms?: number | null
+          id?: string
+          output?: string | null
+          project_id?: string | null
+          status?: string | null
+        }
+        Update: {
+          args?: Json | null
+          command?: string
+          created_at?: string | null
+          execution_time_ms?: number | null
+          id?: string
+          output?: string | null
+          project_id?: string | null
+          status?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "command_logs_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      git_actions: {
+        Row: {
+          action: string
+          author: string | null
+          branch: string | null
+          created_at: string | null
+          files_changed: Json | null
+          id: string
+          message: string | null
+          project_id: string
+        }
+        Insert: {
+          action: string
+          author?: string | null
+          branch?: string | null
+          created_at?: string | null
+          files_changed?: Json | null
+          id?: string
+          message?: string | null
+          project_id: string
+        }
+        Update: {
+          action?: string
+          author?: string | null
+          branch?: string | null
+          created_at?: string | null
+          files_changed?: Json | null
+          id?: string
+          message?: string | null
+          project_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "git_actions_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      projects: {
+        Row: {
+          created_at: string | null
+          description: string | null
+          github_url: string | null
+          id: string
+          name: string
+          status: string | null
+          tags: string[] | null
+          updated_at: string | null
+        }
+        Insert: {
+          created_at?: string | null
+          description?: string | null
+          github_url?: string | null
+          id?: string
+          name: string
+          status?: string | null
+          tags?: string[] | null
+          updated_at?: string | null
+        }
+        Update: {
+          created_at?: string | null
+          description?: string | null
+          github_url?: string | null
+          id?: string
+          name?: string
+          status?: string | null
+          tags?: string[] | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      terminal_messages: {
+        Row: {
+          content: string
+          created_at: string | null
+          id: string
+          message_type: string
+          metadata: Json | null
+          project_id: string | null
+        }
+        Insert: {
+          content: string
+          created_at?: string | null
+          id?: string
+          message_type: string
+          metadata?: Json | null
+          project_id?: string | null
+        }
+        Update: {
+          content?: string
+          created_at?: string | null
+          id?: string
+          message_type?: string
+          metadata?: Json | null
+          project_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "terminal_messages_project_id_fkey"
+            columns: ["project_id"]
+            isOneToOne: false
+            referencedRelation: "projects"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
     }
     Views: {
       [_ in never]: never
