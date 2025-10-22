@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { FileText, Search, AlertCircle, ArrowLeft, CheckCircle2, Clock, TrendingUp, BarChart3, Shield, Eye, ChevronDown } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Progress } from "@/components/ui/progress";
+import { Navigation } from "@/components/Navigation";
 import {
   Dialog,
   DialogContent,
@@ -85,8 +86,10 @@ const Demo = () => {
 
   return (
     <div className="min-h-screen bg-background">
+      <Navigation />
+      
       {/* Header */}
-      <header className="border-b border-border/50 bg-card/30 backdrop-blur-sm sticky top-0 z-50">
+      <header className="border-b border-border/50 bg-card/30 backdrop-blur-sm sticky top-16 sm:top-20 z-40 mt-16 sm:mt-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">

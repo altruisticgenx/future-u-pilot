@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, ArrowLeft, ExternalLink } from "lucide-react";
+import { Navigation } from "@/components/Navigation";
 
 const experiments = [
   {
@@ -58,8 +59,10 @@ const experiments = [
 const Experiments = () => {
   return (
     <div className="min-h-screen bg-background">
+      <Navigation />
+      
       {/* Header */}
-      <header className="border-b border-border/50 bg-card/30 backdrop-blur-sm sticky top-0 z-50">
+      <header className="border-b border-border/50 bg-card/30 backdrop-blur-sm sticky top-16 sm:top-20 z-40 mt-16 sm:mt-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-4">
           <div className="flex items-center gap-4">
             <Button

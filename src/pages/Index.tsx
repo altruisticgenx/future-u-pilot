@@ -6,11 +6,13 @@ import { LabNotes } from "@/components/LabNotes";
 import { WhyItMatters } from "@/components/WhyItMatters";
 import { ContactForm } from "@/components/ContactForm";
 import { Footer } from "@/components/Footer";
+import { Navigation } from "@/components/Navigation";
 import { motion } from "framer-motion";
 
 const Index = () => {
   return (
     <div className="min-h-screen">
+      <Navigation />
       <Hero />
       <LogoRow />
       <ServiceCards />
