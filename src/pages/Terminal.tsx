@@ -16,15 +16,35 @@ const Terminal = () => {
   const [localMessages, setLocalMessages] = useState<Message[]>([
     {
       type: 'success',
-      content: '✓ Terminal initialized',
+      content: '✓ Quantum Terminal v2.4.1 initialized',
     },
     {
       type: 'system',
-      content: 'Welcome to the AltruisticXAI Project Hub',
+      content: '╔════════════════════════════════════════╗',
+    },
+    {
+      type: 'system',
+      content: '║  AltruisticXAI Project Hub             ║',
+    },
+    {
+      type: 'system',
+      content: '║  Quantum-Ready Infrastructure Platform ║',
+    },
+    {
+      type: 'system',
+      content: '╚════════════════════════════════════════╝',
     },
     {
       type: 'info',
-      content: 'Type /help to see available commands, or press ⌘K (Ctrl+K) to open the command palette.',
+      content: '→ Type /help to see 20+ available commands',
+    },
+    {
+      type: 'info',
+      content: '→ Press ⌘K (Ctrl+K) to open command palette',
+    },
+    {
+      type: 'info',
+      content: '→ Try: /trending, /budget, /status, /channels',
     },
     {
       type: 'system',

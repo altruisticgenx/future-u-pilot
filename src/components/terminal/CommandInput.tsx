@@ -41,9 +41,9 @@ export const CommandInput = ({ onSubmit, disabled = false, placeholder = 'Type /
   };
 
   return (
-    <form onSubmit={handleSubmit} className="border-t" style={{ borderColor: 'hsl(var(--terminal-border))' }}>
-      <div className="flex items-center gap-3 p-4" style={{ backgroundColor: 'hsl(var(--terminal-surface))' }}>
-        <Terminal className="h-5 w-5 flex-shrink-0" style={{ color: 'hsl(var(--cmd-success))' }} />
+    <form onSubmit={handleSubmit} className="border-t border-terminal-border sticky bottom-0 backdrop-blur-sm bg-terminal-surface/95">
+      <div className="flex items-center gap-2 sm:gap-3 p-2 sm:p-4">
+        <Terminal className="h-4 w-4 sm:h-5 sm:w-5 flex-shrink-0 text-cmd-success" />
         <Input
           ref={inputRef}
           type="text"
@@ -52,9 +52,9 @@ export const CommandInput = ({ onSubmit, disabled = false, placeholder = 'Type /
           onKeyDown={handleKeyDown}
           disabled={disabled}
           placeholder={placeholder}
-          className="flex-1 border-0 bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 font-mono"
-          style={{ color: 'hsl(var(--terminal-text))' }}
+          className="flex-1 border-0 bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 font-mono text-sm sm:text-base text-terminal-text placeholder:text-syntax-comment"
           autoComplete="off"
+          spellCheck={false}
         />
       </div>
     </form>

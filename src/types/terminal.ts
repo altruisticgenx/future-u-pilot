@@ -33,7 +33,7 @@ export interface Command {
   aliases: string[];
   description: string;
   usage: string;
-  category: 'project' | 'git' | 'system' | 'help';
+  category: 'project' | 'git' | 'system' | 'help' | 'general' | 'analytics' | 'operations' | 'collaboration';
   handler: (args: string[], context: TerminalContext) => Promise<Message[]>;
 }
 

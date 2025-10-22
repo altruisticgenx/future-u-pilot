@@ -3,14 +3,29 @@ import { supabase } from '@/integrations/supabase/client';
 import { Command, Message, TerminalContext, Project } from '@/types/terminal';
 import { toast } from 'sonner';
 
+const TRENDING_TOPICS = [
+  'Quantum Computing Security', 'AI Policy Compliance', 'Post-Quantum Cryptography',
+  'Explainable AI Systems', 'Quantum Machine Learning', 'AI Risk Assessment',
+  'Quantum-Safe Infrastructure', 'Federal AI Guidelines', 'Quantum Workforce Development'
+];
+
+const SAMPLE_PROJECTS = [
+  { name: 'pa-quantum-initiative', status: 'active', budget: 2500000, progress: 78 },
+  { name: 'university-ai-compliance', status: 'active', budget: 450000, progress: 92 },
+  { name: 'energy-grid-optimization', status: 'active', budget: 1800000, progress: 65 },
+  { name: 'healthcare-quantum-ml', status: 'planning', budget: 950000, progress: 15 },
+  { name: 'gov-policy-framework', status: 'active', budget: 320000, progress: 88 },
+  { name: 'quantum-workforce-dev', status: 'completed', budget: 680000, progress: 100 },
+];
+
 export const useTerminalCommands = () => {
   const commands: Command[] = [
     {
       name: 'help',
-      aliases: ['?'],
+      aliases: ['?', 'man'],
       description: 'Display available commands',
       usage: '/help [command]',
-      category: 'help',
+      category: 'general',
       handler: async (args, ctx) => {
         if (args[0]) {
           const cmd = allCommands.find(c => c.name === args[0] || c.aliases.includes(args[0]));
@@ -48,11 +63,200 @@ export const useTerminalCommands = () => {
       },
     },
     {
+      name: 'trending',
+      aliases: ['trends', 'hot'],
+      description: 'Show trending quantum-AI topics',
+      usage: '/trending',
+      category: 'analytics',
+      handler: async (args, ctx) => {
+        const messages: Message[] = [
+          { type: 'success', content: '🔥 Trending Quantum-AI Topics' },
+          { type: 'system', content: '' },
+        ];
+        TRENDING_TOPICS.slice(0, 6).forEach((topic, i) => {
+          messages.push({
+            type: 'list',
+            content: `${i + 1}. ${topic} ${['📈', '🚀', '⚡', '💡', '🔬', '🎯'][i]}`,
+          });
+        });
+        return messages;
+      },
+    },
+    {
+      name: 'budget',
+      aliases: ['funding', 'money'],
+      description: 'Show project budgets and spending',
+      usage: '/budget [project]',
+      category: 'analytics',
+      handler: async (args, ctx) => {
+        if (args[0]) {
+          const project = SAMPLE_PROJECTS.find(p => p.name.includes(args[0]));
+          if (!project) return [{ type: 'error', content: 'Project not found' }];
+          
+          return [
+            { type: 'success', content: `💰 Budget: ${project.name}` },
+            { type: 'table', content: `Total Allocated: $${project.budget.toLocaleString()}` },
+            { type: 'table', content: `Spent: $${Math.floor(project.budget * project.progress / 100).toLocaleString()} (${project.progress}%)` },
+            { type: 'table', content: `Remaining: $${Math.floor(project.budget * (100 - project.progress) / 100).toLocaleString()}` },
+            { type: 'info', content: `Status: ${project.status}` },
+          ];
+        }
+        
+        const total = SAMPLE_PROJECTS.reduce((sum, p) => sum + p.budget, 0);
+        const messages: Message[] = [
+          { type: 'success', content: `💰 Total Portfolio Budget: $${total.toLocaleString()}` },
+          { type: 'system', content: '' },
+        ];
+        SAMPLE_PROJECTS.forEach(p => {
+          messages.push({
+            type: 'table',
+            content: `${p.name}: $${p.budget.toLocaleString()} (${p.progress}% spent)`,
+          });
+        });
+        return messages;
+      },
+    },
+    {
+      name: 'status',
+      aliases: ['stat', 'info'],
+      description: 'Show system and project status',
+      usage: '/status [project]',
+      category: 'analytics',
+      handler: async (args, ctx) => {
+        const active = SAMPLE_PROJECTS.filter(p => p.status === 'active').length;
+        const completed = SAMPLE_PROJECTS.filter(p => p.status === 'completed').length;
+        
+        return [
+          { type: 'success', content: '⚡ System Status' },
+          { type: 'system', content: '' },
+          { type: 'code', content: `Active Projects: ${active}` },
+          { type: 'code', content: `Completed Projects: ${completed}` },
+          { type: 'code', content: `Total Projects: ${SAMPLE_PROJECTS.length}` },
+          { type: 'code', content: `Uptime: 99.8%` },
+          { type: 'code', content: `Response Time: 45ms` },
+          { type: 'success', content: '✓ All systems operational' },
+        ];
+      },
+    },
+    {
+      name: 'deploy',
+      aliases: ['ship', 'release'],
+      description: 'Deploy project to production',
+      usage: '/deploy <project>',
+      category: 'operations',
+      handler: async (args, ctx) => {
+        if (!args[0]) return [{ type: 'error', content: 'Usage: /deploy <project>' }];
+        
+        const project = args[0];
+        return [
+          { type: 'loading', content: `Deploying ${project}...` },
+          { type: 'code', content: '→ Building production bundle...' },
+          { type: 'code', content: '→ Running tests...' },
+          { type: 'code', content: '→ Uploading to CDN...' },
+          { type: 'code', content: '→ Updating DNS records...' },
+          { type: 'success', content: `✓ ${project} deployed successfully!` },
+          { type: 'info', content: `🌐 Live at: https://${project}.altruisticxai.com` },
+        ];
+      },
+    },
+    {
+      name: 'logs',
+      aliases: ['tail', 'log'],
+      description: 'View recent system logs',
+      usage: '/logs [lines]',
+      category: 'operations',
+      handler: async (args, ctx) => {
+        const lines = parseInt(args[0]) || 10;
+        const messages: Message[] = [
+          { type: 'success', content: `📜 Last ${lines} log entries` },
+          { type: 'system', content: '' },
+        ];
+        
+        for (let i = 0; i < lines; i++) {
+          const types = ['INFO', 'WARN', 'SUCCESS', 'DEBUG'];
+          const type = types[Math.floor(Math.random() * types.length)];
+          const time = new Date(Date.now() - i * 60000).toLocaleTimeString();
+          messages.push({
+            type: 'code',
+            content: `[${time}] ${type}: Operation completed successfully`,
+          });
+        }
+        return messages;
+      },
+    },
+    {
+      name: 'channels',
+      aliases: ['ch', 'list-channels'],
+      description: 'List active communication channels',
+      usage: '/channels',
+      category: 'collaboration',
+      handler: async (args, ctx) => {
+        const channels = [
+          { name: '#quantum-research', members: 24, active: true },
+          { name: '#ai-policy', members: 18, active: true },
+          { name: '#energy-optimization', members: 32, active: true },
+          { name: '#healthcare-ml', members: 15, active: false },
+          { name: '#workforce-dev', members: 41, active: true },
+          { name: '#general', members: 67, active: true },
+        ];
+        
+        const messages: Message[] = [
+          { type: 'success', content: '💬 Active Channels' },
+          { type: 'system', content: '' },
+        ];
+        
+        channels.forEach(ch => {
+          messages.push({
+            type: 'list',
+            content: `${ch.active ? '🟢' : '⚪'} ${ch.name} (${ch.members} members)`,
+          });
+        });
+        return messages;
+      },
+    },
+    {
+      name: 'analytics',
+      aliases: ['stats', 'metrics'],
+      description: 'Show project analytics and metrics',
+      usage: '/analytics [project]',
+      category: 'analytics',
+      handler: async (args, ctx) => {
+        return [
+          { type: 'success', content: '📊 Analytics Overview' },
+          { type: 'system', content: '' },
+          { type: 'table', content: 'Total Users: 1,247' },
+          { type: 'table', content: 'Active This Week: 892' },
+          { type: 'table', content: 'Projects Launched: 23' },
+          { type: 'table', content: 'Success Rate: 94%' },
+          { type: 'table', content: 'Avg Response Time: 125ms' },
+          { type: 'system', content: '' },
+          { type: 'info', content: '📈 Trending up 18% this month' },
+        ];
+      },
+    },
+    {
+      name: 'whoami',
+      aliases: ['me', 'user'],
+      description: 'Show current user information',
+      usage: '/whoami',
+      category: 'general',
+      handler: async (args, ctx) => {
+        return [
+          { type: 'success', content: '👤 User Profile' },
+          { type: 'code', content: 'User: quantum-developer' },
+          { type: 'code', content: 'Role: Senior Consultant' },
+          { type: 'code', content: 'Organization: AltruisticXAI' },
+          { type: 'code', content: 'Projects: 6 active' },
+          { type: 'code', content: 'Access Level: Full' },
+        ];
+      },
+    },
+    {
       name: 'clear',
-      aliases: ['cls'],
+      aliases: ['cls', 'reset'],
       description: 'Clear terminal screen',
       usage: '/clear',
-      category: 'system',
+      category: 'general',
       handler: async (args, ctx) => {
         ctx.clearMessages();
         return [];
