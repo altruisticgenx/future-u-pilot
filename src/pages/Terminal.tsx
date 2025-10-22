@@ -16,35 +16,55 @@ const Terminal = () => {
   const [localMessages, setLocalMessages] = useState<Message[]>([
     {
       type: 'success',
-      content: '✓ Quantum Terminal v2.4.1 initialized',
+      content: '✓ AltruisticXAI Quantum Terminal v2.5.0',
     },
     {
       type: 'system',
-      content: '╔════════════════════════════════════════╗',
-    },
-    {
-      type: 'system',
-      content: '║  AltruisticXAI Project Hub             ║',
-    },
-    {
-      type: 'system',
-      content: '║  Quantum-Ready Infrastructure Platform ║',
-    },
-    {
-      type: 'system',
-      content: '╚════════════════════════════════════════╝',
+      content: '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
     },
     {
       type: 'info',
-      content: '→ Type /help to see 20+ available commands',
+      content: '🚀 Quantum-AI Command Center  |  Type "help" to begin',
+    },
+    {
+      type: 'system',
+      content: '',
+    },
+    {
+      type: 'table',
+      content: 'Quick Start Commands:',
+    },
+    {
+      type: 'list',
+      content: '  trending    - View trending quantum-AI topics',
+    },
+    {
+      type: 'list',
+      content: '  budget      - Check project budgets & spending',
+    },
+    {
+      type: 'list',
+      content: '  status      - System and project health',
+    },
+    {
+      type: 'list',
+      content: '  channels    - View communication channels',
+    },
+    {
+      type: 'list',
+      content: '  deploy      - Deploy projects to production',
+    },
+    {
+      type: 'system',
+      content: '',
     },
     {
       type: 'info',
-      content: '→ Press ⌘K (Ctrl+K) to open command palette',
+      content: '⌨️  Shortcuts: ⌘K (Command Palette) | ⌘L (Clear)',
     },
     {
-      type: 'info',
-      content: '→ Try: /trending, /budget, /status, /channels',
+      type: 'system',
+      content: '━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━',
     },
     {
       type: 'system',
