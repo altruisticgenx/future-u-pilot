@@ -30,10 +30,10 @@ const Index = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="text-center space-y-4 mb-16"
+            className="text-center space-y-3 mb-12"
           >
-            <h2 className="text-4xl sm:text-5xl font-bold">Let's Plan Your Next 8 Weeks</h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">Let's Plan Your Next 8 Weeks</h2>
+            <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
               Tell us where you are and we'll propose a pilot that proves value—fast.
             </p>
           </motion.div>

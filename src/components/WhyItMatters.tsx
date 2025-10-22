@@ -34,15 +34,15 @@ export const WhyItMatters = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="text-center space-y-4 mb-12 sm:mb-16"
+          className="text-center space-y-3 mb-10 sm:mb-12"
         >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold">Why It Matters</h2>
-          <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">Why It Matters</h2>
+          <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
             From friction to forward momentum
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-6 sm:gap-8">
+        <div className="grid md:grid-cols-3 gap-4 sm:gap-6">
           {points.map((point, index) => {
             const Icon = point.icon;
             return (
@@ -60,14 +60,14 @@ export const WhyItMatters = () => {
                   whileHover={{ rotate: [0, -10, 10, -10, 0] }}
                   transition={{ duration: 0.5 }}
                 >
-                  <Icon className={`h-10 w-10 sm:h-12 sm:w-12 ${point.color}`} />
+                  <Icon className={`h-8 w-8 sm:h-10 sm:w-10 ${point.color}`} />
                 </motion.div>
                 
                 <div className="space-y-2">
-                  <p className="text-xs sm:text-sm font-bold uppercase tracking-wide text-muted-foreground">
+                  <p className="text-[10px] sm:text-xs font-bold uppercase tracking-wide text-muted-foreground">
                     {point.label}
                   </p>
-                  <p className="text-base sm:text-lg font-medium text-foreground leading-relaxed">
+                  <p className="text-sm sm:text-base font-medium text-foreground leading-relaxed">
                     {point.text}
                   </p>
                 </div>

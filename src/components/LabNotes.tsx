@@ -32,15 +32,15 @@ export const LabNotes = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="text-center space-y-4 mb-12 sm:mb-16"
+          className="text-center space-y-3 mb-10 sm:mb-12"
         >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold">Living Lab Notes</h2>
-          <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">Living Lab Notes</h2>
+          <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
             Real experiments, measurable outcomes
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-6 sm:gap-8 mb-8 sm:mb-12">
+        <div className="grid md:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
           {experiments.map((experiment, index) => (
             <motion.div
               key={experiment.date}
@@ -67,11 +67,11 @@ export const LabNotes = () => {
                     </time>
                   </motion.div>
                   
-                  <h3 className="text-lg sm:text-xl font-bold text-foreground">
+                  <h3 className="text-base sm:text-lg font-bold text-foreground">
                     {experiment.title}
                   </h3>
                   
-                  <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">
+                  <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
                     {experiment.summary}
                   </p>
                   
@@ -97,7 +97,7 @@ export const LabNotes = () => {
           <Button
             variant="outline"
             size="lg"
-            className="group border-2 hover:scale-105 transition-transform"
+            className="group border-2 hover:scale-105 transition-transform text-sm"
             onClick={() => window.location.href = "/experiments"}
             aria-label="View all experiments"
           >

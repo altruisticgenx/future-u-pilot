@@ -39,7 +39,7 @@ export const Navigation = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div className="flex items-center justify-between h-16 sm:h-20">
           {/* Logo */}
-          <motion.a href="/" className="text-xl sm:text-2xl font-bold bg-gradient-hero bg-clip-text text-transparent" whileHover={{
+          <motion.a href="/" className="text-lg sm:text-xl font-bold bg-gradient-hero bg-clip-text text-transparent" whileHover={{
           scale: 1.05
         }} whileTap={{
           scale: 0.95
@@ -49,7 +49,7 @@ export const Navigation = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-1">
-            {navItems.map(item => <motion.button key={item.label} onClick={() => handleNavClick(item.href)} className="px-4 py-2 rounded-lg text-sm font-medium text-foreground hover:bg-primary/10 hover:text-primary transition-all" whileHover={{
+            {navItems.map(item => <motion.button key={item.label} onClick={() => handleNavClick(item.href)} className="px-3 py-2 rounded-lg text-xs sm:text-sm font-medium text-foreground hover:bg-primary/10 hover:text-primary transition-all" whileHover={{
             y: -2
           }} whileTap={{
             scale: 0.95

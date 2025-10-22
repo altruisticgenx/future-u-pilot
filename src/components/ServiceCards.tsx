@@ -178,15 +178,15 @@ export const ServiceCards = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="text-center space-y-4 mb-12 sm:mb-16"
+          className="text-center space-y-3 mb-10 sm:mb-12"
         >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold">Current Initiatives</h2>
-          <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">Current Initiatives</h2>
+          <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-3xl mx-auto">
             Empowering Quantum & AI Literacy through active programs across education, government, energy, and enterprise sectors worldwide.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-6 sm:gap-8 mb-12">
+        <div className="grid md:grid-cols-2 gap-4 sm:gap-6 mb-8 sm:mb-12">
           {services.map((service, index) => (
             <motion.div
               key={service.id}
@@ -222,8 +222,8 @@ export const ServiceCards = () => {
                       </Badge>
                     </div>
                   </div>
-                  <CardTitle className="text-lg sm:text-xl leading-tight">{service.title}</CardTitle>
-                  <CardDescription className="text-sm leading-relaxed">
+                  <CardTitle className="text-base sm:text-lg leading-tight">{service.title}</CardTitle>
+                  <CardDescription className="text-xs sm:text-sm leading-relaxed">
                     {service.shortDesc}
                   </CardDescription>
                 </CardHeader>
@@ -245,7 +245,7 @@ export const ServiceCards = () => {
                     className="w-full justify-between group/btn border-2 shadow-[2px_2px_0px_0px_hsl(var(--border))] hover:shadow-[3px_3px_0px_0px_hsl(var(--primary)/0.2)] hover:-translate-y-0.5 transition-all"
                     onClick={() => setExpandedCard(expandedCard === service.id ? null : service.id)}
                   >
-                    <span className="font-semibold text-sm">Details</span>
+                    <span className="text-xs sm:text-sm font-semibold">Details</span>
                     {expandedCard === service.id ? (
                       <ChevronDown className="w-4 h-4 transition-transform" />
                     ) : (

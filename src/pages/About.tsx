@@ -84,20 +84,20 @@ const About = () => {
               transition={{ duration: 0.5 }}
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 backdrop-blur-sm"
             >
-              <Brain className="w-4 h-4 text-primary" />
-              <span className="text-sm font-medium text-primary">
+              <Brain className="w-3 h-3 sm:w-4 sm:h-4 text-primary" />
+              <span className="text-xs sm:text-sm font-medium text-primary">
                 Pennsylvania Quantum Initiative
               </span>
             </motion.div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold">
               <span className="block text-foreground">The Quantum Leap</span>
               <span className="block bg-gradient-hero bg-clip-text text-transparent mt-2">
                 Pennsylvania's Roadmap to a Quantum Future
               </span>
             </h1>
             
-            <p className="text-lg sm:text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
+            <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-4xl mx-auto leading-relaxed">
               Pennsylvania is building a quantum-ready future. We're connecting students to quantum careers, helping energy companies optimize grids, accelerating healthcare breakthroughs, and crafting policy frameworks that actually work—all through hands-on pilots that prove value fast.
             </p>
           </motion.div>
@@ -113,15 +113,15 @@ const About = () => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4">
               Four Perspectives, One Vision
             </h2>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-3xl mx-auto">
               Real people, real sectors, real results—here's how Pennsylvania's quantum initiative impacts everyone from students to policymakers.
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-6 sm:gap-8">
             {stakeholders.map((stakeholder, index) => {
               const Icon = stakeholder.icon;
               return (
@@ -133,32 +133,32 @@ const About = () => {
                   transition={{ delay: index * 0.1 }}
                   whileHover={{ y: -8, scale: 1.02 }}
                 >
-                  <Card className={`h-full backdrop-blur-md bg-gradient-to-br ${stakeholder.color} border-2 border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-2xl`}>
-                    <CardContent className="p-8 space-y-6">
-                      <div className="flex items-start gap-4">
+                    <Card className={`h-full backdrop-blur-md bg-gradient-to-br ${stakeholder.color} border-2 border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-2xl`}>
+                    <CardContent className="p-4 sm:p-6 space-y-4 sm:space-y-6">
+                      <div className="flex items-start gap-3 sm:gap-4">
                         <motion.div 
-                          className="p-4 rounded-xl bg-primary/10 shrink-0"
+                          className="p-2 sm:p-3 rounded-lg sm:rounded-xl bg-primary/10 shrink-0"
                           whileHover={{ rotate: 360 }}
                           transition={{ duration: 0.6 }}
                         >
-                          <Icon className="h-8 w-8 text-primary" />
+                          <Icon className="h-6 w-6 sm:h-8 sm:w-8 text-primary" />
                         </motion.div>
                         <div>
-                          <h3 className="text-2xl font-bold mb-1">{stakeholder.title}</h3>
-                          <p className="text-sm text-muted-foreground italic">{stakeholder.name}</p>
+                          <h3 className="text-lg sm:text-xl font-bold mb-1">{stakeholder.title}</h3>
+                          <p className="text-xs sm:text-sm text-muted-foreground italic">{stakeholder.name}</p>
                         </div>
                       </div>
                       
-                      <p className="text-muted-foreground leading-relaxed">
+                      <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
                         {stakeholder.description}
                       </p>
 
                       <div className="space-y-2">
-                        <p className="text-sm font-semibold text-foreground">Key Highlights:</p>
+                        <p className="text-xs sm:text-sm font-semibold text-foreground">Key Highlights:</p>
                         <ul className="space-y-2">
                           {stakeholder.highlights.map((highlight, idx) => (
-                            <li key={idx} className="flex items-start gap-2 text-sm text-muted-foreground">
-                              <Shield className="h-4 w-4 text-primary mt-0.5 shrink-0" />
+                            <li key={idx} className="flex items-start gap-2 text-xs sm:text-sm text-muted-foreground">
+                              <Shield className="h-3 w-3 sm:h-4 sm:w-4 text-primary mt-0.5 shrink-0" />
                               <span>{highlight}</span>
                             </li>
                           ))}
@@ -182,15 +182,15 @@ const About = () => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-3 sm:mb-4">
               Projected Return on Investment
             </h2>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-3xl mx-auto">
               Real numbers from real pilots—quantum implementation pays back fast across all sectors.
             </p>
           </motion.div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
             {investmentMetrics.map((metric, index) => {
               const Icon = metric.icon;
               return (
@@ -203,23 +203,23 @@ const About = () => {
                   whileHover={{ y: -5 }}
                 >
                   <Card className="backdrop-blur-md bg-card/60 border-2 border-border/50 hover:border-primary/50 transition-all duration-300 hover:shadow-xl">
-                    <CardContent className="p-6 text-center space-y-4">
+                    <CardContent className="p-4 sm:p-6 text-center space-y-3 sm:space-y-4">
                       <div className="flex justify-center">
-                        <div className="p-3 rounded-xl bg-primary/10">
-                          <Icon className="h-8 w-8 text-primary" />
+                        <div className="p-2 sm:p-3 rounded-lg sm:rounded-xl bg-primary/10">
+                          <Icon className="h-6 w-6 sm:h-8 sm:w-8 text-primary" />
                         </div>
                       </div>
                       <div>
-                        <h3 className="text-xl font-bold mb-2">{metric.sector}</h3>
+                        <h3 className="text-base sm:text-lg font-bold mb-2">{metric.sector}</h3>
                         <div className="space-y-2">
-                          <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
-                            <TrendingUp className="h-4 w-4 text-green-500" />
+                          <div className="flex items-center justify-center gap-2 text-xs sm:text-sm text-muted-foreground">
+                            <TrendingUp className="h-3 w-3 sm:h-4 sm:w-4 text-green-500" />
                             <span>Payback: <strong className="text-foreground">{metric.payback}</strong></span>
                           </div>
-                          <div className="text-2xl font-bold text-primary">
+                          <div className="text-xl sm:text-2xl font-bold text-primary">
                             {metric.roi}
                           </div>
-                          <p className="text-xs text-muted-foreground">Return on Investment</p>
+                          <p className="text-[10px] sm:text-xs text-muted-foreground">Return on Investment</p>
                         </div>
                       </div>
                     </CardContent>
@@ -240,12 +240,12 @@ const About = () => {
             viewport={{ once: true }}
             className="space-y-8"
           >
-            <div className="text-center space-y-4">
-              <Users className="h-12 w-12 text-primary mx-auto" />
-              <h2 className="text-3xl sm:text-4xl font-bold">Our Vision</h2>
+            <div className="text-center space-y-3 sm:space-y-4">
+              <Users className="h-10 w-10 sm:h-12 sm:w-12 text-primary mx-auto" />
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">Our Vision</h2>
             </div>
             
-            <div className="space-y-6 text-lg text-muted-foreground leading-relaxed">
+            <div className="space-y-4 sm:space-y-6 text-sm sm:text-base md:text-lg text-muted-foreground leading-relaxed">
               <p>
                 Pennsylvania is ready to lead. We're connecting students to careers, energy to efficiency, healthcare to breakthroughs, and policy to practice. This isn't about buzzwords—it's about building systems that work.
               </p>

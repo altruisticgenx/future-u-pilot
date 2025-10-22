@@ -22,10 +22,10 @@ export const WhyNow = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="text-center space-y-4 mb-16"
+          className="text-center space-y-3 mb-12 sm:mb-14"
         >
-          <h2 className="text-4xl sm:text-5xl font-bold">Why Now?</h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">Why Now?</h2>
+          <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl mx-auto">
             Quantum timelines are uncertain; preparedness isn't.
           </p>
         </motion.div>
@@ -53,7 +53,7 @@ export const WhyNow = () => {
                   <div className="p-2 rounded-lg bg-primary/10">
                     <Icon className="h-6 w-6 text-primary" />
                   </div>
-                  <p className="text-lg text-foreground pt-1">{challenge.text}</p>
+                  <p className="text-sm sm:text-base text-foreground pt-1">{challenge.text}</p>
                 </motion.div>
               );
             })}
@@ -68,7 +68,7 @@ export const WhyNow = () => {
             className="relative"
           >
             <div className="p-8 rounded-2xl backdrop-blur-md bg-card/60 border border-border/50">
-              <h3 className="text-2xl font-bold mb-8 text-center">Evolution Timeline</h3>
+              <h3 className="text-lg sm:text-xl font-bold mb-6 sm:mb-8 text-center">Evolution Timeline</h3>
               
               {/* Timeline bar */}
               <div className="relative h-32">
@@ -92,8 +92,8 @@ export const WhyNow = () => {
                       
                       {/* Label */}
                       <div className="absolute top-8 left-1/2 -translate-x-1/2 text-center whitespace-nowrap">
-                        <p className="text-sm font-bold text-primary">{milestone.year}</p>
-                        <p className="text-xs text-muted-foreground mt-1">{milestone.label}</p>
+                        <p className="text-xs sm:text-sm font-bold text-primary">{milestone.year}</p>
+                        <p className="text-[10px] sm:text-xs text-muted-foreground mt-1">{milestone.label}</p>
                       </div>
                     </div>
                   </motion.div>

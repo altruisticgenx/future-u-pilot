@@ -23,14 +23,14 @@ export const LogoRow = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="text-center space-y-8 sm:space-y-12"
+          className="text-center space-y-6 sm:space-y-8"
         >
-          <h2 className="text-xl sm:text-2xl lg:text-3xl font-semibold text-muted-foreground">
+          <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-muted-foreground">
             Trusted by innovators in government, research, and emerging tech
           </h2>
 
           {/* Logo placeholders */}
-          <div className="flex flex-wrap justify-center items-center gap-8 sm:gap-12">
+          <div className="flex flex-wrap justify-center items-center gap-6 sm:gap-8">
             {logos.map((logo, index) => (
               <motion.div
                 key={logo.name}
@@ -41,7 +41,7 @@ export const LogoRow = () => {
                 whileHover={{ scale: 1.1, rotate: [0, -2, 2, 0] }}
                 className={`${logo.width} h-12 rounded-lg bg-muted/50 border border-border/50 flex items-center justify-center grayscale hover:grayscale-0 transition-all duration-300 cursor-pointer`}
               >
-                <span className="text-xs font-medium text-muted-foreground">
+                <span className="text-[10px] sm:text-xs font-medium text-muted-foreground">
                   {logo.name}
                 </span>
               </motion.div>
@@ -49,7 +49,7 @@ export const LogoRow = () => {
           </div>
 
           {/* Stats */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 pt-6 sm:pt-8">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 pt-4 sm:pt-6">
             {stats.map((stat, index) => (
               <motion.div
                 key={stat.label}
@@ -64,11 +64,11 @@ export const LogoRow = () => {
                   className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20"
                   whileHover={{ scale: 1.05, boxShadow: "0 0 20px hsl(var(--primary) / 0.3)" }}
                 >
-                  <span className="text-sm font-semibold text-primary">
+                  <span className="text-xs sm:text-sm font-semibold text-primary">
                     {stat.value}
                   </span>
                 </motion.div>
-                <p className="text-xs sm:text-sm text-muted-foreground">{stat.label}</p>
+                <p className="text-[10px] sm:text-xs text-muted-foreground">{stat.label}</p>
               </motion.div>
             ))}
           </div>
