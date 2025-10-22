@@ -1,15 +1,16 @@
 import { useState, useRef, useEffect } from 'react';
-import { Terminal } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { useCommandHistory } from '@/hooks/useCommandHistory';
+import { TerminalPrompt } from './TerminalPrompt';
 
 interface CommandInputProps {
   onSubmit: (command: string) => void;
   disabled?: boolean;
   placeholder?: string;
+  projectName?: string;
 }
 
-export const CommandInput = ({ onSubmit, disabled = false, placeholder = 'Type /help for commands...' }: CommandInputProps) => {
+export const CommandInput = ({ onSubmit, disabled = false, placeholder = 'Type /help for commands...', projectName }: CommandInputProps) => {
   const [input, setInput] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
   const { addToHistory, navigateHistory, resetIndex } = useCommandHistory();
@@ -43,7 +44,7 @@ export const CommandInput = ({ onSubmit, disabled = false, placeholder = 'Type /
   return (
     <form onSubmit={handleSubmit} className="border-t" style={{ borderColor: 'hsl(var(--terminal-border))' }}>
       <div className="flex items-center gap-3 p-4" style={{ backgroundColor: 'hsl(var(--terminal-surface))' }}>
-        <Terminal className="h-5 w-5 flex-shrink-0" style={{ color: 'hsl(var(--cmd-success))' }} />
+        <TerminalPrompt projectName={projectName} />
         <Input
           ref={inputRef}
           type="text"

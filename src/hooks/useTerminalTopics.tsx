@@ -1,0 +1,102 @@
+// 50+ curated topics, prompts, and projects for the terminal
+export const terminalTopics = {
+  quantumComputing: [
+    "Quantum error correction techniques",
+    "Shor's algorithm implementation",
+    "Quantum annealing vs gate-based",
+    "Topological qubits overview",
+    "Quantum supremacy benchmarks",
+  ],
+  ai: [
+    "Explainable AI frameworks",
+    "Constitutional AI principles",
+    "Multi-agent systems design",
+    "Federated learning privacy",
+    "AI alignment challenges",
+    "Neural architecture search",
+    "Transformer model optimization",
+    "Reinforcement learning safety",
+  ],
+  cryptography: [
+    "Post-quantum cryptography standards",
+    "Lattice-based encryption",
+    "Zero-knowledge proofs",
+    "Quantum key distribution (QKD)",
+    "Homomorphic encryption applications",
+  ],
+  policy: [
+    "FedRAMP compliance automation",
+    "NIST cybersecurity framework",
+    "EU AI Act requirements",
+    "Data sovereignty regulations",
+    "Ethical AI governance models",
+  ],
+  energy: [
+    "Smart grid optimization",
+    "Quantum sensors for power",
+    "Renewable energy forecasting",
+    "Grid resilience modeling",
+  ],
+  healthcare: [
+    "Drug discovery simulation",
+    "Quantum imaging techniques",
+    "Genomic data analysis",
+    "Clinical trial optimization",
+  ],
+  education: [
+    "K-12 quantum curricula",
+    "STEM pipeline development",
+    "Quantum literacy programs",
+    "Hands-on qubit programming",
+  ],
+  research: [
+    "Quantum materials discovery",
+    "Algorithm complexity theory",
+    "Hybrid classical-quantum systems",
+    "Quantum machine learning",
+  ],
+  business: [
+    "Quantum ROI modeling",
+    "Tech adoption frameworks",
+    "Innovation assessment tools",
+    "Risk mitigation strategies",
+  ],
+  security: [
+    "Quantum-safe migrations",
+    "Threat modeling frameworks",
+    "Cryptographic agility",
+    "Supply chain security",
+  ],
+};
+
+export const projectPrompts = [
+  { name: "Quantum-Safe Crypto Audit", category: "Security", description: "Inventory current cryptographic systems and plan PQC migration" },
+  { name: "AI Policy Compliance Bot", category: "Policy", description: "Automated regulatory mapping and compliance tracking" },
+  { name: "Smart Grid Pilot", category: "Energy", description: "Real-time optimization using quantum-inspired algorithms" },
+  { name: "Drug Discovery Accelerator", category: "Healthcare", description: "Molecular simulation for pharmaceutical research" },
+  { name: "Quantum Education Platform", category: "Education", description: "Interactive quantum computing lessons for students" },
+  { name: "Explainable AI Dashboard", category: "AI", description: "Transparency tools for AI decision-making systems" },
+  { name: "Supply Chain Optimizer", category: "Business", description: "Logistics planning with quantum annealing" },
+  { name: "Federated Learning Network", category: "AI", description: "Privacy-preserving collaborative ML" },
+  { name: "Quantum Sensor Array", category: "Research", description: "Ultra-precise measurement systems" },
+  { name: "Cryptographic Key Manager", category: "Security", description: "Hybrid classical-quantum key management" },
+];
+
+export const commandSuggestions = [
+  "/help - Show all available commands",
+  "/new <project> - Create a new project",
+  "/list - View all your projects",
+  "/open <project> - Switch to a project",
+  "/status - Check current project status",
+  "/topic quantum - Explore quantum computing topics",
+  "/topic ai - Discover AI/ML topics",
+  "/topic policy - Review policy frameworks",
+  "/template security - Load a security audit template",
+  "/template energy - Load an energy optimization template",
+  "/export - Export project data",
+  "/share - Generate shareable link",
+  "/collaborate - Invite team members",
+  "/analyze - Run impact analysis",
+  "/simulate - Run quantum simulation",
+  "/deploy - Deploy to production",
+];

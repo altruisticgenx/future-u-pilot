@@ -2,6 +2,8 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { UserMenu } from "@/components/UserMenu";
+
 export const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
@@ -48,7 +50,7 @@ export const Navigation = () => {
           </motion.a>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-1">
+          <div className="hidden lg:flex items-center gap-4">
             {navItems.map(item => <motion.button key={item.label} onClick={() => handleNavClick(item.href)} className="px-4 py-2 rounded-lg text-sm font-medium text-foreground hover:bg-primary/10 hover:text-primary transition-all" whileHover={{
             y: -2
           }} whileTap={{
@@ -56,7 +58,7 @@ export const Navigation = () => {
           }}>
                 {item.label}
               </motion.button>)}
-            
+            <UserMenu />
           </div>
 
           {/* Mobile Menu Button */}
