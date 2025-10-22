@@ -17,12 +17,15 @@ export const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { label: "Services", href: "/#services" },
+    { label: "Offerings Vault", href: "/#services" },
+    { label: "Quantum Navigator", href: "/quantum-navigator" },
+    { label: "Sandboxverse", href: "/sandboxverse" },
+    { label: "Vibe Modules", href: "/policy-dashboard", submenu: [
+      { label: "Policy Dashboard", href: "/policy-dashboard" },
+      { label: "FedRAMP Sandbox", href: "/fedramp-sandbox" },
+      { label: "PQC Module", href: "/pqc-module" },
+    ]},
     { label: "Experiments", href: "/experiments" },
-    { label: "Policy Dashboard", href: "/policy-dashboard" },
-    { label: "FedRAMP Sandbox", href: "/fedramp-sandbox" },
-    { label: "PQC Module", href: "/pqc-module" },
-    { label: "Demo", href: "/demo" },
   ];
 
   const handleNavClick = (href: string) => {

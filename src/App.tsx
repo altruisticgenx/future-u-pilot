@@ -9,6 +9,8 @@ import Experiments from "./pages/Experiments";
 import PolicyDashboard from "./pages/PolicyDashboard";
 import FedRAMPSandbox from "./pages/FedRAMPSandbox";
 import PQCModule from "./pages/PQCModule";
+import QuantumNavigator from "./pages/QuantumNavigator";
+import Sandboxverse from "./pages/Sandboxverse";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -23,6 +25,8 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/demo" element={<Demo />} />
           <Route path="/experiments" element={<Experiments />} />
+          <Route path="/quantum-navigator" element={<QuantumNavigator />} />
+          <Route path="/sandboxverse" element={<Sandboxverse />} />
           <Route path="/policy-dashboard" element={<PolicyDashboard />} />
           <Route path="/fedramp-sandbox" element={<FedRAMPSandbox />} />
           <Route path="/pqc-module" element={<PQCModule />} />
