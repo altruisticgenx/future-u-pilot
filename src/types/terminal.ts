@@ -1,4 +1,4 @@
-export type MessageType = 'user' | 'system' | 'success' | 'error' | 'info' | 'code' | 'table' | 'list' | 'loading';
+export type MessageType = 'user' | 'system' | 'success' | 'error' | 'info' | 'code' | 'table' | 'list' | 'loading' | 'file-tree' | 'file-preview';
 
 export interface Message {
   id?: string;

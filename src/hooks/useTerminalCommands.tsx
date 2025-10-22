@@ -2,6 +2,7 @@ import { useCallback } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { Command, Message, TerminalContext, Project } from '@/types/terminal';
 import { toast } from 'sonner';
+import { buildFileTree, formatFileSize } from '@/lib/fileManager';
 
 export const useTerminalCommands = () => {
   const commands: Command[] = [
@@ -377,6 +378,203 @@ export const useTerminalCommands = () => {
         }
 
         return [{ type: 'error', content: `Unknown git action: ${action}. Try: status, commit, push, log` }];
+      },
+    },
+    {
+      name: 'files',
+      aliases: ['ls'],
+      description: 'List imported files',
+      usage: '/files',
+      category: 'system',
+      handler: async () => {
+        const { data, error } = await supabase
+          .from('file_imports')
+          .select('*')
+          .order('created_at', { ascending: false })
+          .limit(10);
+
+        if (error) throw error;
+
+        if (!data || data.length === 0) {
+          return [
+            { type: 'info', content: 'No files imported yet.' },
+            { type: 'system', content: 'Use drag & drop or /import command to upload files.' },
+          ];
+        }
+
+        const messages: Message[] = [
+          { type: 'success', content: `✓ Found ${data.length} imported files` },
+          { type: 'system', content: '' },
+        ];
+
+        data.forEach((file, index) => {
+          const extractedFiles = (file.extracted_files as any[]) || [];
+          const fileCount = extractedFiles.length;
+          const totalSize = formatFileSize(file.file_size || 0);
+          messages.push({
+            type: 'list',
+            content: `${index + 1}. ${file.filename} (${fileCount} files, ${totalSize})`,
+            metadata: { 
+              fileId: file.id,
+              filename: file.filename,
+              extractedFiles: file.extracted_files 
+            },
+          });
+        });
+
+        return messages;
+      },
+    },
+    {
+      name: 'view',
+      aliases: ['cat'],
+      description: 'View file contents',
+      usage: '/view <import-id> <file-path>',
+      category: 'system',
+      handler: async (args) => {
+        if (args.length < 2) {
+          return [
+            { type: 'error', content: 'Usage: /view <import-id> <file-path>' },
+            { type: 'system', content: 'Tip: Use /files to see available imports' },
+          ];
+        }
+
+        const [importId, ...pathParts] = args;
+        const filePath = pathParts.join(' ');
+
+        const { data: importData, error } = await supabase
+          .from('file_imports')
+          .select('*')
+          .eq('id', importId)
+          .single();
+
+        if (error || !importData) {
+          return [{ type: 'error', content: 'Import not found' }];
+        }
+
+        const extractedFiles = importData.extracted_files as any[];
+        const file = extractedFiles?.find(f => f.path === filePath);
+
+        if (!file) {
+          return [
+            { type: 'error', content: `File not found: ${filePath}` },
+            { type: 'system', content: 'Available files:' },
+            ...extractedFiles.map(f => ({ 
+              type: 'list' as const, 
+              content: `  ${f.path}` 
+            })),
+          ];
+        }
+
+        // Get actual file content from storage
+        const { data: storageData } = await supabase.storage
+          .from('terminal-uploads')
+          .download(importData.file_path);
+
+        if (!storageData) {
+          return [{ type: 'error', content: 'Failed to load file content' }];
+        }
+
+        return [
+          { type: 'success', content: `✓ Viewing: ${file.path}` },
+          { 
+            type: 'file-preview', 
+            content: file.path,
+            metadata: { 
+              filename: file.name,
+              content: await storageData.text(),
+              size: file.size 
+            } 
+          },
+        ];
+      },
+    },
+    {
+      name: 'seed',
+      aliases: ['import-projects'],
+      description: 'Import projects from JSON file',
+      usage: '/seed <import-id> <json-file-path>',
+      category: 'project',
+      handler: async (args) => {
+        if (args.length < 2) {
+          return [
+            { type: 'error', content: 'Usage: /seed <import-id> <json-file-path>' },
+            { type: 'system', content: 'Example: /seed abc123 projects.json' },
+          ];
+        }
+
+        const [importId, ...pathParts] = args;
+        const filePath = pathParts.join(' ');
+
+        const { data: importData, error } = await supabase
+          .from('file_imports')
+          .select('*')
+          .eq('id', importId)
+          .single();
+
+        if (error || !importData) {
+          return [{ type: 'error', content: 'Import not found' }];
+        }
+
+        const extractedFiles = importData.extracted_files as any[];
+        const jsonFile = extractedFiles?.find(f => f.path === filePath && f.type === 'json');
+
+        if (!jsonFile) {
+          return [
+            { type: 'error', content: `JSON file not found: ${filePath}` },
+            { type: 'system', content: 'Available JSON files:' },
+            ...extractedFiles
+              .filter(f => f.type === 'json')
+              .map(f => ({ type: 'list' as const, content: `  ${f.path}` })),
+          ];
+        }
+
+        // Download and parse the JSON
+        const { data: storageData } = await supabase.storage
+          .from('terminal-uploads')
+          .download(importData.file_path);
+
+        if (!storageData) {
+          return [{ type: 'error', content: 'Failed to load file' }];
+        }
+
+        const content = await storageData.text();
+        let projects;
+        
+        try {
+          const parsed = JSON.parse(content);
+          projects = Array.isArray(parsed) ? parsed : parsed.projects || [parsed];
+        } catch (e) {
+          return [{ type: 'error', content: 'Invalid JSON format' }];
+        }
+
+        // Insert projects
+        const results = [];
+        for (const project of projects) {
+          const { error: insertError } = await supabase
+            .from('projects')
+            .insert({
+              name: project.name,
+              description: project.description || null,
+              status: project.status || 'active',
+              tags: project.tags || [],
+              github_url: project.github_url || null,
+            });
+
+          if (!insertError) {
+            results.push({ type: 'success' as const, content: `✓ Created: ${project.name}` });
+          } else if (insertError.code === '23505') {
+            results.push({ type: 'info' as const, content: `⊘ Skipped: ${project.name} (already exists)` });
+          } else {
+            results.push({ type: 'error' as const, content: `✗ Failed: ${project.name}` });
+          }
+        }
+
+        return [
+          { type: 'success', content: `✓ Processed ${projects.length} projects` },
+          { type: 'system', content: '' },
+          ...results,
+        ];
       },
     },
   ];
