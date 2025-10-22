@@ -1,6 +1,15 @@
-import { Mail, Github, Linkedin } from "lucide-react";
+import { useState } from "react";
+import { Mail, Github, Linkedin, ChevronDown } from "lucide-react";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { QuantumLobbyModal } from "./QuantumLobbyModal";
 
 export const Footer = () => {
+  const [quantumModalOpen, setQuantumModalOpen] = useState(false);
   return (
     <footer className="border-t border-border/50 bg-muted/30 py-12">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
@@ -36,11 +45,28 @@ export const Footer = () => {
                 Experiments
               </a>
               <a
-                href="/demo"
+                href="/proposals"
                 className="text-sm text-muted-foreground hover:text-primary transition-colors"
               >
-                Demo
+                Proposals
               </a>
+              <DropdownMenu>
+                <DropdownMenuTrigger className="text-sm text-muted-foreground hover:text-primary transition-colors flex items-center gap-1">
+                  Initiatives
+                  <ChevronDown className="h-3 w-3" />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="start" className="bg-background border-border z-50">
+                  <DropdownMenuItem 
+                    onClick={() => setQuantumModalOpen(true)}
+                    className="cursor-pointer"
+                  >
+                    Quantum Computing Lobby
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <a href="/experiments">AI Experiments</a>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
               <a
                 href="#contact"
                 className="text-sm text-muted-foreground hover:text-primary transition-colors"
@@ -90,6 +116,8 @@ export const Footer = () => {
           </div>
         </div>
       </div>
+      
+      <QuantumLobbyModal open={quantumModalOpen} onOpenChange={setQuantumModalOpen} />
     </footer>
   );
 };
