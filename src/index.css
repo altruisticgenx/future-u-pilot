@@ -290,6 +290,24 @@ All colors MUST be HSL.
     }
   }
   
+  /* Performance optimizations to reduce forced reflows */
+  [class*="motion-"],
+  [class*="animate-"] {
+    will-change: transform, opacity;
+    transform: translateZ(0);
+  }
+  
+  /* Optimize animated elements for GPU acceleration */
+  .animate-gradient,
+  .animate-pulse,
+  .animate-pulse-soft,
+  .animate-shimmer,
+  .animate-scan {
+    will-change: transform, opacity;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+  }
+  
   @media (prefers-reduced-motion: reduce) {
     *,
     *::before,
