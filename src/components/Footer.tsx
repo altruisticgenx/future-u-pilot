@@ -30,10 +30,10 @@ export const Footer = () => {
                 Services
               </a>
               <a
-                href="/experiments"
+                href="/storytelling"
                 className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors"
               >
-                Experiments
+                Storytelling
               </a>
               <a
                 href="#contact"

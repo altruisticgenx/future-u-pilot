@@ -164,7 +164,7 @@ export const Hero = () => {
               </Button>
 
               <Button
-                onClick={() => window.open('https://notebooklm.google.com/notebook/1fb98627-5703-4814-9781-d1bd457305fc?artifactId=1584d5ac-e77f-45d9-92cb-576903d9fb93', '_blank')}
+                onClick={() => window.open('https://drive.google.com/file/d/1vuiN0NYOvToHIxkqjSSFFEYLitv-zyK7/view?usp=sharing', '_blank')}
                 className="text-xs sm:text-sm px-4 sm:px-5 py-3 sm:py-3.5 font-semibold border border-primary/30 shadow-md hover:shadow-lg transition-all duration-200 w-full sm:w-auto min-w-[120px] flex items-center justify-center gap-2 bg-gradient-to-r from-primary/10 to-accent/10 hover:from-primary/20 hover:to-accent/20"
                 aria-label="Watch intro video"
               >

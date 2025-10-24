@@ -10,7 +10,7 @@ import { ProtectedRoute } from "./components/ProtectedRoute";
 import Index from "./pages/Index";
 
 // Lazy load non-critical routes to reduce initial bundle
-const Experiments = lazy(() => import("./pages/Experiments"));
+const Storytelling = lazy(() => import("./pages/Storytelling"));
 const About = lazy(() => import("./pages/About"));
 const Terminal = lazy(() => import("./pages/Terminal"));
 const Auth = lazy(() => import("./pages/Auth"));
@@ -27,7 +27,7 @@ const App = () => (
         <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div></div>}>
           <Routes>
             <Route path="/" element={<Index />} />
-            <Route path="/experiments" element={<Experiments />} />
+            <Route path="/storytelling" element={<Storytelling />} />
             <Route path="/about" element={<About />} />
             <Route path="/auth" element={<Auth />} />
             <Route
