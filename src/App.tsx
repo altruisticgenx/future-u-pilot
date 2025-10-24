@@ -4,6 +4,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
+import { ProtectedRoute } from "./components/ProtectedRoute";
 
 // Eager load homepage for fast FCP
 import Index from "./pages/Index";
@@ -12,6 +13,7 @@ import Index from "./pages/Index";
 const Experiments = lazy(() => import("./pages/Experiments"));
 const About = lazy(() => import("./pages/About"));
 const Terminal = lazy(() => import("./pages/Terminal"));
+const Auth = lazy(() => import("./pages/Auth"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 const queryClient = new QueryClient();
@@ -27,7 +29,15 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/experiments" element={<Experiments />} />
             <Route path="/about" element={<About />} />
-            <Route path="/terminal" element={<Terminal />} />
+            <Route path="/auth" element={<Auth />} />
+            <Route
+              path="/terminal"
+              element={
+                <ProtectedRoute>
+                  <Terminal />
+                </ProtectedRoute>
+              }
+            />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
