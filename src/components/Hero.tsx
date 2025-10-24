@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Play, Terminal as TerminalIcon } from "lucide-react";
+import { ArrowRight, Play, Terminal as TerminalIcon, Video } from "lucide-react";
 import { TypeAnimation } from 'react-type-animation';
 
 const terminalCommands = [
@@ -172,6 +172,22 @@ export const Hero = () => {
                 >
                   <Play className="mr-2 h-4 w-4" />
                   About Us
+                </Button>
+              </motion.div>
+
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="relative"
+              >
+                <Button
+                  size="sm"
+                  onClick={() => window.open('https://notebooklm.google.com/notebook/1fb98627-5703-4814-9781-d1bd457305fc?artifactId=1584d5ac-e77f-45d9-92cb-576903d9fb93', '_blank')}
+                  className="relative text-xs sm:text-sm px-3 sm:px-4 py-2 sm:py-3 font-bold group w-full sm:w-auto bg-gradient-to-r from-primary via-accent to-primary bg-[length:200%_100%] animate-[gradient_3s_ease_infinite] shadow-[0_0_15px_rgba(99,102,241,0.5)] hover:shadow-[0_0_25px_rgba(99,102,241,0.7)] transition-shadow duration-300"
+                  aria-label="Watch intro video"
+                >
+                  <Video className="mr-1.5 h-3 w-3 sm:h-4 sm:w-4" />
+                  Intro Video
                 </Button>
               </motion.div>
             </div>
