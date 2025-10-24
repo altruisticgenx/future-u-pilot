@@ -144,52 +144,33 @@ export const Hero = () => {
               </p>
             </div>
 
-            {/* CTAs - 3D Glowing Buttons */}
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-              <motion.div
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.98 }}
+            {/* CTAs - Uniform Buttons */}
+            <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 items-stretch sm:items-center">
+              <Button
+                onClick={scrollToContact}
+                className="btn-3d-primary text-xs sm:text-sm px-4 sm:px-5 py-3 sm:py-3.5 font-semibold border border-primary/20 shadow-md hover:shadow-lg transition-all duration-200 w-full sm:w-auto min-w-[120px] flex items-center justify-center gap-2"
               >
-                <Button
-                  size="lg"
-                  onClick={scrollToContact}
-                  className="btn-3d-primary text-sm sm:text-base px-5 sm:px-6 py-4 sm:py-5 font-bold group w-full sm:w-auto"
-                >
-                  📅 Book Session
-                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                </Button>
-              </motion.div>
+                📅 Book Session
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Button>
               
-              <motion.div
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.98 }}
+              <Button
+                onClick={navigateToAbout}
+                className="btn-3d-accent text-xs sm:text-sm px-4 sm:px-5 py-3 sm:py-3.5 font-semibold border border-accent/20 shadow-md hover:shadow-lg transition-all duration-200 w-full sm:w-auto min-w-[120px] flex items-center justify-center gap-2"
+                aria-label="Learn about our approach"
               >
-                <Button
-                  size="lg"
-                  onClick={navigateToAbout}
-                  className="btn-3d-accent text-sm sm:text-base px-5 sm:px-6 py-4 sm:py-5 font-bold group w-full sm:w-auto"
-                  aria-label="Learn about our approach"
-                >
-                  <Play className="mr-2 h-4 w-4" />
-                  About Us
-                </Button>
-              </motion.div>
+                <Play className="h-3.5 w-3.5" />
+                About Us
+              </Button>
 
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="relative"
+              <Button
+                onClick={() => window.open('https://notebooklm.google.com/notebook/1fb98627-5703-4814-9781-d1bd457305fc?artifactId=1584d5ac-e77f-45d9-92cb-576903d9fb93', '_blank')}
+                className="text-xs sm:text-sm px-4 sm:px-5 py-3 sm:py-3.5 font-semibold border border-primary/30 shadow-md hover:shadow-lg transition-all duration-200 w-full sm:w-auto min-w-[120px] flex items-center justify-center gap-2 bg-gradient-to-r from-primary/10 to-accent/10 hover:from-primary/20 hover:to-accent/20"
+                aria-label="Watch intro video"
               >
-                <Button
-                  size="sm"
-                  onClick={() => window.open('https://notebooklm.google.com/notebook/1fb98627-5703-4814-9781-d1bd457305fc?artifactId=1584d5ac-e77f-45d9-92cb-576903d9fb93', '_blank')}
-                  className="relative text-xs sm:text-sm px-3 sm:px-4 py-2 sm:py-3 font-bold group w-full sm:w-auto bg-gradient-to-r from-primary via-accent to-primary bg-[length:200%_100%] animate-[gradient_3s_ease_infinite] shadow-[0_0_15px_rgba(99,102,241,0.5)] hover:shadow-[0_0_25px_rgba(99,102,241,0.7)] transition-shadow duration-300"
-                  aria-label="Watch intro video"
-                >
-                  <Video className="mr-1.5 h-3 w-3 sm:h-4 sm:w-4" />
-                  Intro Video
-                </Button>
-              </motion.div>
+                <Video className="h-3.5 w-3.5" />
+                Intro Video
+              </Button>
             </div>
           </motion.div>
 
