@@ -23,13 +23,21 @@ const terminalCommands = [
 
 export const Hero = () => {
   const [cmdIndex, setCmdIndex] = useState(0);
+  const [animationsReady, setAnimationsReady] = useState(false);
 
   useEffect(() => {
+    // Defer animations until after initial paint
+    const timer = setTimeout(() => setAnimationsReady(true), 100);
+    return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    if (!animationsReady) return;
     const interval = setInterval(() => {
       setCmdIndex((prev) => (prev + 1) % terminalCommands.length);
     }, 3000);
     return () => clearInterval(interval);
-  }, []);
+  }, [animationsReady]);
 
   const scrollToContact = () => {
     const contactSection = document.getElementById("contact");
@@ -45,31 +53,35 @@ export const Hero = () => {
       {/* Background gradient with animation */}
       <div className="absolute inset-0 bg-gradient-to-br from-background via-primary/5 to-accent/10 animate-gradient" />
       
-      {/* Floating orbs for depth */}
-      <motion.div
-        className="absolute top-20 left-10 w-72 h-72 bg-primary/20 rounded-full blur-3xl"
-        animate={{
-          y: [0, 30, 0],
-          scale: [1, 1.1, 1],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
-      <motion.div
-        className="absolute bottom-20 right-10 w-96 h-96 bg-accent/20 rounded-full blur-3xl"
-        animate={{
-          y: [0, -40, 0],
-          scale: [1, 1.2, 1],
-        }}
-        transition={{
-          duration: 10,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
-      />
+      {/* Floating orbs for depth - deferred */}
+      {animationsReady && (
+        <>
+          <motion.div
+            className="absolute top-20 left-10 w-72 h-72 bg-primary/20 rounded-full blur-3xl"
+            animate={{
+              y: [0, 30, 0],
+              scale: [1, 1.1, 1],
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          />
+          <motion.div
+            className="absolute bottom-20 right-10 w-96 h-96 bg-accent/20 rounded-full blur-3xl"
+            animate={{
+              y: [0, -40, 0],
+              scale: [1, 1.2, 1],
+            }}
+            transition={{
+              duration: 10,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          />
+        </>
+      )}
       
       {/* Grid overlay */}
       <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--border))_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--border))_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,#000_70%,transparent_110%)]" />
@@ -102,22 +114,28 @@ export const Hero = () => {
             <div className="space-y-3 sm:space-y-4">
               <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
                 <span className="block text-foreground">
-                  <TypeAnimation
-                    sequence={[
-                      'Quantum Computing',
-                      2000,
-                      'AI Deployment',
-                      2000,
-                      'Policy Compliance',
-                      2000,
-                      'Security Migration',
-                      2000,
-                    ]}
-                    wrapper="span"
-                    speed={50}
-                    repeat={Infinity}
-                    className="bg-gradient-hero bg-clip-text text-transparent"
-                  />
+                  {animationsReady ? (
+                    <TypeAnimation
+                      sequence={[
+                        'Quantum Computing',
+                        2000,
+                        'AI Deployment',
+                        2000,
+                        'Policy Compliance',
+                        2000,
+                        'Security Migration',
+                        2000,
+                      ]}
+                      wrapper="span"
+                      speed={50}
+                      repeat={Infinity}
+                      className="bg-gradient-hero bg-clip-text text-transparent"
+                    />
+                  ) : (
+                    <span className="bg-gradient-hero bg-clip-text text-transparent">
+                      Quantum Computing
+                    </span>
+                  )}
                 </span>
               </h1>
               
