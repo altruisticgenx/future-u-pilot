@@ -18,6 +18,16 @@
     <!-- Optimized font loading with font-display swap -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
     <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" /></noscript>
+    
+    <!-- Critical CSS for above-the-fold content -->
+    <style>
+      /* Prevent FOUC with minimal critical styles */
+      *{box-sizing:border-box;margin:0;padding:0}
+      body{font-family:'Inter',system-ui,sans-serif;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased;background:#0a0a0a;color:#fafafa}
+      #root{min-height:100vh}
+      .container{max-width:80rem;margin:0 auto;padding:0 1rem}
+      @media(min-width:640px){body{font-size:16px}}
+    </style>
 
     
     
