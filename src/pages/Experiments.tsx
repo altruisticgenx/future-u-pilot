@@ -5,7 +5,6 @@ import { Badge } from "@/components/ui/badge";
 import { Calendar, ArrowLeft, ExternalLink } from "lucide-react";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
-import { useNavigate } from "react-router-dom";
 
 const experiments = [
   {
@@ -59,16 +58,6 @@ const experiments = [
 ];
 
 const Experiments = () => {
-  const navigate = useNavigate();
-  
-  const scrollToContact = () => {
-    navigate("/");
-    setTimeout(() => {
-      const contactSection = document.getElementById("contact");
-      contactSection?.scrollIntoView({ behavior: "smooth" });
-    }, 100);
-  };
-  
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
@@ -209,7 +198,9 @@ const Experiments = () => {
                 </p>
                 <Button
                   size="lg"
-                  onClick={scrollToContact}
+                  onClick={() => {
+                    window.location.href = "/#contact";
+                  }}
                   aria-label="Book a strategy session"
                 >
                   Book Strategy Session

@@ -181,22 +181,6 @@ const About = () => {
             Empower students. Modernize industries. Make Pennsylvania a quantum leader.
           </blockquote>
         </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="flex justify-end mt-4"
-        >
-          <motion.a
-            href="/pa-lobby"
-            className="inline-flex items-center gap-1 text-xs px-3 py-1.5 rounded-md border border-primary/40 bg-primary/5 hover:bg-primary/10 hover:scale-105 transition-all duration-200 text-foreground font-medium"
-            whileHover={{ y: -1 }}
-            whileTap={{ scale: 0.98 }}
-          >
-            PA Lobby →
-          </motion.a>
-        </motion.div>
       </motion.div>
     </div>
   </section>
@@ -270,13 +254,13 @@ const About = () => {
                   Whether you're in education, energy, healthcare, government, or business—Pennsylvania's quantum future needs you.
                 </p>
                 <motion.a
-                  href="https://www.instagram.com/paquantumpubliclobbygroup?igsh=b2E5MTJna2MxbDZ2"
+                  href="https://docs.google.com/document/d/1NlzqlnBLt_iWwqLGH3SUTUlASFIZBEaimJYq6MFXB8I/edit?usp=sharing"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-block btn-3d-teal px-6 py-2.5 rounded-lg font-semibold text-xs sm:text-sm"
+                  className="inline-block btn-3d-primary px-6 py-2.5 rounded-lg font-semibold text-xs sm:text-sm"
                   whileHover={{ scale: 1.03, y: -2 }}
                   whileTap={{ scale: 0.97 }}
-                  aria-label="Follow Pennsylvania Quantum Public Lobby Group on Instagram"
+                  aria-label="Get involved in Pennsylvania's Quantum Initiative"
                 >
                   Get Involved Today
                 </motion.a>

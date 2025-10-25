@@ -4,17 +4,10 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
-import { useNavigate } from "react-router-dom";
 
 export default function Storytelling() {
-  const navigate = useNavigate();
-  
   const scrollToContact = () => {
-    navigate("/");
-    setTimeout(() => {
-      const contactSection = document.getElementById("contact");
-      contactSection?.scrollIntoView({ behavior: "smooth" });
-    }, 100);
+    window.location.href = "/#contact";
   };
 
   return (
