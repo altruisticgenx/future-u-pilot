@@ -43,18 +43,15 @@ export const TerminalWindow = ({
       >
         {/* Terminal header */}
         <div className="bg-muted/50 border-b border-border/50 px-2 sm:px-3 py-1.5 sm:py-2 flex items-center gap-2">
-          <div className="flex gap-1 sm:gap-1.5" role="presentation">
+          <div className="flex gap-1 sm:gap-1.5" role="presentation" aria-hidden="true">
             <div 
-              className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-red-500" 
-              aria-label="Close button"
+              className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-red-500"
             />
             <div 
               className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-yellow-500"
-              aria-label="Minimize button"
             />
             <div 
               className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-green-500 animate-pulse"
-              aria-label="Maximize button - active"
             />
           </div>
           <span className="text-[10px] sm:text-xs text-foreground/70 ml-1 sm:ml-2 font-mono font-medium">
@@ -107,7 +104,8 @@ export const TerminalWindow = ({
             ))}
             <span 
               className="inline-block w-1 h-2.5 sm:w-1.5 sm:h-3 bg-cmd-success animate-pulse"
-              aria-label="Terminal cursor"
+              role="presentation"
+              aria-hidden="true"
             />
           </div>
         </div>

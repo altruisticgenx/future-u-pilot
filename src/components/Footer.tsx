@@ -21,7 +21,7 @@ export const Footer = () => {
           aria-label="Scroll back to top"
           hasLighthouse
         >
-          Top
+          Scroll back to top
         </InteractiveHoverButton>
       </div>
 
@@ -39,7 +39,7 @@ export const Footer = () => {
 
           {/* Links */}
           <div className="space-y-4">
-            <h4 className="text-sm sm:text-base font-semibold text-foreground">Quick Links</h4>
+            <h4 className="text-sm sm:text-base font-semibold text-primary">Quick Links</h4>
             <nav className="flex flex-col space-y-2">
               <a
                 href="#services"
@@ -72,7 +72,7 @@ export const Footer = () => {
 
           {/* Contact */}
           <div className="space-y-4">
-            <h4 className="text-sm sm:text-base font-semibold text-foreground">Connect</h4>
+            <h4 className="text-sm sm:text-base font-semibold text-primary">Connect</h4>
             <div className="flex gap-4">
               <a
                 href="mailto:altruisticxai@gmail.com"

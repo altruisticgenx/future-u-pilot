@@ -109,7 +109,7 @@ export const AIShowcase = () => {
             </CardHeader>
             <CardContent className="space-y-4">
               <Select value={analysisType} onValueChange={setAnalysisType}>
-                <SelectTrigger>
+                <SelectTrigger aria-label="Select analysis type">
                   <SelectValue placeholder="Select analysis type" />
                 </SelectTrigger>
                 <SelectContent>

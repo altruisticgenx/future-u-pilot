@@ -109,7 +109,7 @@ export const HeroCTAGroup = ({
             aria-label="Book a strategy session"
             tabIndex={0}
           >
-            Book
+            Book a strategy session
           </InteractiveHoverButton>
         </motion.div>
         
@@ -130,7 +130,7 @@ export const HeroCTAGroup = ({
             aria-label="Learn about our approach"
             tabIndex={0}
           >
-            About
+            Learn about our approach
           </InteractiveHoverButton>
         </motion.div>
 
@@ -151,7 +151,7 @@ export const HeroCTAGroup = ({
             aria-label="Watch intro video"
             tabIndex={0}
           >
-            Video
+            Watch intro video
           </InteractiveHoverButton>
         </motion.div>
 
@@ -172,7 +172,7 @@ export const HeroCTAGroup = ({
             aria-label="View frequently asked questions"
             tabIndex={0}
           >
-            FAQ
+            View frequently asked questions
           </InteractiveHoverButton>
         </motion.div>
       </motion.div>
