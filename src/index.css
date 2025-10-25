@@ -181,11 +181,48 @@ All colors MUST be HSL.
     font-size: 14px;
   }
   
-  /* Mobile font optimization */
+  /* Mobile-first responsive breakpoints - 320px, 375px, 768px, 1024px */
+  
+  /* 320px - Base mobile (default styles above) */
+  
+  /* 375px - Larger phones */
+  @media (min-width: 375px) {
+    body {
+      font-size: 15px;
+    }
+  }
+  
+  /* 640px - Small tablets */
   @media (min-width: 640px) {
     body {
       font-size: 16px;
     }
+  }
+  
+  /* 768px - Tablets */
+  @media (min-width: 768px) {
+    body {
+      font-size: 16px;
+    }
+  }
+  
+  /* 1024px - Laptops/Desktops */
+  @media (min-width: 1024px) {
+    body {
+      font-size: 16px;
+    }
+  }
+  
+  /* Image optimization - prevent layout shift */
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  /* Lazy loaded images - prevent CLS */
+  img[loading="lazy"] {
+    content-visibility: auto;
   }
   
   /* Better mobile text sizing */

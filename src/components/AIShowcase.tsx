@@ -212,6 +212,8 @@ export const AIShowcase = () => {
                         src={generatedImage}
                         alt="AI Generated"
                         className="w-full h-auto"
+                        loading="lazy"
+                        decoding="async"
                       />
                     </motion.div>
                   )}

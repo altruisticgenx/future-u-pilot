@@ -227,6 +227,7 @@ export const AIChatbot = () => {
                               alt="Generated visualization"
                               className="rounded-lg max-w-full h-auto border border-border shadow-lg"
                               loading="lazy"
+                              decoding="async"
                             />
                           ))}
                         </div>
