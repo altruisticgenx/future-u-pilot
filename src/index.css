@@ -908,28 +908,31 @@ All colors MUST be HSL.
     }
   }
   
-  /* Performance optimizations to reduce forced reflows */
-  [class*="motion-"],
-  [class*="animate-"] {
-    will-change: transform, opacity;
-    transform: translateZ(0);
+  /* Performance optimizations - reduce main-thread work */
+  /* Use content-visibility for below-fold sections */
+  section:not(:first-of-type) {
+    content-visibility: auto;
+    contain-intrinsic-size: 500px;
   }
   
-  /* Optimize animated elements for GPU acceleration */
+  /* Aggressive containment for animated elements */
+  [class*="motion-"],
+  [class*="animate-"] {
+    contain: layout style paint;
+    will-change: auto;
+  }
+  
+  /* Optimize animated elements - remove will-change during animation */
   .animate-gradient,
   .animate-pulse,
   .animate-pulse-soft,
   .animate-shimmer,
-  .animate-scan,
-  .animate-float,
-  .animate-float-3d,
-  .animate-rotate-3d {
-    will-change: transform, opacity;
+  .animate-scan {
+    contain: layout style paint;
     backface-visibility: hidden;
-    transform: translateZ(0);
   }
   
-  /* Reduce repaints and isolate reflows with aggressive containment */
+  /* Reduce repaints with strict containment */
   .glass-card-3d,
   .btn-3d-teal,
   .btn-3d-purple,
@@ -938,7 +941,7 @@ All colors MUST be HSL.
     contain: layout style paint;
   }
   
-  /* Isolate reflows in major sections */
+  /* Strict containment for major layout sections */
   section,
   main,
   header,
@@ -946,7 +949,7 @@ All colors MUST be HSL.
   nav,
   article,
   aside {
-    contain: layout;
+    contain: layout style;
   }
   
   /* Prevent Radix UI reflow propagation - Portal containers */
@@ -955,8 +958,7 @@ All colors MUST be HSL.
   [data-radix-dialog-content],
   [data-radix-dropdown-menu-content],
   [data-radix-select-content] {
-    contain: layout style paint;
-    will-change: transform;
+    contain: strict;
   }
   
   /* Overlay components optimization */
@@ -965,8 +967,15 @@ All colors MUST be HSL.
   [role="listbox"],
   [role="combobox"],
   [data-state="open"] {
-    contain: layout style paint;
-    will-change: transform, opacity;
+    contain: strict;
+  }
+  
+  /* Reduce style recalculation for cards and interactive elements */
+  .card,
+  [class*="card"],
+  button,
+  a {
+    contain: layout style;
   }
   
   @media (prefers-reduced-motion: reduce) {
