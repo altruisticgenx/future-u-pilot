@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { LucideIcon, ChevronDown, ChevronUp } from "lucide-react";
+import { LucideIcon, ChevronDown, ChevronUp, Activity } from "lucide-react";
+import { useSectorData } from "@/hooks/useSectorData";
+import { DataStreamText } from "@/components/DataStreamText";
 import {
   Dialog,
   DialogContent,
@@ -20,6 +22,7 @@ interface InteractiveCardProps {
   detailedContent?: string;
   color?: string;
   index?: number;
+  apiKey?: string;
 }
 
 export const InteractiveCard = ({
@@ -31,8 +34,10 @@ export const InteractiveCard = ({
   detailedContent,
   color = "from-primary/15 via-accent/10 to-primary/15",
   index = 0,
+  apiKey,
 }: InteractiveCardProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const { data: liveData } = useSectorData(apiKey || "students");
 
   return (
     <motion.div
@@ -50,13 +55,37 @@ export const InteractiveCard = ({
               <Icon className="w-6 h-6 text-primary" />
             </div>
             <div className="flex-1">
-              <h3 className="text-lg font-bold text-foreground">{title}</h3>
+              <div className="flex items-center justify-between gap-2">
+                <h3 className="text-lg font-bold text-foreground">{title}</h3>
+                {liveData && (
+                  <div className="flex items-center gap-1 text-xs text-success">
+                    <Activity className="h-3 w-3 animate-pulse" />
+                    <span>Live</span>
+                  </div>
+                )}
+              </div>
               <p className="text-sm text-muted-foreground">{subtitle}</p>
             </div>
           </div>
 
           {/* Description */}
-          <p className="text-sm text-foreground/90 leading-relaxed">{description}</p>
+          <div className="text-sm text-foreground/90 leading-relaxed">
+            <DataStreamText text={description} speed={20} showCursor={false} />
+          </div>
+
+          {/* Live Metrics */}
+          {liveData && (
+            <div className="grid grid-cols-2 gap-2 p-3 rounded-lg bg-background/50 border border-border/50">
+              <div className="text-center">
+                <div className="text-lg font-bold text-primary">{liveData.liveData.currentProjects}</div>
+                <div className="text-xs text-muted-foreground">Projects</div>
+              </div>
+              <div className="text-center">
+                <div className="text-lg font-bold text-success">{liveData.liveData.completionRate}%</div>
+                <div className="text-xs text-muted-foreground">Success</div>
+              </div>
+            </div>
+          )}
 
           {/* Expandable Summary */}
           {highlights && highlights.length > 0 && (

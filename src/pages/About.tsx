@@ -2,10 +2,12 @@ import { motion } from "framer-motion";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
-import { GraduationCap, Zap, Heart, Scale, Users, Brain } from "lucide-react";
+import { GraduationCap, Zap, Heart, Scale, Users, Brain, Code2 } from "lucide-react";
 import { InteractiveCard } from "@/components/InteractiveCard";
-import { MetricCard } from "@/components/MetricCard";
 import { AIChatbot } from "@/components/AIChatbot";
+import { ROIChart } from "@/components/ROIChart";
+import { SandboxPanel, sandboxExamples } from "@/components/SandboxPanel";
+import { ContrastMonitor } from "@/components/ContrastMonitor";
 
 const stakeholders = [
   {
@@ -106,12 +108,6 @@ const stakeholders = [
   }
 ];
 
-const investmentMetrics = [
-  { sector: "Education", payback: "18 months", roi: "4.3x", icon: GraduationCap },
-  { sector: "Energy", payback: "15 months", roi: "3.8x", icon: Zap },
-  { sector: "Healthcare", payback: "19 months", roi: "3.2x", icon: Heart },
-  { sector: "Governance", payback: "12 months", roi: "5.1x", icon: Scale }
-];
 
 const About = () => {
   return (
@@ -180,6 +176,7 @@ const About = () => {
                 key={index}
                 {...stakeholder}
                 index={index}
+                apiKey={stakeholder.title.toLowerCase().replace(/\s+/g, '')}
               />
             ))}
           </div>
@@ -203,14 +200,45 @@ const About = () => {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
-            {investmentMetrics.map((metric, index) => (
-              <MetricCard
-                key={index}
-                {...metric}
-                index={index}
-              />
-            ))}
+          <ROIChart />
+        </div>
+      </section>
+
+      {/* Interactive Sandboxes */}
+      <section className="py-12 bg-gradient-to-b from-muted/30 to-background" aria-labelledby="sandbox-heading">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-8"
+          >
+            <div className="flex items-center justify-center gap-2 mb-2">
+              <Code2 className="h-6 w-6 text-primary animate-pulse" aria-hidden="true" />
+              <h2 id="sandbox-heading" className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-hero bg-clip-text text-transparent">
+                Try It Yourself
+              </h2>
+            </div>
+            <p className="text-xs sm:text-sm text-muted-foreground max-w-xl mx-auto">
+              Explore quantum computing with real code examples. Click "Run" to see the output.
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 gap-4">
+            <SandboxPanel
+              title="Student Training: Quantum Circuits"
+              description="Learn quantum programming with this basic circuit example"
+              code={sandboxExamples.students}
+              color="primary"
+              output="Bell State Results: {'00': 512, '11': 488}\nQuantum entanglement demonstrated!"
+            />
+            <SandboxPanel
+              title="Energy: Grid Optimization"
+              description="See how quantum algorithms optimize power distribution"
+              code={sandboxExamples.energy}
+              color="success"
+              output="Optimized Distribution:\nEnergy Savings: 145.3 kWh\nGrid Efficiency: 87.2%"
+            />
           </div>
         </div>
       </section>
@@ -280,6 +308,9 @@ const About = () => {
       
       {/* AI Chatbot */}
       <AIChatbot />
+      
+      {/* Color Contrast Monitor (Dev Only) */}
+      <ContrastMonitor />
     </div>
   );
 };
