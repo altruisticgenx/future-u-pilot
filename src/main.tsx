@@ -3,6 +3,15 @@ import App from "./App.tsx";
 import "./index.css";
 import { initSourceProtection } from "./lib/sourceProtection";
 
+// Initialize theme from localStorage
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme === 'dark') {
+  document.documentElement.classList.add('dark');
+} else if (!savedTheme) {
+  // Default to light mode if no preference
+  document.documentElement.classList.remove('dark');
+}
+
 // Initialize source code protection (production only)
 initSourceProtection();
 
