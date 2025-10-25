@@ -138,7 +138,7 @@ const About = () => {
             </motion.p>
 
             <motion.a
-              href="/#contact"
+              href="/faq"
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
@@ -147,7 +147,7 @@ const About = () => {
               whileTap={{ scale: 0.98 }}
               className="btn-3d-cyan inline-flex items-center gap-2 btn-ripple press-scale"
             >
-              Partner With Us <ArrowRight className="w-4 h-4" />
+              FAQs <ArrowRight className="w-4 h-4" />
             </motion.a>
           </div>
         </section>

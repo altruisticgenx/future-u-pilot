@@ -120,12 +120,7 @@ const FAQ = () => {
               </p>
               <button
                 onClick={() => {
-                  const contactSection = document.getElementById("contact");
-                  if (contactSection) {
-                    contactSection.scrollIntoView({ behavior: "smooth" });
-                  } else {
-                    window.location.href = "/#contact";
-                  }
+                  window.location.href = "/#contact";
                 }}
                 className="btn-3d-teal px-8 py-3 rounded-xl"
               >
