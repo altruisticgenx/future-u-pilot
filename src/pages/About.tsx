@@ -5,53 +5,57 @@ import { Card, CardContent } from "@/components/ui/card";
 import { GraduationCap, Zap, Heart, Scale, Users, Brain } from "lucide-react";
 import { StakeholderCard } from "@/components/StakeholderCard";
 import { MetricCard } from "@/components/MetricCard";
+import ProgramsSection from "@/components/ProgramsSection";
+import OpenProjectsGrid from "@/components/OpenProjectsGrid";
+import TerminalCTA from "@/components/TerminalCTA";
+import OpenLetterSection from "@/components/OpenLetterSection";
 
 const stakeholders = [
   {
     icon: GraduationCap,
     title: "Students",
-    subtitle: "Tomorrow's Tech Workforce",
-    description: "Making quantum tech jobs accessible from high school through college. Learn coding for quantum computers without needing a PhD. Keep Pennsylvania talent in Pennsylvania.",
+    subtitle: "Tomorrow's Tech Workforce (Live)",
+    description: "Making quantum tech jobs accessible from K-12 through community college. Learn quantum computing, cryptography, and sensing without needing a PhD. Paid fellowships, open lab time, and career-ready repositories.",
     highlights: [
-      "Career paths anyone can follow",
-      "Learn quantum without advanced degrees",
-      "Good jobs close to home"
+      "Paid fellowships · Open lab time · Career-ready repos",
+      "K-12 through community college pathways",
+      "Keep Pennsylvania talent in Pennsylvania"
     ],
     color: "from-blue-500/15 via-cyan-500/10 to-blue-500/15"
   },
   {
     icon: Zap,
     title: "Energy",
-    subtitle: "Smarter Grids & Security",
-    description: "Quantum computers help power companies manage electricity better and protect against hackers. Early tests show 22% energy savings—meaning cleaner air and lower bills.",
+    subtitle: "Smarter Grids & Quantum Security (Live)",
+    description: "Quantum optimization for demand shaping, photonic networking pilots, and post-quantum cryptography (PQC) migration for grid operators. Real tests show 22% energy savings and quantum-safe communications.",
     highlights: [
+      "Demand shaping · PQC migration · Incident drills",
       "22% energy savings in real tests",
-      "Protection from future cyber attacks",
-      "Better control of power grids"
+      "Quantum Key Distribution (QKD) pilots"
     ],
     color: "from-yellow-500/15 via-orange-500/10 to-yellow-500/15"
   },
   {
     icon: Heart,
     title: "Healthcare",
-    subtitle: "Better Medicine, Faster",
-    description: "Quantum tech speeds up drug discovery by testing molecules virtually. Better sensors mean better diagnoses. The result? Medicine tailored to each person.",
+    subtitle: "Accelerated Medical Innovation (Live)",
+    description: "Quantum molecular simulation for drug discovery, GAMA algorithm (Carnegie Mellon) for treatment optimization, and de-identified data pipelines with model cards for traceable, explainable results.",
     highlights: [
-      "Discover new drugs faster",
-      "More accurate diagnoses",
-      "Treatment plans just for you"
+      "De-identified pipelines · Model cards · Traceable results",
+      "GAMA algorithm for personalized treatment",
+      "Quantum sensors for better diagnostics"
     ],
     color: "from-red-500/15 via-pink-500/10 to-red-500/15"
   },
   {
     icon: Scale,
-    title: "Government",
-    subtitle: "Policies That Work",
-    description: "We help lawmakers create practical rules and guidelines that make Pennsylvania a leader in quantum tech while keeping the public safe and informed.",
+    title: "Policy & Governance",
+    subtitle: "Evidence, Not Vibes (Live)",
+    description: "Regulatory diffing tools track policy changes, impact scoring for small businesses, plain-language briefs for lawmakers, and Quantum Ethics & Governance Commission oversight for AI/quantum applications.",
     highlights: [
-      "Advisory boards with real experts",
-      "Clear ethics rules everyone understands",
-      "Economic independence, not reliance"
+      "Regulatory diffing · Impact scoring · Plain-language briefs",
+      "Quantum Ethics & Governance Commission",
+      "Evidence-based policy, not buzzwords"
     ],
     color: "from-purple-500/15 via-indigo-500/10 to-purple-500/15"
   }
@@ -97,12 +101,16 @@ const About = () => {
             <h1 className="text-xl sm:text-2xl md:text-3xl font-bold">
               <span className="block text-foreground text-sm sm:text-base md:text-lg mb-1">The Quantum Leap</span>
               <span className="block bg-gradient-hero bg-clip-text text-transparent">
-                Pennsylvania's Path Forward
+                Pennsylvania's Path to Real Outcomes — Not Hype
               </span>
             </h1>
             
             <p className="text-xs sm:text-sm text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              Connecting students to tech careers, helping companies run smarter, speeding up healthcare breakthroughs.
+              Open-source tools, transparent pilots, and accountability first. Connecting students to tech careers, helping companies run smarter, speeding up healthcare breakthroughs.
+            </p>
+            
+            <p className="text-[10px] text-muted-foreground/60 mt-2">
+              Last updated {new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', year: 'numeric' }).format(new Date())} · Live metrics from pilot projects
             </p>
           </motion.div>
         </div>
@@ -150,7 +158,10 @@ const About = () => {
               Return on Investment
             </h2>
             <p className="text-xs sm:text-sm text-muted-foreground max-w-xl mx-auto">
-              Real numbers from real tests—quantum pays back fast.
+              From Pilots — Not Wishful Thinking
+            </p>
+            <p className="text-[10px] text-muted-foreground/60 mt-2">
+              Methodology: standardized cost/benefit, verified datasets, open calculators
             </p>
           </motion.div>
 
@@ -165,6 +176,73 @@ const About = () => {
           </div>
         </div>
       </section>
+
+      {/* What We Do Section */}
+      <section className="py-12 bg-gradient-to-b from-background to-muted/30" aria-labelledby="mission-heading">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="space-y-6"
+          >
+            <div className="text-center space-y-2">
+              <h2 id="mission-heading" className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-hero bg-clip-text text-transparent">
+                What We Do — and Why It Matters
+              </h2>
+            </div>
+            
+            <div className="space-y-4 text-xs sm:text-sm text-muted-foreground leading-relaxed">
+              <p className="text-center max-w-2xl mx-auto">
+                We build quantum-ready infrastructure for Pennsylvania: train talent, cut waste, speed science, govern tech with public-interest guardrails.
+              </p>
+              
+              <div className="grid sm:grid-cols-2 gap-3 mt-6">
+                <div className="flex items-start gap-3 p-4 rounded-lg bg-card/30 border border-border/40">
+                  <Zap className="h-5 w-5 text-yellow-400 flex-shrink-0 mt-0.5" />
+                  <div>
+                    <h3 className="font-semibold text-foreground mb-1">Energy</h3>
+                    <p className="text-xs">Grid optimization and quantum-safe communications</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3 p-4 rounded-lg bg-card/30 border border-border/40">
+                  <Heart className="h-5 w-5 text-red-400 flex-shrink-0 mt-0.5" />
+                  <div>
+                    <h3 className="font-semibold text-foreground mb-1">Healthcare</h3>
+                    <p className="text-xs">Drug discovery and personalized medicine</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3 p-4 rounded-lg bg-card/30 border border-border/40">
+                  <GraduationCap className="h-5 w-5 text-blue-400 flex-shrink-0 mt-0.5" />
+                  <div>
+                    <h3 className="font-semibold text-foreground mb-1">Industry</h3>
+                    <p className="text-xs">Manufacturing optimization and supply chain security</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3 p-4 rounded-lg bg-card/30 border border-border/40">
+                  <Scale className="h-5 w-5 text-purple-400 flex-shrink-0 mt-0.5" />
+                  <div>
+                    <h3 className="font-semibold text-foreground mb-1">Public Sector</h3>
+                    <p className="text-xs">Evidence-based policy and ethics oversight</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Programs Section */}
+      <ProgramsSection />
+
+      {/* Open Projects Section */}
+      <OpenProjectsGrid />
+
+      {/* Terminal CTA */}
+      <TerminalCTA />
+
+      {/* Open Letter Section */}
+      <OpenLetterSection />
 
       {/* Vision Statement */}
       <section className="py-12 bg-gradient-to-b from-background to-muted/30" aria-labelledby="vision-heading">
@@ -210,17 +288,28 @@ const About = () => {
                   Join Pennsylvania's Quantum Future
                 </h2>
                 <p className="text-xs sm:text-sm text-muted-foreground max-w-xl mx-auto">
-                  Whether you're in education, energy, healthcare, government, or business—Pennsylvania's quantum future needs you.
+                  Education, energy, healthcare, government, or business — there's a lane for you.
                 </p>
-                <motion.button
-                  onClick={() => window.location.href = "/#contact"}
-                  className="btn-3d-primary px-6 py-2.5 rounded-lg font-semibold text-xs sm:text-sm"
-                  whileHover={{ scale: 1.03, y: -2 }}
-                  whileTap={{ scale: 0.97 }}
-                  aria-label="Get involved in Pennsylvania's Quantum Initiative"
-                >
-                  Get Involved Today
-                </motion.button>
+                <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                  <motion.button
+                    onClick={() => window.location.href = "/#contact"}
+                    className="btn-3d-primary px-6 py-2.5 rounded-lg font-semibold text-xs sm:text-sm"
+                    whileHover={{ scale: 1.03, y: -2 }}
+                    whileTap={{ scale: 0.97 }}
+                    aria-label="Get involved in Pennsylvania's Quantum Initiative"
+                  >
+                    Get Involved Today
+                  </motion.button>
+                  <motion.button
+                    onClick={() => window.location.href = "mailto:paquantumpubliclobbygroup@gmail.com"}
+                    className="px-6 py-2.5 rounded-lg font-semibold text-xs sm:text-sm border border-primary/40 hover:bg-primary/10 transition-colors"
+                    whileHover={{ scale: 1.03, y: -2 }}
+                    whileTap={{ scale: 0.97 }}
+                    aria-label="Partner with Pennsylvania Quantum Initiative"
+                  >
+                    Partner With Us
+                  </motion.button>
+                </div>
               </CardContent>
             </Card>
           </motion.div>
