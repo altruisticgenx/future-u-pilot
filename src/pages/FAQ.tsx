@@ -61,16 +61,16 @@ const FAQ = () => {
               transition={{ duration: 0.6 }}
               className="text-center space-y-6"
             >
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20">
-                <HelpCircle className="w-4 h-4 text-primary" />
-                <span className="text-sm font-semibold text-primary">Frequently Asked Questions</span>
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 min-h-[44px]">
+                <HelpCircle className="w-4 h-4 sm:w-5 sm:h-5 text-primary flex-shrink-0" />
+                <span className="text-xs sm:text-sm font-semibold text-primary">Frequently Asked Questions</span>
               </div>
               
-              <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent leading-tight">
                 Got Questions? We've Got Answers
               </h1>
               
-              <p className="text-lg text-foreground/80 max-w-2xl mx-auto">
+              <p className="text-base sm:text-lg text-foreground/90 max-w-2xl mx-auto leading-relaxed">
                 Find answers to common questions about our quantum-AI solutions, pilot projects, and consulting services.
               </p>
             </motion.div>
@@ -84,20 +84,24 @@ const FAQ = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.2 }}
+              className="faq-accordion-mobile"
             >
-              <Accordion type="single" collapsible className="space-y-4">
+              <Accordion type="single" collapsible className="space-y-3 sm:space-y-4">
                 {faqData.map((faq, index) => (
                   <AccordionItem
                     key={index}
                     value={`item-${index}`}
-                    className="glass-card-3d border border-primary/20 rounded-xl overflow-hidden"
+                    className="glass-card-3d border border-primary/20 rounded-xl overflow-hidden accordion-item"
                   >
-                    <AccordionTrigger className="px-6 py-4 hover:no-underline hover:bg-primary/5 transition-colors">
-                      <span className="text-left font-semibold text-foreground">
-                        {faq.question}
-                      </span>
+                    <AccordionTrigger className="px-4 sm:px-6 py-4 sm:py-5 min-h-[44px] hover:no-underline hover:bg-primary/5 transition-colors touch-manipulation group">
+                      <div className="flex items-start gap-3 sm:gap-4 text-left w-full">
+                        <HelpCircle className="w-5 h-5 sm:w-6 sm:h-6 text-primary flex-shrink-0 mt-0.5 sm:mt-0 group-hover:scale-110 transition-transform" />
+                        <span className="font-semibold text-foreground text-sm sm:text-base flex-1">
+                          {faq.question}
+                        </span>
+                      </div>
                     </AccordionTrigger>
-                    <AccordionContent className="px-6 pb-4 text-foreground/80">
+                    <AccordionContent className="px-4 sm:px-6 pb-4 sm:pb-5 pt-2 text-foreground/90 text-sm sm:text-base leading-relaxed">
                       {faq.answer}
                     </AccordionContent>
                   </AccordionItem>
@@ -122,7 +126,8 @@ const FAQ = () => {
                 onClick={() => {
                   window.location.href = "/#contact";
                 }}
-                className="btn-3d-teal px-8 py-3 rounded-xl"
+                className="btn-3d-teal px-6 sm:px-8 py-3 sm:py-4 rounded-xl min-h-[48px] touch-manipulation font-semibold text-sm sm:text-base hover:scale-105 active:scale-95 transition-transform"
+                aria-label="Contact us for more information"
               >
                 Contact Us
               </button>
