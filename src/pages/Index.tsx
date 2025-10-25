@@ -13,6 +13,7 @@ const WhyNow = lazy(() => import("@/components/WhyNow").then(m => ({ default: m.
 const LabNotes = lazy(() => import("@/components/LabNotes").then(m => ({ default: m.LabNotes })));
 const WhyItMatters = lazy(() => import("@/components/WhyItMatters").then(m => ({ default: m.WhyItMatters })));
 const ContactForm = lazy(() => import("@/components/ContactForm").then(m => ({ default: m.ContactForm })));
+const AIShowcase = lazy(() => import("@/components/AIShowcase").then(m => ({ default: m.AIShowcase })));
 
 const Index = () => {
   return (
@@ -74,6 +75,18 @@ const Index = () => {
       >
         <Suspense fallback={<div className="h-64 animate-pulse bg-primary/5" />}>
           <WhyItMatters />
+        </Suspense>
+      </motion.div>
+      
+      {/* AI Showcase Section */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.7, delay: 0.1 }}
+        viewport={{ once: true, margin: "-100px" }}
+      >
+        <Suspense fallback={<div className="h-96 animate-pulse bg-primary/5" />}>
+          <AIShowcase />
         </Suspense>
       </motion.div>
       
