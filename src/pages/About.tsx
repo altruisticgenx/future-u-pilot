@@ -3,8 +3,9 @@ import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { GraduationCap, Zap, Heart, Scale, Users, Brain } from "lucide-react";
-import { StakeholderCard } from "@/components/StakeholderCard";
+import { InteractiveCard } from "@/components/InteractiveCard";
 import { MetricCard } from "@/components/MetricCard";
+import { AIChatbot } from "@/components/AIChatbot";
 
 const stakeholders = [
   {
@@ -17,6 +18,18 @@ const stakeholders = [
       "Learn quantum without advanced degrees",
       "Good jobs close to home"
     ],
+    detailedContent: `
+      <h3>Building the Quantum Workforce</h3>
+      <p>Pennsylvania has a unique opportunity to train the next generation of quantum engineers, researchers, and technicians. Our programs bridge the gap between traditional education and emerging quantum technologies.</p>
+      <h4>What We Offer:</h4>
+      <ul>
+        <li><strong>High School Programs:</strong> Introduction to quantum computing concepts without requiring advanced physics</li>
+        <li><strong>Community College Tracks:</strong> Quantum technician certification programs with industry partnerships</li>
+        <li><strong>University Partnerships:</strong> Research opportunities and internships with quantum labs</li>
+        <li><strong>Career Placement:</strong> Direct pipeline to Pennsylvania-based quantum companies</li>
+      </ul>
+      <p>Investment in quantum education today means Pennsylvania-grown talent staying in Pennsylvania tomorrow.</p>
+    `,
     color: "from-blue-500/15 via-cyan-500/10 to-blue-500/15"
   },
   {
@@ -29,6 +42,18 @@ const stakeholders = [
       "Protection from future cyber attacks",
       "Better control of power grids"
     ],
+    detailedContent: `
+      <h3>Quantum-Enhanced Energy Systems</h3>
+      <p>The energy sector faces unprecedented challenges: aging infrastructure, renewable integration, and cybersecurity threats. Quantum computing offers practical solutions today.</p>
+      <h4>Real-World Applications:</h4>
+      <ul>
+        <li><strong>Grid Optimization:</strong> Quantum algorithms reduce waste by 22% in pilot studies</li>
+        <li><strong>Predictive Maintenance:</strong> Quantum sensors detect equipment failures before they happen</li>
+        <li><strong>Post-Quantum Security:</strong> Protect critical infrastructure from quantum-enabled attacks</li>
+        <li><strong>Load Balancing:</strong> Real-time optimization of renewable energy distribution</li>
+      </ul>
+      <p>Pennsylvania's energy companies are already piloting these solutions with measurable ROI.</p>
+    `,
     color: "from-yellow-500/15 via-orange-500/10 to-yellow-500/15"
   },
   {
@@ -41,6 +66,18 @@ const stakeholders = [
       "More accurate diagnoses",
       "Treatment plans just for you"
     ],
+    detailedContent: `
+      <h3>Quantum Healthcare Revolution</h3>
+      <p>Healthcare is data-rich but insight-poor. Quantum computing and quantum sensing unlock patterns invisible to classical systems, accelerating discovery and improving patient outcomes.</p>
+      <h4>Key Benefits:</h4>
+      <ul>
+        <li><strong>Drug Discovery:</strong> Simulate molecular interactions 1000x faster than traditional methods</li>
+        <li><strong>Personalized Medicine:</strong> Analyze genetic data to tailor treatments to individual patients</li>
+        <li><strong>Early Detection:</strong> Quantum sensors identify biomarkers years before symptoms appear</li>
+        <li><strong>Clinical Trials:</strong> Optimize trial design and reduce time-to-market for new therapies</li>
+      </ul>
+      <p>Pennsylvania hospitals and research institutions are pioneering quantum healthcare applications.</p>
+    `,
     color: "from-red-500/15 via-pink-500/10 to-red-500/15"
   },
   {
@@ -53,6 +90,18 @@ const stakeholders = [
       "Clear ethics rules everyone understands",
       "Economic independence, not reliance"
     ],
+    detailedContent: `
+      <h3>Quantum Policy & Governance</h3>
+      <p>Effective quantum policy requires balancing innovation with security, economic growth with ethical considerations. We help policymakers navigate this complex landscape.</p>
+      <h4>Our Approach:</h4>
+      <ul>
+        <li><strong>Advisory Councils:</strong> Connect lawmakers with quantum experts for evidence-based policy</li>
+        <li><strong>Ethical Frameworks:</strong> Clear guidelines for responsible quantum development</li>
+        <li><strong>Economic Strategy:</strong> Build quantum industries in Pennsylvania, not offshore dependencies</li>
+        <li><strong>Public Education:</strong> Transparent communication about quantum benefits and risks</li>
+      </ul>
+      <p>Pennsylvania can lead the nation in quantum governance—practical, ethical, and economically sound.</p>
+    `,
     color: "from-purple-500/15 via-indigo-500/10 to-purple-500/15"
   }
 ];
@@ -127,7 +176,7 @@ const About = () => {
 
           <div className="grid md:grid-cols-2 gap-4">
             {stakeholders.map((stakeholder, index) => (
-              <StakeholderCard
+              <InteractiveCard
                 key={index}
                 {...stakeholder}
                 index={index}
@@ -228,6 +277,9 @@ const About = () => {
       </section>
 
       <Footer />
+      
+      {/* AI Chatbot */}
+      <AIChatbot />
     </div>
   );
 };

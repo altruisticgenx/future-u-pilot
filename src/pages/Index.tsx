@@ -2,6 +2,7 @@ import { lazy, Suspense } from "react";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { HeroSkeleton } from "@/components/LoadingSkeleton";
+import { AIChatbot } from "@/components/AIChatbot";
 import { motion } from "framer-motion";
 
 // Lazy load heavy components
@@ -111,6 +112,9 @@ const Index = () => {
       </section>
 
       <Footer />
+      
+      {/* AI Chatbot */}
+      <AIChatbot />
     </div>
   );
 };
