@@ -1,4 +1,5 @@
 import { Mail, Github, Linkedin, Home } from "lucide-react";
+import { Link } from "react-router-dom";
 import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
 
 export const Footer = () => {
@@ -50,12 +51,12 @@ export const Footer = () => {
               >
                 Services
               </a>
-              <a
-                href="/storytelling"
+              <Link
+                to="/storytelling"
                 className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors"
               >
                 Storytelling
-              </a>
+              </Link>
               <a
                 href="#contact"
                 className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors"
