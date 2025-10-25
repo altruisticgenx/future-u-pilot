@@ -161,6 +161,48 @@ All colors MUST be HSL.
     --sidebar-ring: 185 85% 45%;
   }
 
+  /* Custom Theme: Quantum */
+  [data-theme="quantum"] {
+    --primary: 185 90% 55%;
+    --primary-foreground: 195 100% 5%;
+    --primary-glow: 185 100% 75%;
+    --accent: 43 96% 56%;
+    --accent-foreground: 195 100% 5%;
+    --secondary: 258 90% 66%;
+    --secondary-foreground: 180 40% 95%;
+    --background: 200 20% 98%;
+    --foreground: 195 100% 8%;
+    --card: 180 100% 99%;
+    --card-foreground: 195 100% 10%;
+    --border: 195 30% 88%;
+    --ring: 185 90% 55%;
+    --muted: 195 20% 94%;
+    --muted-foreground: 195 15% 45%;
+  }
+
+  /* Custom Theme: Terminal */
+  [data-theme="terminal"] {
+    --primary: 160 84% 39%;
+    --primary-foreground: 160 100% 95%;
+    --primary-glow: 160 100% 60%;
+    --accent: 43 96% 56%;
+    --accent-foreground: 195 100% 5%;
+    --secondary: 195 60% 40%;
+    --secondary-foreground: 180 40% 95%;
+    --background: 195 100% 5%;
+    --foreground: 180 40% 85%;
+    --card: 195 90% 8%;
+    --card-foreground: 180 40% 95%;
+    --border: 195 50% 20%;
+    --ring: 160 84% 39%;
+    --muted: 195 40% 15%;
+    --muted-foreground: 195 25% 65%;
+    --terminal-bg: 195 100% 5%;
+    --terminal-surface: 195 95% 8%;
+    --terminal-border: 195 60% 18%;
+    --terminal-text: 180 40% 80%;
+  }
+
   .dark {
     /* Base Color Scale - Dark */
     --base-100: 220 15% 12%;
