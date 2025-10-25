@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
-import { Calendar, Sparkles, Video } from "lucide-react";
+import { Calendar, Sparkles, Video, HelpCircle } from "lucide-react";
 import type { HeroCTAGroupProps } from "@/types/hero";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -63,6 +63,11 @@ export const HeroCTAGroup = ({
   const handleVideoClick = () => {
     setAnnouncement("Opening introduction video");
     onVideo();
+  };
+
+  const handleFAQClick = () => {
+    setAnnouncement("Opening FAQ page");
+    navigate('/faq');
   };
 
   return (
@@ -147,6 +152,27 @@ export const HeroCTAGroup = ({
             tabIndex={0}
           >
             Video
+          </InteractiveHoverButton>
+        </motion.div>
+
+        <motion.div
+          variants={buttonVariants}
+          initial="initial"
+          animate="animate"
+        >
+          <InteractiveHoverButton
+            onClick={handleFAQClick}
+            variant="3d-gold"
+            size="xs"
+            hasLighthouse
+            icon={HelpCircle}
+            className="w-full sm:w-auto shadow-lg focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+            data-ph-capture-attribute-button-type="faq"
+            data-ph-capture-attribute-button-position="hero-quaternary"
+            aria-label="View frequently asked questions"
+            tabIndex={0}
+          >
+            FAQ
           </InteractiveHoverButton>
         </motion.div>
       </motion.div>

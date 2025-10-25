@@ -13,6 +13,7 @@ const Sonner = lazy(() => import("@/components/ui/sonner").then(m => ({ default:
 // Lazy load non-critical routes to reduce initial bundle
 const Storytelling = lazy(() => import("./pages/Storytelling"));
 const About = lazy(() => import("./pages/About"));
+const FAQ = lazy(() => import("./pages/FAQ"));
 const Terminal = lazy(() => import("./pages/Terminal"));
 const Auth = lazy(() => import("./pages/Auth"));
 const NotFound = lazy(() => import("./pages/NotFound"));
@@ -62,6 +63,7 @@ const App = () => (
             <Route path="/" element={<Index />} />
             <Route path="/storytelling" element={<Storytelling />} />
             <Route path="/about" element={<About />} />
+            <Route path="/faq" element={<FAQ />} />
             <Route path="/auth" element={<QueryWrapper><Auth /></QueryWrapper>} />
             <Route path="/terminal" element={<QueryWrapper><Terminal /></QueryWrapper>} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

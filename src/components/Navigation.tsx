@@ -16,6 +16,9 @@ export const Navigation = () => {
     label: "About Us",
     href: "/about"
   }, {
+    label: "FAQ",
+    href: "/faq"
+  }, {
     label: "Storytelling",
     href: "/storytelling"
   }, {

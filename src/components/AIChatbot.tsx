@@ -16,7 +16,7 @@ export const AIChatbot = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: "assistant",
-      content: "Hi! I'm Future-U Assistant. Ask me about our quantum-AI solutions, policy compliance, or how to get started with a pilot project.",
+      content: "Hi! I'm Alix, your AI guide. Ask me about our quantum-AI solutions, policy compliance, or how to get started with a pilot project.",
     },
   ]);
   const [input, setInput] = useState("");
@@ -172,8 +172,8 @@ export const AIChatbot = () => {
                   <MessageCircle className="w-5 h-5 text-primary-foreground" />
                 </div>
                 <div>
-                  <h3 className="text-primary-foreground font-bold">Future-U Assistant</h3>
-                  <p className="text-primary-foreground/90 text-xs font-medium">Powered by AI</p>
+                  <h3 className="text-primary-foreground font-bold">Alix</h3>
+                  <p className="text-primary-foreground/90 text-xs font-medium">AI Guide</p>
                 </div>
               </div>
               <Button
@@ -225,7 +225,7 @@ export const AIChatbot = () => {
                   onChange={(e) => setInput(e.target.value)}
                   placeholder="Ask me anything..."
                   disabled={isLoading}
-                  className="flex-1"
+                  className="flex-1 text-foreground placeholder:text-muted-foreground"
                 />
                 <Button
                   type="submit"
