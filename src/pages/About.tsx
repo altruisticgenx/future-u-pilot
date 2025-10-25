@@ -2,11 +2,10 @@ import { motion } from "framer-motion";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
-import { GraduationCap, Zap, Heart, Scale, Users, Brain, Code2 } from "lucide-react";
+import { GraduationCap, Zap, Heart, Scale, Users, Brain } from "lucide-react";
 import { InteractiveCard } from "@/components/InteractiveCard";
 import { AIChatbot } from "@/components/AIChatbot";
 import { ROIChart } from "@/components/ROIChart";
-import { SandboxPanel, sandboxExamples } from "@/components/SandboxPanel";
 import { ContrastMonitor } from "@/components/ContrastMonitor";
 
 const stakeholders = [
@@ -204,45 +203,6 @@ const About = () => {
         </div>
       </section>
 
-      {/* Interactive Sandboxes */}
-      <section className="py-12 bg-gradient-to-b from-muted/30 to-background" aria-labelledby="sandbox-heading">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-8"
-          >
-            <div className="flex items-center justify-center gap-2 mb-2">
-              <Code2 className="h-6 w-6 text-primary animate-pulse" aria-hidden="true" />
-              <h2 id="sandbox-heading" className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-hero bg-clip-text text-transparent">
-                Try It Yourself
-              </h2>
-            </div>
-            <p className="text-xs sm:text-sm text-muted-foreground max-w-xl mx-auto">
-              Explore quantum computing with real code examples. Click "Run" to see the output.
-            </p>
-          </motion.div>
-
-          <div className="grid md:grid-cols-2 gap-4">
-            <SandboxPanel
-              title="Student Training: Quantum Circuits"
-              description="Learn quantum programming with this basic circuit example"
-              code={sandboxExamples.students}
-              color="primary"
-              output="Bell State Results: {'00': 512, '11': 488}\nQuantum entanglement demonstrated!"
-            />
-            <SandboxPanel
-              title="Energy: Grid Optimization"
-              description="See how quantum algorithms optimize power distribution"
-              code={sandboxExamples.energy}
-              color="success"
-              output="Optimized Distribution:\nEnergy Savings: 145.3 kWh\nGrid Efficiency: 87.2%"
-            />
-          </div>
-        </div>
-      </section>
-
       {/* Vision Statement */}
       <section className="py-12 bg-gradient-to-b from-background to-muted/30" aria-labelledby="vision-heading">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl">
@@ -289,15 +249,17 @@ const About = () => {
                 <p className="text-xs sm:text-sm text-muted-foreground max-w-xl mx-auto">
                   Whether you're in education, energy, healthcare, government, or business—Pennsylvania's quantum future needs you.
                 </p>
-                <motion.button
-                  onClick={() => window.location.href = "/#contact"}
-                  className="btn-3d-primary px-6 py-2.5 rounded-lg font-semibold text-xs sm:text-sm"
+                <motion.a
+                  href="https://docs.google.com/document/d/1NlzqlnBLt_iWwqLGH3SUTUlASFIZBEaimJYq6MFXB8I/edit?usp=sharing"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block btn-3d-primary px-6 py-2.5 rounded-lg font-semibold text-xs sm:text-sm"
                   whileHover={{ scale: 1.03, y: -2 }}
                   whileTap={{ scale: 0.97 }}
                   aria-label="Get involved in Pennsylvania's Quantum Initiative"
                 >
                   Get Involved Today
-                </motion.button>
+                </motion.a>
               </CardContent>
             </Card>
           </motion.div>
