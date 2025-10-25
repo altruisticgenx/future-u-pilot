@@ -5,6 +5,7 @@ import { lazy, Suspense } from "react";
 // Eager load homepage for fast FCP
 import Index from "./pages/Index";
 import IndexNew from "./pages/IndexNew";
+import { ProtectedRoute } from "./components/ProtectedRoute";
 
 // Lazy load non-critical UI components
 const Toaster = lazy(() => import("@/components/ui/toaster").then(m => ({ default: m.Toaster })));
@@ -55,7 +56,7 @@ const App = () => (
           <Route path="/storytelling" element={<Storytelling />} />
           <Route path="/about" element={<About />} />
           <Route path="/auth" element={<QueryWrapper><Auth /></QueryWrapper>} />
-          <Route path="/terminal" element={<QueryWrapper><Terminal /></QueryWrapper>} />
+          <Route path="/terminal" element={<QueryWrapper><ProtectedRoute><Terminal /></ProtectedRoute></QueryWrapper>} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

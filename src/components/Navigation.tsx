@@ -1,127 +1,126 @@
-import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+import { Logo3D } from "./Logo3D";
 
 export const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
-  const navItems = [{
-    label: "Home",
-    href: "/"
-  }, {
-    label: "About Us",
-    href: "/about"
-  }, {
-    label: "Open Project(s)",
-    href: "https://keen-hardboard-afe.notion.site/28cf142372ef8050ac86f4a3b4c813db?v=28cf142372ef8073b8cf000c0ebfca06&source=copy_link"
-  }, {
-    label: "Terminal",
-    href: "/terminal"
-  }, {
-    label: "Contact",
-    href: "#contact"
-  }];
+  const location = useLocation();
+
+  const navItems = [
+    { label: "Services", href: "#services" },
+    { label: "Why Now", href: "#why-now" },
+    { label: "Contact", href: "#contact" },
+  ];
+
   const handleNavClick = (href: string) => {
-    if (href.startsWith("http")) {
-      // External link
-      window.open(href, "_blank", "noopener,noreferrer");
-    } else if (href.startsWith("#")) {
+    if (href.startsWith("#")) {
       const element = document.getElementById(href.substring(1));
-      element?.scrollIntoView({
-        behavior: "smooth"
-      });
+      element?.scrollIntoView({ behavior: "smooth" });
     } else {
-      // Use React Router navigate instead of window.location
       navigate(href);
     }
     setIsMobileMenuOpen(false);
   };
-  return <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-ocean-deep/98 border-b border-ocean-light/10 shadow-sm" role="navigation" aria-label="Main navigation">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <div className="flex items-center justify-between h-14 sm:h-16 md:h-16">
-          {/* Logo */}
-          <motion.button 
-            onClick={() => navigate("/")}
-            className="text-sm sm:text-base md:text-lg font-extrabold bg-gradient-hero bg-clip-text text-transparent tracking-tight" 
-            whileHover={{ scale: 1.05 }} 
-            whileTap={{ scale: 0.95 }}
-            aria-label="AltruisticXAI Home"
-          >
-            AltruisticXAI
-          </motion.button>
 
-          {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-0.5">
-            {navItems.map(item => <motion.button 
-              key={item.label} 
-              onClick={() => handleNavClick(item.href)} 
-              className="px-3 py-1.5 rounded-lg text-[13px] font-semibold text-ocean-text/90 hover:bg-ocean-light/10 hover:text-ocean-glow transition-all" 
-              whileHover={{ y: -1 }} 
-              whileTap={{ scale: 0.98 }}
-              aria-label={`Navigate to ${item.label}`}
-            >
-                {item.label}
-              </motion.button>)}
-            
-            {/* Auth Button */}
-            <Button
-              size="sm"
-              onClick={() => navigate("/auth")}
-              className="ml-2 h-8 px-4 text-xs bg-ocean-light hover:bg-ocean-glow text-ocean-deep font-bold rounded-lg"
-            >
-              Login
-            </Button>
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [location.pathname]);
+
+  return (
+    <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-ocean-deep/95 border-b border-ocean-light/10 shadow-lg">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+        <div className="flex items-center justify-between h-12 sm:h-14 md:h-14">
+          {/* Logo */}
+          <div onClick={() => navigate("/")} role="button" tabIndex={0} aria-label="AltruisticXAI Home">
+            <Logo3D />
           </div>
 
-          {/* Mobile Menu Button - Enhanced touch target for iOS/Android */}
-          <button 
-            className="lg:hidden p-3 rounded-lg hover:bg-ocean-light/10 active:bg-ocean-light/20 transition-all min-w-[44px] min-h-[44px] flex items-center justify-center" 
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} 
-            aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
-            aria-expanded={isMobileMenuOpen}
-            style={{ WebkitTapHighlightColor: 'transparent' }}
-          >
-            {isMobileMenuOpen ? <X className="h-6 w-6 text-ocean-glow" aria-hidden="true" /> : <Menu className="h-6 w-6 text-ocean-text" aria-hidden="true" />}
-          </button>
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center space-x-6">
+            {navItems.map((item) => (
+              <motion.button
+                key={item.label}
+                onClick={() => handleNavClick(item.href)}
+                className="text-xs sm:text-sm font-medium text-ocean-foam/90 hover:text-ocean-bright transition-colors px-2 sm:px-3"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                {item.label}
+              </motion.button>
+            ))}
+          </nav>
+
+          {/* Auth Button */}
+          <div className="flex items-center gap-3">
+            <motion.button
+              onClick={() => navigate("/auth")}
+              className="hidden sm:inline-flex px-3 py-1.5 text-xs sm:text-sm font-semibold bg-gradient-to-r from-ocean-bright to-ocean-glow text-ocean-deep rounded-lg shadow-md hover:shadow-ocean-glow/50 transition-all"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Login
+            </motion.button>
+
+            {/* Mobile Menu Button */}
+            <motion.button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="md:hidden p-2 rounded-lg hover:bg-ocean-light/10 transition-colors"
+              whileTap={{ scale: 0.95 }}
+              aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+            >
+              {isMobileMenuOpen ? (
+                <X className="h-5 w-5 text-ocean-bright" />
+              ) : (
+                <Menu className="h-5 w-5 text-ocean-foam" />
+              )}
+            </motion.button>
+          </div>
         </div>
       </div>
 
-      {/* Mobile Menu - iOS/Android Optimized */}
+      {/* Mobile Menu */}
       <AnimatePresence>
-        {isMobileMenuOpen && <motion.div 
-          initial={{ opacity: 0, height: 0 }} 
-          animate={{ opacity: 1, height: "auto" }} 
-          exit={{ opacity: 0, height: 0 }}
-          transition={{ duration: 0.25, ease: "easeInOut" }}
-          className="lg:hidden border-t border-ocean-light/10 bg-ocean-deep/98 backdrop-blur-xl overflow-hidden"
-        >
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.2 }}
+            className="md:hidden border-t border-ocean-light/10 bg-ocean-deep/98 backdrop-blur-xl"
+          >
             <div className="container mx-auto px-4 py-4 space-y-2">
-              {navItems.map((item, index) => <motion.button 
-              key={item.label} 
-              onClick={() => handleNavClick(item.href)} 
-              className="w-full text-left px-4 py-3 rounded-lg text-ocean-text/90 hover:bg-ocean-light/10 active:bg-ocean-light/20 hover:text-ocean-glow transition-all font-medium text-sm min-h-[48px]"
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: index * 0.04 }}
-              aria-label={`Navigate to ${item.label}`}
-              style={{ WebkitTapHighlightColor: 'transparent' }}
-            >
+              {navItems.map((item, index) => (
+                <motion.button
+                  key={item.label}
+                  onClick={() => handleNavClick(item.href)}
+                  className="block w-full text-left px-4 py-2 text-xs font-medium text-ocean-foam hover:bg-ocean-light/5 rounded-md transition-colors"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.05 }}
+                >
                   {item.label}
-                </motion.button>)}
+                </motion.button>
+              ))}
               
-              {/* Mobile Auth Button */}
-              <Button 
-                className="w-full mt-4 min-h-[48px] text-sm bg-ocean-light hover:bg-ocean-glow text-ocean-deep font-bold rounded-lg" 
-                onClick={() => navigate("/auth")} 
-                aria-label="Login or Sign Up"
-                style={{ WebkitTapHighlightColor: 'transparent' }}
+              <motion.button
+                onClick={() => {
+                  setIsMobileMenuOpen(false);
+                  navigate("/auth");
+                }}
+                className="w-full px-4 py-2 text-xs font-semibold bg-gradient-to-r from-ocean-bright to-ocean-glow text-ocean-deep rounded-lg shadow-md hover:shadow-ocean-glow/50 transition-all"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2 }}
               >
                 Login / Sign Up
-              </Button>
+              </motion.button>
             </div>
-          </motion.div>}
+          </motion.div>
+        )}
       </AnimatePresence>
-    </nav>;
+    </nav>
+  );
 };

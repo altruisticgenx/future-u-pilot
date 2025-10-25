@@ -678,4 +678,30 @@ button:active, a:active {
       display: none;
     }
   }
+
+  /* 3D Transform Utilities */
+  .perspective-1000 {
+    perspective: 1000px;
+    transform-style: preserve-3d;
+  }
+
+  .transform-3d {
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+  }
+
+  .glow-pulse {
+    animation: glow-pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes glow-pulse {
+    0%, 100% {
+      box-shadow: 0 0 10px hsl(var(--ocean-bright) / 0.3),
+                  0 0 20px hsl(var(--ocean-bright) / 0.2);
+    }
+    50% {
+      box-shadow: 0 0 20px hsl(var(--ocean-bright) / 0.6),
+                  0 0 40px hsl(var(--ocean-bright) / 0.4);
+    }
+  }
 }

@@ -9,6 +9,26 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
 import { Send } from "lucide-react";
 import DOMPurify from 'dompurify';
+import { z } from "zod";
+
+const contactSchema = z.object({
+  name: z.string().trim().min(1, "Name required").max(100, "Name too long"),
+  organization: z.string().trim().min(1, "Organization required").max(100, "Organization too long"),
+  email: z.string().trim().email("Invalid email address").max(255, "Email too long"),
+  sector: z.enum(["Government", "University/Research", "Enterprise", "Startup"], {
+    errorMap: () => ({ message: "Please select a sector" }),
+  }),
+  interests: z.array(z.string()).min(0, "Select at least one interest"),
+  timeline: z.enum(["ASAP", "1-3 months", "3-6 months", "Exploring"], {
+    errorMap: () => ({ message: "Please select a timeline" }),
+  }),
+  message: z.string().trim().max(2000, "Message too long (max 2000 characters)"),
+  consent: z.literal(true, {
+    errorMap: () => ({ message: "You must agree to be contacted" }),
+  }),
+});
+
+type ContactFormData = z.infer<typeof contactSchema>;
 
 const sectors = ["Government", "University/Research", "Enterprise", "Startup"];
 const interests = [
@@ -40,64 +60,50 @@ export const ContactForm = () => {
 
   const [errors, setErrors] = useState<Record<string, string>>({});
 
-  const validateForm = () => {
-    const newErrors: Record<string, string> = {};
-
-    if (!formData.name.trim()) newErrors.name = "Name is required";
-    if (!formData.organization.trim()) newErrors.organization = "Organization is required";
-    if (!formData.email.trim()) {
-      newErrors.email = "Email is required";
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      newErrors.email = "Invalid email address";
-    }
-    if (!formData.sector) newErrors.sector = "Please select a sector";
-    if (!formData.timeline) newErrors.timeline = "Please select a timeline";
-    if (!formData.consent) newErrors.consent = "You must agree to be contacted";
-
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const sanitizeInput = (input: string) => DOMPurify.sanitize(input.trim(), { 
-    ALLOWED_TAGS: [],
-    ALLOWED_ATTR: []
-  });
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
-    if (!validateForm()) {
-      toast({
-        title: "Validation Error",
-        description: "Please fill in all required fields correctly.",
-        variant: "destructive",
-      });
-      return;
-    }
-
+    setErrors({});
     setIsSubmitting(true);
-    
-    // Sanitize all inputs
-    const sanitizedData = {
-      name: sanitizeInput(formData.name),
-      organization: sanitizeInput(formData.organization),
-      email: sanitizeInput(formData.email),
-      sector: formData.sector,
-      timeline: formData.timeline,
-      message: sanitizeInput(formData.message),
-      interests: formData.interests,
-      consent: formData.consent,
-    };
-    
-    // Simulate API call with sanitized data
-    setTimeout(() => {
-      setIsSubmitting(false);
+
+    try {
+      // Validate with zod
+      const validatedData = contactSchema.parse(formData);
+      
+      // Sanitize inputs
+      const sanitizedData = {
+        ...validatedData,
+        name: DOMPurify.sanitize(validatedData.name),
+        organization: DOMPurify.sanitize(validatedData.organization),
+        message: DOMPurify.sanitize(validatedData.message),
+      };
+
       setIsSuccess(true);
       toast({
         title: "Success!",
         description: "We'll be in touch within 24 hours to discuss your pilot.",
       });
-    }, 1000);
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        const fieldErrors: Record<string, string> = {};
+        error.errors.forEach((err) => {
+          if (err.path[0]) fieldErrors[err.path[0] as string] = err.message;
+        });
+        setErrors(fieldErrors);
+        toast({
+          title: "Validation Error",
+          description: "Please fill in all required fields correctly.",
+          variant: "destructive",
+        });
+      } else {
+        toast({
+          title: "Error",
+          description: "Failed to send message. Please try again.",
+          variant: "destructive",
+        });
+      }
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleInterestToggle = (interest: string) => {

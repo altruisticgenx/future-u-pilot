@@ -4,6 +4,18 @@ export default {
   darkMode: ["class"],
   content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
   prefix: "",
+  safelist: [
+    'animate-gradient',
+    'animate-shimmer',
+    'animate-float-3d',
+    'animate-rotate-3d',
+    'glow-pulse',
+    'hover-3d-lift',
+    'perspective-1000',
+    'perspective-2000',
+    'transform-3d',
+    'text-3d',
+  ],
   future: {
     hoverOnlyWhenSupported: true,
   },
