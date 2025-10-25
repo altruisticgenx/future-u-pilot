@@ -4,23 +4,6 @@ export default {
   darkMode: ["class"],
   content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
   prefix: "",
-  safelist: [
-    'animate-gradient',
-    'animate-shimmer',
-    'animate-float-3d',
-    'animate-rotate-3d',
-    'glow-pulse',
-    'hover-3d-lift',
-    'perspective-1000',
-    'perspective-2000',
-    'transform-3d',
-    'text-3d',
-    'btn-3d-teal',
-    'btn-3d-purple',
-    'btn-3d-gold',
-    'btn-3d-cyan',
-    'btn-flow',
-  ],
   future: {
     hoverOnlyWhenSupported: true,
   },
@@ -33,13 +16,6 @@ export default {
       },
     },
     extend: {
-      fontFamily: {
-        sans: ["Inter", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "sans-serif"],
-      },
-      letterSpacing: {
-        tight: "-0.015em",
-        snug: "-0.01em",
-      },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
@@ -185,20 +161,6 @@ export default {
           start: "hsl(var(--gradient-start))",
           mid: "hsl(var(--gradient-mid))",
           end: "hsl(var(--gradient-end))",
-        },
-        ocean: {
-          darkest: "hsl(var(--ocean-darkest))",
-          deeper: "hsl(var(--ocean-deeper))",
-          deep: "hsl(var(--ocean-deep))",
-          mid: "hsl(var(--ocean-mid))",
-          dark: "hsl(var(--ocean-dark))",
-          light: "hsl(var(--ocean-light))",
-          bright: "hsl(var(--ocean-bright))",
-          glow: "hsl(var(--ocean-glow))",
-          surface: "hsl(var(--ocean-surface))",
-          foam: "hsl(var(--ocean-foam))",
-          mist: "hsl(var(--ocean-mist))",
-          text: "hsl(var(--ocean-text))",
         },
         terminal: {
           bg: "hsl(var(--terminal-bg))",

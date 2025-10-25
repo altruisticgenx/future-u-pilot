@@ -9,26 +9,6 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
 import { Send } from "lucide-react";
 import DOMPurify from 'dompurify';
-import { z } from "zod";
-
-const contactSchema = z.object({
-  name: z.string().trim().min(1, "Name required").max(100, "Name too long"),
-  organization: z.string().trim().min(1, "Organization required").max(100, "Organization too long"),
-  email: z.string().trim().email("Invalid email address").max(255, "Email too long"),
-  sector: z.enum(["Government", "University/Research", "Enterprise", "Startup"], {
-    errorMap: () => ({ message: "Please select a sector" }),
-  }),
-  interests: z.array(z.string()).min(0, "Select at least one interest"),
-  timeline: z.enum(["ASAP", "1-3 months", "3-6 months", "Exploring"], {
-    errorMap: () => ({ message: "Please select a timeline" }),
-  }),
-  message: z.string().trim().max(2000, "Message too long (max 2000 characters)"),
-  consent: z.literal(true, {
-    errorMap: () => ({ message: "You must agree to be contacted" }),
-  }),
-});
-
-type ContactFormData = z.infer<typeof contactSchema>;
 
 const sectors = ["Government", "University/Research", "Enterprise", "Startup"];
 const interests = [
@@ -60,50 +40,64 @@ export const ContactForm = () => {
 
   const [errors, setErrors] = useState<Record<string, string>>({});
 
+  const validateForm = () => {
+    const newErrors: Record<string, string> = {};
+
+    if (!formData.name.trim()) newErrors.name = "Name is required";
+    if (!formData.organization.trim()) newErrors.organization = "Organization is required";
+    if (!formData.email.trim()) {
+      newErrors.email = "Email is required";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = "Invalid email address";
+    }
+    if (!formData.sector) newErrors.sector = "Please select a sector";
+    if (!formData.timeline) newErrors.timeline = "Please select a timeline";
+    if (!formData.consent) newErrors.consent = "You must agree to be contacted";
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const sanitizeInput = (input: string) => DOMPurify.sanitize(input.trim(), { 
+    ALLOWED_TAGS: [],
+    ALLOWED_ATTR: []
+  });
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setErrors({});
+    
+    if (!validateForm()) {
+      toast({
+        title: "Validation Error",
+        description: "Please fill in all required fields correctly.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setIsSubmitting(true);
-
-    try {
-      // Validate with zod
-      const validatedData = contactSchema.parse(formData);
-      
-      // Sanitize inputs
-      const sanitizedData = {
-        ...validatedData,
-        name: DOMPurify.sanitize(validatedData.name),
-        organization: DOMPurify.sanitize(validatedData.organization),
-        message: DOMPurify.sanitize(validatedData.message),
-      };
-
+    
+    // Sanitize all inputs
+    const sanitizedData = {
+      name: sanitizeInput(formData.name),
+      organization: sanitizeInput(formData.organization),
+      email: sanitizeInput(formData.email),
+      sector: formData.sector,
+      timeline: formData.timeline,
+      message: sanitizeInput(formData.message),
+      interests: formData.interests,
+      consent: formData.consent,
+    };
+    
+    // Simulate API call with sanitized data
+    setTimeout(() => {
+      setIsSubmitting(false);
       setIsSuccess(true);
       toast({
         title: "Success!",
         description: "We'll be in touch within 24 hours to discuss your pilot.",
       });
-    } catch (error) {
-      if (error instanceof z.ZodError) {
-        const fieldErrors: Record<string, string> = {};
-        error.errors.forEach((err) => {
-          if (err.path[0]) fieldErrors[err.path[0] as string] = err.message;
-        });
-        setErrors(fieldErrors);
-        toast({
-          title: "Validation Error",
-          description: "Please fill in all required fields correctly.",
-          variant: "destructive",
-        });
-      } else {
-        toast({
-          title: "Error",
-          description: "Failed to send message. Please try again.",
-          variant: "destructive",
-        });
-      }
-    } finally {
-      setIsSubmitting(false);
-    }
+    }, 1000);
   };
 
   const handleInterestToggle = (interest: string) => {
@@ -149,10 +143,10 @@ export const ContactForm = () => {
       onSubmit={handleSubmit}
       className="space-y-4 max-w-xl mx-auto"
     >
-      <div className="grid sm:grid-cols-2 gap-4">
+      <div className="grid sm:grid-cols-2 gap-3">
         {/* Name */}
-        <div className="space-y-2">
-          <Label htmlFor="name" className="text-sm font-medium">Name *</Label>
+        <div className="space-y-1">
+          <Label htmlFor="name" className="text-xs">Name *</Label>
           <Input
             id="name"
             autoComplete="name"
@@ -160,8 +154,7 @@ export const ContactForm = () => {
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
             aria-invalid={!!errors.name}
             aria-describedby={errors.name ? "name-error" : undefined}
-            className="h-12 text-base bg-card/60 border-2 border-ocean-light/30 focus:border-ocean-glow shadow-[4px_4px_0px_0px_hsl(var(--primary)/0.3)] hover:shadow-[6px_6px_0px_0px_hsl(var(--primary)/0.4)] transition-all"
-            style={{ fontSize: '16px' }}
+            className="h-9 text-sm bg-card/60 border-2 shadow-[4px_4px_0px_0px_hsl(var(--primary)/0.3)] hover:shadow-[6px_6px_0px_0px_hsl(var(--primary)/0.4)] transition-shadow"
           />
           {errors.name && (
             <p id="name-error" className="text-xs text-destructive">
@@ -171,8 +164,8 @@ export const ContactForm = () => {
         </div>
 
         {/* Organization */}
-        <div className="space-y-2">
-          <Label htmlFor="organization" className="text-sm font-medium">Organization *</Label>
+        <div className="space-y-1">
+          <Label htmlFor="organization" className="text-xs">Organization *</Label>
           <Input
             id="organization"
             autoComplete="organization"
@@ -180,8 +173,7 @@ export const ContactForm = () => {
             onChange={(e) => setFormData({ ...formData, organization: e.target.value })}
             aria-invalid={!!errors.organization}
             aria-describedby={errors.organization ? "organization-error" : undefined}
-            className="h-12 text-base bg-card/60 border-2 border-ocean-light/30 focus:border-ocean-glow shadow-[4px_4px_0px_0px_hsl(var(--accent)/0.3)] hover:shadow-[6px_6px_0px_0px_hsl(var(--accent)/0.4)] transition-all"
-            style={{ fontSize: '16px' }}
+            className="h-9 text-sm bg-card/60 border-2 shadow-[4px_4px_0px_0px_hsl(var(--accent)/0.3)] hover:shadow-[6px_6px_0px_0px_hsl(var(--accent)/0.4)] transition-shadow"
           />
           {errors.organization && (
             <p id="organization-error" className="text-xs text-destructive">
@@ -192,8 +184,8 @@ export const ContactForm = () => {
       </div>
 
       {/* Email */}
-      <div className="space-y-2">
-        <Label htmlFor="email" className="text-sm font-medium">Email *</Label>
+      <div className="space-y-1">
+        <Label htmlFor="email" className="text-xs">Email *</Label>
         <Input
           id="email"
           type="email"
@@ -202,8 +194,7 @@ export const ContactForm = () => {
           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
           aria-invalid={!!errors.email}
           aria-describedby={errors.email ? "email-error" : undefined}
-          className="h-12 text-base bg-card/60 border-2 border-ocean-light/30 focus:border-ocean-glow shadow-[4px_4px_0px_0px_hsl(var(--secondary)/0.3)] hover:shadow-[6px_6px_0px_0px_hsl(var(--secondary)/0.4)] transition-all"
-          style={{ fontSize: '16px' }}
+          className="h-9 text-sm bg-card/60 border-2 shadow-[4px_4px_0px_0px_hsl(var(--secondary)/0.3)] hover:shadow-[6px_6px_0px_0px_hsl(var(--secondary)/0.4)] transition-shadow"
         />
         {errors.email && (
           <p id="email-error" className="text-xs text-destructive">

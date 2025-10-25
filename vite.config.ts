@@ -43,7 +43,6 @@ export default defineConfig(({ mode }) => ({
       },
     },
     cssMinify: true,
-    cssCodeSplit: true,
     target: 'es2020',
     sourcemap: false,
   },

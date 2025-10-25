@@ -33,29 +33,29 @@ export const ASCII_BANNERS = {
    ┃  Active Experiments: 4               ┃
    ┃  Publications 2024: 23  •  Patents: 8┃
    ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
-  `,
+  `
 };
 
 export const PROGRESS_BAR = (percent: number, width: number = 30) => {
   const filled = Math.floor((percent / 100) * width);
   const empty = width - filled;
-  return `[${"█".repeat(filled)}${"░".repeat(empty)}] ${percent}%`;
+  return `[${'█'.repeat(filled)}${'░'.repeat(empty)}] ${percent}%`;
 };
 
-export const LOADING_SPINNER = ["⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏"];
+export const LOADING_SPINNER = ['⠋', '⠙', '⠹', '⠸', '⠼', '⠴', '⠦', '⠧', '⠇', '⠏'];
 
 export const STATUS_ICONS = {
-  success: "✓",
-  error: "✗",
-  warning: "⚠",
-  info: "ℹ",
-  pending: "⏳",
-  active: "▶",
-  completed: "✓",
-  failed: "✗",
-  online: "🟢",
-  offline: "🔴",
-  maintenance: "🟡",
+  success: '✓',
+  error: '✗',
+  warning: '⚠',
+  info: 'ℹ',
+  pending: '⏳',
+  active: '▶',
+  completed: '✓',
+  failed: '✗',
+  online: '🟢',
+  offline: '🔴',
+  maintenance: '🟡'
 };
 
 export const AI_TRAINING_VIZ = `
@@ -89,7 +89,7 @@ export const PQC_COMPARISON_TABLE = `
 
 export const QUANTUM_CIRCUIT_EXAMPLES = [
   {
-    name: "Bell State",
+    name: 'Bell State',
     circuit: `
       ┌───┐     ┌─┐   
 q_0: ─┤ H ├──■──┤M├───
@@ -101,8 +101,8 @@ c: 2/════════════╩══╩═
 
 Creates maximally entangled state:
 |Φ+⟩ = (|00⟩ + |11⟩) / √2
-    `,
-  },
+    `
+  }
 ];
 
 export const WELCOME_ASCII = `

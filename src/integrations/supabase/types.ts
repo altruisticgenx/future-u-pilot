@@ -24,7 +24,7 @@ export type Database = {
           output: string | null
           project_id: string | null
           status: string | null
-          user_id: string
+          user_id: string | null
         }
         Insert: {
           args?: Json | null
@@ -35,7 +35,7 @@ export type Database = {
           output?: string | null
           project_id?: string | null
           status?: string | null
-          user_id?: string
+          user_id?: string | null
         }
         Update: {
           args?: Json | null
@@ -46,7 +46,7 @@ export type Database = {
           output?: string | null
           project_id?: string | null
           status?: string | null
-          user_id?: string
+          user_id?: string | null
         }
         Relationships: [
           {
@@ -68,7 +68,7 @@ export type Database = {
           id: string
           metadata: Json | null
           mime_type: string | null
-          user_id: string
+          user_id: string | null
         }
         Insert: {
           created_at?: string | null
@@ -79,7 +79,7 @@ export type Database = {
           id?: string
           metadata?: Json | null
           mime_type?: string | null
-          user_id?: string
+          user_id?: string | null
         }
         Update: {
           created_at?: string | null
@@ -90,7 +90,7 @@ export type Database = {
           id?: string
           metadata?: Json | null
           mime_type?: string | null
-          user_id?: string
+          user_id?: string | null
         }
         Relationships: []
       }
@@ -104,7 +104,7 @@ export type Database = {
           id: string
           message: string | null
           project_id: string
-          user_id: string
+          user_id: string | null
         }
         Insert: {
           action: string
@@ -115,7 +115,7 @@ export type Database = {
           id?: string
           message?: string | null
           project_id: string
-          user_id?: string
+          user_id?: string | null
         }
         Update: {
           action?: string
@@ -126,7 +126,7 @@ export type Database = {
           id?: string
           message?: string | null
           project_id?: string
-          user_id?: string
+          user_id?: string | null
         }
         Relationships: [
           {
@@ -175,7 +175,7 @@ export type Database = {
           status: string | null
           tags: string[] | null
           updated_at: string | null
-          user_id: string
+          user_id: string | null
         }
         Insert: {
           created_at?: string | null
@@ -186,7 +186,7 @@ export type Database = {
           status?: string | null
           tags?: string[] | null
           updated_at?: string | null
-          user_id?: string
+          user_id?: string | null
         }
         Update: {
           created_at?: string | null
@@ -197,7 +197,7 @@ export type Database = {
           status?: string | null
           tags?: string[] | null
           updated_at?: string | null
-          user_id?: string
+          user_id?: string | null
         }
         Relationships: []
       }
@@ -209,7 +209,7 @@ export type Database = {
           message_type: string
           metadata: Json | null
           project_id: string | null
-          user_id: string
+          user_id: string | null
         }
         Insert: {
           content: string
@@ -218,7 +218,7 @@ export type Database = {
           message_type: string
           metadata?: Json | null
           project_id?: string | null
-          user_id?: string
+          user_id?: string | null
         }
         Update: {
           content?: string
@@ -227,7 +227,7 @@ export type Database = {
           message_type?: string
           metadata?: Json | null
           project_id?: string | null
-          user_id?: string
+          user_id?: string | null
         }
         Relationships: [
           {

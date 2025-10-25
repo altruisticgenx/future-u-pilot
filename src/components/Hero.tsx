@@ -81,7 +81,7 @@ export const Hero = () => {
 
   return (
     <section 
-      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 sm:pt-24 md:pt-28 perspective-2000"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 sm:pt-20"
       role="region"
       aria-labelledby="hero-heading"
     >
@@ -241,15 +241,14 @@ export const Hero = () => {
               </span>
             </motion.div>
 
-            {/* Headline with Enhanced 3D Text Shadow */}
+            {/* Headline with 3D Text Shadow */}
             <div className="space-y-3 sm:space-y-4">
               <h1 
                 id="hero-heading"
-                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight perspective-1000"
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight"
                 style={{
                   minHeight: '2.5em',
-                  textShadow: '0 2px 10px rgba(20, 184, 166, 0.5), 0 4px 20px rgba(14, 116, 144, 0.3), 0 8px 40px rgba(20, 184, 166, 0.2)',
-                  transform: 'translateZ(20px)',
+                  textShadow: '0 2px 10px rgba(20, 184, 166, 0.3), 0 4px 20px rgba(14, 116, 144, 0.2)',
                 }}
               >
                 <span className="block text-white">
@@ -293,21 +292,18 @@ export const Hero = () => {
               </h1>
               
               <motion.p 
-                className="text-base sm:text-lg md:text-xl text-white/95 max-w-2xl leading-relaxed transform-3d"
-                initial={prefersReducedMotion ? {} : { opacity: 0, rotateX: -10, y: 10 }}
-                animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, rotateX: 0, y: 0 }}
-                transition={prefersReducedMotion ? {} : { delay: 0.3, duration: 0.5 }}
-                style={{
-                  textShadow: '0 2px 8px rgba(0, 0, 0, 0.3)',
-                }}
+                className="text-sm sm:text-base md:text-lg text-white/90 max-w-2xl leading-relaxed"
+                initial={prefersReducedMotion ? {} : { opacity: 0, rotateX: -10 }}
+                animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, rotateX: 0 }}
+                transition={prefersReducedMotion ? {} : { delay: 0.3, duration: 0.4 }}
               >
                 AltruisticXAI is a sandbox for the future. We help governments, businesses, and policymakers deploy quantum and AI in ways that actually work—practical, bold, and ahead of the curve.
               </motion.p>
             </div>
 
-            {/* CTAs - Mobile-Optimized Buttons */}
+            {/* CTAs - Smaller 3D Flowing Buttons with Unique Colors */}
             <motion.div 
-              className="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center"
+              className="flex flex-col sm:flex-row gap-2 items-stretch sm:items-center"
               initial={prefersReducedMotion ? {} : { opacity: 0, y: 10 }}
               animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
               transition={prefersReducedMotion ? {} : { 
@@ -321,19 +317,17 @@ export const Hero = () => {
                 animate="animate"
                 whileHover="hover"
                 whileTap="tap"
-                className="hover-3d-lift"
               >
                 <Button
                   onClick={scrollToContact}
-                  className="btn-3d-teal btn-flow text-base sm:text-lg px-8 py-4 font-bold w-full sm:w-auto min-h-[64px] flex items-center justify-center gap-3 shadow-2xl rounded-xl"
+                  className="btn-3d-teal text-[10px] sm:text-xs px-3 py-2 font-semibold w-full sm:w-auto min-w-[90px] flex items-center justify-center gap-1.5 shadow-lg"
                   data-analytics-id="cta_book_strategy"
                   data-ph-capture-attribute-button-type="book"
                   data-ph-capture-attribute-button-position="hero-primary"
                   aria-label="Book a strategy session"
-                  style={{ WebkitTapHighlightColor: 'transparent' }}
                 >
-                  <Calendar className="h-5 w-5 sm:h-6 sm:w-6 animate-pulse" aria-hidden="true" />
-                  Book Strategy Session
+                  <Calendar className="h-3 w-3 animate-pulse" aria-hidden="true" />
+                  Book
                 </Button>
               </motion.div>
               
@@ -344,18 +338,16 @@ export const Hero = () => {
                 whileHover="hover"
                 whileTap="tap"
                 transition={prefersReducedMotion ? {} : { delay: 0.7 }}
-                className="hover-3d-lift"
               >
                 <Button
                   onClick={navigateToAbout}
-                  className="btn-3d-purple btn-flow text-base sm:text-lg px-8 py-4 font-bold w-full sm:w-auto min-h-[64px] flex items-center justify-center gap-3 shadow-2xl rounded-xl"
+                  className="btn-3d-purple text-[10px] sm:text-xs px-3 py-2 font-semibold w-full sm:w-auto min-w-[90px] flex items-center justify-center gap-1.5 shadow-lg"
                   data-ph-capture-attribute-button-type="about"
                   data-ph-capture-attribute-button-position="hero-secondary"
                   aria-label="Learn about our approach"
-                  style={{ WebkitTapHighlightColor: 'transparent' }}
                 >
-                  <Sparkles className="h-5 w-5 sm:h-6 sm:w-6 animate-rotate-3d" aria-hidden="true" />
-                  Explore Projects
+                  <Sparkles className="h-3 w-3 animate-rotate-3d" aria-hidden="true" />
+                  About
                 </Button>
               </motion.div>
 
@@ -366,18 +358,16 @@ export const Hero = () => {
                 whileHover="hover"
                 whileTap="tap"
                 transition={prefersReducedMotion ? {} : { delay: 0.8 }}
-                className="hover-3d-lift"
               >
                 <Button
                   onClick={() => window.open('https://drive.google.com/file/d/1vuiN0NYOvToHIxkqjSSFFEYLitv-zyK7/view?usp=sharing', '_blank')}
-                  className="btn-3d-cyan btn-flow text-base sm:text-lg px-8 py-4 font-bold w-full sm:w-auto min-h-[64px] flex items-center justify-center gap-3 shadow-2xl rounded-xl"
+                  className="btn-3d-cyan text-[10px] sm:text-xs px-3 py-2 font-semibold w-full sm:w-auto min-w-[90px] flex items-center justify-center gap-1.5 shadow-lg"
                   data-ph-capture-attribute-button-type="video"
                   data-ph-capture-attribute-button-position="hero-tertiary"
                   aria-label="Watch intro video"
-                  style={{ WebkitTapHighlightColor: 'transparent' }}
                 >
-                  <Video className="h-5 w-5 sm:h-6 sm:w-6 animate-pulse-soft" aria-hidden="true" />
-                  Watch Demo Video
+                  <Video className="h-3 w-3 animate-pulse-soft" aria-hidden="true" />
+                  Video
                 </Button>
               </motion.div>
             </motion.div>
