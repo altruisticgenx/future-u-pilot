@@ -16,7 +16,7 @@ export const Navigation = () => {
     label: "About Us",
     href: "/about"
   }, {
-    label: "Experiments",
+    label: "Storytelling",
     href: "/storytelling"
   }, {
     label: "Open Project(s)",
