@@ -1,53 +1,60 @@
 import { motion } from "framer-motion";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
-import { ChevronDown, Zap, Shield, Activity, Users, TrendingUp, Target } from "lucide-react";
+import { ChevronDown, Zap, Shield, Activity, Users, TrendingUp, Target, BarChart3 } from "lucide-react";
 import { AIChatbot } from "@/components/AIChatbot";
 import { useState } from "react";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import { useSectorData } from "@/hooks/useSectorData";
+import { MarketDataPanel } from "@/components/MarketDataPanel";
+import { APIExplorer } from "@/components/APIExplorer";
+import { ROIChart } from "@/components/ROIChart";
+import { QuantumDashboard } from "@/components/QuantumDashboard";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const sectorFocusData = [
   {
     id: "01",
     title: "Student Workforce",
+    apiKey: "students",
     mission: "Build Your Quantum Career Core",
     icon: Users,
+    color: "cyan",
     gist: "Stop waiting for tomorrow's jobs. Start mastering the code and concepts today—from your high school club to your college lab. We give you real quantum programming skills and hands-on experience—no PhD required. Secure your future and keep Pennsylvania talent at the forefront of innovation.",
-    highlights: "Explore quantum coding projects, internships, and hackathons for students.",
-    learnMore: "Sign up for workshops, virtual labs, and free online courses.",
   },
   {
     id: "02",
     title: "Energy",
+    apiKey: "energy",
     mission: "Power Grid. Smarter. Safer.",
     icon: Zap,
+    color: "green",
     gist: "Quantum computers are the ultimate energy managers. They help power companies balance electricity supply, predict outages before they happen, and prevent cyber-attacks. Early results show major benefits: up to 22% energy savings, cleaner air, and lower monthly energy bills for your family.",
-    highlights: "See how quantum simulates grids for efficiency and security.",
-    learnMore: "Check out real-world case studies and energy innovation labs.",
   },
   {
     id: "03",
     title: "Healthcare",
+    apiKey: "healthcare",
     mission: "Diagnostics & Discovery. Accelerated.",
     icon: Activity,
+    color: "fuchsia",
     gist: "Quantum technology is the ultimate cheat code for medicine. It dramatically speeds up drug discovery, simulates complex protein folding, and powers deep genetic analysis. Advanced quantum sensors will improve diagnostics and allow for truly personalized treatments. The result: faster cures and healthier communities.",
-    highlights: "Discover how quantum speeds up research and disease detection.",
-    learnMore: "Explore labs, internships, and healthcare innovation programs.",
   },
   {
     id: "04",
     title: "Government",
+    apiKey: "governance",
     mission: "Policy Frameworks. Future-Ready.",
     icon: Shield,
+    color: "orange",
     gist: "We work with state lawmakers to create practical rules and ethical guidelines that ensure Pennsylvania is the leader in quantum tech. This guarantees public safety, protects data privacy, and ensures fair access for everyone, all while promoting rapid innovation.",
-    highlights: "Learn how quantum influences policy and public planning.",
-    learnMore: "See how students can contribute to civic tech and advisory boards.",
   },
 ];
 
 const SectorCard = ({ sector, index }: { sector: typeof sectorFocusData[0]; index: number }) => {
   const [highlightsOpen, setHighlightsOpen] = useState(false);
   const [learnMoreOpen, setLearnMoreOpen] = useState(false);
+  const { data, isLoading } = useSectorData(sector.apiKey);
   const Icon = sector.icon;
 
   return (
@@ -79,6 +86,13 @@ const SectorCard = ({ sector, index }: { sector: typeof sectorFocusData[0]; inde
         <span className="font-bold text-foreground">The Gist:</span> {sector.gist}
       </p>
 
+      {/* Live Market Data */}
+      {data && (
+        <div className="mb-6">
+          <MarketDataPanel data={data.marketData} isLoading={isLoading} />
+        </div>
+      )}
+
       <div className="space-y-3">
         <Collapsible open={highlightsOpen} onOpenChange={setHighlightsOpen}>
           <CollapsibleTrigger className="flex items-center justify-between w-full p-4 min-h-[48px] rounded-lg bg-primary/5 hover:bg-primary/10 transition-colors touch-manipulation">
@@ -90,21 +104,36 @@ const SectorCard = ({ sector, index }: { sector: typeof sectorFocusData[0]; inde
             />
           </CollapsibleTrigger>
           <CollapsibleContent className="mt-3 p-4 rounded-lg bg-card/50 border border-border">
-            <p className="text-sm sm:text-base text-muted-foreground/90 leading-relaxed">{sector.highlights}</p>
+            {isLoading ? (
+              <Skeleton className="h-16 w-full" />
+            ) : (
+              <p className="text-sm sm:text-base text-muted-foreground/90 leading-relaxed">
+                {data?.highlights}
+              </p>
+            )}
           </CollapsibleContent>
         </Collapsible>
 
         <Collapsible open={learnMoreOpen} onOpenChange={setLearnMoreOpen}>
           <CollapsibleTrigger className="flex items-center justify-between w-full p-4 min-h-[48px] rounded-lg bg-accent/5 hover:bg-accent/10 transition-colors touch-manipulation">
-            <span className="font-semibold text-foreground">Learn More</span>
+            <span className="font-semibold text-foreground">Learn More & APIs</span>
             <ChevronDown
               className={`h-5 w-5 text-accent transition-transform duration-300 ${
                 learnMoreOpen ? "rotate-180" : ""
               }`}
             />
           </CollapsibleTrigger>
-          <CollapsibleContent className="mt-3 p-4 rounded-lg bg-card/50 border border-border">
-            <p className="text-sm sm:text-base text-muted-foreground/90 leading-relaxed">{sector.learnMore}</p>
+          <CollapsibleContent className="mt-3 p-4 rounded-lg bg-card/50 border border-border space-y-4">
+            {isLoading ? (
+              <Skeleton className="h-32 w-full" />
+            ) : (
+              <>
+                <p className="text-sm sm:text-base text-muted-foreground/90 leading-relaxed">
+                  {data?.learnMore}
+                </p>
+                {data?.apis && <APIExplorer apis={data.apis} />}
+              </>
+            )}
           </CollapsibleContent>
         </Collapsible>
       </div>
@@ -115,6 +144,14 @@ const SectorCard = ({ sector, index }: { sector: typeof sectorFocusData[0]; inde
 const ROISection = () => {
   const [highlightsOpen, setHighlightsOpen] = useState(false);
   const [learnMoreOpen, setLearnMoreOpen] = useState(false);
+  const [viewMode, setViewMode] = useState<'table' | 'chart'>('table');
+
+  const roiData = [
+    { sector: "Education", payback: "18 mo", roi: "4.3x", roiValue: 4.3 },
+    { sector: "Energy", payback: "15 mo", roi: "3.8x", roiValue: 3.8 },
+    { sector: "Healthcare", payback: "19 mo", roi: "3.2x", roiValue: 3.2 },
+    { sector: "Governance", payback: "12 mo", roi: "5.1x", roiValue: 5.1 },
+  ];
 
   return (
     <motion.div
@@ -146,31 +183,55 @@ const ROISection = () => {
         technology projects. These are not estimates; these are real-world results:
       </p>
 
-      <div className="overflow-x-auto mb-6 scrollbar-thin touch-pan-x">
-        <table className="w-full border-collapse min-w-[500px]">
-          <thead>
-            <tr className="border-b-2 border-border">
-              <th className="text-left p-3 sm:p-4 font-bold text-foreground font-cyber text-sm sm:text-base">Sector</th>
-              <th className="text-left p-3 sm:p-4 font-bold text-foreground font-cyber text-sm sm:text-base">Payback Time</th>
-              <th className="text-left p-3 sm:p-4 font-bold text-foreground font-cyber text-sm sm:text-base">ROI Multiplier</th>
-            </tr>
-          </thead>
-          <tbody>
-            {[
-              { sector: "Education", payback: "18 mo", roi: "4.3x" },
-              { sector: "Energy", payback: "15 mo", roi: "3.8x" },
-              { sector: "Healthcare", payback: "19 mo", roi: "3.2x" },
-              { sector: "Governance", payback: "12 mo", roi: "5.1x" },
-            ].map((row, i) => (
-              <tr key={i} className="border-b border-border/50 hover:bg-primary/5 transition-colors">
-                <td className="p-3 sm:p-4 text-muted-foreground/90 text-sm sm:text-base">{row.sector}</td>
-                <td className="p-3 sm:p-4 text-muted-foreground/90 text-sm sm:text-base">{row.payback}</td>
-                <td className="p-3 sm:p-4 font-bold text-primary text-sm sm:text-base">{row.roi}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      {/* View Toggle */}
+      <div className="flex items-center gap-2 mb-6">
+        <button
+          onClick={() => setViewMode('table')}
+          className={`flex items-center gap-2 px-4 py-2 rounded-lg font-semibold transition-all min-h-[44px] touch-manipulation ${
+            viewMode === 'table'
+              ? 'bg-primary text-primary-foreground'
+              : 'bg-muted/50 text-muted-foreground hover:bg-muted'
+          }`}
+        >
+          Table View
+        </button>
+        <button
+          onClick={() => setViewMode('chart')}
+          className={`flex items-center gap-2 px-4 py-2 rounded-lg font-semibold transition-all min-h-[44px] touch-manipulation ${
+            viewMode === 'chart'
+              ? 'bg-primary text-primary-foreground'
+              : 'bg-muted/50 text-muted-foreground hover:bg-muted'
+          }`}
+        >
+          <BarChart3 className="w-4 h-4" />
+          Chart View
+        </button>
       </div>
+
+      {viewMode === 'table' ? (
+        <div className="overflow-x-auto mb-6 scrollbar-thin touch-pan-x">
+          <table className="w-full border-collapse min-w-[500px]">
+            <thead>
+              <tr className="border-b-2 border-border">
+                <th className="text-left p-3 sm:p-4 font-bold text-foreground font-cyber text-sm sm:text-base">Sector</th>
+                <th className="text-left p-3 sm:p-4 font-bold text-foreground font-cyber text-sm sm:text-base">Payback Time</th>
+                <th className="text-left p-3 sm:p-4 font-bold text-foreground font-cyber text-sm sm:text-base">ROI Multiplier</th>
+              </tr>
+            </thead>
+            <tbody>
+              {roiData.map((row, i) => (
+                <tr key={i} className="border-b border-border/50 hover:bg-primary/5 transition-colors">
+                  <td className="p-3 sm:p-4 text-muted-foreground/90 text-sm sm:text-base">{row.sector}</td>
+                  <td className="p-3 sm:p-4 text-muted-foreground/90 text-sm sm:text-base">{row.payback}</td>
+                  <td className="p-3 sm:p-4 font-bold text-primary text-sm sm:text-base">{row.roi}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      ) : (
+        <ROIChart data={roiData} />
+      )}
 
       <div className="space-y-4">
         <Collapsible open={highlightsOpen} onOpenChange={setHighlightsOpen}>
@@ -346,8 +407,28 @@ const About = () => {
           </motion.p>
         </section>
 
-        {/* Sector Focus Cards */}
+        {/* Live Dashboard Section */}
         <section className="relative z-10 py-20 sm:py-24 md:py-32 bg-muted/30">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="mb-12"
+            >
+              <h2 className="text-3xl sm:text-4xl font-bold text-center bg-gradient-to-r from-primary via-primary-glow to-accent bg-clip-text text-transparent mb-4">
+                Live System Metrics
+              </h2>
+              <p className="text-center text-muted-foreground/90 max-w-2xl mx-auto mb-8">
+                Real-time data from Pennsylvania's quantum initiatives
+              </p>
+              <QuantumDashboard />
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Sector Focus Cards */}
+        <section className="relative z-10 py-20 sm:py-24 md:py-32">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-12">
             {sectorFocusData.map((sector, i) => (
               <SectorCard key={sector.id} sector={sector} index={i} />

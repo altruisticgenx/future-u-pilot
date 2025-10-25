@@ -33,3 +33,11 @@ export { StakeholderCard } from './StakeholderCard';
 export { Map } from './Map';
 export { ProtectedRoute } from './ProtectedRoute';
 
+// Dynamic data components
+export { MarketDataPanel } from './MarketDataPanel';
+export { ROIChart } from './ROIChart';
+export { DataStreamText } from './DataStreamText';
+export { QuantumDashboard } from './QuantumDashboard';
+export { APIExplorer } from './APIExplorer';
+export { ContrastWarning } from './ContrastWarning';
+
