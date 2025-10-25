@@ -8,18 +8,19 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Enhanced Ocean Palette - Mobile Optimized */
+    /* Refined Ocean Palette - Enhanced Teal Glass Design */
     --ocean-darkest: 195 100% 5%;     /* #000D14 - Deepest Ocean */
     --ocean-deeper: 195 95% 8%;       /* #011A26 - Deep Ocean */
-    --ocean-deep: 195 85% 16%;        /* #073347 - Ocean Depths */
-    --ocean-mid: 190 84% 29%;         /* #0D5F7D - Mid Ocean */
-    --ocean-light: 173 80% 40%;       /* #14B8A6 - Teal Accent */
+    --ocean-deep: 173 85% 12%;        /* Refined deep teal base */
+    --ocean-mid: 173 75% 22%;         /* Mid-range teal */
+    --ocean-dark: 173 90% 8%;         /* Very dark teal */
+    --ocean-light: 173 65% 48%;       /* Lighter teal accent */
     --ocean-bright: 180 77% 58%;      /* #3DD5C3 - Bright Accent */
-    --ocean-glow: 185 85% 45%;        /* #14D4C4 - Glow/Highlight */
+    --ocean-glow: 173 75% 62%;        /* Enhanced glow */
     --ocean-surface: 195 60% 25%;     /* #19475C - Surface */
-    --ocean-foam: 180 30% 85%;        /* #C4DDD8 - Foam/Light Text */
+    --ocean-foam: 173 45% 82%;        /* Lighter foam */
     --ocean-mist: 180 20% 95%;        /* #EDF5F4 - Mist/Lightest */
-    --ocean-text: 180 30% 85%;        /* Primary text color */
+    --ocean-text: 173 25% 88%;        /* Refined text color */
     
     /* Terminal Colors - Teal Ocean */
     --terminal-bg: 195 100% 8%;

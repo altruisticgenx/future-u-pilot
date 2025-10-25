@@ -33,16 +33,16 @@ export const MetricCard = ({
             </div>
           </div>
           <div>
-            <h3 className="text-xs font-bold mb-1.5 text-foreground">{sector}</h3>
-            <div className="space-y-1">
-              <div className="flex items-center justify-center gap-1 text-[10px] text-muted-foreground">
-                <TrendingUp className="h-3 w-3 text-cmd-success" aria-hidden="true" />
-                <span>Payback: <strong className="text-foreground">{payback}</strong></span>
+            <h3 className="text-xs sm:text-sm font-bold mb-2 text-foreground tracking-tight">{sector}</h3>
+            <div className="space-y-1.5">
+              <div className="flex items-center justify-center gap-1.5 text-[10px] sm:text-xs text-muted-foreground/75">
+                <TrendingUp className="h-3.5 w-3.5 text-cmd-success" aria-hidden="true" />
+                <span>Payback: <strong className="text-foreground font-semibold">{payback}</strong></span>
               </div>
-              <div className="text-xl font-bold bg-gradient-hero bg-clip-text text-transparent">
+              <div className="text-2xl sm:text-3xl font-extrabold bg-gradient-hero bg-clip-text text-transparent">
                 {roi}
               </div>
-              <p className="text-[10px] text-muted-foreground/70">ROI</p>
+              <p className="text-[10px] sm:text-xs text-muted-foreground/60 font-medium">ROI</p>
             </div>
           </div>
         </CardContent>

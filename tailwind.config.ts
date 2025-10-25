@@ -16,6 +16,13 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ["Inter", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "sans-serif"],
+      },
+      letterSpacing: {
+        tight: "-0.015em",
+        snug: "-0.01em",
+      },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
@@ -167,6 +174,7 @@ export default {
           deeper: "hsl(var(--ocean-deeper))",
           deep: "hsl(var(--ocean-deep))",
           mid: "hsl(var(--ocean-mid))",
+          dark: "hsl(var(--ocean-dark))",
           light: "hsl(var(--ocean-light))",
           bright: "hsl(var(--ocean-bright))",
           glow: "hsl(var(--ocean-glow))",

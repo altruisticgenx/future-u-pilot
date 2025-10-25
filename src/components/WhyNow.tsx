@@ -30,8 +30,8 @@ export const WhyNow = () => {
           viewport={{ once: true }}
           className="text-center space-y-2 sm:space-y-3 mb-8 sm:mb-10 md:mb-12"
         >
-          <h2 id="why-now-heading" className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold">Why Now?</h2>
-          <p className="text-xs sm:text-sm md:text-base lg:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
+          <h2 id="why-now-heading" className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight">Why Now?</h2>
+          <p className="text-sm sm:text-base md:text-lg text-muted-foreground/80 max-w-2xl mx-auto px-4 leading-relaxed">
             Quantum timelines are uncertain; preparedness isn't.
           </p>
         </motion.div>
@@ -65,7 +65,7 @@ export const WhyNow = () => {
                   >
                     <Icon className="h-5 w-5 sm:h-6 sm:w-6 text-primary" aria-hidden="true" />
                   </motion.div>
-                  <p className="text-xs sm:text-sm md:text-base text-foreground pt-0.5 sm:pt-1 leading-relaxed">
+                  <p className="text-sm sm:text-base md:text-lg text-foreground pt-1 leading-relaxed font-medium">
                     {challenge.text}
                   </p>
                 </motion.div>
@@ -82,7 +82,7 @@ export const WhyNow = () => {
             className="relative"
           >
             <div className="p-4 sm:p-6 md:p-8 rounded-2xl glass-card-3d bg-card/70 border-2 border-primary/30">
-              <h3 className="text-base sm:text-lg md:text-xl font-bold mb-6 sm:mb-8 text-center bg-gradient-hero bg-clip-text text-transparent">
+              <h3 className="text-lg sm:text-xl md:text-2xl font-bold mb-6 sm:mb-8 text-center bg-gradient-hero bg-clip-text text-transparent tracking-tight">
                 Evolution Timeline
               </h3>
               

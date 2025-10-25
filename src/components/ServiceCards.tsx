@@ -184,8 +184,8 @@ export const ServiceCards = () => {
           viewport={{ once: true }}
           className="text-center space-y-2 sm:space-y-3 mb-8 sm:mb-10"
         >
-          <h2 id="services-heading" className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold">Current Initiatives</h2>
-          <p className="text-xs sm:text-sm md:text-base lg:text-lg text-muted-foreground max-w-3xl mx-auto px-4">
+          <h2 id="services-heading" className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight">Current Initiatives</h2>
+          <p className="text-sm sm:text-base md:text-lg text-muted-foreground/80 max-w-3xl mx-auto px-4 leading-relaxed">
             Empowering Quantum & AI Literacy through active programs across education, government, energy, and enterprise sectors worldwide.
           </p>
         </motion.div>
@@ -231,8 +231,8 @@ export const ServiceCards = () => {
                       </Badge>
                     </div>
                   </div>
-                  <CardTitle className="text-sm sm:text-base md:text-lg leading-tight">{service.title}</CardTitle>
-                  <CardDescription className="text-[11px] sm:text-xs md:text-sm leading-relaxed">
+                  <CardTitle className="text-base sm:text-lg md:text-xl leading-snug font-bold">{service.title}</CardTitle>
+                  <CardDescription className="text-xs sm:text-sm md:text-base leading-relaxed text-muted-foreground/75">
                     {service.shortDesc}
                   </CardDescription>
                 </CardHeader>
@@ -240,12 +240,12 @@ export const ServiceCards = () => {
                 <CardContent className="relative space-y-4 pt-0">
                   <div className="grid grid-cols-2 gap-3 py-3 border-t-2 border-dashed border-border/50">
                     <div className="space-y-1">
-                      <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Impact</span>
-                      <p className="text-sm font-medium">{service.impact}</p>
+                      <span className="text-[10px] sm:text-xs font-bold text-muted-foreground/70 uppercase tracking-wider">Impact</span>
+                      <p className="text-sm sm:text-base font-semibold">{service.impact}</p>
                     </div>
                     <div className="space-y-1">
-                      <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Timeline</span>
-                      <p className="text-sm font-medium">{service.timeline}</p>
+                      <span className="text-[10px] sm:text-xs font-bold text-muted-foreground/70 uppercase tracking-wider">Timeline</span>
+                      <p className="text-sm sm:text-base font-semibold">{service.timeline}</p>
                     </div>
                   </div>
 

@@ -42,20 +42,20 @@ export const StakeholderCard = ({
               <Icon className="h-5 w-5 text-primary" />
             </motion.div>
             <div>
-              <h3 className="text-sm font-bold text-foreground leading-tight">{title}</h3>
-              <p className="text-[11px] text-muted-foreground/80 italic mt-0.5">{subtitle}</p>
+              <h3 className="text-sm sm:text-base font-bold text-foreground leading-tight tracking-tight">{title}</h3>
+              <p className="text-xs text-muted-foreground/75 italic mt-1">{subtitle}</p>
             </div>
           </div>
           
-          <p className="text-xs text-foreground/75 leading-relaxed">
+          <p className="text-xs sm:text-sm text-foreground/70 leading-relaxed">
             {description}
           </p>
 
-          <ul className="space-y-1 pt-1" role="list">
+          <ul className="space-y-1.5 pt-1" role="list">
             {highlights.map((highlight, idx) => (
-              <li key={idx} className="flex items-start gap-1.5 text-xs text-foreground/70">
-                <CheckCircle2 className="h-3.5 w-3.5 text-cmd-success mt-0.5 shrink-0" aria-hidden="true" />
-                <span>{highlight}</span>
+              <li key={idx} className="flex items-start gap-2 text-xs sm:text-sm text-foreground/65">
+                <CheckCircle2 className="h-4 w-4 text-cmd-success mt-0.5 shrink-0" aria-hidden="true" />
+                <span className="leading-relaxed">{highlight}</span>
               </li>
             ))}
           </ul>
