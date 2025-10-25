@@ -36,77 +36,13 @@
     
     <!-- Critical CSS for above-the-fold content -->
     <style>
-      /* Critical Reset & Base */
-      *{box-sizing:border-box;margin:0;padding:0;border:0 solid hsl(195 50% 20%)}
-      
-      /* Design Tokens - Light Mode */
-      :root{
-        --background:200 20% 98%;--foreground:195 100% 8%;
-        --primary:185 85% 45%;--primary-foreground:180 100% 99%;--primary-glow:185 90% 70%;
-        --secondary:195 65% 55%;--muted:195 20% 94%;--muted-foreground:195 15% 45%;
-        --accent:43 96% 56%;--border:195 30% 88%;--ring:185 85% 45%;
-        --glass-bg:185 85% 45%/.08;--glass-border:185 85% 45%/.2;
-        --gradient-start:195 100% 20%;--gradient-mid:185 85% 45%;--gradient-end:175 80% 60%;
-      }
-      
-      /* Design Tokens - Dark Mode */
-      .dark{
-        --background:195 100% 5%;--foreground:180 40% 95%;
-        --primary:185 90% 55%;--primary-foreground:195 100% 5%;--primary-glow:185 100% 75%;
-        --secondary:195 60% 40%;--muted:195 40% 15%;--muted-foreground:195 25% 65%;
-        --accent:43 96% 56%;--border:195 50% 20%;--ring:185 90% 55%;
-        --glass-bg:185 90% 55%/.12;--glass-border:185 90% 55%/.25;
-        --gradient-start:195 100% 25%;--gradient-mid:185 90% 50%;--gradient-end:175 85% 65%;
-      }
-      
-      /* Critical Base Styles */
-      html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
-      body{
-        font-family:'Inter',system-ui,-apple-system,sans-serif;
-        font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased;
-        background:hsl(var(--background));color:hsl(var(--foreground))
-      }
+      /* Prevent FOUC with minimal critical styles */
+      *{box-sizing:border-box;margin:0;padding:0}
+      body{font-family:'Inter',system-ui,sans-serif;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased;background:#0a0a0a;color:#fafafa}
       #root{min-height:100vh}
-      
-      /* Container */
       .container{max-width:80rem;margin:0 auto;padding:0 1rem}
-      
-      /* Critical Navigation Styles */
-      nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(12px);
-        background:hsl(var(--background)/.95);border-bottom:1px solid hsl(var(--border))}
-      
-      /* Critical Glass Effect */
-      .glass-card-3d{
-        backdrop-filter:blur(12px);background:hsl(var(--glass-bg));
-        border:1px solid hsl(var(--glass-border));
-        box-shadow:0 4px 6px hsl(var(--primary)/.1)
-      }
-      
-      /* Critical Gradient */
-      .bg-gradient-hero{
-        background:linear-gradient(135deg,hsl(var(--gradient-start)),hsl(var(--gradient-mid)),hsl(var(--gradient-end)))
-      }
-      
-      /* Critical Button */
-      .btn-3d-primary{
-        background:linear-gradient(135deg,hsl(173 80% 40%),hsl(190 84% 29%));
-        color:#fff;font-weight:600;padding:.625rem 1.5rem;border-radius:.5rem;
-        box-shadow:0 4px 0 hsl(190 84% 20%),0 8px 20px hsl(173 80% 40%/.4);
-        transition:transform .2s
-      }
-      .btn-3d-primary:hover{transform:translateY(-3px)}
-      
-      /* Critical Responsive */
       @media(min-width:640px){body{font-size:16px}}
-      @media(min-width:768px){.container{padding:0 1.5rem}}
-      
-      /* Hide content until styles load */
-      .loading-skeleton{background:hsl(var(--muted));animation:pulse 2s infinite}
-      @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
     </style>
-    
-    <!-- Preload main stylesheet -->
-    <link rel="preload" as="style" href="/src/index.css" />
 
     
     
