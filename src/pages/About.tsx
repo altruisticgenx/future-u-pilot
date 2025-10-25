@@ -114,40 +114,87 @@ const About = () => {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="relative pt-24 pb-12 overflow-hidden">
+      <section className="relative pt-24 pb-16 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-accent/10 to-background animate-gradient" />
         <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--primary))_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--primary))_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-[0.03] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,#000_70%,transparent_110%)]" />
+        
+        {/* Floating particles */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {[...Array(20)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute w-1 h-1 bg-primary/30 rounded-full"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+              }}
+              animate={{
+                y: [0, -30, 0],
+                opacity: [0.3, 0.6, 0.3],
+              }}
+              transition={{
+                duration: 3 + Math.random() * 2,
+                repeat: Infinity,
+                delay: Math.random() * 2,
+              }}
+            />
+          ))}
+        </div>
         
         <div className="container relative mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-center space-y-3"
+            className="text-center space-y-4"
           >
             <motion.div
               initial={{ scale: 0.9 }}
               animate={{ scale: 1 }}
               transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-to-r from-primary/20 to-accent/20 border border-primary/40 glass-card-3d"
-              role="status"
-              aria-label="Pennsylvania Quantum Initiative"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-primary/20 to-accent/20 border border-primary/40 backdrop-blur-sm"
             >
-              <Brain className="w-3 h-3 text-primary animate-pulse" aria-hidden="true" />
-              <span className="text-[11px] font-medium bg-gradient-hero bg-clip-text text-transparent">
+              <Brain className="w-4 h-4 text-primary animate-pulse" />
+              <span className="text-sm font-medium bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
                 Pennsylvania Quantum Initiative
               </span>
             </motion.div>
 
-            <h1 className="text-xl sm:text-2xl md:text-3xl font-bold">
-              <span className="block text-foreground text-sm sm:text-base md:text-lg mb-1">The Quantum Leap</span>
-              <span className="block bg-gradient-hero bg-clip-text text-transparent">
-                Pennsylvania's Path Forward
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold">
+              <span className="block text-foreground mb-2">Quantum-AI Readiness</span>
+              <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
+                Built for Pennsylvania
               </span>
             </h1>
             
-            <p className="text-xs sm:text-sm text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-              Connecting students to tech careers, helping companies run smarter, speeding up healthcare breakthroughs.
+            <p className="text-base sm:text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+              Connecting students to tech careers, helping companies run smarter, 
+              speeding up healthcare breakthroughs, and securing Pennsylvania's quantum future.
             </p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+              className="flex flex-wrap gap-4 justify-center pt-4"
+            >
+              {[
+                { label: "22% Energy Savings", icon: Zap },
+                { label: "10x Faster Discovery", icon: Heart },
+                { label: "<8 Weeks to Pilot", icon: GraduationCap }
+              ].map((stat, i) => {
+                const Icon = stat.icon;
+                return (
+                  <motion.div
+                    key={i}
+                    whileHover={{ scale: 1.05 }}
+                    className="flex items-center gap-2 px-4 py-2 rounded-full bg-background/50 border border-border/50 backdrop-blur-sm"
+                  >
+                    <Icon className="w-4 h-4 text-primary" />
+                    <span className="text-sm font-medium">{stat.label}</span>
+                  </motion.div>
+                );
+              })}
+            </motion.div>
           </motion.div>
         </div>
       </section>

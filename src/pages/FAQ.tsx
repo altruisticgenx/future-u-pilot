@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Search, ChevronDown } from "lucide-react";
+import { Search, ChevronDown, Shield, Users, Zap, Settings, ArrowRight, Sparkles } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Navigation } from "@/components/Navigation";
@@ -12,13 +12,15 @@ interface FAQItem {
   category: FAQCategory;
   question: string;
   answer: string;
+  featured?: boolean;
 }
 
 const faqData: FAQItem[] = [
   {
     category: "security",
     question: "What is the quantum threat and why is it urgent?",
-    answer: "Quantum computers will soon be powerful enough to break current public key encryption (PKE) that protects our digital lives—from emails to banking. Experts predict this will happen within 10-20 years. The danger is immediate because adversaries are using a 'harvest now, decrypt later' strategy, collecting encrypted data today to decrypt with quantum computers in the future. This threatens medical records, personal information, government intelligence, and industrial secrets."
+    answer: "Quantum computers will soon be powerful enough to break current public key encryption (PKE) that protects our digital lives—from emails to banking. Experts predict this will happen within 10-20 years. The danger is immediate because adversaries are using a 'harvest now, decrypt later' strategy, collecting encrypted data today to decrypt with quantum computers in the future. This threatens medical records, personal information, government intelligence, and industrial secrets.",
+    featured: true
   },
   {
     category: "security",
@@ -33,7 +35,8 @@ const faqData: FAQItem[] = [
   {
     category: "workforce",
     question: "How will the Pennsylvania Quantum Initiative create jobs?",
-    answer: "The initiative will create thousands of high-paying, high-tech jobs across multiple sectors. Building quantum computers will add to Pennsylvania's existing 10,000 semiconductor manufacturing jobs. Additional opportunities include quantum software development, system operation, mineral sourcing, networking infrastructure, and technical positions that don't require 4-year degrees. Without this initiative, these jobs will go to other states or countries, leaving Pennsylvania students without access to these career opportunities."
+    answer: "The initiative will create thousands of high-paying, high-tech jobs across multiple sectors. Building quantum computers will add to Pennsylvania's existing 10,000 semiconductor manufacturing jobs. Additional opportunities include quantum software development, system operation, mineral sourcing, networking infrastructure, and technical positions that don't require 4-year degrees. Without this initiative, these jobs will go to other states or countries, leaving Pennsylvania students without access to these career opportunities.",
+    featured: true
   },
   {
     category: "workforce",
@@ -43,7 +46,8 @@ const faqData: FAQItem[] = [
   {
     category: "benefits",
     question: "How will quantum computing improve healthcare?",
-    answer: "Quantum computing will revolutionize medicine through: faster drug discovery using accurate molecular and protein folding simulations, dramatically reducing development time and costs; highly precise diagnostics including improved cancer detection; significantly enhanced MRI sensitivity and resolution for detecting early disease biomarkers; genetic analysis using algorithms like GAMA (developed at Carnegie Mellon) to provide early warnings for ailments; and potential Brain Computer Interfaces (BCIs) that collect data non-invasively. This will accelerate breakthroughs for diseases that currently have no cure."
+    answer: "Quantum computing will revolutionize medicine through: faster drug discovery using accurate molecular and protein folding simulations, dramatically reducing development time and costs; highly precise diagnostics including improved cancer detection; significantly enhanced MRI sensitivity and resolution for detecting early disease biomarkers; genetic analysis using algorithms like GAMA (developed at Carnegie Mellon) to provide early warnings for ailments; and potential Brain Computer Interfaces (BCIs) that collect data non-invasively. This will accelerate breakthroughs for diseases that currently have no cure.",
+    featured: true
   },
   {
     category: "benefits",
@@ -68,7 +72,8 @@ const faqData: FAQItem[] = [
   {
     category: "implementation",
     question: "What is the Quantum Ethics and Governance Commission?",
-    answer: "The Quantum Ethics and Governance Commission will continuously review the ethical, legal, and social implications of new quantum technologies before deployment in government or state-regulated sectors. It will focus on: data privacy when deploying algorithms and quantum technology; right to explainability of data use; developmental autonomy for localities; economic rights and fair wages for workers; clear IP licensing rules for scientists; and protection of freedom of thought. This commission ensures quantum technologies serve the public good while protecting individual rights."
+    answer: "The Quantum Ethics and Governance Commission will continuously review the ethical, legal, and social implications of new quantum technologies before deployment in government or state-regulated sectors. It will focus on: data privacy when deploying algorithms and quantum technology; right to explainability of data use; developmental autonomy for localities; economic rights and fair wages for workers; clear IP licensing rules for scientists; and protection of freedom of thought. This commission ensures quantum technologies serve the public good while protecting individual rights.",
+    featured: true
   },
   {
     category: "implementation",
@@ -97,18 +102,31 @@ const faqData: FAQItem[] = [
   }
 ];
 
-const categoryColors: Record<FAQCategory, string> = {
-  security: "error",
-  workforce: "info",
-  benefits: "success",
-  implementation: "accent"
-};
-
-const categoryLabels: Record<FAQCategory, string> = {
-  security: "Security",
-  workforce: "Workforce",
-  benefits: "Benefits",
-  implementation: "Implementation"
+const categoryConfig: Record<FAQCategory, { label: string; icon: any; color: string; gradient: string }> = {
+  security: {
+    label: "Security & Crypto",
+    icon: Shield,
+    color: "text-red-500",
+    gradient: "from-red-500/20 to-red-600/10"
+  },
+  workforce: {
+    label: "Workforce & Jobs",
+    icon: Users,
+    color: "text-blue-500",
+    gradient: "from-blue-500/20 to-blue-600/10"
+  },
+  benefits: {
+    label: "Benefits & Impact",
+    icon: Zap,
+    color: "text-green-500",
+    gradient: "from-green-500/20 to-green-600/10"
+  },
+  implementation: {
+    label: "Implementation",
+    icon: Settings,
+    color: "text-purple-500",
+    gradient: "from-purple-500/20 to-purple-600/10"
+  }
 };
 
 export default function FAQ() {
@@ -147,115 +165,201 @@ export default function FAQ() {
     });
   };
 
+  const featuredFAQs = faqData.filter(faq => faq.featured);
+
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
       
-      <main className="pt-24 pb-16 px-4 sm:px-6 lg:px-8">
-        <div className="container mx-auto max-w-4xl">
-          {/* Header */}
-          <motion.header
+      <main className="pt-20 pb-16 px-4 sm:px-6 lg:px-8">
+        <div className="container mx-auto max-w-6xl">
+          {/* Hero Header */}
+          <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-center mb-8 sm:mb-12 p-6 sm:p-8 lg:p-10 glass-light rounded-lg border border-primary/20"
+            className="text-center mb-12 space-y-4"
           >
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-primary mb-3 tracking-tight uppercase">
-              Pennsylvania Quantum Initiative
-            </h1>
-            <p className="text-base sm:text-lg font-bold text-foreground/90 tracking-wider uppercase">
-              Frequently Asked Questions
-            </p>
-          </motion.header>
+            <motion.div
+              initial={{ scale: 0.9 }}
+              animate={{ scale: 1 }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20"
+            >
+              <Sparkles className="w-4 h-4 text-primary" />
+              <span className="text-sm font-medium text-primary">Pennsylvania Quantum Initiative</span>
+            </motion.div>
 
-          {/* Search Box */}
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold">
+              <span className="block text-foreground mb-2">Frequently Asked</span>
+              <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
+                Questions
+              </span>
+            </h1>
+            
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Everything you need to know about quantum computing, AI, and Pennsylvania's quantum future
+            </p>
+          </motion.div>
+
+          {/* Featured Questions */}
+          {activeCategory === "all" && !searchTerm && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.2 }}
+              className="mb-12"
+            >
+              <h2 className="text-2xl font-bold mb-6 flex items-center gap-2">
+                <Sparkles className="w-6 h-6 text-primary" />
+                Featured Questions
+              </h2>
+              <div className="grid md:grid-cols-2 gap-4">
+                {featuredFAQs.map((faq, index) => {
+                  const config = categoryConfig[faq.category];
+                  const Icon = config.icon;
+                  return (
+                    <motion.button
+                      key={index}
+                      onClick={() => {
+                        const fullIndex = faqData.indexOf(faq);
+                        toggleItem(fullIndex);
+                        // Scroll to the item
+                        setTimeout(() => {
+                          document.getElementById(`faq-${fullIndex}`)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        }, 100);
+                      }}
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      className={`p-6 rounded-xl bg-gradient-to-br ${config.gradient} border border-border hover:border-primary/50 transition-all text-left group`}
+                    >
+                      <div className="flex items-start gap-3">
+                        <div className={`p-2 rounded-lg bg-background/50 ${config.color}`}>
+                          <Icon className="w-5 h-5" />
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
+                            {faq.question}
+                          </h3>
+                          <p className="text-sm text-muted-foreground line-clamp-2">
+                            {faq.answer.substring(0, 100)}...
+                          </p>
+                        </div>
+                        <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all" />
+                      </div>
+                    </motion.button>
+                  );
+                })}
+              </div>
+            </motion.div>
+          )}
+
+          {/* Search Bar */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.1 }}
-            className="mb-6 sm:mb-8 glass-light p-4 sm:p-5 rounded-full border border-primary/20 focus-within:border-primary focus-within:shadow-lg transition-all"
+            className="mb-8 relative"
           >
-            <div className="flex items-center gap-3">
-              <Search className="text-primary w-5 h-5 flex-shrink-0" aria-hidden="true" />
+            <div className="relative group">
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground group-focus-within:text-primary transition-colors w-5 h-5 z-10" />
               <Input
                 type="text"
                 placeholder="Search for answers..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="border-0 bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 text-sm sm:text-base font-semibold placeholder:text-muted-foreground/60"
-                aria-label="Search FAQ"
+                className="pl-12 pr-4 py-6 text-base bg-background/50 backdrop-blur-sm border-2 border-border focus:border-primary transition-all rounded-xl"
               />
             </div>
           </motion.div>
 
-          {/* Category Filter */}
+          {/* Category Pills */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="flex flex-wrap gap-2 mb-6 sm:mb-8 justify-center"
+            className="flex flex-wrap gap-3 mb-8 justify-center"
           >
             <Button
               onClick={() => setActiveCategory("all")}
               variant={activeCategory === "all" ? "default" : "outline"}
-              className="min-h-[44px] text-xs sm:text-sm font-extrabold uppercase tracking-wide touch-manipulation"
-              size="sm"
+              className="rounded-full px-6"
+              size="lg"
             >
               All Questions
             </Button>
-            {(Object.keys(categoryLabels) as FAQCategory[]).map((category) => (
-              <Button
-                key={category}
-                onClick={() => setActiveCategory(category)}
-                variant={activeCategory === category ? "default" : "outline"}
-                className="min-h-[44px] text-xs sm:text-sm font-extrabold uppercase tracking-wide touch-manipulation"
-                size="sm"
-              >
-                {categoryLabels[category]}
-              </Button>
-            ))}
+            {(Object.keys(categoryConfig) as FAQCategory[]).map((category) => {
+              const config = categoryConfig[category];
+              const Icon = config.icon;
+              return (
+                <Button
+                  key={category}
+                  onClick={() => setActiveCategory(category)}
+                  variant={activeCategory === category ? "default" : "outline"}
+                  className="rounded-full px-6 flex items-center gap-2"
+                  size="lg"
+                >
+                  <Icon className="w-4 h-4" />
+                  {config.label}
+                </Button>
+              );
+            })}
           </motion.div>
 
-          {/* FAQ Items */}
+          {/* FAQ Grid */}
           <div className="space-y-4">
             <AnimatePresence mode="popLayout">
               {filteredFAQs.length > 0 ? (
                 filteredFAQs.map((faq, index) => {
-                  const isExpanded = expandedItems.has(index);
-                  const categoryColor = categoryColors[faq.category];
+                  const fullIndex = faqData.indexOf(faq);
+                  const isExpanded = expandedItems.has(fullIndex);
+                  const config = categoryConfig[faq.category];
+                  const Icon = config.icon;
 
                   return (
                     <motion.div
-                      key={`${faq.category}-${index}`}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: 20 }}
+                      id={`faq-${fullIndex}`}
+                      key={fullIndex}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -20 }}
                       transition={{ delay: index * 0.05 }}
-                      className="glass-light rounded-lg border border-primary/20 overflow-hidden hover:shadow-lg hover:-translate-y-0.5 transition-all neon-border"
+                      className={`group rounded-xl border-2 transition-all overflow-hidden ${
+                        isExpanded 
+                          ? 'border-primary shadow-lg shadow-primary/20' 
+                          : 'border-border hover:border-primary/50'
+                      }`}
                     >
-                      {/* Question */}
+                      {/* Question Button */}
                       <button
-                        onClick={() => toggleItem(index)}
-                        className="w-full p-5 sm:p-6 text-left transition-colors hover:bg-primary/10 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-inset min-h-[44px] touch-manipulation"
-                        aria-expanded={isExpanded}
-                        aria-controls={`faq-answer-${index}`}
+                        onClick={() => toggleItem(fullIndex)}
+                        className="w-full p-6 text-left transition-colors hover:bg-primary/5"
                       >
-                        <div className="flex items-start justify-between gap-3">
-                          <div className="flex-1">
-                            <span
-                              className={`inline-block px-3 py-1 rounded text-xs font-black uppercase tracking-wider mb-2 border bg-${categoryColor}/10 text-${categoryColor} border-${categoryColor}/30`}
-                            >
-                              {categoryLabels[faq.category]}
-                            </span>
-                            <p className="text-sm sm:text-base font-bold text-foreground leading-relaxed">
+                        <div className="flex items-start gap-4">
+                          <div className={`p-2 rounded-lg bg-gradient-to-br ${config.gradient} ${config.color} flex-shrink-0`}>
+                            <Icon className="w-5 h-5" />
+                          </div>
+                          
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center gap-2 mb-2">
+                              <span className={`text-xs font-bold uppercase tracking-wider ${config.color}`}>
+                                {config.label}
+                              </span>
+                              {faq.featured && (
+                                <span className="px-2 py-0.5 text-xs font-bold bg-primary/20 text-primary rounded-full">
+                                  Featured
+                                </span>
+                              )}
+                            </div>
+                            <p className="text-lg font-bold text-foreground group-hover:text-primary transition-colors">
                               {faq.question}
                             </p>
                           </div>
+
                           <motion.div
                             animate={{ rotate: isExpanded ? 180 : 0 }}
-                            transition={{ duration: 0.3, ease: "easeInOut" }}
+                            transition={{ duration: 0.3 }}
                             className="flex-shrink-0 mt-1"
                           >
-                            <ChevronDown className="w-5 h-5 text-primary" aria-hidden="true" />
+                            <ChevronDown className={`w-6 h-6 ${isExpanded ? 'text-primary' : 'text-muted-foreground'}`} />
                           </motion.div>
                         </div>
                       </button>
@@ -264,17 +368,18 @@ export default function FAQ() {
                       <AnimatePresence>
                         {isExpanded && (
                           <motion.div
-                            id={`faq-answer-${index}`}
                             initial={{ height: 0, opacity: 0 }}
                             animate={{ height: "auto", opacity: 1 }}
                             exit={{ height: 0, opacity: 0 }}
-                            transition={{ duration: 0.3, ease: "easeInOut" }}
-                            className="overflow-hidden border-t border-primary/10"
+                            transition={{ duration: 0.3 }}
+                            className="overflow-hidden"
                           >
-                            <div className="p-5 sm:p-6 bg-background/50">
-                              <p className="text-sm sm:text-base text-foreground/90 leading-relaxed font-medium">
-                                {faq.answer}
-                              </p>
+                            <div className="px-6 pb-6 pl-20">
+                              <div className="prose prose-sm max-w-none">
+                                <p className="text-muted-foreground leading-relaxed">
+                                  {faq.answer}
+                                </p>
+                              </div>
                             </div>
                           </motion.div>
                         )}
@@ -286,16 +391,45 @@ export default function FAQ() {
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  className="text-center py-16 px-6 glass-light rounded-lg border-2 border-dashed border-primary/30"
+                  className="text-center py-12"
                 >
-                  <p className="text-base sm:text-lg font-bold text-foreground uppercase tracking-wide">
-                    No matching questions found. Try different keywords.
+                  <p className="text-xl text-muted-foreground">
+                    No questions found matching "{searchTerm}"
                   </p>
+                  <Button
+                    onClick={() => setSearchTerm("")}
+                    variant="outline"
+                    className="mt-4"
+                  >
+                    Clear Search
+                  </Button>
                 </motion.div>
               )}
             </AnimatePresence>
           </div>
+
+          {/* CTA Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+            className="mt-16 p-8 rounded-2xl bg-gradient-to-br from-primary/20 via-accent/10 to-background border-2 border-primary/50 text-center"
+          >
+            <h2 className="text-2xl sm:text-3xl font-bold mb-4">
+              Still have questions?
+            </h2>
+            <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
+              We're here to help! Book a strategy session to discuss your quantum readiness, AI deployment, or policy compliance needs.
+            </p>
+            <Button
+              onClick={() => window.location.href = "/#contact"}
+              size="lg"
+              className="btn-3d-primary"
+            >
+              Contact Us
+              <ArrowRight className="ml-2 w-4 h-4" />
+            </Button>
+          </motion.div>
         </div>
       </main>
 

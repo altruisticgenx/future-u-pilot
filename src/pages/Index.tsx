@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 
 // Lazy load heavy components
 const Hero = lazy(() => import("@/components/Hero").then(m => ({ default: m.Hero })));
+const Hero3D = lazy(() => import("@/components/Hero3D").then(m => ({ default: m.Hero3D })));
 const LogoRow = lazy(() => import("@/components/LogoRow").then(m => ({ default: m.LogoRow })));
 const ServiceCards = lazy(() => import("@/components/ServiceCards").then(m => ({ default: m.ServiceCards })));
 const WhyNow = lazy(() => import("@/components/WhyNow").then(m => ({ default: m.WhyNow })));
@@ -19,7 +20,7 @@ const Index = () => {
     <div className="min-h-screen">
       <Navigation />
       <Suspense fallback={<HeroSkeleton />}>
-        <Hero />
+        <Hero3D />
       </Suspense>
       
       <motion.div
