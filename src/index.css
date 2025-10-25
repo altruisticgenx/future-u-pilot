@@ -564,6 +564,28 @@ All colors MUST be HSL.
     100% { transform: translateX(200%); }
   }
   
+  /* Lighthouse sweep animation */
+  @keyframes lighthouse-sweep {
+    0% {
+      transform: rotate(0deg);
+      opacity: 0;
+    }
+    25% {
+      opacity: 0.8;
+    }
+    50% {
+      transform: rotate(180deg);
+      opacity: 0.4;
+    }
+    75% {
+      opacity: 0.8;
+    }
+    100% {
+      transform: rotate(360deg);
+      opacity: 0;
+    }
+  }
+  
   /* Glass Card 3D Effect */
   .glass-card-3d {
     @apply backdrop-blur-xl border;

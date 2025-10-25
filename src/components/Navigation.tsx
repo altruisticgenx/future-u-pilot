@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Menu, X, LogIn } from "lucide-react";
+import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
 import { useNavigate } from "react-router-dom";
 import { ThemeToggle } from "@/components/ThemeToggle";
 
@@ -111,17 +111,19 @@ export const Navigation = () => {
               <ThemeToggle />
             </motion.div>
             
-            {/* Auth Button with 3D depth */}
-            <Button
+            {/* Auth Button with Interactive Hover */}
+            <InteractiveHoverButton
               size="sm"
+              variant="3d-teal"
+              icon={LogIn}
               onClick={() => navigate("/auth")}
-              className="ml-2 text-sm btn-3d-teal"
+              className="ml-2"
               style={{
                 boxShadow: '0 4px 12px rgba(20, 184, 166, 0.3)',
               }}
             >
               Login
-            </Button>
+            </InteractiveHoverButton>
           </div>
 
           {/* Mobile Menu Button - Enhanced with 3D */}
@@ -212,13 +214,16 @@ export const Navigation = () => {
                   transition={{ delay: 0.35 }}
                   className="flex-1"
                 >
-                  <Button 
-                    className="w-full min-h-[52px] btn-3d-teal text-base font-semibold" 
+                  <InteractiveHoverButton 
+                    className="w-full min-h-[52px]" 
+                    variant="3d-teal"
+                    size="lg"
+                    icon={LogIn}
                     onClick={() => navigate("/auth")} 
                     aria-label="Login or Sign Up"
                   >
                     Login / Sign Up
-                  </Button>
+                  </InteractiveHoverButton>
                 </motion.div>
               </div>
             </div>

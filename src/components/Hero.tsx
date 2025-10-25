@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { Button } from "@/components/ui/button";
+import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
 import { Calendar, Sparkles, Video } from "lucide-react";
 import { TypeAnimation } from 'react-type-animation';
 
@@ -301,7 +301,7 @@ export const Hero = () => {
               </motion.p>
             </div>
 
-            {/* CTAs - Smaller 3D Flowing Buttons with Unique Colors */}
+            {/* CTAs - Interactive Hover Buttons */}
             <motion.div 
               className="flex flex-col sm:flex-row gap-2 items-stretch sm:items-center"
               initial={prefersReducedMotion ? {} : { opacity: 0, y: 10 }}
@@ -315,60 +315,61 @@ export const Hero = () => {
                 variants={buttonVariants}
                 initial="initial"
                 animate="animate"
-                whileHover="hover"
-                whileTap="tap"
               >
-                <Button
+                <InteractiveHoverButton
                   onClick={scrollToContact}
-                  className="btn-3d-teal text-[10px] sm:text-xs px-3 py-2 font-semibold w-full sm:w-auto min-w-[90px] flex items-center justify-center gap-1.5 shadow-lg"
+                  variant="3d-teal"
+                  size="xs"
+                  hasLighthouse
+                  icon={Calendar}
+                  className="w-full sm:w-auto shadow-lg"
                   data-analytics-id="cta_book_strategy"
                   data-ph-capture-attribute-button-type="book"
                   data-ph-capture-attribute-button-position="hero-primary"
                   aria-label="Book a strategy session"
                 >
-                  <Calendar className="h-3 w-3 animate-pulse" aria-hidden="true" />
                   Book
-                </Button>
+                </InteractiveHoverButton>
               </motion.div>
               
               <motion.div
                 variants={buttonVariants}
                 initial="initial"
                 animate="animate"
-                whileHover="hover"
-                whileTap="tap"
-                transition={prefersReducedMotion ? {} : { delay: 0.7 }}
               >
-                <Button
+                <InteractiveHoverButton
                   onClick={navigateToAbout}
-                  className="btn-3d-purple text-[10px] sm:text-xs px-3 py-2 font-semibold w-full sm:w-auto min-w-[90px] flex items-center justify-center gap-1.5 shadow-lg"
+                  variant="3d-purple"
+                  size="xs"
+                  hasLighthouse
+                  icon={Sparkles}
+                  className="w-full sm:w-auto shadow-lg"
                   data-ph-capture-attribute-button-type="about"
                   data-ph-capture-attribute-button-position="hero-secondary"
                   aria-label="Learn about our approach"
                 >
-                  <Sparkles className="h-3 w-3 animate-rotate-3d" aria-hidden="true" />
                   About
-                </Button>
+                </InteractiveHoverButton>
               </motion.div>
 
               <motion.div
                 variants={buttonVariants}
                 initial="initial"
                 animate="animate"
-                whileHover="hover"
-                whileTap="tap"
-                transition={prefersReducedMotion ? {} : { delay: 0.8 }}
               >
-                <Button
+                <InteractiveHoverButton
                   onClick={() => window.open('https://drive.google.com/file/d/1vuiN0NYOvToHIxkqjSSFFEYLitv-zyK7/view?usp=sharing', '_blank')}
-                  className="btn-3d-cyan text-[10px] sm:text-xs px-3 py-2 font-semibold w-full sm:w-auto min-w-[90px] flex items-center justify-center gap-1.5 shadow-lg"
+                  variant="3d-cyan"
+                  size="xs"
+                  hasLighthouse
+                  icon={Video}
+                  className="w-full sm:w-auto shadow-lg"
                   data-ph-capture-attribute-button-type="video"
                   data-ph-capture-attribute-button-position="hero-tertiary"
                   aria-label="Watch intro video"
                 >
-                  <Video className="h-3 w-3 animate-pulse-soft" aria-hidden="true" />
                   Video
-                </Button>
+                </InteractiveHoverButton>
               </motion.div>
             </motion.div>
           </motion.div>

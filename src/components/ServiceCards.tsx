@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { 
@@ -249,18 +249,15 @@ export const ServiceCards = () => {
                     </div>
                   </div>
 
-                  <Button
-                    variant="ghost"
-                    className="w-full justify-between group/btn border-2 shadow-[2px_2px_0px_0px_hsl(var(--border))] hover:shadow-[3px_3px_0px_0px_hsl(var(--primary)/0.2)] hover:-translate-y-0.5 transition-all"
+                  <InteractiveHoverButton
+                    variant="flat"
+                    size="sm"
+                    icon={expandedCard === service.id ? ChevronDown : ChevronRight}
+                    className="w-full shadow-[2px_2px_0px_0px_hsl(var(--border))] hover:shadow-[3px_3px_0px_0px_hsl(var(--primary)/0.2)]"
                     onClick={() => setExpandedCard(expandedCard === service.id ? null : service.id)}
                   >
-                    <span className="text-xs sm:text-sm font-semibold">Details</span>
-                    {expandedCard === service.id ? (
-                      <ChevronDown className="w-4 h-4 transition-transform" />
-                    ) : (
-                      <ChevronRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                    )}
-                  </Button>
+                    Details
+                  </InteractiveHoverButton>
 
                   <AnimatePresence>
                     {expandedCard === service.id && (
@@ -303,14 +300,16 @@ export const ServiceCards = () => {
           viewport={{ once: true }}
           className="text-center"
         >
-          <Button 
+          <InteractiveHoverButton
             size="lg"
+            variant="3d-teal"
+            hasLighthouse
+            icon={ChevronRight}
             onClick={() => window.open('https://keen-hardboard-afe.notion.site/28cf142372ef8050ac86f4a3b4c813db?v=28cf142372ef8073b8cf000c0ebfca06&source=copy_link', '_blank', 'noopener,noreferrer')}
-            className="group border-2 shadow-[4px_4px_0px_0px_hsl(var(--primary)/0.3)] hover:shadow-[6px_6px_0px_0px_hsl(var(--primary)/0.4)] hover:-translate-y-0.5 transition-all"
+            className="border-2 shadow-[4px_4px_0px_0px_hsl(var(--primary)/0.3)]"
           >
             View All Initiatives
-            <ChevronRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-          </Button>
+          </InteractiveHoverButton>
         </motion.div>
       </div>
     </section>

@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
+import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -123,13 +123,14 @@ export const ContactForm = () => {
         <p className="text-lg text-muted-foreground max-w-md mx-auto">
           We've received your inquiry and will reach out within 24 hours to plan your next 8 weeks.
         </p>
-        <Button
-          variant="outline"
+        <InteractiveHoverButton
+          variant="3d-teal"
+          size="default"
           onClick={() => setIsSuccess(false)}
           className="mt-4"
         >
           Submit Another Inquiry
-        </Button>
+        </InteractiveHoverButton>
       </motion.div>
     );
   }
@@ -312,21 +313,17 @@ export const ContactForm = () => {
       )}
 
       {/* Submit */}
-      <Button
+      <InteractiveHoverButton
         type="submit"
+        variant="3d-teal"
         size="default"
+        hasLighthouse
+        icon={Send}
         disabled={isSubmitting}
-        className="w-full sm:w-auto shadow-[6px_6px_0px_0px_hsl(var(--primary)/0.5)] hover:shadow-[8px_8px_0px_0px_hsl(var(--primary)/0.6)] hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all border-2"
+        className="w-full sm:w-auto shadow-[6px_6px_0px_0px_hsl(var(--primary)/0.5)]"
       >
-        {isSubmitting ? (
-          "Submitting..."
-        ) : (
-          <>
-            Submit Inquiry
-            <Send className="ml-2 h-4 w-4" />
-          </>
-        )}
-      </Button>
+        {isSubmitting ? "Submitting..." : "Submit Inquiry"}
+      </InteractiveHoverButton>
     </motion.form>
   );
 };
