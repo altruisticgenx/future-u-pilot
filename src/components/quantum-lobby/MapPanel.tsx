@@ -2,7 +2,10 @@ import { useEffect, useRef, useState } from "react";
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import LayerControl from "./LayerControl";
-import { Activity } from "lucide-react";
+import { Activity, Loader2 } from "lucide-react";
+import { explainImpact } from "@/lib/impactExplainer";
+import { toast } from "sonner";
+import { Button } from "@/components/ui/button";
 
 type DistrictStats = {
   id: string;
@@ -28,6 +31,7 @@ export default function MapPanel() {
   const [lastRefreshed, setLastRefreshed] = useState<{nws?: number; usgs?: number}>({});
   const [stats, setStats] = useState<Record<string, DistrictStats>>({});
   const [hovered, setHovered] = useState<DistrictStats | null>(null);
+  const [isGenerating, setIsGenerating] = useState(false);
 
   // Initialize map
   useEffect(() => {
@@ -263,6 +267,96 @@ export default function MapPanel() {
     return () => clearInterval(id);
   }, [loaded]);
 
+  // Click-to-proximity (Overpass API for nearby facilities)
+  useEffect(() => {
+    if (!loaded || !mapRef.current) return;
+    const map = mapRef.current;
+
+    async function queryOverpass(lng: number, lat: number) {
+      const radius = 1200; // meters
+      const q = `
+        [out:json][timeout:25];
+        (
+          node["amenity"~"clinic|hospital|shelter|social_facility"](around:${radius},${lat},${lng});
+          node["public_transport"="stop_position"](around:${radius},${lat},${lng});
+        );
+        out center 20;
+      `;
+      
+      try {
+        toast.info("Searching for nearby facilities...");
+        const res = await fetch("https://overpass-api.de/api/interpreter", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: new URLSearchParams({ data: q })
+        });
+        
+        const j = await res.json();
+        const fc: GeoJSON.FeatureCollection = {
+          type: "FeatureCollection",
+          features: (j.elements || []).map((e: any) => ({
+            type: "Feature",
+            geometry: { type: "Point", coordinates: [e.lon, e.lat] },
+            properties: { 
+              name: e.tags?.name || "Unnamed", 
+              amenity: e.tags?.amenity, 
+              transport: e.tags?.public_transport 
+            }
+          }))
+        };
+        
+        const id = "proximity";
+        if (!map.getSource(id)) {
+          map.addSource(id, { type: "geojson", data: fc });
+        } else {
+          (map.getSource(id) as any).setData(fc);
+        }
+
+        if (map.getLayer(id)) map.removeLayer(id);
+        map.addLayer({
+          id,
+          type: "circle",
+          source: id,
+          paint: { "circle-radius": 6, "circle-color": "#10b981", "circle-opacity": 0.85 }
+        });
+        
+        toast.success(`Found ${fc.features.length} nearby facilities`);
+      } catch (error) {
+        toast.error("Failed to query nearby facilities");
+        console.error("Overpass query failed", error);
+      }
+    }
+
+    map.on("click", (e) => {
+      // Only query if not clicking on a district
+      const features = map.queryRenderedFeatures(e.point, { layers: ["pa_house_fill"] });
+      if (features.length === 0) {
+        queryOverpass(e.lngLat.lng, e.lngLat.lat);
+      }
+    });
+  }, [loaded]);
+
+  // Handle impact explainer button click
+  async function handleExplainImpact() {
+    if (!hovered || isGenerating) return;
+    
+    setIsGenerating(true);
+    toast.info("Generating impact explanation... (first time may take a moment to load model)");
+    
+    try {
+      const explanation = await explainImpact(hovered);
+      toast.success("Impact explanation generated!", {
+        description: explanation,
+        duration: 10000
+      });
+    } catch (error) {
+      toast.error("Failed to generate explanation");
+      console.error("Impact explainer failed", error);
+    } finally {
+      setIsGenerating(false);
+    }
+  }
+
   function toggleLayer(key: string) {
     setLayers(s => ({ ...s, [key]: !s[key] }));
   }
@@ -292,7 +386,7 @@ export default function MapPanel() {
       {hovered && (
         <div className="absolute bottom-3 left-3 max-w-sm rounded-xl bg-card/95 backdrop-blur-md border border-primary/30 p-4 text-xs shadow-xl z-10">
           <div className="font-semibold text-base text-foreground mb-2">{hovered.name}</div>
-          <div className="space-y-1 text-muted-foreground">
+          <div className="space-y-1 text-muted-foreground mb-3">
             <div><span className="font-medium text-foreground">County:</span> {hovered.county ?? "—"}</div>
             <div><span className="font-medium text-foreground">Population:</span> {hovered.pop?.toLocaleString() ?? "—"}</div>
             <div>
@@ -304,6 +398,21 @@ export default function MapPanel() {
               {hovered.median_income ? `$${hovered.median_income.toLocaleString()}` : "—"}
             </div>
           </div>
+          <Button
+            size="sm"
+            onClick={handleExplainImpact}
+            disabled={isGenerating}
+            className="w-full text-xs"
+          >
+            {isGenerating ? (
+              <>
+                <Loader2 className="h-3 w-3 mr-1.5 animate-spin" />
+                Generating...
+              </>
+            ) : (
+              "Generate Impact Explainer"
+            )}
+          </Button>
         </div>
       )}
     </div>

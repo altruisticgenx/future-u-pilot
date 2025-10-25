@@ -70,8 +70,11 @@ export default function PALobby() {
               <h2 className="text-2xl sm:text-3xl font-bold bg-gradient-hero bg-clip-text text-transparent mb-2">
                 Live PA Context
               </h2>
-              <p className="text-muted-foreground text-sm sm:text-base">
+              <p className="text-muted-foreground text-sm sm:text-base mb-2">
                 Real-time overlays help staffers connect policy to on-the-ground reality (weather alerts, incidents, civic points of interest).
+              </p>
+              <p className="text-muted-foreground text-xs sm:text-sm">
+                💡 <span className="font-medium">Hover over districts</span> to see demographics • <span className="font-medium">Click empty areas</span> to reveal nearby clinics, shelters, and transit stops
               </p>
             </div>
             <MapPanel />
