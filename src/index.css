@@ -1132,6 +1132,38 @@ All colors MUST be HSL.
     transform: translateY(-2px);
   }
 
+  /* 3D Card Hover Effect */
+  .card-3d-hover {
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform var(--motion-slow) var(--easing-emphatic), 
+                box-shadow var(--motion-slow) var(--easing-standard);
+  }
+
+  .card-3d-hover:hover {
+    transform: rotateY(6deg) rotateX(3deg) scale(1.03);
+    box-shadow: 0 20px 40px hsl(var(--primary) / 0.2);
+  }
+
+  .card-3d-hover::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      circle at 50% 50%, 
+      hsl(var(--primary-glow) / 0.3), 
+      transparent 70%
+    );
+    opacity: 0;
+    transition: opacity var(--motion-medium);
+    pointer-events: none;
+    border-radius: inherit;
+  }
+
+  .card-3d-hover:hover::after {
+    opacity: 1;
+  }
+
   /* Typography Utilities */
   .text-display {
     font-family: var(--font-display);
