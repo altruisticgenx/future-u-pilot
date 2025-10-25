@@ -23,7 +23,8 @@ export interface ROIData {
   sector: string;
   roi: number;
   payback: string;
-  color: string;
+  colorClass: string;
+  glowClass: string;
   icon: string;
 }
 
@@ -103,10 +104,10 @@ const generateMockSectorData = (sector: string): SectorData => {
 
 const generateMockROIData = (): ROIData[] => {
   return [
-    { sector: "Education", roi: 4.3, payback: "18 months", color: "hsl(var(--primary))", icon: "GraduationCap" },
-    { sector: "Energy", roi: 3.8, payback: "15 months", color: "hsl(var(--success))", icon: "Zap" },
-    { sector: "Healthcare", roi: 3.2, payback: "19 months", color: "hsl(var(--secondary))", icon: "Heart" },
-    { sector: "Governance", roi: 5.1, payback: "12 months", color: "hsl(var(--accent))", icon: "Scale" },
+    { sector: "Education", roi: 4.3, payback: "18 months", colorClass: "from-cyan-400 to-cyan-600", glowClass: "shadow-cyan-500/50", icon: "GraduationCap" },
+    { sector: "Energy", roi: 3.8, payback: "15 months", colorClass: "from-emerald-400 to-emerald-600", glowClass: "shadow-emerald-500/50", icon: "Zap" },
+    { sector: "Healthcare", roi: 3.2, payback: "19 months", colorClass: "from-fuchsia-400 to-fuchsia-600", glowClass: "shadow-fuchsia-500/50", icon: "Heart" },
+    { sector: "Governance", roi: 5.1, payback: "12 months", colorClass: "from-amber-400 to-amber-600", glowClass: "shadow-amber-500/50", icon: "Scale" },
   ];
 };
 

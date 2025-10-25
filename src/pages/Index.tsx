@@ -91,7 +91,7 @@ const Index = () => {
             className="text-center space-y-2 sm:space-y-3 mb-8 sm:mb-12"
           >
             <h2 id="contact-heading" className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold">
-              Let's Plan Your Next 8 Weeks
+              Start Your 8-Week Pilot
             </h2>
             <p className="text-xs sm:text-sm md:text-base lg:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
               Tell us where you are and we'll propose a pilot that proves value—fast.

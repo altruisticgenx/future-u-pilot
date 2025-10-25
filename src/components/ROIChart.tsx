@@ -70,11 +70,11 @@ export const ROIChart = () => {
                     </div>
                     <div className="relative h-2 bg-muted rounded-full overflow-hidden">
                       <motion.div
-                        className="absolute inset-y-0 left-0 rounded-full"
-                        style={{
-                          background: `linear-gradient(90deg, ${item.color}, ${item.color}dd)`,
-                          boxShadow: `0 0 10px ${item.color}`,
-                        }}
+                        className={cn(
+                          "absolute inset-y-0 left-0 rounded-full bg-gradient-to-r shadow-lg",
+                          item.colorClass,
+                          item.glowClass
+                        )}
                         initial={{ width: 0 }}
                         animate={isInView ? { width: `${(item.roi / 5.1) * 100}%` } : {}}
                         transition={{ duration: 1.5, delay: index * 0.1 + 0.3, ease: "easeOut" }}

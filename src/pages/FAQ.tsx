@@ -97,26 +97,30 @@ const faqData: FAQItem[] = [
   }
 ];
 
-const categoryConfig: Record<FAQCategory, { bgClass: string; textClass: string; borderClass: string }> = {
+const categoryConfig: Record<FAQCategory, { bgClass: string; textClass: string; borderClass: string; glowClass: string }> = {
   security: { 
-    bgClass: "bg-destructive/10", 
-    textClass: "text-destructive", 
-    borderClass: "border-destructive/30" 
+    bgClass: "bg-red-500/15", 
+    textClass: "text-red-400", 
+    borderClass: "border-red-400/40",
+    glowClass: "shadow-lg shadow-red-500/30"
   },
   workforce: { 
-    bgClass: "bg-primary/10", 
-    textClass: "text-primary", 
-    borderClass: "border-primary/30" 
+    bgClass: "bg-cyan-500/15", 
+    textClass: "text-cyan-400", 
+    borderClass: "border-cyan-400/40",
+    glowClass: "shadow-lg shadow-cyan-500/30"
   },
   benefits: { 
-    bgClass: "bg-accent/10", 
-    textClass: "text-accent", 
-    borderClass: "border-accent/30" 
+    bgClass: "bg-emerald-500/15", 
+    textClass: "text-emerald-400", 
+    borderClass: "border-emerald-400/40",
+    glowClass: "shadow-lg shadow-emerald-500/30"
   },
   implementation: { 
-    bgClass: "bg-secondary/10", 
-    textClass: "text-secondary", 
-    borderClass: "border-secondary/30" 
+    bgClass: "bg-amber-500/15", 
+    textClass: "text-amber-400", 
+    borderClass: "border-amber-400/40",
+    glowClass: "shadow-lg shadow-amber-500/30"
   }
 };
 
@@ -188,7 +192,7 @@ export default function FAQ() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.1 }}
-            className="mb-6 sm:mb-8 glass-light p-4 sm:p-5 rounded-full border border-primary/20 focus-within:border-primary focus-within:shadow-lg transition-all"
+            className="mb-6 sm:mb-8 glass-card-3d p-4 sm:p-5 rounded-full border-2 border-primary/30 focus-within:border-primary focus-within:shadow-lg focus-within:shadow-primary/50 transition-all"
           >
             <div className="flex items-center gap-3">
               <Search className="text-primary w-5 h-5 flex-shrink-0" aria-hidden="true" />
@@ -213,7 +217,9 @@ export default function FAQ() {
             <Button
               onClick={() => setActiveCategory("all")}
               variant={activeCategory === "all" ? "default" : "outline"}
-              className="min-h-[44px] text-xs sm:text-sm font-extrabold uppercase tracking-wide touch-manipulation"
+              className={`min-h-[44px] text-xs sm:text-sm font-extrabold uppercase tracking-wide touch-manipulation transition-all duration-300 ${
+                activeCategory === "all" ? "shadow-lg shadow-primary/50 scale-105" : "hover:scale-102 hover:shadow-md"
+              }`}
               size="sm"
             >
               All Questions
@@ -223,7 +229,9 @@ export default function FAQ() {
                 key={category}
                 onClick={() => setActiveCategory(category)}
                 variant={activeCategory === category ? "default" : "outline"}
-                className="min-h-[44px] text-xs sm:text-sm font-extrabold uppercase tracking-wide touch-manipulation"
+                className={`min-h-[44px] text-xs sm:text-sm font-extrabold uppercase tracking-wide touch-manipulation transition-all duration-300 ${
+                  activeCategory === category ? "shadow-lg shadow-primary/50 scale-105" : "hover:scale-102 hover:shadow-md"
+                }`}
                 size="sm"
               >
                 {categoryLabels[category]}
@@ -246,7 +254,7 @@ export default function FAQ() {
                       animate={{ opacity: 1, x: 0 }}
                       exit={{ opacity: 0, x: 20 }}
                       transition={{ delay: index * 0.05 }}
-                      className="glass-light rounded-lg border border-primary/20 overflow-hidden hover:shadow-lg hover:-translate-y-0.5 transition-all neon-border"
+                      className="glass-card-3d rounded-lg border border-primary/30 overflow-hidden hover:shadow-xl hover:shadow-primary/20 hover:-translate-y-1 transition-all duration-300"
                     >
                       {/* Question */}
                       <button
@@ -258,7 +266,7 @@ export default function FAQ() {
                         <div className="flex items-start justify-between gap-3">
                           <div className="flex-1">
                             <span
-                              className={`inline-block px-3 py-1 rounded text-xs font-black uppercase tracking-wider mb-2 border ${categoryStyle.bgClass} ${categoryStyle.textClass} ${categoryStyle.borderClass}`}
+                              className={`inline-block px-3 py-1 rounded text-xs font-black uppercase tracking-wider mb-2 border ${categoryStyle.bgClass} ${categoryStyle.textClass} ${categoryStyle.borderClass} ${categoryStyle.glowClass}`}
                             >
                               {categoryLabels[faq.category]}
                             </span>
