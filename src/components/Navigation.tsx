@@ -204,7 +204,7 @@ export const Navigation = () => {
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.25 }}
+                  transition={{ delay: 0.3 }}
                   className="flex-shrink-0"
                 >
                   <ThemeToggle />
@@ -212,7 +212,7 @@ export const Navigation = () => {
                 <motion.div
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.3 }}
+                  transition={{ delay: 0.35 }}
                   className="flex-1"
                 >
                   <Button 

@@ -2,25 +2,25 @@ import { lazy, Suspense } from "react";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { HeroSkeleton } from "@/components/LoadingSkeleton";
-import { SmartChatbot } from "@/components/SmartChatbot";
+import { AIChatbot } from "@/components/AIChatbot";
 import { motion } from "framer-motion";
 
 // Lazy load heavy components
 const Hero = lazy(() => import("@/components/Hero").then(m => ({ default: m.Hero })));
-const Hero3D = lazy(() => import("@/components/Hero3D").then(m => ({ default: m.Hero3D })));
 const LogoRow = lazy(() => import("@/components/LogoRow").then(m => ({ default: m.LogoRow })));
 const ServiceCards = lazy(() => import("@/components/ServiceCards").then(m => ({ default: m.ServiceCards })));
 const WhyNow = lazy(() => import("@/components/WhyNow").then(m => ({ default: m.WhyNow })));
 const LabNotes = lazy(() => import("@/components/LabNotes").then(m => ({ default: m.LabNotes })));
 const WhyItMatters = lazy(() => import("@/components/WhyItMatters").then(m => ({ default: m.WhyItMatters })));
 const ContactForm = lazy(() => import("@/components/ContactForm").then(m => ({ default: m.ContactForm })));
+const AIShowcase = lazy(() => import("@/components/AIShowcase").then(m => ({ default: m.AIShowcase })));
 
 const Index = () => {
   return (
     <div className="min-h-screen">
       <Navigation />
       <Suspense fallback={<HeroSkeleton />}>
-        <Hero3D />
+        <Hero />
       </Suspense>
       
       <motion.div
@@ -78,6 +78,18 @@ const Index = () => {
         </Suspense>
       </motion.div>
       
+      {/* AI Showcase Section */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.7, delay: 0.1 }}
+        viewport={{ once: true, margin: "-100px" }}
+      >
+        <Suspense fallback={<div className="h-96 animate-pulse bg-primary/5" />}>
+          <AIShowcase />
+        </Suspense>
+      </motion.div>
+      
       {/* Contact Section */}
       <section id="contact" className="py-16 sm:py-20 md:py-24 relative overflow-hidden" aria-labelledby="contact-heading">
         <div className="absolute inset-0 bg-gradient-to-b from-background via-accent/5 to-background" />
@@ -92,10 +104,10 @@ const Index = () => {
             className="text-center space-y-2 sm:space-y-3 mb-8 sm:mb-12"
           >
             <h2 id="contact-heading" className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold">
-              Let's Get Started
+              Let's Plan Your Next 8 Weeks
             </h2>
             <p className="text-xs sm:text-sm md:text-base lg:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
-              Tell us about your goals and we'll propose a practical plan that delivers results.
+              Tell us where you are and we'll propose a pilot that proves value—fast.
             </p>
           </motion.div>
 
@@ -114,8 +126,8 @@ const Index = () => {
 
       <Footer />
       
-      {/* AI Chatbot - Smart wrapper for Cloud/Local AI */}
-      <SmartChatbot />
+      {/* AI Chatbot */}
+      <AIChatbot />
     </div>
   );
 };

@@ -102,9 +102,16 @@ export const LabNotes = () => {
           viewport={{ once: true }}
           className="text-center"
         >
-          <div className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-gradient-to-r from-primary/10 to-accent/10 border-2 border-primary/30">
-            <span className="text-sm sm:text-base font-bold text-primary">Coming Soon</span>
-          </div>
+          <Button
+            variant="outline"
+            size="lg"
+            className="btn-3d-primary text-xs sm:text-sm"
+            onClick={() => window.location.href = "/storytelling"}
+            aria-label="View all experiments"
+          >
+            View All Experiments
+            <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
+          </Button>
         </motion.div>
       </div>
     </section>

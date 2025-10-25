@@ -4,11 +4,9 @@ import { Footer } from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { GraduationCap, Zap, Heart, Scale, Users, Brain } from "lucide-react";
 import { InteractiveCard } from "@/components/InteractiveCard";
-import { SmartChatbot } from "@/components/SmartChatbot";
+import { AIChatbot } from "@/components/AIChatbot";
 import { ROIChart } from "@/components/ROIChart";
 import { ContrastMonitor } from "@/components/ContrastMonitor";
-import { RAGSearch } from "@/components/RAGSearch";
-import { SandboxPanel, sandboxExamples } from "@/components/SandboxPanel";
 
 const stakeholders = [
   {
@@ -116,87 +114,40 @@ const About = () => {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="relative pt-24 pb-16 overflow-hidden">
+      <section className="relative pt-24 pb-12 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-accent/10 to-background animate-gradient" />
         <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--primary))_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--primary))_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-[0.03] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,#000_70%,transparent_110%)]" />
-        
-        {/* Floating particles */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {[...Array(20)].map((_, i) => (
-            <motion.div
-              key={i}
-              className="absolute w-1 h-1 bg-primary/30 rounded-full"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-              }}
-              animate={{
-                y: [0, -30, 0],
-                opacity: [0.3, 0.6, 0.3],
-              }}
-              transition={{
-                duration: 3 + Math.random() * 2,
-                repeat: Infinity,
-                delay: Math.random() * 2,
-              }}
-            />
-          ))}
-        </div>
         
         <div className="container relative mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-center space-y-4"
+            className="text-center space-y-3"
           >
             <motion.div
               initial={{ scale: 0.9 }}
               animate={{ scale: 1 }}
               transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-primary/20 to-accent/20 border border-primary/40 backdrop-blur-sm"
+              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-to-r from-primary/20 to-accent/20 border border-primary/40 glass-card-3d"
+              role="status"
+              aria-label="Pennsylvania Quantum Initiative"
             >
-              <Brain className="w-4 h-4 text-primary animate-pulse" />
-              <span className="text-sm font-medium bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              <Brain className="w-3 h-3 text-primary animate-pulse" aria-hidden="true" />
+              <span className="text-[11px] font-medium bg-gradient-hero bg-clip-text text-transparent">
                 Pennsylvania Quantum Initiative
               </span>
             </motion.div>
 
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold">
-              <span className="block text-foreground mb-2">Quantum-AI Readiness</span>
-              <span className="bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
-                Built for Pennsylvania
+            <h1 className="text-xl sm:text-2xl md:text-3xl font-bold">
+              <span className="block text-foreground text-sm sm:text-base md:text-lg mb-1">The Quantum Leap</span>
+              <span className="block bg-gradient-hero bg-clip-text text-transparent">
+                Pennsylvania's Path Forward
               </span>
             </h1>
             
-            <p className="text-base sm:text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              Connecting students to tech careers, helping companies run smarter, 
-              speeding up healthcare breakthroughs, and securing Pennsylvania's quantum future.
+            <p className="text-xs sm:text-sm text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              Connecting students to tech careers, helping companies run smarter, speeding up healthcare breakthroughs.
             </p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="flex flex-wrap gap-4 justify-center pt-4"
-            >
-              {[
-                { label: "22% Energy Savings", icon: Zap },
-                { label: "10x Faster Discovery", icon: Heart },
-                { label: "<8 Weeks to Pilot", icon: GraduationCap }
-              ].map((stat, i) => {
-                const Icon = stat.icon;
-                return (
-                  <motion.div
-                    key={i}
-                    whileHover={{ scale: 1.05 }}
-                    className="flex items-center gap-2 px-4 py-2 rounded-full bg-background/50 border border-border/50 backdrop-blur-sm"
-                  >
-                    <Icon className="w-4 h-4 text-primary" />
-                    <span className="text-sm font-medium">{stat.label}</span>
-                  </motion.div>
-                );
-              })}
-            </motion.div>
           </motion.div>
         </div>
       </section>
@@ -249,102 +200,6 @@ const About = () => {
           </motion.div>
 
           <ROIChart />
-        </div>
-      </section>
-
-      {/* Interactive Code Sandboxes */}
-      <section className="py-16 sm:py-20 md:py-24 bg-gradient-to-b from-background to-muted/30" aria-labelledby="sandbox-heading">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-12"
-          >
-            <h2 id="sandbox-heading" className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 bg-gradient-hero bg-clip-text text-transparent">
-              Try It Yourself
-            </h2>
-            <p className="text-sm sm:text-base text-muted-foreground max-w-2xl mx-auto">
-              Explore real quantum computing examples for each sector. All code runs in your browser—no setup required.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-6xl mx-auto">
-            {/* Student Sandbox */}
-            <SandboxPanel
-              title="🎓 Student Training: Bell State"
-              description="Learn quantum circuits with Qiskit"
-              code={sandboxExamples.students}
-              language="python"
-              output="Bell State Results: {'00': 512, '11': 488}"
-              color="primary"
-            />
-
-            {/* Energy Sandbox */}
-            <SandboxPanel
-              title="⚡ Energy Grid Optimization"
-              description="Minimize transmission losses"
-              code={sandboxExamples.energy}
-              language="python"
-              output="Optimized Distribution:\nEnergy Savings: 234.8 kWh\nGrid Efficiency: 94.3%"
-              color="success"
-            />
-
-            {/* Healthcare Sandbox */}
-            <SandboxPanel
-              title="🩺 Drug Discovery Simulation"
-              description="Molecular property prediction"
-              code={sandboxExamples.healthcare}
-              language="python"
-              output="Ground State: -1.137 Hartree\nDrug binding affinity: 713.4 kcal/mol"
-              color="secondary"
-            />
-
-            {/* Governance Sandbox */}
-            <SandboxPanel
-              title="🏛️ Policy Impact Model"
-              description="Economic multiplier analysis"
-              code={sandboxExamples.governance}
-              language="python"
-              output="Total Investment: $45M\nExpected Return: $186M\nROI: 4.13x\nJobs Created: 1,560"
-              color="accent"
-            />
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.5 }}
-            className="text-center mt-8"
-          >
-            <p className="text-xs text-muted-foreground">
-              ℹ️ Code is read-only. Click "Run" to see simulated output. Real execution requires backend setup.
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* RAG Knowledge Base */}
-      <section className="py-12 bg-muted/30" aria-labelledby="rag-heading">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="space-y-4"
-          >
-            <div className="text-center mb-8">
-              <h2 id="rag-heading" className="text-lg sm:text-xl md:text-2xl font-bold mb-2 bg-gradient-hero bg-clip-text text-transparent">
-                Explore Our Knowledge Base
-              </h2>
-              <p className="text-xs sm:text-sm text-muted-foreground max-w-xl mx-auto">
-                Search indexed documents with on-device AI. 100% private, no cloud queries.
-              </p>
-            </div>
-            <RAGSearch />
-          </motion.div>
         </div>
       </section>
 
@@ -432,8 +287,8 @@ const About = () => {
 
       <Footer />
       
-      {/* AI Chatbot - Smart wrapper for Cloud/Local AI */}
-      <SmartChatbot />
+      {/* AI Chatbot */}
+      <AIChatbot />
       
       {/* Color Contrast Monitor (Dev Only) */}
       <ContrastMonitor />
