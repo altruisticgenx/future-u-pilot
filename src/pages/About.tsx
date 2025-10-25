@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Zap, Shield, Activity, Users, TrendingUp, Target } from "lucide-react";
 import { AIChatbot } from "@/components/AIChatbot";
 import { useState } from "react";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
@@ -11,6 +11,7 @@ const sectorFocusData = [
     id: "01",
     title: "Student Workforce",
     mission: "Build Your Quantum Career Core",
+    icon: Users,
     gist: "Stop waiting for tomorrow's jobs. Start mastering the code and concepts today—from your high school club to your college lab. We give you real quantum programming skills and hands-on experience—no PhD required. Secure your future and keep Pennsylvania talent at the forefront of innovation.",
     highlights: "Explore quantum coding projects, internships, and hackathons for students.",
     learnMore: "Sign up for workshops, virtual labs, and free online courses.",
@@ -19,6 +20,7 @@ const sectorFocusData = [
     id: "02",
     title: "Energy",
     mission: "Power Grid. Smarter. Safer.",
+    icon: Zap,
     gist: "Quantum computers are the ultimate energy managers. They help power companies balance electricity supply, predict outages before they happen, and prevent cyber-attacks. Early results show major benefits: up to 22% energy savings, cleaner air, and lower monthly energy bills for your family.",
     highlights: "See how quantum simulates grids for efficiency and security.",
     learnMore: "Check out real-world case studies and energy innovation labs.",
@@ -27,6 +29,7 @@ const sectorFocusData = [
     id: "03",
     title: "Healthcare",
     mission: "Diagnostics & Discovery. Accelerated.",
+    icon: Activity,
     gist: "Quantum technology is the ultimate cheat code for medicine. It dramatically speeds up drug discovery, simulates complex protein folding, and powers deep genetic analysis. Advanced quantum sensors will improve diagnostics and allow for truly personalized treatments. The result: faster cures and healthier communities.",
     highlights: "Discover how quantum speeds up research and disease detection.",
     learnMore: "Explore labs, internships, and healthcare innovation programs.",
@@ -35,6 +38,7 @@ const sectorFocusData = [
     id: "04",
     title: "Government",
     mission: "Policy Frameworks. Future-Ready.",
+    icon: Shield,
     gist: "We work with state lawmakers to create practical rules and ethical guidelines that ensure Pennsylvania is the leader in quantum tech. This guarantees public safety, protects data privacy, and ensures fair access for everyone, all while promoting rapid innovation.",
     highlights: "Learn how quantum influences policy and public planning.",
     learnMore: "See how students can contribute to civic tech and advisory boards.",
@@ -44,6 +48,7 @@ const sectorFocusData = [
 const SectorCard = ({ sector, index }: { sector: typeof sectorFocusData[0]; index: number }) => {
   const [highlightsOpen, setHighlightsOpen] = useState(false);
   const [learnMoreOpen, setLearnMoreOpen] = useState(false);
+  const Icon = sector.icon;
 
   return (
     <motion.div
@@ -51,14 +56,25 @@ const SectorCard = ({ sector, index }: { sector: typeof sectorFocusData[0]; inde
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: index * 0.1, duration: 0.6 }}
-      className="glass-card-3d backdrop-blur-xl border border-border rounded-2xl p-6 hover:border-primary/50 transition-all duration-300"
+      className="group glass-card-3d backdrop-blur-xl border border-border rounded-2xl p-6 hover:border-primary/50 transition-all duration-300 transform hover:scale-[1.02] will-change-transform"
+      style={{ 
+        transform: 'translateZ(0)',
+        backfaceVisibility: 'hidden',
+      }}
     >
-      <h3 className="text-sm font-semibold uppercase text-accent tracking-widest mb-2">
-        Sector Focus {sector.id}: {sector.title}
-      </h3>
-      <h4 className="text-2xl font-bold text-foreground mb-4">
-        Mission: {sector.mission}
-      </h4>
+      <div className="flex items-start gap-4 mb-4">
+        <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+          <Icon className="w-6 h-6 text-primary" />
+        </div>
+        <div className="flex-1">
+          <h3 className="text-sm font-semibold uppercase text-accent tracking-widest mb-1">
+            Sector Focus {sector.id}: {sector.title}
+          </h3>
+          <h4 className="text-2xl font-bold text-foreground">
+            Mission: {sector.mission}
+          </h4>
+        </div>
+      </div>
       <p className="text-muted-foreground leading-relaxed mb-6">
         <span className="font-semibold text-foreground">The Gist:</span> {sector.gist}
       </p>
@@ -106,14 +122,25 @@ const ROISection = () => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: 0.4, duration: 0.6 }}
-      className="glass-card-3d backdrop-blur-xl border border-border rounded-2xl p-6 hover:border-primary/50 transition-all duration-300"
+      className="group glass-card-3d backdrop-blur-xl border border-border rounded-2xl p-6 hover:border-primary/50 transition-all duration-300 transform hover:scale-[1.02] will-change-transform"
+      style={{ 
+        transform: 'translateZ(0)',
+        backfaceVisibility: 'hidden',
+      }}
     >
-      <h3 className="text-sm font-semibold uppercase text-accent tracking-widest mb-2">
-        Sector Focus 05: Return on Investment (ROI)
-      </h3>
-      <h4 className="text-2xl font-bold text-foreground mb-4">
-        Core Metric: Exponential Payback
-      </h4>
+      <div className="flex items-start gap-4 mb-4">
+        <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
+          <TrendingUp className="w-6 h-6 text-primary" />
+        </div>
+        <div className="flex-1">
+          <h3 className="text-sm font-semibold uppercase text-accent tracking-widest mb-1">
+            Sector Focus 05: Return on Investment (ROI)
+          </h3>
+          <h4 className="text-2xl font-bold text-foreground">
+            Core Metric: Exponential Payback
+          </h4>
+        </div>
+      </div>
       <p className="text-muted-foreground leading-relaxed mb-6">
         Quantum investments deliver measurable, accelerated returns much faster than traditional 
         technology projects. These are not estimates; these are real-world results:
@@ -276,11 +303,30 @@ const About = () => {
 
         {/* Hero Section */}
         <section className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center space-y-6">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-4"
+            style={{ 
+              transform: 'translateZ(0)',
+              backfaceVisibility: 'hidden',
+              willChange: 'transform, opacity',
+            }}
+          >
+            <Target className="w-4 h-4 text-primary" />
+            <span className="text-sm font-semibold text-primary uppercase tracking-wider">System Online</span>
+          </motion.div>
           <motion.h1
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: "easeOut" }}
-            className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight bg-gradient-to-r from-primary via-primary-glow to-accent bg-clip-text text-transparent"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight bg-gradient-to-r from-primary via-primary-glow to-accent bg-clip-text text-transparent"
+            style={{ 
+              transform: 'translateZ(0)',
+              backfaceVisibility: 'hidden',
+              willChange: 'transform, opacity',
+            }}
           >
             Access Point: Quantum Future
           </motion.h1>
@@ -288,7 +334,11 @@ const About = () => {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.7, ease: "easeOut" }}
-            className="text-2xl sm:text-3xl font-semibold bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent"
+            className="text-2xl sm:text-3xl md:text-4xl font-semibold bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent"
+            style={{ 
+              transform: 'translateZ(0)',
+              backfaceVisibility: 'hidden',
+            }}
           >
             Pennsylvania Quantum Initiative
           </motion.h2>
