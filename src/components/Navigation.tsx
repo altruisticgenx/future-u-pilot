@@ -4,6 +4,7 @@ import { Menu, X, LogIn } from "lucide-react";
 import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
 import { useNavigate } from "react-router-dom";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { AnimatedLogo } from "@/components/AnimatedLogo";
 
 export const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -61,27 +62,8 @@ export const Navigation = () => {
          aria-label="Main navigation">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div className="flex items-center justify-between h-16 sm:h-18">
-          {/* Logo with 3D Transform */}
-          <motion.button 
-            onClick={() => navigate("/")}
-            className="text-lg sm:text-xl font-bold bg-gradient-hero bg-clip-text text-transparent relative" 
-            whileHover={{ 
-              scale: 1.05,
-              rotateY: 5,
-              transition: { duration: 0.3 }
-            }} 
-            whileTap={{ scale: 0.95 }}
-            style={{
-              textShadow: '0 4px 12px rgba(20, 184, 166, 0.4)',
-              transformStyle: 'preserve-3d',
-              perspective: '1000px'
-            }}
-            aria-label="AltruisticXAI Home"
-          >
-            <span className="relative block" style={{ transform: 'translateZ(20px)' }}>
-              AltruisticXAI
-            </span>
-          </motion.button>
+          {/* Animated Logo with Globe */}
+          <AnimatedLogo onClick={() => navigate("/")} />
 
           {/* Desktop Navigation with 3D Cards */}
           <div className="hidden lg:flex items-center gap-1">

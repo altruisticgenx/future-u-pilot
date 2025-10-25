@@ -201,21 +201,37 @@ export const ServiceCards = () => {
             >
               <Card 
                 className={cn(
-                  "group relative overflow-hidden transition-all duration-300 h-full",
-                  "hover:shadow-[6px_6px_0px_0px_hsl(var(--primary)/0.25)] hover:-translate-y-1",
-                  "border-2 shadow-[3px_3px_0px_0px_hsl(var(--border))]",
+                  "group relative overflow-hidden transition-all duration-500 h-full",
+                  "hover:shadow-[8px_8px_0px_0px_hsl(var(--primary)/0.3),0_10px_40px_hsl(var(--primary)/0.2)]",
+                  "hover:-translate-y-2 hover:rotate-[0.5deg]",
+                  "border-2 shadow-[4px_4px_0px_0px_hsl(var(--border))]",
                   "glass-card-3d bg-gradient-to-br backdrop-blur-sm",
+                  "transform-gpu perspective-1000",
                   service.color,
-                  expandedCard === service.id ? "ring-2 ring-primary shadow-[6px_6px_0px_0px_hsl(var(--primary)/0.35)]" : ""
+                  expandedCard === service.id ? "ring-2 ring-primary shadow-[8px_8px_0px_0px_hsl(var(--primary)/0.4)] scale-[1.02]" : ""
                 )}
-                style={{ contain: 'layout style paint' }}
+                style={{ 
+                  contain: 'layout style paint',
+                  transformStyle: 'preserve-3d',
+                  transition: 'all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)'
+                }}
               >
                 <CardHeader className="relative space-y-3 pb-3 sm:pb-4">
                   <div className="flex items-start justify-between gap-3 sm:gap-4">
                     <motion.div 
                       className="p-2 sm:p-2.5 rounded-lg bg-background/80 backdrop-blur-sm w-fit border-2 shadow-[2px_2px_0px_0px_hsl(var(--border))]"
-                      whileHover={{ rotate: 360 }}
-                      transition={{ duration: 0.6 }}
+                      whileHover={{ 
+                        rotate: [0, -10, 10, -10, 0],
+                        scale: [1, 1.1, 1.1, 1.1, 1],
+                        y: [0, -4, -4, -4, 0]
+                      }}
+                      transition={{ 
+                        duration: 0.6,
+                        times: [0, 0.2, 0.4, 0.6, 1]
+                      }}
+                      style={{
+                        transformStyle: 'preserve-3d'
+                      }}
                     >
                       <service.icon className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-primary" aria-hidden="true" />
                     </motion.div>

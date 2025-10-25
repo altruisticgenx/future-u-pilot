@@ -36,19 +36,50 @@ export const InteractiveCard = ({
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
+      initial={{ opacity: 0, y: 20, rotateX: -15 }}
+      whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
+      transition={{ 
+        duration: 0.6, 
+        delay: index * 0.1,
+        type: "spring",
+        stiffness: 100
+      }}
       viewport={{ once: true }}
       className="h-full"
+      style={{ transformStyle: 'preserve-3d' }}
     >
-      <div className={`glass-card-3d rounded-xl overflow-hidden h-full bg-gradient-to-br ${color} border border-primary/20`}>
-        <div className="p-6 space-y-4">
+      <motion.div 
+        className={`glass-card-3d rounded-xl overflow-hidden h-full bg-gradient-to-br ${color} border border-primary/20 relative`}
+        whileHover={{ 
+          y: -8,
+          rotateY: 2,
+          rotateX: 2,
+          scale: 1.02,
+          boxShadow: "0 20px 60px hsl(var(--primary) / 0.3), 0 10px 30px hsl(var(--primary) / 0.2)"
+        }}
+        transition={{ 
+          type: "spring",
+          stiffness: 300,
+          damping: 20
+        }}
+        style={{
+          transformStyle: 'preserve-3d',
+          transform: 'translateZ(0)'
+        }}
+      >
+        <div className="p-6 space-y-4" style={{ transform: 'translateZ(20px)' }}>
           {/* Header */}
           <div className="flex items-start gap-4">
-            <div className="p-3 rounded-lg bg-primary/10 border border-primary/20">
+            <motion.div 
+              className="p-3 rounded-lg bg-primary/10 border border-primary/20"
+              whileHover={{
+                rotate: [0, -15, 15, -15, 0],
+                scale: 1.1
+              }}
+              transition={{ duration: 0.5 }}
+            >
               <Icon className="w-6 h-6 text-primary" />
-            </div>
+            </motion.div>
             <div className="flex-1">
               <h3 className="text-lg font-bold text-foreground">{title}</h3>
               <p className="text-sm text-muted-foreground">{subtitle}</p>
@@ -141,7 +172,21 @@ export const InteractiveCard = ({
             </Dialog>
           )}
         </div>
-      </div>
+
+        {/* 3D depth indicator */}
+        <motion.div
+          className="absolute bottom-2 right-2 w-2 h-2 rounded-full bg-primary/40"
+          animate={{
+            scale: [1, 1.5, 1],
+            opacity: [0.4, 0.8, 0.4]
+          }}
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+      </motion.div>
     </motion.div>
   );
 };
