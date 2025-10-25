@@ -192,6 +192,33 @@ All colors MUST be HSL.
   html {
     -webkit-text-size-adjust: 100%;
     text-size-adjust: 100%;
+    /* iOS Safari viewport height fix */
+    height: -webkit-fill-available;
+  }
+  
+  /* Mobile viewport optimization */
+  body {
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+    overflow-x: hidden;
+  }
+  
+  /* Touch optimization */
+  button, a, [role="button"] {
+    -webkit-tap-highlight-color: hsl(var(--primary) / 0.3);
+    touch-action: manipulation;
+  }
+  
+  /* Prevent zoom on input focus (iOS) */
+  input, select, textarea {
+    font-size: max(16px, 1em);
+  }
+  
+  /* Smooth scrolling for better mobile UX */
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
   }
   
   @keyframes pulse-soft {

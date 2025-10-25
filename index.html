@@ -2,12 +2,17 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, minimum-scale=1.0, viewport-fit=cover, user-scalable=yes" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="AltruisticXAI" />
     <meta name="theme-color" content="#14b8a6" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0d9488" media="(prefers-color-scheme: dark)" />
+    <meta name="HandheldFriendly" content="true" />
+    <meta name="MobileOptimized" content="width" />
     <title>AltruisticXAI - Quantum-AI Consultancy | Practical Pilots, Fast</title>
     <meta name="description" content="AltruisticXAI is a quantum-AI consultancy that helps government, research, and enterprises deploy explainable AI and plan quantum-safe infrastructure. Practical pilots, fast.">
     <meta name="author" content="AltruisticXAI" />
@@ -33,12 +38,17 @@
     
     <!-- Critical CSS for above-the-fold content -->
     <style>
-      /* Prevent FOUC with minimal critical styles */
+      /* Prevent FOUC with minimal critical styles - Mobile First */
       *{box-sizing:border-box;margin:0;padding:0}
-      body{font-family:'Inter',system-ui,sans-serif;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased;background:#0a0a0a;color:#fafafa}
-      #root{min-height:100vh}
+      body{font-family:'Inter',system-ui,sans-serif;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;background:#0a0a0a;color:#fafafa;overflow-x:hidden}
+      #root{min-height:100vh;min-height:-webkit-fill-available}
+      html{height:-webkit-fill-available}
       .container{max-width:80rem;margin:0 auto;padding:0 1rem}
       @media(min-width:640px){body{font-size:16px}}
+      /* Touch optimization */
+      button,a{-webkit-tap-highlight-color:rgba(20,184,166,0.3);touch-action:manipulation}
+      /* Prevent zoom on input focus iOS */
+      input,select,textarea{font-size:16px!important}
     </style>
 
     

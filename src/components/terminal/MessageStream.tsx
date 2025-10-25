@@ -54,14 +54,14 @@ const MessageBubble = ({ message, index }: { message: Message; index: number }) 
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: 10 }}
       transition={{ duration: 0.15, delay: Math.min(index * 0.01, 0.3) }}
-      className="flex gap-2 sm:gap-3 py-1.5 sm:py-2 px-2 sm:px-4 hover:bg-white/5 rounded-sm transition-colors group"
+      className="flex gap-1.5 sm:gap-2 md:gap-3 py-1 sm:py-1.5 md:py-2 px-1 sm:px-2 md:px-4 hover:bg-white/5 rounded-sm transition-colors group"
     >
       <MessageIcon type={message.type} />
-      <div className={`flex-1 font-mono text-xs sm:text-sm whitespace-pre-wrap break-words ${getMessageStyle()}`}>
+      <div className={`flex-1 font-mono text-[10px] sm:text-xs md:text-sm whitespace-pre-wrap break-words ${getMessageStyle()}`}>
         {message.content}
       </div>
       {message.timestamp && (
-        <span className="text-xs opacity-0 group-hover:opacity-50 transition-opacity flex-shrink-0 text-terminal-text">
+        <span className="text-[10px] sm:text-xs opacity-0 group-hover:opacity-50 transition-opacity flex-shrink-0 text-terminal-text hidden sm:inline">
           {new Date(message.timestamp).toLocaleTimeString()}
         </span>
       )}
@@ -78,14 +78,14 @@ export const MessageStream = ({ messages }: MessageStreamProps) => {
 
   return (
     <div 
-      className="flex-1 overflow-y-auto p-2 sm:p-4 space-y-0.5 sm:space-y-1 bg-terminal-bg scrollbar-thin scrollbar-thumb-terminal-border scrollbar-track-transparent"
+      className="flex-1 overflow-y-auto p-2 sm:p-3 md:p-4 space-y-0.5 bg-terminal-bg scrollbar-thin scrollbar-thumb-terminal-border scrollbar-track-transparent"
     >
       <AnimatePresence mode="popLayout">
         {messages.map((message, index) => (
           <MessageBubble key={message.id || index} message={message} index={index} />
         ))}
       </AnimatePresence>
-      <div ref={bottomRef} className="h-4" />
+      <div ref={bottomRef} className="h-2 sm:h-4" />
     </div>
   );
 };

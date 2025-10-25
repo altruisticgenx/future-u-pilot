@@ -42,8 +42,8 @@ export const CommandInput = ({ onSubmit, disabled = false, placeholder = 'Type h
 
   return (
     <form onSubmit={handleSubmit} className="border-t border-terminal-border sticky bottom-0 backdrop-blur-sm bg-terminal-surface/95">
-      <div className="flex items-center gap-2 sm:gap-3 p-2 sm:p-4">
-        <Terminal className="h-4 w-4 sm:h-5 sm:w-5 flex-shrink-0 text-cmd-success" />
+      <div className="flex items-center gap-2 p-2 sm:p-3 md:p-4">
+        <Terminal className="h-3.5 w-3.5 sm:h-4 sm:w-4 md:h-5 md:w-5 flex-shrink-0 text-cmd-success" />
         <Input
           ref={inputRef}
           type="text"
@@ -52,7 +52,7 @@ export const CommandInput = ({ onSubmit, disabled = false, placeholder = 'Type h
           onKeyDown={handleKeyDown}
           disabled={disabled}
           placeholder={placeholder}
-          className="flex-1 border-0 bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 font-mono text-sm sm:text-base text-terminal-text placeholder:text-syntax-comment"
+          className="flex-1 border-0 bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 font-mono text-xs sm:text-sm md:text-base text-terminal-text placeholder:text-syntax-comment"
           autoComplete="off"
           spellCheck={false}
         />

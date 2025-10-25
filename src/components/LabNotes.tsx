@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Calendar, ArrowRight } from "lucide-react";
+import { Calendar } from "lucide-react";
 
 const experiments = [
   {
@@ -104,13 +104,12 @@ export const LabNotes = () => {
         >
           <Button
             variant="outline"
-            size="lg"
-            className="btn-3d-primary text-xs sm:text-sm"
-            onClick={() => window.location.href = "/storytelling"}
-            aria-label="View all experiments"
+            size="sm"
+            disabled
+            className="text-[10px] px-3 py-1.5 h-auto border-primary/30 text-muted-foreground cursor-not-allowed opacity-60 hover:bg-transparent"
+            aria-label="Coming soon"
           >
-            View All Experiments
-            <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
+            Coming Soon
           </Button>
         </motion.div>
       </div>
