@@ -43,12 +43,18 @@
       body{font-family:'Rajdhani','Inter',system-ui,sans-serif;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;background:#0a0a0a;color:#fafafa;overflow-x:hidden}
       #root{min-height:100vh;display:flex;flex-direction:column}
       .container{max-width:80rem;margin:0 auto;padding:0 1rem}
+      nav{position:fixed;top:0;left:0;right:0;z-index:50}
+      #hero-section{min-height:100vh;position:relative}
+      .flex{display:flex}.grid{display:grid}.hidden{display:none}
+      .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0}
       /* Content visibility optimization */
       section{content-visibility:auto;contain-intrinsic-size:auto 500px}
+      .glass-light{backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
       /* Initial loading state - cyberpunk spin */
       #root:empty::before{content:'';position:fixed;top:50%;left:50%;width:48px;height:48px;margin:-24px 0 0 -24px;border:3px solid #00ff9f;border-top-color:transparent;border-radius:50%;animation:spin 0.8s linear infinite;box-shadow:0 0 20px rgba(0,255,159,0.5)}
       @keyframes spin{to{transform:rotate(360deg)}}
       @media(min-width:640px){body{font-size:16px}}
+      @media(min-width:768px){body{font-size:18px}}
     </style>
 
     

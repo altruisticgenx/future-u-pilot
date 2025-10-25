@@ -1,0 +1,105 @@
+/**
+ * Critical CSS - Above the fold content only
+ * This file contains minimal styles needed for initial render
+ * All other styles are lazy-loaded
+ */
+
+/* Reset and base */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+/* Body and root */
+body{
+  font-family:'Rajdhani','Inter',system-ui,-apple-system,sans-serif;
+  font-size:14px;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  overflow-x:hidden;
+}
+
+#root{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+}
+
+/* Container - used in hero */
+.container{
+  max-width:80rem;
+  margin:0 auto;
+  padding:0 1rem;
+}
+
+/* Navigation (always visible) */
+nav{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  z-index:50;
+}
+
+/* Hero section (above the fold) */
+#hero-section{
+  min-height:100vh;
+  position:relative;
+}
+
+/* Core layout utilities */
+.flex{display:flex}
+.grid{display:grid}
+.hidden{display:none}
+
+/* Screen reader only (accessibility) */
+.sr-only{
+  position:absolute;
+  width:1px;
+  height:1px;
+  padding:0;
+  margin:-1px;
+  overflow:hidden;
+  clip:rect(0,0,0,0);
+  white-space:nowrap;
+  border-width:0;
+}
+
+/* Performance optimizations */
+section{
+  content-visibility:auto;
+  contain-intrinsic-size:auto 500px;
+}
+
+/* Glass effect for nav */
+.glass-light{
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+}
+
+/* Loading spinner (critical for initial load) */
+#root:empty::before{
+  content:'';
+  position:fixed;
+  top:50%;
+  left:50%;
+  width:48px;
+  height:48px;
+  margin:-24px 0 0 -24px;
+  border:3px solid #00ff9f;
+  border-top-color:transparent;
+  border-radius:50%;
+  animation:spin 0.8s linear infinite;
+  box-shadow:0 0 20px rgba(0,255,159,0.5);
+}
+
+@keyframes spin{
+  to{transform:rotate(360deg)}
+}
+
+/* Responsive base font size */
+@media(min-width:640px){
+  body{font-size:16px}
+}
+
+@media(min-width:768px){
+  body{font-size:18px}
+}
