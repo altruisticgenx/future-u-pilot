@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Calendar, Sparkles, Video } from "lucide-react";
+import { Calendar, Sparkles } from "lucide-react";
 import { TypeAnimation } from 'react-type-animation';
 
 const terminalCommands = [
@@ -348,26 +348,6 @@ export const Hero = () => {
                 >
                   <Sparkles className="h-3 w-3 animate-rotate-3d" aria-hidden="true" />
                   About
-                </Button>
-              </motion.div>
-
-              <motion.div
-                variants={buttonVariants}
-                initial="initial"
-                animate="animate"
-                whileHover="hover"
-                whileTap="tap"
-                transition={prefersReducedMotion ? {} : { delay: 0.8 }}
-              >
-                <Button
-                  onClick={() => window.open('https://drive.google.com/file/d/1vuiN0NYOvToHIxkqjSSFFEYLitv-zyK7/view?usp=sharing', '_blank')}
-                  className="btn-3d-cyan text-[10px] sm:text-xs px-3 py-2 font-semibold w-full sm:w-auto min-w-[90px] flex items-center justify-center gap-1.5 shadow-lg"
-                  data-ph-capture-attribute-button-type="video"
-                  data-ph-capture-attribute-button-position="hero-tertiary"
-                  aria-label="Watch intro video"
-                >
-                  <Video className="h-3 w-3 animate-pulse-soft" aria-hidden="true" />
-                  Video
                 </Button>
               </motion.div>
             </motion.div>

@@ -288,7 +288,7 @@ const About = () => {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-3 justify-center">
                   <motion.button
-                    onClick={() => window.location.href = "/#contact"}
+                    onClick={() => window.open("https://www.instagram.com/paquantumpubliclobbygroup?igsh=b2E5MTJna2MxbDZ2", "_blank")}
                     className="btn-3d-primary px-6 py-2.5 rounded-lg font-semibold text-xs sm:text-sm"
                     whileHover={{ scale: 1.03, y: -2 }}
                     whileTap={{ scale: 0.97 }}
