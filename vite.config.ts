@@ -25,6 +25,7 @@ export default defineConfig(({ mode }) => ({
           'vendor-forms': ['react-hook-form', 'zod'],
           'vendor-query': ['@tanstack/react-query'],
           'vendor-supabase': ['@supabase/supabase-js'],
+          'posthog': ['posthog-js'],
         },
       },
     },
@@ -35,8 +36,14 @@ export default defineConfig(({ mode }) => ({
         drop_console: true,
         drop_debugger: true,
         pure_funcs: ['console.log', 'console.info', 'console.debug'],
+        passes: 2,
+      },
+      mangle: {
+        safari10: true,
       },
     },
     cssMinify: true,
+    target: 'es2020',
+    sourcemap: false,
   },
 }));

@@ -29,7 +29,21 @@ rootElement.innerHTML = `
 // Render app immediately for fast TTI
 createRoot(rootElement).render(<App />);
 
-// Defer analytics initialization until after app is interactive
-requestIdleCallback(() => {
-  import("./lib/posthog").then(({ initPostHog }) => initPostHog());
-}, { timeout: 2000 });
+// Defer analytics initialization until user interacts or scrolls
+let analyticsLoaded = false;
+const loadAnalytics = () => {
+  if (analyticsLoaded) return;
+  analyticsLoaded = true;
+  
+  requestIdleCallback(() => {
+    import("./lib/posthog").then(({ initPostHog }) => initPostHog());
+  }, { timeout: 3000 });
+};
+
+// Load on scroll, click, or after delay
+window.addEventListener('scroll', loadAnalytics, { once: true, passive: true });
+window.addEventListener('click', loadAnalytics, { once: true, passive: true });
+window.addEventListener('touchstart', loadAnalytics, { once: true, passive: true });
+
+// Fallback: load after 5 seconds if no interaction
+setTimeout(loadAnalytics, 5000);

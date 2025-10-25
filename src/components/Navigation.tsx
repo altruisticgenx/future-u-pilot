@@ -1,13 +1,11 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ChevronDown, LogOut, User as UserIcon } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useAuth } from "@/hooks/useAuth";
 import { useNavigate } from "react-router-dom";
+
 export const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
-  const { user, signOut } = useAuth();
   const navigate = useNavigate();
   const navItems = [{
     label: "Home",
@@ -67,32 +65,14 @@ export const Navigation = () => {
                 {item.label}
               </motion.button>)}
             
-            {/* Auth Buttons */}
-            {user ? (
-              <div className="flex items-center gap-2 ml-2 pl-2 border-l border-border/50">
-                <div className="flex items-center gap-2 px-3 py-2 text-xs text-muted-foreground">
-                  <UserIcon className="h-4 w-4" />
-                  {user.email?.split('@')[0]}
-                </div>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => signOut()}
-                  className="text-xs"
-                >
-                  <LogOut className="h-3 w-3 mr-1" />
-                  Logout
-                </Button>
-              </div>
-            ) : (
-              <Button
-                size="sm"
-                onClick={() => navigate("/auth")}
-                className="ml-2 text-xs"
-              >
-                Login
-              </Button>
-            )}
+            {/* Auth Button */}
+            <Button
+              size="sm"
+              onClick={() => navigate("/auth")}
+              className="ml-2 text-xs"
+            >
+              Login
+            </Button>
           </div>
 
           {/* Mobile Menu Button - Enhanced touch target */}
@@ -132,28 +112,10 @@ export const Navigation = () => {
                   {item.label}
                 </motion.button>)}
               
-              {/* Mobile Auth Buttons */}
-              {user ? (
-                <>
-                  <div className="flex items-center gap-2 px-4 py-3 text-sm text-muted-foreground border-t border-border/50 mt-2 pt-4">
-                    <UserIcon className="h-4 w-4" />
-                    {user.email}
-                  </div>
-                  <Button
-                    variant="outline"
-                    className="w-full min-h-[44px]"
-                    onClick={() => signOut()}
-                    aria-label="Sign out of your account"
-                  >
-                    <LogOut className="h-4 w-4 mr-2" aria-hidden="true" />
-                    Logout
-                  </Button>
-                </>
-              ) : (
-                <Button className="w-full mt-4 min-h-[44px]" onClick={() => navigate("/auth")} aria-label="Login or Sign Up">
-                  Login / Sign Up
-                </Button>
-              )}
+              {/* Mobile Auth Button */}
+              <Button className="w-full mt-4 min-h-[44px]" onClick={() => navigate("/auth")} aria-label="Login or Sign Up">
+                Login / Sign Up
+              </Button>
             </div>
           </motion.div>}
       </AnimatePresence>
