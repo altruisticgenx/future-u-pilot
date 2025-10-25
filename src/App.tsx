@@ -4,14 +4,14 @@ import { lazy, Suspense } from "react";
 import { ThemeProvider } from "next-themes";
 
 // Eager load homepage for fast FCP
-import Storytelling from "./pages/Storytelling";
+import Index from "./pages/Index";
 
 // Lazy load non-critical UI components
 const Toaster = lazy(() => import("@/components/ui/toaster").then(m => ({ default: m.Toaster })));
 const Sonner = lazy(() => import("@/components/ui/sonner").then(m => ({ default: m.Toaster })));
 
 // Lazy load non-critical routes to reduce initial bundle
-const Index = lazy(() => import("./pages/Index"));
+const Storytelling = lazy(() => import("./pages/Storytelling"));
 const About = lazy(() => import("./pages/About"));
 const FAQ = lazy(() => import("./pages/FAQ"));
 const Terminal = lazy(() => import("./pages/Terminal"));
@@ -60,8 +60,8 @@ const App = () => (
       <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div></div>}>
         <main id="main-content">
           <Routes>
-            <Route path="/" element={<Storytelling />} />
-            <Route path="/projects" element={<Index />} />
+            <Route path="/" element={<Index />} />
+            <Route path="/storytelling" element={<Storytelling />} />
             <Route path="/about" element={<About />} />
             <Route path="/faq" element={<FAQ />} />
             <Route path="/auth" element={<QueryWrapper><Auth /></QueryWrapper>} />
