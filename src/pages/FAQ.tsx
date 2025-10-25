@@ -97,11 +97,27 @@ const faqData: FAQItem[] = [
   }
 ];
 
-const categoryColors: Record<FAQCategory, string> = {
-  security: "error",
-  workforce: "info",
-  benefits: "success",
-  implementation: "accent"
+const categoryConfig: Record<FAQCategory, { bgClass: string; textClass: string; borderClass: string }> = {
+  security: { 
+    bgClass: "bg-destructive/10", 
+    textClass: "text-destructive", 
+    borderClass: "border-destructive/30" 
+  },
+  workforce: { 
+    bgClass: "bg-primary/10", 
+    textClass: "text-primary", 
+    borderClass: "border-primary/30" 
+  },
+  benefits: { 
+    bgClass: "bg-accent/10", 
+    textClass: "text-accent", 
+    borderClass: "border-accent/30" 
+  },
+  implementation: { 
+    bgClass: "bg-secondary/10", 
+    textClass: "text-secondary", 
+    borderClass: "border-secondary/30" 
+  }
 };
 
 const categoryLabels: Record<FAQCategory, string> = {
@@ -157,12 +173,12 @@ export default function FAQ() {
           <motion.header
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-center mb-8 sm:mb-12 p-6 sm:p-8 lg:p-10 glass-light rounded-lg border border-primary/20"
+            className="text-center mb-8 sm:mb-12 p-6 sm:p-8 lg:p-10 glass-light rounded-lg border border-primary/20 backdrop-blur-md"
           >
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-primary mb-3 tracking-tight uppercase">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold bg-gradient-hero bg-clip-text text-transparent mb-3 tracking-tight">
               Pennsylvania Quantum Initiative
             </h1>
-            <p className="text-base sm:text-lg font-bold text-foreground/90 tracking-wider uppercase">
+            <p className="text-base sm:text-lg font-bold text-foreground/90 tracking-wider">
               Frequently Asked Questions
             </p>
           </motion.header>
@@ -221,7 +237,7 @@ export default function FAQ() {
               {filteredFAQs.length > 0 ? (
                 filteredFAQs.map((faq, index) => {
                   const isExpanded = expandedItems.has(index);
-                  const categoryColor = categoryColors[faq.category];
+                  const categoryStyle = categoryConfig[faq.category];
 
                   return (
                     <motion.div
@@ -242,7 +258,7 @@ export default function FAQ() {
                         <div className="flex items-start justify-between gap-3">
                           <div className="flex-1">
                             <span
-                              className={`inline-block px-3 py-1 rounded text-xs font-black uppercase tracking-wider mb-2 border bg-${categoryColor}/10 text-${categoryColor} border-${categoryColor}/30`}
+                              className={`inline-block px-3 py-1 rounded text-xs font-black uppercase tracking-wider mb-2 border ${categoryStyle.bgClass} ${categoryStyle.textClass} ${categoryStyle.borderClass}`}
                             >
                               {categoryLabels[faq.category]}
                             </span>

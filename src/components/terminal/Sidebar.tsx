@@ -71,42 +71,32 @@ export const Sidebar = ({ currentProjectId, onProjectSelect, onNewProject }: Sid
 
   return (
     <div 
-      className="w-full h-full flex flex-col"
-      style={{ 
-        backgroundColor: 'hsl(var(--terminal-surface))',
-        borderColor: 'hsl(var(--terminal-border))'
-      }}
+      className="w-full h-full flex flex-col bg-terminal-surface border-terminal-border"
     >
-      <div className="p-3 sm:p-4 border-b" style={{ borderColor: 'hsl(var(--terminal-border))' }}>
+      <div className="p-3 sm:p-4 border-b border-terminal-border">
         <div className="flex items-center gap-2 mb-3">
-          <Activity className="h-4 w-4 sm:h-5 sm:w-5" style={{ color: 'hsl(var(--cmd-success))' }} />
-          <h2 className="text-base sm:text-lg font-semibold" style={{ color: 'hsl(var(--terminal-text))' }}>
+          <Activity className="h-4 w-4 sm:h-5 sm:w-5 text-cmd-success" />
+          <h2 className="text-base sm:text-lg font-semibold text-terminal-text">
             Projects
           </h2>
         </div>
         
         <div className="flex gap-2 mb-3">
           <div className="relative flex-1">
-            <Search className="absolute left-2 top-2.5 h-3.5 w-3.5 sm:h-4 sm:w-4 opacity-50" style={{ color: 'hsl(var(--terminal-text))' }} />
+            <Search className="absolute left-2 top-2.5 h-3.5 w-3.5 sm:h-4 sm:w-4 text-terminal-text/50" />
             <Input
-              placeholder="Search..."
+              placeholder="Search projects..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-7 sm:pl-8 bg-transparent border text-sm"
-              style={{ 
-                borderColor: 'hsl(var(--terminal-border))',
-                color: 'hsl(var(--terminal-text))'
-              }}
+              className="pl-7 sm:pl-8 bg-transparent border-terminal-border text-terminal-text text-sm placeholder:text-terminal-text/40"
+              aria-label="Search projects"
             />
           </div>
           <Button
             size="icon"
             onClick={onNewProject}
-            className="flex-shrink-0 h-9 w-9"
-            style={{ 
-              backgroundColor: 'hsl(var(--cmd-success))',
-              color: 'hsl(var(--terminal-bg))'
-            }}
+            className="flex-shrink-0 h-9 w-9 bg-cmd-success text-terminal-bg hover:bg-cmd-success/90"
+            aria-label="Create new project"
           >
             <Plus className="h-4 w-4" />
           </Button>
@@ -116,11 +106,11 @@ export const Sidebar = ({ currentProjectId, onProjectSelect, onNewProject }: Sid
       <ScrollArea className="flex-1">
         <div className="p-2 space-y-1">
           {loading ? (
-            <div className="p-4 text-center text-xs sm:text-sm" style={{ color: 'hsl(var(--terminal-text))', opacity: 0.5 }}>
+            <div className="p-4 text-center text-xs sm:text-sm text-terminal-text/50">
               Loading projects...
             </div>
           ) : filteredProjects.length === 0 ? (
-            <div className="p-4 text-center text-xs sm:text-sm" style={{ color: 'hsl(var(--terminal-text))', opacity: 0.5 }}>
+            <div className="p-4 text-center text-xs sm:text-sm text-terminal-text/50">
               {searchQuery ? 'No matching projects' : 'No projects yet'}
             </div>
           ) : (
@@ -131,30 +121,27 @@ export const Sidebar = ({ currentProjectId, onProjectSelect, onNewProject }: Sid
                   key={project.id}
                   onClick={() => onProjectSelect(project)}
                   whileHover={{ x: 4 }}
-                  className="w-full text-left p-2.5 sm:p-3 rounded-lg transition-colors"
-                  style={{
-                    backgroundColor: isActive ? 'hsl(var(--terminal-border))' : 'transparent',
-                  }}
+                  className={`w-full text-left p-2.5 sm:p-3 rounded-lg transition-all hover:bg-terminal-border/50 ${
+                    isActive ? 'bg-terminal-border' : ''
+                  }`}
+                  aria-pressed={isActive}
+                  aria-label={`Select project ${project.name}`}
                 >
                   <div className="flex items-start gap-2 sm:gap-3">
                     {isActive ? (
-                      <FolderOpen className="h-4 w-4 sm:h-5 sm:w-5 flex-shrink-0 mt-0.5" style={{ color: 'hsl(var(--cmd-success))' }} />
+                      <FolderOpen className="h-4 w-4 sm:h-5 sm:w-5 flex-shrink-0 mt-0.5 text-cmd-success" />
                     ) : (
-                      <Folder className="h-4 w-4 sm:h-5 sm:w-5 flex-shrink-0 mt-0.5" style={{ color: 'hsl(var(--terminal-text))', opacity: 0.5 }} />
+                      <Folder className="h-4 w-4 sm:h-5 sm:w-5 flex-shrink-0 mt-0.5 text-terminal-text/50" />
                     )}
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center gap-1.5 sm:gap-2 mb-1">
-                        <p 
-                          className="font-mono text-xs sm:text-sm font-medium truncate"
-                          style={{ color: 'hsl(var(--terminal-text))' }}
-                        >
+                        <p className="font-mono text-xs sm:text-sm font-medium truncate text-terminal-text">
                           {project.name}
                         </p>
                         <Badge 
                           variant="outline" 
-                          className="text-[10px] sm:text-xs flex-shrink-0 px-1 sm:px-2"
+                          className="text-[10px] sm:text-xs flex-shrink-0 px-1 sm:px-2 border-current"
                           style={{ 
-                            borderColor: getStatusColor(project.status),
                             color: getStatusColor(project.status)
                           }}
                         >
@@ -162,10 +149,7 @@ export const Sidebar = ({ currentProjectId, onProjectSelect, onNewProject }: Sid
                         </Badge>
                       </div>
                       {project.description && (
-                        <p 
-                          className="text-[10px] sm:text-xs truncate"
-                          style={{ color: 'hsl(var(--terminal-text))', opacity: 0.6 }}
-                        >
+                        <p className="text-[10px] sm:text-xs truncate text-terminal-text/60">
                           {project.description}
                         </p>
                       )}
@@ -174,11 +158,7 @@ export const Sidebar = ({ currentProjectId, onProjectSelect, onNewProject }: Sid
                           {project.tags.slice(0, 3).map((tag) => (
                             <span 
                               key={tag}
-                              className="text-[10px] sm:text-xs px-1 sm:px-1.5 py-0.5 rounded"
-                              style={{ 
-                                backgroundColor: 'hsl(var(--terminal-bg))',
-                                color: 'hsl(var(--syntax-keyword))'
-                              }}
+                              className="text-[10px] sm:text-xs px-1 sm:px-1.5 py-0.5 rounded bg-terminal-bg text-syntax-keyword"
                             >
                               {tag}
                             </span>
