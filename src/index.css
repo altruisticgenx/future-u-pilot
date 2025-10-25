@@ -15,27 +15,27 @@ All colors MUST be HSL.
     --base: 200 20% 98%;
     --base-content: 210 20% 15%;
 
-    /* Primary Color Scale - Teal */
-    --primary-100: 190 100% 95%;
-    --primary-200: 190 95% 88%;
-    --primary-300: 190 90% 78%;
-    --primary: 185 85% 45%;
-    --primary-foreground: 180 100% 99%;
-    --primary-glow: 185 90% 70%;
+    /* Primary Color Scale - Neon Green (Cyberpunk) */
+    --primary-100: 132 100% 95%;
+    --primary-200: 132 95% 85%;
+    --primary-300: 132 90% 75%;
+    --primary: 132 100% 64%;
+    --primary-foreground: 121 31% 98%;
+    --primary-glow: 132 100% 75%;
 
-    /* Secondary Color Scale - Ocean Blue */
-    --secondary-100: 195 85% 95%;
-    --secondary-200: 195 75% 85%;
-    --secondary-300: 195 70% 70%;
-    --secondary: 195 65% 55%;
-    --secondary-foreground: 195 100% 10%;
+    /* Secondary Color Scale - Magenta/Pink (Cyberpunk) */
+    --secondary-100: 302 100% 95%;
+    --secondary-200: 302 90% 85%;
+    --secondary-300: 302 80% 70%;
+    --secondary: 302 100% 55%;
+    --secondary-foreground: 308 7% 97%;
 
-    /* Accent Color Scale - Gold */
-    --accent-100: 45 100% 95%;
-    --accent-200: 45 100% 85%;
-    --accent-300: 45 100% 70%;
-    --accent: 43 96% 56%;
-    --accent-foreground: 195 100% 10%;
+    /* Accent Color Scale - Orange (Cyberpunk) */
+    --accent-100: 27 100% 95%;
+    --accent-200: 27 95% 85%;
+    --accent-300: 27 90% 75%;
+    --accent: 27 100% 57%;
+    --accent-foreground: 17 7% 97%;
 
     /* Neutral Color Scale */
     --neutral-100: 220 15% 95%;
@@ -72,28 +72,28 @@ All colors MUST be HSL.
     --error: 0 84% 60%;
     --error-content: 0 100% 15%;
     
-    /* Ocean Gradient Colors - Deep to Bright Teal */
-    --ocean-deep: 195 85% 16%;
-    --ocean-mid: 190 84% 29%;
-    --ocean-bright: 173 80% 40%;
+    /* Cyberpunk Gradient Colors - Green to Magenta to Orange */
+    --ocean-deep: 132 100% 50%;
+    --ocean-mid: 302 100% 55%;
+    --ocean-bright: 27 100% 70%;
     
-    /* Terminal Colors - Teal Ocean */
-    --terminal-bg: 195 100% 8%;
-    --terminal-surface: 195 95% 12%;
-    --terminal-border: 195 60% 25%;
-    --terminal-text: 180 30% 85%;
+    /* Terminal Colors - Cyberpunk */
+    --terminal-bg: 266 60% 12%;
+    --terminal-surface: 266 50% 18%;
+    --terminal-border: 132 80% 55%;
+    --terminal-text: 255 10% 92%;
 
-    /* Command Colors */
-    --cmd-success: 160 84% 39%;
-    --cmd-error: 0 72% 51%;
-    --cmd-info: 185 90% 55%;
-    --cmd-warning: 43 96% 56%;
+    /* Command Colors - Cyberpunk */
+    --cmd-success: 132 100% 64%;
+    --cmd-error: 25 100% 63%;
+    --cmd-info: 260 100% 62%;
+    --cmd-warning: 86 100% 79%;
 
-    /* Syntax Highlighting */
-    --syntax-keyword: 185 90% 55%;
-    --syntax-string: 160 84% 39%;
-    --syntax-number: 43 96% 56%;
-    --syntax-comment: 195 30% 50%;
+    /* Syntax Highlighting - Cyberpunk */
+    --syntax-keyword: 132 100% 64%;
+    --syntax-string: 302 100% 55%;
+    --syntax-number: 27 100% 57%;
+    --syntax-comment: 266 40% 60%;
 
     /* Core UI Colors */
     --background: 200 20% 98%;
@@ -181,14 +181,14 @@ All colors MUST be HSL.
                           0 8px 16px hsl(var(--primary) / 0.12),
                           inset 0 -2px 4px hsl(0 0% 0% / 0.15);
 
-    /* Gradients - Deep Ocean to Teal */
-    --gradient-start: 195 100% 20%;
-    --gradient-mid: 185 85% 45%;
-    --gradient-end: 175 80% 60%;
+    /* Gradients - Cyberpunk Green to Magenta to Orange */
+    --gradient-start: 132 100% 64%;
+    --gradient-mid: 302 100% 55%;
+    --gradient-end: 27 100% 57%;
 
-    /* Glassmorphism - Teal Glass */
-    --glass-bg: 185 85% 45% / 0.08;
-    --glass-border: 185 85% 45% / 0.2;
+    /* Glassmorphism - Cyberpunk Green Glass */
+    --glass-bg: 132 100% 64% / 0.08;
+    --glass-border: 132 100% 64% / 0.2;
 
     /* Sidebar Variables */
     --sidebar-background: 195 30% 97%;
@@ -251,27 +251,27 @@ All colors MUST be HSL.
     --base: 195 100% 5%;
     --base-content: 210 20% 95%;
 
-    /* Primary Color Scale - Dark */
-    --primary-100: 190 85% 20%;
-    --primary-200: 190 85% 35%;
-    --primary-300: 190 85% 50%;
-    --primary: 185 90% 55%;
-    --primary-foreground: 195 100% 5%;
-    --primary-glow: 185 100% 75%;
+    /* Primary Color Scale - Dark Neon Green */
+    --primary-100: 132 100% 25%;
+    --primary-200: 132 100% 40%;
+    --primary-300: 132 100% 55%;
+    --primary: 132 100% 64%;
+    --primary-foreground: 266 60% 10%;
+    --primary-glow: 132 100% 75%;
 
-    /* Secondary Color Scale - Dark */
-    --secondary-100: 195 60% 20%;
-    --secondary-200: 195 60% 30%;
-    --secondary-300: 195 60% 40%;
-    --secondary: 195 60% 40%;
-    --secondary-foreground: 180 40% 95%;
+    /* Secondary Color Scale - Dark Magenta */
+    --secondary-100: 302 100% 25%;
+    --secondary-200: 302 100% 40%;
+    --secondary-300: 302 100% 50%;
+    --secondary: 302 100% 55%;
+    --secondary-foreground: 255 7% 97%;
 
-    /* Accent Color Scale - Dark */
-    --accent-100: 45 100% 30%;
-    --accent-200: 45 100% 45%;
-    --accent-300: 45 100% 60%;
-    --accent: 43 96% 56%;
-    --accent-foreground: 195 100% 5%;
+    /* Accent Color Scale - Dark Orange */
+    --accent-100: 27 100% 25%;
+    --accent-200: 27 100% 40%;
+    --accent-300: 27 100% 50%;
+    --accent: 27 100% 57%;
+    --accent-foreground: 266 60% 10%;
 
     /* Neutral Color Scale - Dark */
     --neutral-100: 220 15% 25%;
@@ -308,23 +308,23 @@ All colors MUST be HSL.
     --error: 0 84% 60%;
     --error-content: 0 100% 95%;
     
-    /* Terminal Colors - Dark Ocean */
-    --terminal-bg: 195 100% 5%;
-    --terminal-surface: 195 90% 8%;
-    --terminal-border: 195 60% 18%;
-    --terminal-text: 180 40% 80%;
+    /* Terminal Colors - Dark Cyberpunk */
+    --terminal-bg: 266 60% 8%;
+    --terminal-surface: 266 55% 12%;
+    --terminal-border: 132 90% 50%;
+    --terminal-text: 255 10% 85%;
 
-    /* Command Colors (same) */
-    --cmd-success: 160 84% 39%;
-    --cmd-error: 0 72% 51%;
-    --cmd-info: 185 90% 55%;
-    --cmd-warning: 43 96% 56%;
+    /* Command Colors - Dark Cyberpunk */
+    --cmd-success: 132 100% 64%;
+    --cmd-error: 25 100% 63%;
+    --cmd-info: 260 100% 62%;
+    --cmd-warning: 86 100% 79%;
 
-    /* Syntax Highlighting (same) */
-    --syntax-keyword: 185 90% 55%;
-    --syntax-string: 160 84% 39%;
-    --syntax-number: 43 96% 56%;
-    --syntax-comment: 195 30% 50%;
+    /* Syntax Highlighting - Dark Cyberpunk */
+    --syntax-keyword: 132 100% 64%;
+    --syntax-string: 302 100% 55%;
+    --syntax-number: 27 100% 57%;
+    --syntax-comment: 266 30% 65%;
 
     /* Core UI Colors - Dark */
     --background: 195 100% 5%;
@@ -349,14 +349,14 @@ All colors MUST be HSL.
                           0 8px 16px hsl(var(--primary) / 0.2),
                           inset 0 -2px 4px hsl(0 0% 0% / 0.4);
 
-    /* Gradients - Deep Ocean to Bright Teal */
-    --gradient-start: 195 100% 25%;
-    --gradient-mid: 185 90% 50%;
-    --gradient-end: 175 85% 65%;
+    /* Gradients - Dark Cyberpunk Green to Magenta to Orange */
+    --gradient-start: 132 100% 50%;
+    --gradient-mid: 302 100% 50%;
+    --gradient-end: 27 100% 60%;
 
-    /* Glassmorphism - Dark Teal Glass */
-    --glass-bg: 185 90% 55% / 0.12;
-    --glass-border: 185 90% 55% / 0.25;
+    /* Glassmorphism - Dark Cyberpunk Green Glass */
+    --glass-bg: 132 100% 64% / 0.12;
+    --glass-border: 132 100% 64% / 0.25;
 
     /* Sidebar Variables */
     --sidebar-background: 195 90% 8%;
