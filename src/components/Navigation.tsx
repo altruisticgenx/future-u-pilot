@@ -4,7 +4,6 @@ import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { ThemeToggle } from "@/components/ThemeToggle";
-import { AIModeToggle } from "@/components/AIModeToggle";
 
 export const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -107,9 +106,6 @@ export const Navigation = () => {
               <span className="relative z-10">{item.label}</span>
             </motion.button>)}
             
-            {/* AI Mode Toggle */}
-            <AIModeToggle />
-            
             {/* Theme Toggle with 3D effect */}
             <motion.div
               whileHover={{ scale: 1.1, rotateZ: 180 }}
@@ -211,20 +207,12 @@ export const Navigation = () => {
                   transition={{ delay: 0.25 }}
                   className="flex-shrink-0"
                 >
-                  <AIModeToggle />
-                </motion.div>
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.3 }}
-                  className="flex-shrink-0"
-                >
                   <ThemeToggle />
                 </motion.div>
                 <motion.div
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.35 }}
+                  transition={{ delay: 0.3 }}
                   className="flex-1"
                 >
                   <Button 
