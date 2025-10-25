@@ -13,95 +13,95 @@ const stakeholders = [
     icon: GraduationCap,
     title: "Students",
     subtitle: "Tomorrow's Tech Workforce",
-    description: "Making quantum tech jobs accessible from high school through college. Learn coding for quantum computers without needing a PhD. Keep Pennsylvania talent in Pennsylvania.",
+    description: "Train the next generation through hands-on quantum and AI projects. Access cloud-based quantum APIs (Qiskit, Cirq) and generative AI tools to build real-world solutions—no PhD required.",
     highlights: [
-      "Career paths anyone can follow",
-      "Learn quantum without advanced degrees",
-      "Good jobs close to home"
+      "Build with real quantum APIs (Qiskit/Cirq)",
+      "Open-source sandbox environments",
+      "Career pipeline to PA quantum companies"
     ],
     detailedContent: `
       <h3>Building the Quantum Workforce</h3>
-      <p>Pennsylvania has a unique opportunity to train the next generation of quantum engineers, researchers, and technicians. Our programs bridge the gap between traditional education and emerging quantum technologies.</p>
+      <p>Students gain hands-on experience with non-proprietary cloud-based quantum APIs and public-facing generative AI tools, creating practical demos and staying local after graduation.</p>
       <h4>What We Offer:</h4>
       <ul>
-        <li><strong>High School Programs:</strong> Introduction to quantum computing concepts without requiring advanced physics</li>
-        <li><strong>Community College Tracks:</strong> Quantum technician certification programs with industry partnerships</li>
-        <li><strong>University Partnerships:</strong> Research opportunities and internships with quantum labs</li>
-        <li><strong>Career Placement:</strong> Direct pipeline to Pennsylvania-based quantum companies</li>
+        <li><strong>Open Quantum Sandbox:</strong> Build circuits using Qiskit/Cirq APIs and run experiments on real quantum processors</li>
+        <li><strong>AI Energy Challenge:</strong> Optimize simulated grids using real-time PJM Interconnection data feeds</li>
+        <li><strong>Community Programs:</strong> High school to college pathways with industry certifications</li>
+        <li><strong>Career Placement:</strong> Direct pipeline to Pennsylvania quantum and AI companies</li>
       </ul>
-      <p>Investment in quantum education today means Pennsylvania-grown talent staying in Pennsylvania tomorrow.</p>
+      <p>Students build real solutions, not just theory—keeping Pennsylvania talent in Pennsylvania.</p>
     `,
     color: "from-blue-500/15 via-cyan-500/10 to-blue-500/15"
   },
   {
     icon: Zap,
     title: "Energy",
-    subtitle: "Smarter Grids & Security",
-    description: "Quantum computers help power companies manage electricity better and protect against hackers. Early tests show 22% energy savings—meaning cleaner air and lower bills.",
+    subtitle: "Smarter Grids & Quantum Security",
+    description: "Using PJM Interconnection Data APIs and smart meter feeds to train AI for grid optimization. Early pilots show 22% energy savings and quantum-safe intrusion detection for critical infrastructure.",
     highlights: [
-      "22% energy savings in real tests",
-      "Protection from future cyber attacks",
-      "Better control of power grids"
+      "22% energy savings in pilot quantum grid projects",
+      "Real-time PJM data integration for load balancing",
+      "Quantum-safe cybersecurity for power networks"
     ],
     detailedContent: `
       <h3>Quantum-Enhanced Energy Systems</h3>
-      <p>The energy sector faces unprecedented challenges: aging infrastructure, renewable integration, and cybersecurity threats. Quantum computing offers practical solutions today.</p>
+      <p>Research uses real-world network topology data and encrypted control plane APIs to test quantum-safe intrusion detection systems while optimizing renewable energy distribution.</p>
       <h4>Real-World Applications:</h4>
       <ul>
-        <li><strong>Grid Optimization:</strong> Quantum algorithms reduce waste by 22% in pilot studies</li>
-        <li><strong>Predictive Maintenance:</strong> Quantum sensors detect equipment failures before they happen</li>
-        <li><strong>Post-Quantum Security:</strong> Protect critical infrastructure from quantum-enabled attacks</li>
-        <li><strong>Load Balancing:</strong> Real-time optimization of renewable energy distribution</li>
+        <li><strong>Grid Optimization:</strong> AI models trained on PJM Interconnection APIs reduce waste by 22%</li>
+        <li><strong>Predictive Outages:</strong> Smart meter data feeds predict equipment failures before they happen</li>
+        <li><strong>Post-Quantum Security:</strong> Encrypted APIs protect critical infrastructure from quantum threats</li>
+        <li><strong>Load Balancing:</strong> Real-time renewable energy distribution using live grid data</li>
       </ul>
-      <p>Pennsylvania's energy companies are already piloting these solutions with measurable ROI.</p>
+      <p>Pennsylvania energy companies pilot these solutions with measurable ROI and enhanced cybersecurity.</p>
     `,
     color: "from-yellow-500/15 via-orange-500/10 to-yellow-500/15"
   },
   {
     icon: Heart,
     title: "Healthcare",
-    subtitle: "Better Medicine, Faster",
-    description: "Quantum tech speeds up drug discovery by testing molecules virtually. Better sensors mean better diagnoses. The result? Medicine tailored to each person.",
+    subtitle: "10x Faster Drug Discovery",
+    description: "Analyzing anonymized PA Department of Health datasets and molecular simulation data with HIPAA-compliant FHIR APIs. Result: 10x faster drug discovery simulations and personalized treatments.",
     highlights: [
-      "Discover new drugs faster",
-      "More accurate diagnoses",
-      "Treatment plans just for you"
+      "10x faster drug discovery simulations at PA hospitals",
+      "HIPAA-compliant data pipelines with FHIR APIs",
+      "Personalized treatment using genetic + clinical data"
     ],
     detailedContent: `
       <h3>Quantum Healthcare Revolution</h3>
-      <p>Healthcare is data-rich but insight-poor. Quantum computing and quantum sensing unlock patterns invisible to classical systems, accelerating discovery and improving patient outcomes.</p>
+      <p>Develop HIPAA-compliant data pipelines and secure FHIR APIs to safely integrate clinical trial data with quantum simulation environments, unlocking patterns invisible to classical systems.</p>
       <h4>Key Benefits:</h4>
       <ul>
-        <li><strong>Drug Discovery:</strong> Simulate molecular interactions 1000x faster than traditional methods</li>
-        <li><strong>Personalized Medicine:</strong> Analyze genetic data to tailor treatments to individual patients</li>
-        <li><strong>Early Detection:</strong> Quantum sensors identify biomarkers years before symptoms appear</li>
-        <li><strong>Clinical Trials:</strong> Optimize trial design and reduce time-to-market for new therapies</li>
+        <li><strong>Drug Discovery:</strong> Analyze anonymized PA Dept of Health data + molecular simulations 10x faster</li>
+        <li><strong>Personalized Medicine:</strong> Integrate genetic data via secure FHIR APIs to tailor treatments</li>
+        <li><strong>Early Detection:</strong> Quantum sensors identify disease biomarkers years before symptoms</li>
+        <li><strong>Clinical Trials:</strong> Anonymized public registries optimize trial design and accelerate therapies</li>
       </ul>
-      <p>Pennsylvania hospitals and research institutions are pioneering quantum healthcare applications.</p>
+      <p>Pennsylvania hospitals test predictive patient care models using real health data and quantum simulations.</p>
     `,
     color: "from-red-500/15 via-pink-500/10 to-red-500/15"
   },
   {
     icon: Scale,
-    title: "Government",
-    subtitle: "Policies That Work",
-    description: "We help lawmakers create practical rules and guidelines that make Pennsylvania a leader in quantum tech while keeping the public safe and informed.",
+    title: "Policy & Governance",
+    subtitle: "Evidence-Backed Guidelines",
+    description: "AI tools analyze federal PQC mandates (NIST standards) against current state IT infrastructure. Use GeoSpatial APIs with AI to model equitable deployment and regional economic impact.",
     highlights: [
-      "Advisory boards with real experts",
-      "Clear ethics rules everyone understands",
-      "Economic independence, not reliance"
+      "Rapid regulatory compliance assessment (PQC/NIST)",
+      "AI-driven policy text analysis tools",
+      "GeoSpatial APIs model economic & equity impact"
     ],
     detailedContent: `
       <h3>Quantum Policy & Governance</h3>
-      <p>Effective quantum policy requires balancing innovation with security, economic growth with ethical considerations. We help policymakers navigate this complex landscape.</p>
+      <p>Build AI tools that analyze new federal post-quantum cryptography (PQC) mandates against current state infrastructure policies, helping lawmakers craft practical, evidence-based guidelines.</p>
       <h4>Our Approach:</h4>
       <ul>
-        <li><strong>Advisory Councils:</strong> Connect lawmakers with quantum experts for evidence-based policy</li>
+        <li><strong>Compliance Analysis:</strong> AI assesses NIST quantum-safe standards against PA IT systems</li>
+        <li><strong>Policy Simulation Labs:</strong> Model economic impacts using GeoSpatial APIs (Census/Mapping data)</li>
         <li><strong>Ethical Frameworks:</strong> Clear guidelines for responsible quantum development</li>
-        <li><strong>Economic Strategy:</strong> Build quantum industries in Pennsylvania, not offshore dependencies</li>
-        <li><strong>Public Education:</strong> Transparent communication about quantum benefits and risks</li>
+        <li><strong>Regional Equity:</strong> AI models ensure equitable tech deployment across Pennsylvania</li>
       </ul>
-      <p>Pennsylvania can lead the nation in quantum governance—practical, ethical, and economically sound.</p>
+      <p>Pennsylvania leads in quantum governance—practical, ethical, and economically sound with data-driven insights.</p>
     `,
     color: "from-purple-500/15 via-indigo-500/10 to-purple-500/15"
   }
@@ -218,14 +218,33 @@ const About = () => {
             </div>
             
             <div className="space-y-3 text-xs sm:text-sm text-muted-foreground leading-relaxed">
+              <h3 className="text-base sm:text-lg font-bold text-foreground mb-2">What We Do:</h3>
               <p>
-                Pennsylvania is ready to lead. We're connecting students to careers, companies to efficiency, healthcare to breakthroughs, and policy to practice. No buzzwords—just systems that work.
+                We help Pennsylvania businesses adopt AI and quantum technologies to solve real problems—optimizing energy grids, accelerating drug discovery, and securing critical infrastructure—while running open-source, experimental projects that let students, developers, and tech enthusiasts build and test real-world solutions.
               </p>
-              <p>
-                With smart investment, clear rules, and hands-on training, Pennsylvania becomes a quantum leader—not just in tech, but in jobs, security, and quality of life.
-              </p>
-              <blockquote className="border-l-3 border-primary pl-4 py-1.5 italic text-xs sm:text-sm bg-gradient-to-r from-primary/5 to-transparent rounded-r">
-                "Quantum won't just compute—it will sense, simulate, and secure. Pennsylvania can build that future first."
+              
+              <h3 className="text-base sm:text-lg font-bold text-foreground mt-4 mb-2">Our Mission:</h3>
+              <ul className="space-y-2 ml-4">
+                <li className="flex items-start gap-2">
+                  <span className="text-primary mt-1">•</span>
+                  <span>Train the next generation of quantum engineers and AI developers through applied projects</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-primary mt-1">•</span>
+                  <span>Reduce energy waste and prevent cyberattacks on Pennsylvania's power networks</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-primary mt-1">•</span>
+                  <span>Enable hospitals and research centers to discover drugs faster and personalize treatments</span>
+                </li>
+                <li className="flex items-start gap-2">
+                  <span className="text-primary mt-1">•</span>
+                  <span>Guide lawmakers with practical, evidence-backed policies for a quantum-ready economy</span>
+                </li>
+              </ul>
+              
+              <blockquote className="border-l-3 border-primary pl-4 py-1.5 italic text-xs sm:text-sm bg-gradient-to-r from-primary/5 to-transparent rounded-r mt-4">
+                <strong>Final Transmission:</strong> Empower students, modernize industries, and make Pennsylvania a national leader in applied AI and quantum technology.
               </blockquote>
             </div>
           </motion.div>
