@@ -20,148 +20,148 @@ import {
 
 const services = [
   {
-    id: "education",
-    sector: "Education",
-    status: "Active",
+    id: "job-training",
+    sector: "Careers",
+    status: "Pilot: Lancaster",
     icon: GraduationCap,
-    title: "Quantum Computing Education Program",
-    shortDesc: "Partnering with 15+ universities to integrate quantum computing curricula and provide hands-on quantum hardware access to students.",
-    fullDesc: "We partner with educational institutions to build quantum-aware curricula, establish quantum computing labs, and train the next generation of quantum engineers and scientists. Our comprehensive approach includes curriculum development, faculty training, lab setup, and ongoing research support.",
+    title: "IT Careers Without a 4-Year Degree",
+    shortDesc: "High school and tech school students learn skills for real tech jobs—coding, cybersecurity, data analysis—without needing a bachelor's degree.",
+    fullDesc: "Partners with local schools and employers to create 6-month intensive bootcamps. Lancaster Tech School students completing cybersecurity training are being hired at local hospitals and banks. No college debt required—just hands-on skills employers actually need.",
     deliverables: [
-      "Quantum curriculum development",
-      "Faculty training programs",
-      "Lab setup & hardware access",
-      "Student research projects"
+      "6-month bootcamp programs",
+      "Industry certification prep",
+      "Paid apprenticeships",
+      "Direct employer partnerships"
     ],
-    impact: "1,200+ students enrolled",
+    impact: "Target: 500+ students yearly",
     timeline: "2024-2026",
     color: "from-blue-500/20 to-cyan-500/20"
   },
   {
-    id: "government",
-    sector: "Governance",
-    status: "Active",
-    icon: Building2,
-    title: "AI Literacy for Public Sector",
-    shortDesc: "Training government officials and public sector employees on AI fundamentals, ethical considerations, and practical applications.",
-    fullDesc: "Empowering public sector leaders with AI knowledge and quantum-safe security practices. We provide comprehensive training programs that cover AI ethics, governance frameworks, and practical implementation strategies for government agencies.",
-    deliverables: [
-      "AI ethics & governance training",
-      "Policy framework development",
-      "Quantum-safe security protocols",
-      "Implementation roadmaps"
-    ],
-    impact: "500+ officials trained",
-    timeline: "2024-2025",
-    color: "from-purple-500/20 to-pink-500/20"
-  },
-  {
-    id: "energy",
-    sector: "Energy",
-    status: "Active",
+    id: "energy-bills",
+    sector: "Cost Savings",
+    status: "Pilot: Erie County",
     icon: Zap,
-    title: "Quantum Grid Optimization",
-    shortDesc: "Leveraging quantum computing for real-time energy grid management, renewable integration, and predictive maintenance.",
-    fullDesc: "Transform energy infrastructure with quantum-powered optimization algorithms. We help utilities and energy providers implement quantum solutions for grid stability, renewable energy integration, and enhanced cybersecurity with quantum key distribution.",
+    title: "Smarter Energy Grids = Lower Bills",
+    shortDesc: "Using advanced computers to balance electricity supply and demand in real-time. Means fewer outages, cheaper rates, and cleaner air.",
+    fullDesc: "Erie County pilot reduced peak-hour demand by 15%, saving households $120/year on average. Smart systems predict when demand will spike and adjust automatically—like having a really smart thermostat for the entire power grid.",
     deliverables: [
-      "Grid optimization algorithms",
-      "Quantum Key Distribution setup",
-      "Renewable energy forecasting",
-      "Predictive maintenance systems"
+      "Real-time grid balancing",
+      "Peak demand reduction",
+      "Outage prediction systems",
+      "Clean energy integration"
     ],
-    impact: "22% peak-hour reduction achieved",
+    impact: "Goal: 10% cost reduction statewide",
     timeline: "2024-2030",
     color: "from-green-500/20 to-emerald-500/20"
   },
   {
-    id: "enterprise",
-    sector: "Business Automation",
-    status: "Active",
-    icon: Briefcase,
-    title: "Business Automation & AI Readiness",
-    shortDesc: "Helping organizations assess their AI maturity, identify quantum-safe cryptography needs, and develop transformation roadmaps.",
-    fullDesc: "Accelerate digital transformation with AI-powered automation and quantum readiness assessments. We guide enterprises through the complexity of modern AI implementation while ensuring future-proof quantum-safe infrastructure.",
+    id: "drug-discovery",
+    sector: "Healthcare",
+    status: "Active: UPMC",
+    icon: Users,
+    title: "Getting New Medicines to Patients Faster",
+    shortDesc: "Advanced computer simulations help scientists test millions of drug combinations virtually before making them in the lab. Cuts years off development time.",
+    fullDesc: "A PA biotech company cut early-stage testing from 18 months to 4 months using simulation tools. Instead of mixing chemicals in test tubes for months, computers can predict which combinations will work—faster medicine for patients who need it.",
     deliverables: [
-      "AI readiness assessment",
-      "Process automation strategy",
-      "Quantum-safe migration plan",
-      "ROI optimization framework"
+      "Virtual drug testing",
+      "Faster trial phases",
+      "Cost reduction for startups",
+      "PA biotech partnerships"
     ],
-    impact: "45+ organizations assessed",
+    impact: "Target: 20+ PA companies by 2027",
+    timeline: "2024-2027",
+    color: "from-pink-500/20 to-rose-500/20"
+  },
+  {
+    id: "appointments",
+    sector: "Healthcare",
+    status: "Pilot: Pittsburgh",
+    icon: Building2,
+    title: "No More Waiting Weeks for Appointments",
+    shortDesc: "AI scheduling systems help hospitals and clinics fill cancellations instantly, predict busy periods, and match patients with the right specialist faster.",
+    fullDesc: "UPMC Pittsburgh pilot reduced specialist wait times from 6 weeks to 10 days. The system knows when doctors have openings, automatically texts patients on waitlists, and even predicts which days will be busiest so they can staff properly.",
+    deliverables: [
+      "Smart scheduling system",
+      "Cancellation auto-fill",
+      "Demand forecasting",
+      "Patient-specialist matching"
+    ],
+    impact: "Goal: 40% wait time reduction",
+    timeline: "2024-2026",
+    color: "from-purple-500/20 to-pink-500/20"
+  },
+  {
+    id: "small-biz-security",
+    sector: "Security",
+    status: "Active Statewide",
+    icon: Shield,
+    title: "Cybersecurity Small Businesses Can Afford",
+    shortDesc: "New encryption tools that protect against future hacking threats—simple enough for a local bakery or machine shop to set up without hiring an IT person.",
+    fullDesc: "Free security audit tool for PA businesses under 50 employees—already used by 200+ shops. One-click setup protects customer data, credit cards, and business records from both current hackers and future advanced threats.",
+    deliverables: [
+      "Free security audits",
+      "One-click protection tools",
+      "Future-proof encryption",
+      "Small business workshops"
+    ],
+    impact: "Goal: 10,000+ businesses protected",
+    timeline: "2024-2030",
+    color: "from-red-500/20 to-orange-500/20"
+  },
+  {
+    id: "clean-manufacturing",
+    sector: "Manufacturing",
+    status: "Pilot: Erie",
+    icon: Briefcase,
+    title: "Making PA Factories Cleaner & More Efficient",
+    shortDesc: "Advanced simulations help manufacturers discover new materials that are stronger, cheaper, and produce less pollution. Keeps jobs here while improving air quality.",
+    fullDesc: "Erie steel plant using new material design cut emissions by 12% while increasing output. Computer simulations test thousands of material combinations virtually—finding better metals without expensive physical testing.",
+    deliverables: [
+      "Material optimization",
+      "Emissions reduction plans",
+      "Cost savings analysis",
+      "PA manufacturer partnerships"
+    ],
+    impact: "Target: 50+ manufacturers by 2026",
     timeline: "2024-2026",
     color: "from-orange-500/20 to-amber-500/20"
   },
   {
-    id: "security",
-    sector: "Quantum Computing",
-    status: "Active",
-    icon: Shield,
-    title: "Quantum-Safe Cryptography Transition",
-    shortDesc: "Guiding organizations through the transition to post-quantum cryptographic standards to protect against future quantum threats.",
-    fullDesc: "Protect your organization from quantum computing threats with comprehensive post-quantum cryptography migration. We implement NIST-approved PQC algorithms and establish quantum-resistant security infrastructure.",
-    deliverables: [
-      "Crypto inventory & risk assessment",
-      "PQC algorithm implementation",
-      "Security architecture redesign",
-      "Compliance verification"
-    ],
-    impact: "12+ critical infrastructure partners",
-    timeline: "2024-2030",
-    color: "from-red-500/20 to-rose-500/20"
-  },
-  {
-    id: "advocacy",
-    sector: "Lobby",
-    status: "Active",
-    icon: Scale,
-    title: "Pennsylvania Quantum Public Lobby",
-    shortDesc: "Grassroots advocacy initiative connecting scientists and academics to advance quantum computing policy and education in Pennsylvania.",
-    fullDesc: "Community-driven advocacy for quantum technology advancement. We connect researchers, educators, policymakers, and industry leaders to shape quantum policy and expand educational opportunities across Pennsylvania.",
-    deliverables: [
-      "Legislative outreach programs",
-      "Community engagement events",
-      "Policy white papers",
-      "Educational partnerships"
-    ],
-    impact: "Community-driven initiative",
-    timeline: "2024-Present",
-    color: "from-indigo-500/20 to-violet-500/20"
-  },
-  {
-    id: "curiosity",
-    sector: "Curiosity",
-    status: "Planning",
+    id: "rural-internet",
+    sector: "Infrastructure",
+    status: "Active: Franklin County",
     icon: Sparkles,
-    title: "Open Quantum Hardware Platform",
-    shortDesc: "Creating accessible quantum computing testbeds for educational institutions and research organizations worldwide.",
-    fullDesc: "Democratizing quantum computing access through open-source hardware platforms. Our initiative aims to make quantum experimentation accessible to researchers and educators globally, fostering innovation and accelerating quantum literacy.",
+    title: "Fast Internet for Rural PA",
+    shortDesc: "Upgrading Pennsylvania's network with fiber optic cables so rural communities get the same high-speed internet as cities. Essential for remote work and telehealth.",
+    fullDesc: "Franklin County fiber expansion connected 3,000+ homes—average speeds went from 5 Mbps to 1000 Mbps. That means kids can do homework online, parents can work remotely, and grandparents can video-chat with doctors instead of driving 45 minutes.",
     deliverables: [
-      "Open-source quantum testbeds",
-      "Cloud-based quantum simulators",
-      "Educational resource library",
-      "Global collaboration network"
+      "Fiber optic installation",
+      "Rural community targeting",
+      "Telehealth enablement",
+      "Remote work infrastructure"
     ],
-    impact: "Global accessibility target",
-    timeline: "2025-2028",
+    impact: "Goal: 95% PA fiber access by 2028",
+    timeline: "2024-2028",
     color: "from-teal-500/20 to-cyan-500/20"
   },
   {
-    id: "ai-safety",
-    sector: "AI Safety",
-    status: "Launching Q2 2025",
-    icon: AlertTriangle,
-    title: "Explainable AI Governance Framework",
-    shortDesc: "Building transparent AI systems with robust safety protocols, ethical guidelines, and accountability mechanisms.",
-    fullDesc: "Ensure AI systems are safe, transparent, and aligned with human values. We develop comprehensive governance frameworks that prioritize explainability, fairness, and ethical AI deployment across all sectors.",
+    id: "government-services",
+    sector: "Public Service",
+    status: "Pilot: Allegheny County",
+    icon: Scale,
+    title: "Government Services That Work Better",
+    shortDesc: "Using data and AI to help state agencies make faster decisions—placing ambulances where they're needed most, routing snowplows efficiently, processing permits quicker.",
+    fullDesc: "Allegheny County cut permit approval time from 45 days to 12 days using AI document review. The system reads applications, flags missing info automatically, and routes approvals to the right person—less waiting, less paperwork, faster results.",
     deliverables: [
-      "AI ethics framework development",
-      "Explainability tooling",
-      "Bias detection & mitigation",
-      "Safety compliance audits"
+      "Permit process automation",
+      "Emergency response optimization",
+      "Service delivery tracking",
+      "Agency efficiency tools"
     ],
-    impact: "Targeting 100+ AI systems audited",
-    timeline: "2025-2027",
-    color: "from-yellow-500/20 to-orange-500/20"
+    impact: "Target: 30% faster across 10+ agencies",
+    timeline: "2024-2027",
+    color: "from-indigo-500/20 to-violet-500/20"
   }
 ];
 
@@ -184,9 +184,9 @@ export const ServiceCards = () => {
           viewport={{ once: true }}
           className="text-center space-y-2 sm:space-y-3 mb-8 sm:mb-10"
         >
-          <h2 id="services-heading" className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold">Current Initiatives</h2>
+          <h2 id="services-heading" className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold">How This Helps Real Pennsylvanians</h2>
           <p className="text-xs sm:text-sm md:text-base lg:text-lg text-muted-foreground max-w-3xl mx-auto px-4">
-            Empowering Quantum & AI Literacy through active programs across education, government, energy, and enterprise sectors worldwide.
+            From faster healthcare to lower energy bills to better-paying jobs—here's what advanced technology means for your family, your business, and your community.
           </p>
         </motion.div>
 

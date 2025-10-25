@@ -297,7 +297,7 @@ export const Hero = () => {
                 animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, rotateX: 0 }}
                 transition={prefersReducedMotion ? {} : { delay: 0.3, duration: 0.4 }}
               >
-                AltruisticXAI is a sandbox for the future. We help governments, businesses, and policymakers deploy quantum and AI in ways that actually work—practical, bold, and ahead of the curve.
+                Pennsylvania invented the ambulance, polio vaccine, and digital computer. We're helping PA communities prepare for new technology that affects energy costs, healthcare, cybersecurity, and job training—practical solutions anyone can understand.
               </motion.p>
             </div>
 
