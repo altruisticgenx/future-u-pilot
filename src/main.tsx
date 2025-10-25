@@ -29,13 +29,6 @@ rootElement.innerHTML = `
 // Render app immediately for fast TTI
 createRoot(rootElement).render(<App />);
 
-// Initialize accessibility auditing in development
-if (process.env.NODE_ENV !== 'production') {
-  import('./lib/accessibility').then(({ initAccessibilityAuditing }) => {
-    initAccessibilityAuditing();
-  });
-}
-
 // Defer analytics initialization until user interacts or scrolls
 let analyticsLoaded = false;
 const loadAnalytics = () => {

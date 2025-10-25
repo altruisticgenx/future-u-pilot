@@ -4,23 +4,22 @@ import { Footer } from "@/components/Footer";
 import { HeroSkeleton } from "@/components/LoadingSkeleton";
 import { motion } from "framer-motion";
 
-// Eager load critical above-the-fold components for better FCP
-import { Hero } from "@/components/Hero";
-import { LogoRow } from "@/components/LogoRow";
-
-// Lazy load below-the-fold components
+// Lazy load heavy components
+const Hero = lazy(() => import("@/components/Hero").then(m => ({ default: m.Hero })));
+const LogoRow = lazy(() => import("@/components/LogoRow").then(m => ({ default: m.LogoRow })));
 const ServiceCards = lazy(() => import("@/components/ServiceCards").then(m => ({ default: m.ServiceCards })));
 const WhyNow = lazy(() => import("@/components/WhyNow").then(m => ({ default: m.WhyNow })));
 const LabNotes = lazy(() => import("@/components/LabNotes").then(m => ({ default: m.LabNotes })));
 const WhyItMatters = lazy(() => import("@/components/WhyItMatters").then(m => ({ default: m.WhyItMatters })));
 const ContactForm = lazy(() => import("@/components/ContactForm").then(m => ({ default: m.ContactForm })));
-const AIChatbot = lazy(() => import("@/components/AIChatbot").then(m => ({ default: m.AIChatbot })));
 
 const Index = () => {
   return (
     <div className="min-h-screen">
       <Navigation />
-      <Hero />
+      <Suspense fallback={<HeroSkeleton />}>
+        <Hero />
+      </Suspense>
       
       <motion.div
         initial={{ opacity: 0, y: 30 }}
@@ -28,7 +27,9 @@ const Index = () => {
         transition={{ duration: 0.6 }}
         viewport={{ once: true, margin: "-100px" }}
       >
-        <LogoRow />
+        <Suspense fallback={<div className="h-32 animate-pulse bg-primary/5" />}>
+          <LogoRow />
+        </Suspense>
       </motion.div>
       
       <motion.div
@@ -89,7 +90,7 @@ const Index = () => {
             className="text-center space-y-2 sm:space-y-3 mb-8 sm:mb-12"
           >
             <h2 id="contact-heading" className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold">
-              Start Your 8-Week Pilot
+              Let's Plan Your Next 8 Weeks
             </h2>
             <p className="text-xs sm:text-sm md:text-base lg:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
               Tell us where you are and we'll propose a pilot that proves value—fast.
@@ -110,11 +111,6 @@ const Index = () => {
       </section>
 
       <Footer />
-      
-      {/* AI Chatbot - Load after interaction */}
-      <Suspense fallback={null}>
-        <AIChatbot />
-      </Suspense>
     </div>
   );
 };

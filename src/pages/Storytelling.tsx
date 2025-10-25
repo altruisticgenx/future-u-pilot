@@ -59,7 +59,11 @@ export default function Storytelling() {
             <article className="prose prose-slate dark:prose-invert max-w-none">
               <div className="space-y-6 text-base sm:text-lg leading-relaxed">
                 <p className="text-foreground/90 first-letter:text-5xl first-letter:font-bold first-letter:text-primary first-letter:mr-1 first-letter:float-left">
-                  Maya, a Pittsburgh high school student, dreams of joining Pennsylvania's innovator legacy. But her future—and our security—rests on a cracking foundation.
+                  Imagine a high school student in Pittsburgh, Maya. She's studying computer science, dreaming of joining the proud lineage of Pennsylvania innovators who gave the world the ambulance, the polio vaccine, and the digital computer. But Maya's future, and the security of everyone in Pennsylvania, currently rests on a mathematical foundation that is visibly cracking.
+                </p>
+
+                <p className="text-foreground/90 font-semibold text-lg sm:text-xl">
+                  This isn't a problem for the next generation to solve; the danger is already here today.
                 </p>
 
                 <div className="my-8 p-6 bg-primary/5 border-l-4 border-primary rounded-r-lg">
@@ -67,52 +71,46 @@ export default function Storytelling() {
                     The Threat is Here Today
                   </h2>
                   <p className="text-foreground/90">
-                    Quantum computers will break today's encryption in 10-20 years. Adversaries are stealing encrypted data now—medical records, secrets, personal info—planning to decrypt it later. This <span className="font-semibold text-primary">"harvest now, decrypt later"</span> strategy is active today.
+                    Our digital communications, secure emails, and banking transactions rely on public key encryption (PKE), secured by complex math problems. But quantum computing, which uses the properties of quantum physics, is advancing rapidly, projected to reach the power to break current PKE algorithms in the next 10 to 20 years. This threat isn't theoretical; it's an active strategy called <span className="font-semibold text-primary">"harvest now, decrypt later"</span>. Adversaries are currently capturing encrypted data—like trade secrets, sensitive justice information, and personal health information (PHI)—with the intent of holding onto it until a cryptographically-relevant quantum computer (CRQC) becomes available to decrypt it.
                   </p>
                 </div>
 
                 <h2 className="text-2xl sm:text-3xl font-bold text-foreground mt-12 mb-6">
-                  Three Critical Challenges:
+                  This Poses a Critical Human Problem:
                 </h2>
 
-                <div className="space-y-6">
+                <div className="space-y-8">
                   <div className="border-l-4 border-accent pl-6">
-                    <h3 className="text-xl font-bold text-foreground mb-2">
-                      1. Security Crisis
+                    <h3 className="text-xl font-bold text-foreground mb-3">
+                      1. The Security of Our Sensitive Lives
                     </h3>
-                    <ul className="text-foreground/90 space-y-1 list-disc list-inside">
-                      <li>Medical records, trade secrets, infrastructure at risk</li>
-                      <li>NIST released Post-Quantum standards (Aug 2024)</li>
-                      <li>Must adopt PQE and QKD now for nuclear plants, pipelines, grids</li>
-                    </ul>
+                    <p className="text-foreground/90">
+                      For organizations handling data with a long secrecy lifetime—like medical records, PII, and industrial trade secrets—the vulnerability is urgent. We must adopt Post-Quantum Encryption (PQE) and methods like Quantum Key Distribution (QKD) to protect these systems, including critical infrastructure like nuclear plants and the gas pipeline network. The NIST has already selected the first three Post-Quantum Crypto Standards (FIPS 203, 204, and 205) and released final versions in August 2024, emphasizing that <span className="font-semibold">the time to transition is now, not later</span>.
+                    </p>
                   </div>
 
                   <div className="border-l-4 border-accent pl-6">
-                    <h3 className="text-xl font-bold text-foreground mb-2">
-                      2. Workforce Opportunity
+                    <h3 className="text-xl font-bold text-foreground mb-3">
+                      2. The Opportunity for Our Workforce
                     </h3>
-                    <ul className="text-foreground/90 space-y-1 list-disc list-inside">
-                      <li>Thousands of high-paying quantum jobs at stake</li>
-                      <li>Training from K-12 to universities</li>
-                      <li>Without action, Pennsylvania loses to other states</li>
-                    </ul>
+                    <p className="text-foreground/90">
+                      If we fail to act, we become dependent on other states or rival nations for these fundamental technological advancements. This means Pennsylvania students like Maya won't have access to the thousands of good-paying jobs involved in building, developing, and operating quantum systems. The PaQI is designed to train this generation across all levels, from K-12 to technical schools and universities, ensuring that quantum physics isn't an "impassable gate" to careers in advanced computing.
+                    </p>
                   </div>
 
                   <div className="border-l-4 border-accent pl-6">
-                    <h3 className="text-xl font-bold text-foreground mb-2">
-                      3. Innovation Promise
+                    <h3 className="text-xl font-bold text-foreground mb-3">
+                      3. The Promise of a Better Future
                     </h3>
-                    <ul className="text-foreground/90 space-y-1 list-disc list-inside">
-                      <li>Revolutionary drug discovery via molecular simulation</li>
-                      <li>Optimized energy grids = cleaner air, lower emissions</li>
-                      <li>Solutions to deeply human problems</li>
-                    </ul>
+                    <p className="text-foreground/90">
+                      Beyond cybersecurity, quantum computing unlocks solutions to deeply human problems. It can revolutionize drug discovery by performing accurate molecular simulations, dramatically reducing the time and cost to develop new medicines. It can optimize our stressed energy grids, leading to increased efficiency, reduced emissions, and cleaner air, directly benefiting human health.
+                    </p>
                   </div>
                 </div>
 
                 <div className="mt-12 p-8 bg-gradient-to-r from-primary/10 to-accent/10 rounded-lg border border-primary/20">
                   <p className="text-foreground/90 text-lg font-medium">
-                    The Pennsylvania Quantum Initiative isn't just technology—it's <span className="font-bold text-primary">technological sovereignty</span>, protecting citizens' rights, health, and economic security while continuing our state's legacy of scientific firsts.
+                    If we embrace the Pennsylvania Quantum Initiative now, we are not just investing in technology; we are claiming <span className="font-bold text-primary">technological sovereignty</span> and ensuring that our citizens' rights, health, and economic security are protected in the coming quantum era, continuing our state's legacy of scientific firsts.
                   </p>
                 </div>
               </div>

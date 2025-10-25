@@ -6,9 +6,6 @@
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-    <meta name="apple-mobile-web-app-title" content="Future-U" />
-    <link rel="apple-touch-icon" href="/pwa-192x192.png" />
-    <link rel="mask-icon" href="/favicon.ico" color="#14b8a6" />
     <meta name="theme-color" content="#14b8a6" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0d9488" media="(prefers-color-scheme: dark)" />
     <title>AltruisticXAI - Quantum-AI Consultancy | Practical Pilots, Fast</title>
@@ -17,160 +14,31 @@
     <meta name="format-detection" content="telephone=no" />
     
     <!-- Security Policy -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' data: https://fonts.googleapis.com https://us.i.posthog.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://us.i.posthog.com https://*.supabase.co;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://us.i.posthog.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://us.i.posthog.com https://*.supabase.co;">
     
     <!-- DNS prefetch for external domains -->
     <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
     <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
-    <link rel="dns-prefetch" href="https://us.i.posthog.com" />
     
     <!-- Preconnect to critical origins -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     
-    <!-- Optimized font loading - only weights we actually use -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" as="style">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet" /></noscript>
+    <!-- Preload critical font -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" as="style">
     
-    <!-- Preload main entry point -->
-    <link rel="modulepreload" href="/src/main.tsx" />
+    <!-- Optimized font loading with font-display swap -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" /></noscript>
     
     <!-- Critical CSS for above-the-fold content -->
     <style>
-      /* Critical Reset & Base */
-      *{box-sizing:border-box;margin:0;padding:0;border:0 solid hsl(195 50% 20%)}
-      html,body{height:100%}
-      
-      /* Design Tokens - Light Mode */
-      :root{
-        --background:200 20% 98%;--foreground:195 100% 8%;
-        --primary:185 85% 45%;--primary-foreground:180 100% 99%;--primary-glow:185 90% 70%;
-        --secondary:195 65% 55%;--muted:195 20% 94%;--muted-foreground:195 15% 45%;
-        --accent:43 96% 56%;--border:195 30% 88%;--ring:185 85% 45%;
-        --glass-bg:185 85% 45%/.08;--glass-border:185 85% 45%/.2;
-        --gradient-start:195 100% 20%;--gradient-mid:185 85% 45%;--gradient-end:175 80% 60%;
-      }
-      
-      /* Design Tokens - Dark Mode */
-      .dark{
-        --background:195 100% 5%;--foreground:180 40% 95%;
-        --primary:185 90% 55%;--primary-foreground:195 100% 5%;--primary-glow:185 100% 75%;
-        --secondary:195 60% 40%;--muted:195 40% 15%;--muted-foreground:195 25% 65%;
-        --accent:43 96% 56%;--border:195 50% 20%;--ring:185 90% 55%;
-        --glass-bg:185 90% 55%/.12;--glass-border:185 90% 55%/.25;
-        --gradient-start:195 100% 25%;--gradient-mid:185 90% 50%;--gradient-end:175 85% 65%;
-      }
-      
-      /* Critical Base Styles */
-      html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
-      body{
-        font-family:'Inter',system-ui,-apple-system,sans-serif;
-        font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased;
-        background:hsl(var(--background));color:hsl(var(--foreground));
-        overflow-x:hidden
-      }
-      #root{display:block;min-height:100vh}
-      
-      /* Typography */
-      h1,h2,h3,h4,h5,h6{font-weight:700;line-height:1.2}
-      h1{font-size:2.5rem;font-weight:900}
-      h2{font-size:2rem}
-      h3{font-size:1.5rem}
-      p{margin-bottom:1rem}
-      
-      /* Layout */
+      /* Prevent FOUC with minimal critical styles */
+      *{box-sizing:border-box;margin:0;padding:0}
+      body{font-family:'Inter',system-ui,sans-serif;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased;background:#0a0a0a;color:#fafafa}
+      #root{min-height:100vh}
       .container{max-width:80rem;margin:0 auto;padding:0 1rem}
-      section{padding:3rem 0}
-      
-      /* Flexbox & Grid Utilities */
-      .flex{display:flex}
-      .flex-col{flex-direction:column}
-      .items-center{align-items:center}
-      .justify-center{justify-content:center}
-      .gap-4{gap:1rem}
-      .gap-6{gap:1.5rem}
-      .text-center{text-align:center}
-      
-      /* Critical Navigation Styles */
-      nav{
-        position:sticky;top:0;z-index:50;backdrop-filter:blur(12px);
-        background:hsl(var(--background)/.95);border-bottom:1px solid hsl(var(--border));
-        padding:1rem 0
-      }
-      nav .container{display:flex;align-items:center;justify-content:space-between}
-      
-      /* Hero Section */
-      .hero-section{
-        min-height:calc(100vh - 80px);display:flex;align-items:center;
-        background:linear-gradient(135deg,hsl(var(--gradient-start)),hsl(var(--gradient-mid)),hsl(var(--gradient-end)));
-        position:relative;overflow:hidden
-      }
-      .hero-content{max-width:48rem;margin:0 auto;padding:2rem 1rem;text-align:center}
-      .hero-title{
-        font-size:2.5rem;font-weight:900;line-height:1.1;
-        margin-bottom:1.5rem;color:hsl(var(--primary-foreground))
-      }
-      .hero-subtitle{
-        font-size:1.125rem;line-height:1.75;margin-bottom:2rem;
-        color:hsl(var(--primary-foreground)/.9)
-      }
-      
-      /* Critical Glass Effect */
-      .glass-card-3d{
-        backdrop-filter:blur(12px);background:hsl(var(--glass-bg));
-        border:1px solid hsl(var(--glass-border));border-radius:1rem;
-        box-shadow:0 4px 6px hsl(var(--primary)/.1),0 10px 15px hsl(var(--primary)/.1);
-        will-change:transform;transform:translateZ(0);padding:1.5rem
-      }
-      
-      /* Critical Button */
-      .btn-3d-primary{
-        background:linear-gradient(135deg,hsl(173 80% 40%),hsl(190 84% 29%));
-        color:#fff;font-weight:600;padding:.75rem 2rem;border-radius:.5rem;
-        box-shadow:0 4px 0 hsl(190 84% 20%),0 8px 20px hsl(173 80% 40%/.4);
-        transition:transform .2s;will-change:transform;transform:translateZ(0);
-        display:inline-block;text-decoration:none;cursor:pointer
-      }
-      .btn-3d-primary:hover{transform:translateY(-3px)}
-      .btn-3d-primary:active{transform:translateY(-1px)}
-      
-      /* Logo Row */
-      .logo-row{
-        display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-        gap:2rem;padding:2rem 0;align-items:center;justify-items:center
-      }
-      
-      /* Card Grid */
-      .card-grid{
-        display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-        gap:2rem;margin:2rem 0
-      }
-      
-      /* Critical Responsive */
-      @media(min-width:640px){
-        body{font-size:16px}
-        .hero-title{font-size:3rem}
-        .hero-subtitle{font-size:1.25rem}
-      }
-      @media(min-width:768px){
-        .container{padding:0 1.5rem}
-        .hero-title{font-size:3.75rem}
-        section{padding:4rem 0}
-      }
-      @media(min-width:1024px){
-        .hero-title{font-size:4.5rem}
-        section{padding:5rem 0}
-      }
-      
-      /* Loading State */
-      .loading-skeleton{background:hsl(var(--muted));animation:pulse 2s infinite;border-radius:.5rem}
-      @keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
-      
-      /* Utilities */
-      .opacity-0{opacity:0}
-      .opacity-100{opacity:1}
-      .pointer-events-none{pointer-events:none}
+      @media(min-width:640px){body{font-size:16px}}
     </style>
 
     
@@ -199,6 +67,6 @@
 
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
+    <script type="module" src="/src/main.tsx" fetchpriority="high"></script>
   </body>
 </html>

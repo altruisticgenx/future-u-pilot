@@ -5,6 +5,7 @@ import { ThemeProvider } from "next-themes";
 
 // Eager load homepage for fast FCP
 import Index from "./pages/Index";
+import IndexNew from "./pages/IndexNew";
 
 // Lazy load non-critical UI components
 const Toaster = lazy(() => import("@/components/ui/toaster").then(m => ({ default: m.Toaster })));
@@ -13,9 +14,8 @@ const Sonner = lazy(() => import("@/components/ui/sonner").then(m => ({ default:
 // Lazy load non-critical routes to reduce initial bundle
 const Storytelling = lazy(() => import("./pages/Storytelling"));
 const About = lazy(() => import("./pages/About"));
-const FAQ = lazy(() => import("./pages/FAQ"));
 const Terminal = lazy(() => import("./pages/Terminal"));
-const MapDemo = lazy(() => import("./pages/MapDemo"));
+const Auth = lazy(() => import("./pages/Auth"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 // Lazy wrapper that only loads QueryClient when needed
@@ -53,10 +53,10 @@ const App = () => (
       <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div></div>}>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/new" element={<IndexNew />} />
           <Route path="/storytelling" element={<Storytelling />} />
-          <Route path="/about" element={<QueryWrapper><About /></QueryWrapper>} />
-          <Route path="/faq" element={<FAQ />} />
-          <Route path="/map" element={<MapDemo />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/auth" element={<QueryWrapper><Auth /></QueryWrapper>} />
           <Route path="/terminal" element={<QueryWrapper><Terminal /></QueryWrapper>} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

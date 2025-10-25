@@ -2,7 +2,6 @@ import { useCallback } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { Command, Message, TerminalContext, Project } from '@/types/terminal';
 import { toast } from 'sonner';
-import { sanitizeError } from '@/lib/errorHandling';
 import { QUANTUM_SYSTEMS, QUANTUM_ALGORITHMS, QC_BENCHMARKS } from '@/data/terminal/quantum-computing';
 import { AI_MODELS, DATASETS, TRAINING_METRICS } from '@/data/terminal/ai-models';
 import { FEDERAL_POLICIES, COMPLIANCE_FRAMEWORKS, COMPLIANCE_CHECKLIST } from '@/data/terminal/policy-compliance';
@@ -292,7 +291,10 @@ export const useTerminalCommands = () => {
           .single();
 
         if (error) {
-          return [{ type: 'error', content: sanitizeError(error, 'create project') }];
+          if (error.code === '23505') {
+            return [{ type: 'error', content: `Project "${name}" already exists.` }];
+          }
+          return [{ type: 'error', content: `Failed to create project: ${error.message}` }];
         }
 
         toast.success(`Project "${name}" created!`);
@@ -315,7 +317,7 @@ export const useTerminalCommands = () => {
           .order('created_at', { ascending: false });
 
         if (error) {
-          return [{ type: 'error', content: sanitizeError(error, 'fetch projects') }];
+          return [{ type: 'error', content: `Failed to fetch projects: ${error.message}` }];
         }
 
         if (!data || data.length === 0) {
@@ -446,7 +448,7 @@ export const useTerminalCommands = () => {
           .eq('name', name);
 
         if (error) {
-          return [{ type: 'error', content: sanitizeError(error, 'delete project') }];
+          return [{ type: 'error', content: `Failed to delete: ${error.message}` }];
         }
 
         if (ctx.currentProjectId === project.id) {
@@ -1148,7 +1150,7 @@ export const useTerminalCommands = () => {
           0
         );
         return [
-          { type: 'error', content: sanitizeError(error, `command: ${commandName}`) },
+          { type: 'error', content: `Error: ${error.message}` },
         ];
       }
     },

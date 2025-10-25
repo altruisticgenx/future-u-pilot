@@ -40,11 +40,8 @@ export const Hero = () => {
   }, [animationsReady]);
 
   const scrollToContact = () => {
-    // Batch DOM read to prevent forced reflow
-    requestAnimationFrame(() => {
-      const contactSection = document.getElementById("contact");
-      contactSection?.scrollIntoView({ behavior: "smooth" });
-    });
+    const contactSection = document.getElementById("contact");
+    contactSection?.scrollIntoView({ behavior: "smooth" });
   };
 
   const navigateToAbout = () => {
@@ -99,11 +96,11 @@ export const Hero = () => {
       {/* Noise Texture Overlay */}
       <div className="noise-overlay" />
       
-      {/* Floating Glass Blur Panels - Optimized with will-change */}
+      {/* Floating Glass Blur Panels - 4% opacity */}
       {animationsReady && !prefersReducedMotion && (
         <>
           <motion.div
-            className="glass-blur-4 absolute rounded-2xl hidden md:block will-change-transform"
+            className="glass-blur-4 absolute rounded-2xl hidden md:block"
             style={{
               width: '200px',
               height: '150px',
@@ -113,6 +110,7 @@ export const Hero = () => {
             animate={{
               x: [0, 30, 0],
               y: [0, -20, 0],
+              rotate: [0, 5, 0],
             }}
             transition={{
               duration: 8,
@@ -121,7 +119,7 @@ export const Hero = () => {
             }}
           />
           <motion.div
-            className="glass-blur-4 absolute rounded-3xl hidden lg:block will-change-transform"
+            className="glass-blur-4 absolute rounded-3xl hidden lg:block"
             style={{
               width: '180px',
               height: '180px',
@@ -131,6 +129,7 @@ export const Hero = () => {
             animate={{
               x: [0, -25, 0],
               y: [0, 15, 0],
+              rotate: [0, -3, 0],
             }}
             transition={{
               duration: 10,
@@ -138,20 +137,40 @@ export const Hero = () => {
               ease: "easeInOut",
             }}
           />
+          <motion.div
+            className="glass-blur-4 absolute rounded-2xl hidden xl:block"
+            style={{
+              width: '220px',
+              height: '120px',
+              bottom: '20%',
+              left: '15%',
+            }}
+            animate={{
+              x: [0, 20, 0],
+              y: [0, -15, 0],
+              rotate: [0, 2, 0],
+            }}
+            transition={{
+              duration: 12,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          />
         </>
       )}
       
-      {/* 3D Layered Floating Orbs - Optimized with CSS transforms */}
+      {/* 3D Layered Floating Orbs - Multiple Depths */}
       {animationsReady && !prefersReducedMotion && (
         <>
           <motion.div
-            className="absolute top-20 left-10 w-64 h-64 md:w-72 md:h-72 rounded-full blur-3xl will-change-transform"
+            className="absolute top-20 left-10 w-64 h-64 md:w-72 md:h-72 rounded-full blur-3xl"
             style={{
               background: 'radial-gradient(circle, hsl(173 80% 40% / 0.25), transparent)',
             }}
             animate={{
               y: [0, 30, 0],
               x: [0, 15, 0],
+              scale: [1, 1.15, 1],
             }}
             transition={{
               duration: 8,
@@ -160,16 +179,33 @@ export const Hero = () => {
             }}
           />
           <motion.div
-            className="absolute bottom-20 right-10 w-80 h-80 md:w-96 md:h-96 rounded-full blur-3xl will-change-transform"
+            className="absolute bottom-20 right-10 w-80 h-80 md:w-96 md:h-96 rounded-full blur-3xl"
             style={{
               background: 'radial-gradient(circle, hsl(190 84% 29% / 0.3), transparent)',
             }}
             animate={{
               y: [0, -40, 0],
               x: [0, -20, 0],
+              scale: [1, 1.25, 1],
             }}
             transition={{
               duration: 10,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          />
+          <motion.div
+            className="absolute top-1/2 left-1/4 w-48 h-48 rounded-full blur-2xl hidden lg:block"
+            style={{
+              background: 'radial-gradient(circle, hsl(195 85% 16% / 0.2), transparent)',
+            }}
+            animate={{
+              y: [0, 20, 0],
+              x: [0, -10, 0],
+              scale: [1, 1.1, 1],
+            }}
+            transition={{
+              duration: 12,
               repeat: Infinity,
               ease: "easeInOut",
             }}
@@ -351,7 +387,7 @@ export const Hero = () => {
             style={{ perspective: '1000px' }}
           >
             <motion.div
-              className="rounded-lg backdrop-blur-md bg-card/60 border border-border/50 shadow-xl overflow-hidden max-w-md mx-auto will-change-transform"
+              className="rounded-lg backdrop-blur-md bg-card/60 border border-border/50 shadow-xl overflow-hidden max-w-md mx-auto"
               animate={prefersReducedMotion ? {} : {
                 y: [0, -10, 0],
                 transition: {
@@ -363,7 +399,6 @@ export const Hero = () => {
               style={{
                 minHeight: '200px',
                 boxShadow: '0 0 40px hsl(173 80% 40% / 0.3), 0 8px 32px rgba(0, 0, 0, 0.4)',
-                contentVisibility: 'auto',
               }}
             >
               {/* Terminal header */}
