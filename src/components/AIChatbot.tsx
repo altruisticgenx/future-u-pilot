@@ -169,18 +169,18 @@ export const AIChatbot = () => {
             <div className="bg-gradient-to-r from-primary to-primary/80 p-4 flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
-                  <MessageCircle className="w-5 h-5 text-primary-foreground" />
+                  <MessageCircle className="w-5 h-5 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-primary-foreground font-bold">Future-U Assistant</h3>
-                  <p className="text-primary-foreground/90 text-xs font-medium">Powered by AI</p>
+                  <h3 className="text-white font-semibold">Future-U Assistant</h3>
+                  <p className="text-white/80 text-xs">Powered by AI</p>
                 </div>
               </div>
               <Button
                 variant="ghost"
                 size="icon"
                 onClick={() => setIsOpen(false)}
-                className="text-primary-foreground hover:bg-primary-foreground/20"
+                className="text-white hover:bg-white/20"
               >
                 <X className="w-5 h-5" />
               </Button>

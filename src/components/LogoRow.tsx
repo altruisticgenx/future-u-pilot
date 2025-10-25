@@ -62,7 +62,7 @@ export const LogoRow = () => {
           viewport={{ once: true }}
           className="text-center space-y-6 sm:space-y-8"
         >
-          <h2 id="partners-heading" className="text-base sm:text-lg md:text-xl font-bold text-foreground/80">
+          <h2 id="partners-heading" className="text-base sm:text-lg md:text-xl font-semibold text-muted-foreground">
             Trusted by innovators in government, research, and emerging tech
           </h2>
 
@@ -142,7 +142,7 @@ export const LogoRow = () => {
                     {stat.value}
                   </span>
                 </motion.div>
-                <p className="text-[10px] sm:text-xs text-foreground/70 font-semibold">{stat.label}</p>
+                <p className="text-[10px] sm:text-xs text-muted-foreground font-medium">{stat.label}</p>
               </motion.div>
             ))}
           </div>

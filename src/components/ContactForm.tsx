@@ -120,7 +120,7 @@ export const ContactForm = () => {
           <Send className="h-12 w-12 text-primary" />
         </div>
         <h3 className="text-3xl font-bold">Thank You!</h3>
-        <p className="text-lg text-foreground/80 max-w-md mx-auto font-medium">
+        <p className="text-lg text-muted-foreground max-w-md mx-auto">
           We've received your inquiry and will reach out within 24 hours to plan your next 8 weeks.
         </p>
         <InteractiveHoverButton

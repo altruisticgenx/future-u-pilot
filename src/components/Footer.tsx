@@ -32,7 +32,7 @@ export const Footer = () => {
             <h3 className="text-lg sm:text-xl font-bold bg-gradient-hero bg-clip-text text-transparent">
               AltruisticXAI
             </h3>
-            <p className="text-xs sm:text-sm text-foreground/80 leading-relaxed font-medium">
+            <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
               We're a small, senior team building explainable AI workflows and quantum-ready roadmaps with public-interest DNA.
             </p>
           </div>
@@ -43,7 +43,7 @@ export const Footer = () => {
             <nav className="flex flex-col space-y-2">
               <a
                 href="#services"
-                className="text-xs sm:text-sm text-foreground/70 hover:text-primary transition-colors font-medium"
+                className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors"
                 onClick={(e) => {
                   e.preventDefault();
                   document.getElementById("services")?.scrollIntoView({ behavior: "smooth" });
@@ -53,13 +53,13 @@ export const Footer = () => {
               </a>
               <Link
                 to="/storytelling"
-                className="text-xs sm:text-sm text-foreground/70 hover:text-primary transition-colors font-medium"
+                className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors"
               >
                 Storytelling
               </Link>
               <a
                 href="#contact"
-                className="text-xs sm:text-sm text-foreground/70 hover:text-primary transition-colors font-medium"
+                className="text-xs sm:text-sm text-muted-foreground hover:text-primary transition-colors"
                 onClick={(e) => {
                   e.preventDefault();
                   document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
@@ -100,7 +100,7 @@ export const Footer = () => {
                 <Linkedin className="h-5 w-5" />
               </a>
             </div>
-            <p className="text-[10px] sm:text-xs text-foreground/60 pt-4 font-medium">
+            <p className="text-[10px] sm:text-xs text-muted-foreground pt-4">
               © {new Date().getFullYear()} AltruisticXAI. All rights reserved.
             </p>
           </div>

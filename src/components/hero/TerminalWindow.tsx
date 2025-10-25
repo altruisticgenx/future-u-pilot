@@ -57,7 +57,7 @@ export const TerminalWindow = ({
               aria-label="Maximize button - active"
             />
           </div>
-          <span className="text-[10px] sm:text-xs text-foreground/70 ml-1 sm:ml-2 font-mono font-medium">
+          <span className="text-[10px] sm:text-xs text-muted-foreground ml-1 sm:ml-2 font-mono">
             quantum.sh
           </span>
         </div>

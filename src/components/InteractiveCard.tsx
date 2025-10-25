@@ -82,7 +82,7 @@ export const InteractiveCard = ({
             </motion.div>
             <div className="flex-1">
               <h3 className="text-lg font-bold text-foreground">{title}</h3>
-              <p className="text-sm text-foreground/70 font-medium">{subtitle}</p>
+              <p className="text-sm text-muted-foreground">{subtitle}</p>
             </div>
           </div>
 
