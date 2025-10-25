@@ -17,6 +17,7 @@ const About = lazy(() => import("./pages/About"));
 const Terminal = lazy(() => import("./pages/Terminal"));
 const Auth = lazy(() => import("./pages/Auth"));
 const MapDemo = lazy(() => import("./pages/MapDemo"));
+const FormsDemo = lazy(() => import("./pages/FormsDemo"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 // Lazy wrapper that only loads QueryClient when needed
@@ -58,6 +59,7 @@ const App = () => (
           <Route path="/storytelling" element={<Storytelling />} />
           <Route path="/about" element={<About />} />
           <Route path="/map" element={<MapDemo />} />
+          <Route path="/forms" element={<FormsDemo />} />
           <Route path="/auth" element={<QueryWrapper><Auth /></QueryWrapper>} />
           <Route path="/terminal" element={<QueryWrapper><Terminal /></QueryWrapper>} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

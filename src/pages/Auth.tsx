@@ -107,7 +107,7 @@ const Auth = () => {
         toast({
           variant: "destructive",
           title: "Validation Error",
-          description: error.errors[0].message,
+          description: error.issues[0].message,
         });
       }
     } finally {

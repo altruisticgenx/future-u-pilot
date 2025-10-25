@@ -212,7 +212,7 @@ export const ContactForm = () => {
             <SelectTrigger id="sector" className="h-9 text-sm bg-card/60 border-2 shadow-[4px_4px_0px_0px_hsl(var(--primary)/0.2)]" aria-invalid={!!errors.sector}>
               <SelectValue placeholder="Select sector" />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent className="bg-background border-2 z-50">
               {sectors.map((sector) => (
                 <SelectItem key={sector} value={sector}>
                   {sector}
@@ -232,7 +232,7 @@ export const ContactForm = () => {
             <SelectTrigger id="timeline" className="h-9 text-sm bg-card/60 border-2 shadow-[4px_4px_0px_0px_hsl(var(--accent)/0.2)]" aria-invalid={!!errors.timeline}>
               <SelectValue placeholder="Select timeline" />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent className="bg-background border-2 z-50">
               {timelines.map((timeline) => (
                 <SelectItem key={timeline} value={timeline}>
                   {timeline}
