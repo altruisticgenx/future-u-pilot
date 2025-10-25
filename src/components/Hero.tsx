@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Calendar, Sparkles } from "lucide-react";
@@ -24,7 +23,6 @@ const terminalCommands = [
 export const Hero = () => {
   const [cmdIndex, setCmdIndex] = useState(0);
   const [animationsReady, setAnimationsReady] = useState(false);
-  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   useEffect(() => {
     const timer = setTimeout(() => setAnimationsReady(true), 100);
@@ -48,393 +46,161 @@ export const Hero = () => {
     window.location.href = "/about";
   };
 
-  const springConfig = {
-    type: "spring" as const,
-    stiffness: 260,
-    damping: 20,
-    mass: 1,
-  };
-
-  const buttonVariants = {
-    initial: prefersReducedMotion ? {} : { scale: 0, opacity: 0 },
-    animate: prefersReducedMotion 
-      ? { scale: 1, opacity: 1 }
-      : { 
-          scale: 1, 
-          opacity: 1,
-          transition: {
-            ...springConfig,
-            delay: 0.5,
-          }
-        },
-    hover: prefersReducedMotion ? {} : {
-      scale: 1.05,
-      y: -2,
-      transition: { duration: 0.2 }
-    },
-    tap: prefersReducedMotion ? {} : {
-      scale: 0.98,
-      y: 0,
-      transition: { duration: 0.15 }
-    }
-  };
-
   return (
     <section 
-      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 sm:pt-20"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-14 sm:pt-16 animate-fade-in"
       role="region"
       aria-labelledby="hero-heading"
     >
-      {/* 21st.dev Quantum Background */}
-      <div className="absolute inset-0 hero-quantum" />
+      {/* Enhanced Quantum Background with animations */}
+      <div className="absolute inset-0 hero-quantum animate-pulse" style={{ animationDuration: '8s' }} />
       
-      {/* Rotating Light Overlay */}
-      {animationsReady && !prefersReducedMotion && (
-        <div className="hero-light-overlay" />
-      )}
+      {/* Rotating Light Overlay - CSS only */}
+      <div className="absolute inset-0 opacity-30 bg-gradient-conic from-primary/20 via-accent/20 to-primary/20 animate-spin" style={{ animationDuration: '20s' }} />
       
       {/* Noise Texture Overlay */}
       <div className="noise-overlay" />
       
-      {/* Floating Glass Blur Panels - 4% opacity */}
-      {animationsReady && !prefersReducedMotion && (
-        <>
-          <motion.div
-            className="glass-blur-4 absolute rounded-2xl hidden md:block"
-            style={{
-              width: '200px',
-              height: '150px',
-              top: '15%',
-              left: '8%',
-            }}
-            animate={{
-              x: [0, 30, 0],
-              y: [0, -20, 0],
-              rotate: [0, 5, 0],
-            }}
-            transition={{
-              duration: 8,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          />
-          <motion.div
-            className="glass-blur-4 absolute rounded-3xl hidden lg:block"
-            style={{
-              width: '180px',
-              height: '180px',
-              top: '60%',
-              right: '12%',
-            }}
-            animate={{
-              x: [0, -25, 0],
-              y: [0, 15, 0],
-              rotate: [0, -3, 0],
-            }}
-            transition={{
-              duration: 10,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          />
-          <motion.div
-            className="glass-blur-4 absolute rounded-2xl hidden xl:block"
-            style={{
-              width: '220px',
-              height: '120px',
-              bottom: '20%',
-              left: '15%',
-            }}
-            animate={{
-              x: [0, 20, 0],
-              y: [0, -15, 0],
-              rotate: [0, 2, 0],
-            }}
-            transition={{
-              duration: 12,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          />
-        </>
-      )}
+      {/* Floating Glass Blur Panels - CSS animations */}
+      <div className="glass-blur-4 absolute rounded-2xl hidden md:block animate-float w-[200px] h-[150px] top-[15%] left-[8%]" style={{ animationDuration: '8s' }} />
+      <div className="glass-blur-4 absolute rounded-3xl hidden lg:block animate-float w-[180px] h-[180px] top-[60%] right-[12%]" style={{ animationDuration: '10s', animationDelay: '1s' }} />
+      <div className="glass-blur-4 absolute rounded-2xl hidden xl:block animate-float w-[220px] h-[120px] bottom-[20%] left-[15%]" style={{ animationDuration: '12s', animationDelay: '2s' }} />
       
-      {/* 3D Layered Floating Orbs - Multiple Depths */}
-      {animationsReady && !prefersReducedMotion && (
-        <>
-          <motion.div
-            className="absolute top-20 left-10 w-64 h-64 md:w-72 md:h-72 rounded-full blur-3xl"
-            style={{
-              background: 'radial-gradient(circle, hsl(173 80% 40% / 0.25), transparent)',
-            }}
-            animate={{
-              y: [0, 30, 0],
-              x: [0, 15, 0],
-              scale: [1, 1.15, 1],
-            }}
-            transition={{
-              duration: 8,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          />
-          <motion.div
-            className="absolute bottom-20 right-10 w-80 h-80 md:w-96 md:h-96 rounded-full blur-3xl"
-            style={{
-              background: 'radial-gradient(circle, hsl(190 84% 29% / 0.3), transparent)',
-            }}
-            animate={{
-              y: [0, -40, 0],
-              x: [0, -20, 0],
-              scale: [1, 1.25, 1],
-            }}
-            transition={{
-              duration: 10,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          />
-          <motion.div
-            className="absolute top-1/2 left-1/4 w-48 h-48 rounded-full blur-2xl hidden lg:block"
-            style={{
-              background: 'radial-gradient(circle, hsl(195 85% 16% / 0.2), transparent)',
-            }}
-            animate={{
-              y: [0, 20, 0],
-              x: [0, -10, 0],
-              scale: [1, 1.1, 1],
-            }}
-            transition={{
-              duration: 12,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          />
-        </>
-      )}
+      {/* 3D Layered Floating Orbs - CSS animations */}
+      <div className="absolute top-20 left-10 w-64 h-64 md:w-72 md:h-72 rounded-full blur-3xl bg-[radial-gradient(circle,hsl(173_80%_40%/0.25),transparent)] animate-float" style={{ animationDuration: '8s' }} />
+      <div className="absolute bottom-20 right-10 w-80 h-80 md:w-96 md:h-96 rounded-full blur-3xl bg-[radial-gradient(circle,hsl(190_84%_29%/0.3),transparent)] animate-float" style={{ animationDuration: '10s', animationDelay: '2s' }} />
+      <div className="absolute top-1/2 left-1/4 w-48 h-48 rounded-full blur-2xl hidden lg:block bg-[radial-gradient(circle,hsl(195_85%_16%/0.2),transparent)] animate-float" style={{ animationDuration: '12s', animationDelay: '4s' }} />
       
-      {/* Grid overlay with ocean theme */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(173_80%_40%/0.1)_1px,transparent_1px),linear-gradient(to_bottom,hsl(173_80%_40%/0.1)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,#000_70%,transparent_110%)]" />
+      {/* Grid overlay with ocean theme - enhanced */}
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(173_80%_40%/0.12)_1px,transparent_1px),linear-gradient(to_bottom,hsl(173_80%_40%/0.12)_1px,transparent_1px)] bg-[size:3rem_3rem] [mask-image:radial-gradient(ellipse_80%_60%_at_50%_50%,#000_60%,transparent_100%)] animate-pulse" style={{ animationDuration: '4s' }} />
 
       <div className="container relative z-10 mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-12 sm:py-20">
         <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center">
           {/* Left column - Content */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="space-y-6 sm:space-y-8"
-          >
-            {/* Status tag - Spring Bounce Animation */}
-            <motion.div
-              initial={prefersReducedMotion ? {} : { opacity: 0, scale: 0.9 }}
-              animate={prefersReducedMotion ? { opacity: 1, scale: 1 } : { opacity: 1, scale: 1 }}
-              transition={prefersReducedMotion ? {} : { delay: 0.2, ...springConfig }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 backdrop-blur-sm animate-spring-bounce"
-            >
-              <span
-                className="w-2 h-2 rounded-full bg-primary animate-pulse-soft"
-                aria-hidden="true"
-              />
-              <span className="text-sm font-medium text-primary">
+          <div className="space-y-6 sm:space-y-8 animate-fade-in">
+            {/* Status tag - Tailwind Animation */}
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 backdrop-blur-sm hover-scale animate-scale-in shadow-lg shadow-primary/20">
+              <span className="w-2 h-2 rounded-full bg-primary animate-pulse" aria-hidden="true" />
+              <span className="text-xs sm:text-sm font-semibold text-primary tracking-wide">
                 Experiment status: active
               </span>
-            </motion.div>
+            </div>
 
-            {/* Headline with 3D Text Shadow */}
-            <div className="space-y-3 sm:space-y-4">
+            {/* Headline with Enhanced 3D Text Shadow */}
+            <div className="space-y-3 sm:space-y-4 animate-scale-in" style={{ animationDelay: '200ms' }}>
               <h1 
                 id="hero-heading"
-                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight"
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold leading-tight tracking-tight"
                 style={{
                   minHeight: '2.5em',
-                  textShadow: '0 2px 10px rgba(20, 184, 166, 0.3), 0 4px 20px rgba(14, 116, 144, 0.2)',
+                  textShadow: '0 0 30px rgba(20, 184, 166, 0.6), 0 0 60px rgba(14, 116, 144, 0.4), 0 4px 20px rgba(0, 0, 0, 0.8)',
                 }}
               >
-                <span className="block text-white">
+                <span className="block text-white drop-shadow-2xl">
                   {animationsReady ? (
                     <TypeAnimation
                       sequence={[
-                        'Quantum Computing',
+                        'Advanced Computing',
                         2000,
                         'AI Deployment',
                         2000,
                         'Policy Compliance',
                         2000,
-                        'Security Migration',
+                        'Future-Proof Security',
                         2000,
                       ]}
                       wrapper="span"
                       speed={50}
                       repeat={Infinity}
-                      className="relative inline-block"
-                      style={{
-                        background: 'linear-gradient(135deg, hsl(173 80% 70%), hsl(190 84% 50%))',
-                        WebkitBackgroundClip: 'text',
-                        WebkitTextFillColor: 'transparent',
-                        backgroundClip: 'text',
-                      }}
+                      className="relative inline-block bg-gradient-to-r from-cyan-400 via-teal-400 to-blue-500 bg-clip-text text-transparent animate-gradient-x"
                     />
                   ) : (
-                    <span 
-                      className="relative inline-block"
-                      style={{
-                        background: 'linear-gradient(135deg, hsl(173 80% 70%), hsl(190 84% 50%))',
-                        WebkitBackgroundClip: 'text',
-                        WebkitTextFillColor: 'transparent',
-                        backgroundClip: 'text',
-                      }}
-                    >
-                      Quantum Computing
+                    <span className="relative inline-block bg-gradient-to-r from-cyan-400 via-teal-400 to-blue-500 bg-clip-text text-transparent">
+                      Advanced Computing
                     </span>
                   )}
                 </span>
               </h1>
               
-              <motion.p 
-                className="text-sm sm:text-base md:text-lg text-white/90 max-w-2xl leading-relaxed"
-                initial={prefersReducedMotion ? {} : { opacity: 0, rotateX: -10 }}
-                animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, rotateX: 0 }}
-                transition={prefersReducedMotion ? {} : { delay: 0.3, duration: 0.4 }}
-              >
+              <p className="text-sm sm:text-base md:text-lg text-white/95 max-w-2xl leading-relaxed animate-fade-in shadow-lg" style={{ animationDelay: '400ms' }}>
                 Pennsylvania invented the ambulance, polio vaccine, and digital computer. We're helping PA communities prepare for new technology that affects energy costs, healthcare, cybersecurity, and job training—practical solutions anyone can understand.
-              </motion.p>
+              </p>
             </div>
 
-            {/* CTAs - Smaller 3D Flowing Buttons with Unique Colors */}
-            <motion.div 
-              className="flex flex-col sm:flex-row gap-2 items-stretch sm:items-center"
-              initial={prefersReducedMotion ? {} : { opacity: 0, y: 10 }}
-              animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
-              transition={prefersReducedMotion ? {} : { 
-                delay: 0.6,
-                staggerChildren: 0.1 
-              }}
-            >
-              <motion.div
-                variants={buttonVariants}
-                initial="initial"
-                animate="animate"
-                whileHover="hover"
-                whileTap="tap"
+            {/* CTAs - Enhanced with Tailwind animations */}
+            <div className="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center animate-scale-in" style={{ animationDelay: '600ms' }}>
+              <Button
+                onClick={scrollToContact}
+                className="btn-3d-teal text-xs sm:text-sm px-4 py-2.5 font-bold w-full sm:w-auto min-w-[100px] flex items-center justify-center gap-2 shadow-xl hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/50 transition-all duration-300 animate-pulse-soft group"
+                data-analytics-id="cta_book_strategy"
+                aria-label="Book a strategy session"
               >
-                <Button
-                  onClick={scrollToContact}
-                  className="btn-3d-teal text-[10px] sm:text-xs px-3 py-2 font-semibold w-full sm:w-auto min-w-[90px] flex items-center justify-center gap-1.5 shadow-lg"
-                  data-analytics-id="cta_book_strategy"
-                  data-ph-capture-attribute-button-type="book"
-                  data-ph-capture-attribute-button-position="hero-primary"
-                  aria-label="Book a strategy session"
-                >
-                  <Calendar className="h-3 w-3 animate-pulse" aria-hidden="true" />
-                  Book
-                </Button>
-              </motion.div>
+                <Calendar className="h-4 w-4 group-hover:scale-110 transition-transform" aria-hidden="true" />
+                Book Session
+              </Button>
               
-              <motion.div
-                variants={buttonVariants}
-                initial="initial"
-                animate="animate"
-                whileHover="hover"
-                whileTap="tap"
-                transition={prefersReducedMotion ? {} : { delay: 0.7 }}
+              <Button
+                onClick={navigateToAbout}
+                className="btn-3d-purple text-xs sm:text-sm px-4 py-2.5 font-bold w-full sm:w-auto min-w-[100px] flex items-center justify-center gap-2 shadow-xl hover:-translate-y-1 hover:shadow-2xl hover:shadow-accent/50 transition-all duration-300 group"
+                aria-label="Learn about our approach"
               >
-                <Button
-                  onClick={navigateToAbout}
-                  className="btn-3d-purple text-[10px] sm:text-xs px-3 py-2 font-semibold w-full sm:w-auto min-w-[90px] flex items-center justify-center gap-1.5 shadow-lg"
-                  data-ph-capture-attribute-button-type="about"
-                  data-ph-capture-attribute-button-position="hero-secondary"
-                  aria-label="Learn about our approach"
-                >
-                  <Sparkles className="h-3 w-3 animate-rotate-3d" aria-hidden="true" />
-                  About
-                </Button>
-              </motion.div>
-            </motion.div>
-          </motion.div>
+                <Sparkles className="h-4 w-4 group-hover:rotate-180 transition-transform duration-500" aria-hidden="true" />
+                Learn More
+              </Button>
+            </div>
+          </div>
 
-          {/* Right column - 3D Terminal with Parallax & Glow */}
-          <motion.div
-            initial={prefersReducedMotion ? {} : { opacity: 0, x: 20 }}
-            animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, x: 0 }}
-            transition={prefersReducedMotion ? {} : { duration: 0.6, delay: 0.3 }}
-            className="relative w-full"
-            whileHover={prefersReducedMotion ? {} : {
-              rotateY: 5,
-              rotateX: -2,
-              transition: { duration: 0.3 }
-            }}
-            style={{ perspective: '1000px' }}
-          >
-            <motion.div
-              className="rounded-lg backdrop-blur-md bg-card/60 border border-border/50 shadow-xl overflow-hidden max-w-md mx-auto"
-              animate={prefersReducedMotion ? {} : {
-                y: [0, -10, 0],
-                transition: {
-                  duration: 6,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }
-              }}
-              style={{
-                minHeight: '200px',
-                boxShadow: '0 0 40px hsl(173 80% 40% / 0.3), 0 8px 32px rgba(0, 0, 0, 0.4)',
-              }}
-            >
-              {/* Terminal header */}
-              <div className="bg-muted/50 border-b border-border/50 px-2 sm:px-3 py-1.5 sm:py-2 flex items-center gap-2">
-                <div className="flex gap-1 sm:gap-1.5">
-                  <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-red-500" />
-                  <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-yellow-500" />
-                  <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-green-500 animate-pulse" />
+          {/* Right column - Enhanced Terminal with Pure CSS */}
+          <div className="relative w-full animate-fade-in perspective-1000" style={{ animationDelay: '300ms' }}>
+            <div className="rounded-xl backdrop-blur-xl bg-gradient-to-br from-card/80 to-card/60 border-2 border-primary/30 shadow-2xl shadow-primary/40 overflow-hidden max-w-lg mx-auto hover:border-primary/50 hover:shadow-primary/60 transition-all duration-500 hover:scale-[1.02] hover-lift group">
+              {/* Terminal header - Enhanced */}
+              <div className="bg-gradient-to-r from-muted/70 to-muted/50 border-b-2 border-primary/20 px-3 sm:px-4 py-2 sm:py-2.5 flex items-center gap-3 backdrop-blur-sm">
+                <div className="flex gap-1.5 sm:gap-2">
+                  <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-red-500 hover:scale-110 transition-transform cursor-pointer shadow-lg shadow-red-500/50" />
+                  <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-yellow-500 hover:scale-110 transition-transform cursor-pointer shadow-lg shadow-yellow-500/50" />
+                  <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-green-500 animate-pulse hover:scale-110 transition-transform cursor-pointer shadow-lg shadow-green-500/50" />
                 </div>
-                <span className="text-[10px] sm:text-xs text-muted-foreground ml-1 sm:ml-2 font-mono">
-                  quantum.sh
+                <span className="text-xs sm:text-sm text-primary/90 ml-1 sm:ml-2 font-mono font-bold tracking-wider">
+                  advanced-tech.sh
                 </span>
+                <div className="ml-auto flex gap-1">
+                  <div className="w-1.5 h-1.5 rounded-full bg-primary/60 animate-pulse" />
+                  <div className="w-1.5 h-1.5 rounded-full bg-primary/40 animate-pulse" style={{ animationDelay: '0.5s' }} />
+                  <div className="w-1.5 h-1.5 rounded-full bg-primary/20 animate-pulse" style={{ animationDelay: '1s' }} />
+                </div>
               </div>
               
-              {/* Terminal content with scanline effect */}
-              <div className="relative p-2 sm:p-3 font-mono text-[9px] xs:text-[10px] sm:text-xs min-h-[160px] sm:min-h-[200px] bg-terminal-bg/50 overflow-hidden">
-                {/* Scanline animation overlay */}
-                {animationsReady && !prefersReducedMotion && (
-                  <motion.div
-                    className="absolute inset-0 pointer-events-none"
-                    style={{
-                      background: 'linear-gradient(0deg, transparent 0%, hsl(173 80% 60% / 0.05) 50%, transparent 100%)',
-                      height: '100%',
-                    }}
-                    animate={{
-                      y: ['-100%', '200%'],
-                    }}
-                    transition={{
-                      duration: 4,
-                      repeat: Infinity,
-                      ease: "linear",
-                    }}
-                  />
-                )}
-                <div className="relative z-10 space-y-0.5 sm:space-y-1">
+              {/* Terminal content with enhanced effects */}
+              <div className="relative p-3 sm:p-4 font-mono text-[10px] xs:text-xs sm:text-sm min-h-[180px] sm:min-h-[220px] bg-gradient-to-b from-terminal-bg/70 to-terminal-bg/90 overflow-hidden">
+                {/* Enhanced scanline effect */}
+                <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(0deg,transparent_0%,hsl(173_80%_60%/0.08)_50%,transparent_100%)] h-full animate-scan" />
+                
+                {/* CRT screen effect */}
+                <div className="absolute inset-0 pointer-events-none bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,hsl(173_80%_60%/0.03)_2px,hsl(173_80%_60%/0.03)_4px)]" />
+                
+                {/* Glow effect */}
+                <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_center,hsl(173_80%_60%/0.15),transparent_70%)] opacity-50 group-hover:opacity-75 transition-opacity duration-500" />
+                
+                <div className="relative z-10 space-y-1 sm:space-y-1.5">
                   {terminalCommands.slice(0, Math.min(cmdIndex + 1, 8)).map((cmd, i) => (
-                    <motion.div
+                    <div
                       key={i}
-                      initial={prefersReducedMotion ? {} : { opacity: 0, x: -10 }}
-                      animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, x: 0 }}
-                      transition={prefersReducedMotion ? {} : { delay: i * 0.05 }}
-                      className={`leading-relaxed ${
-                        cmd.startsWith('$') ? 'text-cmd-info font-bold' :
-                        cmd.startsWith('⚡') || cmd.startsWith('🤖') || cmd.startsWith('🔬') ? 'text-cmd-warning' :
-                        cmd.startsWith('✓') ? 'text-cmd-success' :
-                        'text-terminal-text/50'
+                      className={`leading-relaxed animate-fade-in hover:translate-x-1 transition-transform ${
+                        cmd.startsWith('$') ? 'text-cmd-info font-extrabold text-shadow-glow' :
+                        cmd.startsWith('⚡') || cmd.startsWith('🤖') || cmd.startsWith('🔬') ? 'text-cmd-warning font-bold' :
+                        cmd.startsWith('✓') ? 'text-cmd-success font-semibold' :
+                        'text-terminal-text/60'
                       }`}
+                      style={{ animationDelay: `${i * 50}ms` }}
                     >
                       {cmd}
-                    </motion.div>
+                    </div>
                   ))}
-                  <span className="inline-block w-1 h-2.5 sm:w-1.5 sm:h-3 bg-cmd-success animate-pulse" />
+                  <span className="inline-block w-1.5 h-3 sm:w-2 sm:h-4 bg-cmd-success animate-pulse shadow-lg shadow-cmd-success/50" />
                 </div>
               </div>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
