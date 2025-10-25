@@ -169,8 +169,12 @@ export const ServiceCards = () => {
   const [expandedCard, setExpandedCard] = useState<string | null>(null);
 
   return (
-    <section id="services" className="py-16 sm:py-24 relative">
+    <section id="services" className="py-12 sm:py-16 md:py-20 relative overflow-hidden" aria-labelledby="services-heading">
       <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/5 to-background" />
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute top-1/4 left-10 w-96 h-96 bg-primary/30 rounded-full blur-3xl animate-float" />
+        <div className="absolute bottom-1/4 right-10 w-80 h-80 bg-accent/30 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }} />
+      </div>
       
       <div className="container relative mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <motion.div
@@ -178,52 +182,56 @@ export const ServiceCards = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="text-center space-y-3 mb-10 sm:mb-12"
+          className="text-center space-y-2 sm:space-y-3 mb-8 sm:mb-10"
         >
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">Current Initiatives</h2>
-          <p className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-3xl mx-auto">
+          <h2 id="services-heading" className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold">Current Initiatives</h2>
+          <p className="text-xs sm:text-sm md:text-base lg:text-lg text-muted-foreground max-w-3xl mx-auto px-4">
             Empowering Quantum & AI Literacy through active programs across education, government, energy, and enterprise sectors worldwide.
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-4 sm:gap-6 mb-8 sm:mb-12">
+        <div className="grid sm:grid-cols-2 gap-3 sm:gap-4 md:gap-5 mb-6 sm:mb-8">
           {services.map((service, index) => (
             <motion.div
               key={service.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              transition={{ duration: 0.5, delay: index * 0.08 }}
               viewport={{ once: true }}
             >
               <Card 
                 className={cn(
                   "group relative overflow-hidden transition-all duration-300 h-full",
-                  "hover:shadow-[8px_8px_0px_0px_hsl(var(--primary)/0.2)] hover:-translate-y-1",
-                  "border-2 shadow-[4px_4px_0px_0px_hsl(var(--border))]",
-                  "bg-gradient-to-br backdrop-blur-sm",
+                  "hover:shadow-[6px_6px_0px_0px_hsl(var(--primary)/0.25)] hover:-translate-y-1",
+                  "border-2 shadow-[3px_3px_0px_0px_hsl(var(--border))]",
+                  "glass-card-3d bg-gradient-to-br backdrop-blur-sm",
                   service.color,
-                  expandedCard === service.id ? "ring-2 ring-primary shadow-[8px_8px_0px_0px_hsl(var(--primary)/0.3)]" : ""
+                  expandedCard === service.id ? "ring-2 ring-primary shadow-[6px_6px_0px_0px_hsl(var(--primary)/0.35)]" : ""
                 )}
               >
-                <CardHeader className="relative space-y-4 pb-4">
-                  <div className="flex items-start justify-between gap-4">
-                    <div className="p-2.5 sm:p-3 rounded-lg bg-background/80 backdrop-blur-sm w-fit border-2 shadow-[2px_2px_0px_0px_hsl(var(--border))]">
-                      <service.icon className="w-5 h-5 sm:w-6 sm:h-6 text-primary" />
-                    </div>
-                    <div className="flex flex-col gap-2 items-end">
+                <CardHeader className="relative space-y-3 pb-3 sm:pb-4">
+                  <div className="flex items-start justify-between gap-3 sm:gap-4">
+                    <motion.div 
+                      className="p-2 sm:p-2.5 rounded-lg bg-background/80 backdrop-blur-sm w-fit border-2 shadow-[2px_2px_0px_0px_hsl(var(--border))]"
+                      whileHover={{ rotate: 360 }}
+                      transition={{ duration: 0.6 }}
+                    >
+                      <service.icon className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-primary" aria-hidden="true" />
+                    </motion.div>
+                    <div className="flex flex-col gap-1.5 sm:gap-2 items-end">
                       <Badge 
                         variant={service.status === "Active" ? "default" : service.status === "Planning" ? "secondary" : "outline"}
-                        className="text-xs font-semibold border-2 shadow-[2px_2px_0px_0px_hsl(var(--border))]"
+                        className="text-[10px] sm:text-xs font-bold border-2 shadow-[2px_2px_0px_0px_hsl(var(--border))]"
                       >
                         {service.status}
                       </Badge>
-                      <Badge variant="outline" className="text-xs border-2 shadow-[2px_2px_0px_0px_hsl(var(--border))] bg-background/60">
+                      <Badge variant="outline" className="text-[10px] sm:text-xs border-2 shadow-[2px_2px_0px_0px_hsl(var(--border))] bg-background/60">
                         {service.sector}
                       </Badge>
                     </div>
                   </div>
-                  <CardTitle className="text-base sm:text-lg leading-tight">{service.title}</CardTitle>
-                  <CardDescription className="text-xs sm:text-sm leading-relaxed">
+                  <CardTitle className="text-sm sm:text-base md:text-lg leading-tight">{service.title}</CardTitle>
+                  <CardDescription className="text-[11px] sm:text-xs md:text-sm leading-relaxed">
                     {service.shortDesc}
                   </CardDescription>
                 </CardHeader>

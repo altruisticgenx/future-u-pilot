@@ -94,9 +94,14 @@ export const Navigation = () => {
             )}
           </div>
 
-          {/* Mobile Menu Button */}
-          <button className="lg:hidden p-2 rounded-lg hover:bg-primary/10 transition-colors" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} aria-label="Toggle menu">
-            {isMobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          {/* Mobile Menu Button - Enhanced touch target */}
+          <button 
+            className="lg:hidden p-3 rounded-lg hover:bg-primary/10 transition-colors min-w-[44px] min-h-[44px] flex items-center justify-center" 
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} 
+            aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isMobileMenuOpen}
+          >
+            {isMobileMenuOpen ? <X className="h-6 w-6" aria-hidden="true" /> : <Menu className="h-6 w-6" aria-hidden="true" />}
           </button>
         </div>
       </div>
@@ -114,15 +119,15 @@ export const Navigation = () => {
         height: 0
       }} className="lg:hidden border-t border-border/50 bg-background/95 backdrop-blur-lg overflow-hidden">
             <div className="container mx-auto px-4 py-4 space-y-2">
-              {navItems.map((item, index) => <motion.button key={item.label} initial={{
-            opacity: 0,
-            x: -20
-          }} animate={{
-            opacity: 1,
-            x: 0
-          }} transition={{
-            delay: index * 0.05
-          }} onClick={() => handleNavClick(item.href)} className="w-full text-left px-4 py-3 rounded-lg text-foreground hover:bg-primary/10 hover:text-primary transition-all font-medium">
+              {navItems.map((item, index) => <motion.button 
+              key={item.label} 
+              onClick={() => handleNavClick(item.href)} 
+              className="w-full text-left px-4 py-3.5 rounded-lg text-foreground hover:bg-primary/10 hover:text-primary transition-all font-medium text-base min-h-[44px]"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: index * 0.05 }}
+              aria-label={`Navigate to ${item.label}`}
+            >
                   {item.label}
                 </motion.button>)}
               
@@ -135,15 +140,16 @@ export const Navigation = () => {
                   </div>
                   <Button
                     variant="outline"
-                    className="w-full"
+                    className="w-full min-h-[44px]"
                     onClick={() => signOut()}
+                    aria-label="Sign out of your account"
                   >
-                    <LogOut className="h-4 w-4 mr-2" />
+                    <LogOut className="h-4 w-4 mr-2" aria-hidden="true" />
                     Logout
                   </Button>
                 </>
               ) : (
-                <Button className="w-full mt-4" onClick={() => navigate("/auth")}>
+                <Button className="w-full mt-4 min-h-[44px]" onClick={() => navigate("/auth")} aria-label="Login or Sign Up">
                   Login / Sign Up
                 </Button>
               )}
