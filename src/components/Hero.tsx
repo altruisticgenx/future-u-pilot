@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Calendar, Sparkles, Video } from "lucide-react";
 import { TypeAnimation } from 'react-type-animation';
+import { useNavigate } from "react-router-dom";
 
 const terminalCommands = [
   "$ quantum-check --infrastructure",
@@ -22,6 +23,7 @@ const terminalCommands = [
 ];
 
 export const Hero = () => {
+  const navigate = useNavigate();
   const [cmdIndex, setCmdIndex] = useState(0);
   const [animationsReady, setAnimationsReady] = useState(false);
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -48,7 +50,7 @@ export const Hero = () => {
   };
 
   const navigateToAbout = () => {
-    window.location.href = "/about";
+    navigate("/about");
   };
 
   const springConfig = {
