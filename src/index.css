@@ -97,13 +97,13 @@ All colors MUST be HSL.
 
     /* Core UI Colors */
     --background: 200 20% 98%;
-    --foreground: 195 100% 8%;
+    --foreground: 195 100% 10%;
     --card: 180 100% 99%;
-    --card-foreground: 195 100% 10%;
+    --card-foreground: 195 100% 12%;
     --popover: 180 100% 99%;
-    --popover-foreground: 195 100% 10%;
+    --popover-foreground: 195 100% 12%;
     --muted: 195 20% 94%;
-    --muted-foreground: 195 15% 45%;
+    --muted-foreground: 195 30% 35%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
     --border: 195 30% 88%;
@@ -209,38 +209,48 @@ All colors MUST be HSL.
     --accent: 43 96% 56%;
     --accent-foreground: 195 100% 5%;
     --secondary: 258 90% 66%;
-    --secondary-foreground: 180 40% 95%;
+    --secondary-foreground: 180 40% 98%;
     --background: 200 20% 98%;
-    --foreground: 195 100% 8%;
+    --foreground: 195 100% 10%;
     --card: 180 100% 99%;
-    --card-foreground: 195 100% 10%;
+    --card-foreground: 195 100% 12%;
     --border: 195 30% 88%;
     --ring: 185 90% 55%;
     --muted: 195 20% 94%;
-    --muted-foreground: 195 15% 45%;
+    --muted-foreground: 195 30% 35%;
+  }
+
+  [data-theme="quantum"].dark {
+    --primary: 185 90% 55%;
+    --primary-foreground: 195 100% 5%;
+    --background: 195 100% 5%;
+    --foreground: 180 20% 95%;
+    --card: 195 90% 8%;
+    --card-foreground: 180 20% 95%;
+    --muted-foreground: 195 20% 70%;
   }
 
   /* Custom Theme: Terminal */
   [data-theme="terminal"] {
     --primary: 160 84% 39%;
-    --primary-foreground: 160 100% 95%;
+    --primary-foreground: 160 100% 98%;
     --primary-glow: 160 100% 60%;
     --accent: 43 96% 56%;
     --accent-foreground: 195 100% 5%;
     --secondary: 195 60% 40%;
-    --secondary-foreground: 180 40% 95%;
+    --secondary-foreground: 180 40% 98%;
     --background: 195 100% 5%;
-    --foreground: 180 40% 85%;
+    --foreground: 180 20% 90%;
     --card: 195 90% 8%;
-    --card-foreground: 180 40% 95%;
+    --card-foreground: 180 20% 92%;
     --border: 195 50% 20%;
     --ring: 160 84% 39%;
     --muted: 195 40% 15%;
-    --muted-foreground: 195 25% 65%;
+    --muted-foreground: 195 20% 75%;
     --terminal-bg: 195 100% 5%;
     --terminal-surface: 195 95% 8%;
     --terminal-border: 195 60% 18%;
-    --terminal-text: 180 40% 80%;
+    --terminal-text: 180 20% 85%;
   }
 
   .dark {
@@ -328,13 +338,13 @@ All colors MUST be HSL.
 
     /* Core UI Colors - Dark */
     --background: 195 100% 5%;
-    --foreground: 180 40% 95%;
+    --foreground: 180 20% 95%;
     --card: 195 90% 8%;
-    --card-foreground: 180 40% 95%;
+    --card-foreground: 180 20% 95%;
     --popover: 195 90% 8%;
-    --popover-foreground: 180 40% 95%;
+    --popover-foreground: 180 20% 95%;
     --muted: 195 40% 15%;
-    --muted-foreground: 195 25% 65%;
+    --muted-foreground: 195 20% 70%;
     --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
     --border: 195 50% 20%;
