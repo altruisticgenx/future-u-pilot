@@ -1,6 +1,7 @@
 import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
+import { LocalAIProvider } from "./contexts/LocalAIContext";
 
 // Polyfill for requestIdleCallback
 if (!('requestIdleCallback' in window)) {
@@ -27,7 +28,11 @@ rootElement.innerHTML = `
 `;
 
 // Render app immediately for fast TTI
-createRoot(rootElement).render(<App />);
+createRoot(rootElement).render(
+  <LocalAIProvider>
+    <App />
+  </LocalAIProvider>
+);
 
 // Initialize accessibility auditing in development
 if (process.env.NODE_ENV !== 'production') {

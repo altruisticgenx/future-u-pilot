@@ -4,9 +4,10 @@ import { Footer } from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { GraduationCap, Zap, Heart, Scale, Users, Brain } from "lucide-react";
 import { InteractiveCard } from "@/components/InteractiveCard";
-import { AIChatbot } from "@/components/AIChatbot";
+import { SmartChatbot } from "@/components/SmartChatbot";
 import { ROIChart } from "@/components/ROIChart";
 import { ContrastMonitor } from "@/components/ContrastMonitor";
+import { RAGSearch } from "@/components/RAGSearch";
 
 const stakeholders = [
   {
@@ -250,6 +251,28 @@ const About = () => {
         </div>
       </section>
 
+      {/* RAG Knowledge Base */}
+      <section className="py-12 bg-muted/30" aria-labelledby="rag-heading">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="space-y-4"
+          >
+            <div className="text-center mb-8">
+              <h2 id="rag-heading" className="text-lg sm:text-xl md:text-2xl font-bold mb-2 bg-gradient-hero bg-clip-text text-transparent">
+                Explore Our Knowledge Base
+              </h2>
+              <p className="text-xs sm:text-sm text-muted-foreground max-w-xl mx-auto">
+                Search indexed documents with on-device AI. 100% private, no cloud queries.
+              </p>
+            </div>
+            <RAGSearch />
+          </motion.div>
+        </div>
+      </section>
+
       {/* Vision Statement */}
       <section className="py-12 bg-gradient-to-b from-background to-muted/30" aria-labelledby="vision-heading">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl">
@@ -334,8 +357,8 @@ const About = () => {
 
       <Footer />
       
-      {/* AI Chatbot */}
-      <AIChatbot />
+      {/* AI Chatbot - Smart wrapper for Cloud/Local AI */}
+      <SmartChatbot />
       
       {/* Color Contrast Monitor (Dev Only) */}
       <ContrastMonitor />
