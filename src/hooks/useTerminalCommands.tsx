@@ -1363,6 +1363,51 @@ export const useTerminalCommands = () => {
         ];
       },
     },
+    {
+      name: 'magic',
+      aliases: ['21st', 'smart'],
+      description: 'Use 21st.dev Magic AI for advanced queries',
+      usage: '/magic <query> - Smart AI-powered search and analysis',
+      category: 'ai',
+      handler: async (args, ctx) => {
+        const query = args.join(' ');
+        
+        if (!query) {
+          return [{
+            type: 'info',
+            content: '🪄 21st.dev Magic AI\n\nUsage: /magic <your question>\n\nExamples:\n  /magic explain quantum entanglement\n  /magic latest AI breakthroughs\n  /magic summarize PQC standards'
+          }];
+        }
+
+        try {
+          const { data, error } = await supabase.functions.invoke('terminal-21st-magic', {
+            body: { 
+              action: 'search',
+              query,
+              context: { source: 'terminal' }
+            }
+          });
+
+          if (error) throw error;
+
+          if (data?.success && data?.data) {
+            const result = data.data;
+            return [{
+              type: 'success',
+              content: `🪄 21st.dev Magic Results:\n\n${JSON.stringify(result, null, 2)}`
+            }];
+          } else {
+            throw new Error('No results from Magic API');
+          }
+        } catch (error: any) {
+          console.error('Magic API error:', error);
+          return [{
+            type: 'error',
+            content: `Magic API Error: ${error.message || 'Failed to process query'}`
+          }];
+        }
+      }
+    },
   ];
 
   const executeCommand = useCallback(

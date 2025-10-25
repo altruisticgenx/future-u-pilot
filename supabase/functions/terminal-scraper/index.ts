@@ -17,10 +17,14 @@ serve(async (req) => {
       throw new Error("URL is required");
     }
 
-    console.log(`Scraping URL: ${url}, Action: ${action}`);
+    // Clean and validate URL - remove angle brackets and ensure https://
+    const cleanUrl = url.trim().replace(/^<|>$/g, '');
+    const validUrl = cleanUrl.startsWith('http') ? cleanUrl : `https://${cleanUrl}`;
+
+    console.log(`Scraping URL: ${validUrl}, Action: ${action}`);
 
     // Fetch the webpage
-    const response = await fetch(url, {
+    const response = await fetch(validUrl, {
       headers: {
         'User-Agent': 'AltruisticXAI-Terminal/1.0',
       },

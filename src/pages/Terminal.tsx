@@ -57,6 +57,10 @@ const Terminal = () => {
     },
     {
       type: 'list',
+      content: '  magic <query>  - 21st.dev Magic AI for advanced search',
+    },
+    {
+      type: 'list',
       content: '  api <source>   - Query real APIs (arxiv, github, nist, pjm)',
     },
     {
