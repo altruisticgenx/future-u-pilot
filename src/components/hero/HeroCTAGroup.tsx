@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
-import { Calendar, Sparkles, Video, HelpCircle } from "lucide-react";
+import { Calendar, Target, Video, HelpCircle } from "lucide-react";
 import type { HeroCTAGroupProps } from "@/types/hero";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -106,10 +106,10 @@ export const HeroCTAGroup = ({
             data-analytics-id="cta_book_strategy"
             data-ph-capture-attribute-button-type="book"
             data-ph-capture-attribute-button-position="hero-primary"
-            aria-label="Book a strategy session"
+            aria-label="Schedule a strategy consultation call"
             tabIndex={0}
           >
-            Book a strategy session
+            Schedule a Call
           </InteractiveHoverButton>
         </motion.div>
         
@@ -123,14 +123,14 @@ export const HeroCTAGroup = ({
             variant="3d-purple"
             size="xs"
             hasLighthouse
-            icon={Sparkles}
+            icon={Target}
             className="w-full sm:w-auto shadow-lg focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
             data-ph-capture-attribute-button-type="about"
             data-ph-capture-attribute-button-position="hero-secondary"
-            aria-label="Learn about our approach"
+            aria-label="Learn about our methodology and approach"
             tabIndex={0}
           >
-            Learn about our approach
+            See Our Method
           </InteractiveHoverButton>
         </motion.div>
 
@@ -148,10 +148,10 @@ export const HeroCTAGroup = ({
             className="w-full sm:w-auto shadow-lg focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
             data-ph-capture-attribute-button-type="video"
             data-ph-capture-attribute-button-position="hero-tertiary"
-            aria-label="Watch intro video"
+            aria-label="Watch our introduction video"
             tabIndex={0}
           >
-            Watch intro video
+            View Intro
           </InteractiveHoverButton>
         </motion.div>
 
@@ -172,7 +172,7 @@ export const HeroCTAGroup = ({
             aria-label="View frequently asked questions"
             tabIndex={0}
           >
-            View frequently asked questions
+            FAQs
           </InteractiveHoverButton>
         </motion.div>
       </motion.div>
