@@ -31,7 +31,7 @@ export const WhyNow = () => {
           className="text-center space-y-2 sm:space-y-3 mb-8 sm:mb-10 md:mb-12"
         >
           <h2 id="why-now-heading" className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold">Why Now?</h2>
-          <p className="text-xs sm:text-sm md:text-base lg:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
+          <p className="text-xs sm:text-sm md:text-base lg:text-lg text-foreground font-semibold max-w-2xl mx-auto px-4">
             Quantum timelines are uncertain; preparedness isn't.
           </p>
         </motion.div>
@@ -131,7 +131,7 @@ export const WhyNow = () => {
                       {/* Label */}
                       <div className="absolute top-6 sm:top-8 left-1/2 -translate-x-1/2 text-center whitespace-nowrap">
                         <p className="text-[10px] sm:text-xs md:text-sm font-bold text-primary">{milestone.year}</p>
-                        <p className="text-[8px] sm:text-[10px] md:text-xs text-muted-foreground mt-0.5 sm:mt-1">
+                        <p className="text-[8px] sm:text-[10px] md:text-xs text-foreground font-semibold mt-0.5 sm:mt-1">
                           {milestone.label}
                         </p>
                       </div>
