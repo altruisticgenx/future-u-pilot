@@ -35,11 +35,28 @@ export default defineConfig(({ mode }) => ({
       compress: {
         drop_console: true,
         drop_debugger: true,
-        pure_funcs: ['console.log', 'console.info', 'console.debug'],
-        passes: 2,
+        pure_funcs: ['console.log', 'console.info', 'console.debug', 'console.warn'],
+        passes: 3, // More aggressive compression
+        dead_code: true,
+        conditionals: true,
+        evaluate: true,
+        booleans: true,
+        loops: true,
+        unused: true,
+        inline: 2,
+        sequences: true,
+        properties: true,
       },
       mangle: {
         safari10: true,
+        toplevel: true, // Mangle top-level names
+        properties: {
+          regex: /^_/, // Mangle properties starting with underscore
+        },
+      },
+      format: {
+        comments: false, // Remove all comments
+        preamble: '/* Source code protected */',
       },
     },
     cssMinify: true,

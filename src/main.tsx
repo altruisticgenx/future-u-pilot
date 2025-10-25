@@ -1,6 +1,10 @@
 import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
+import { initSourceProtection } from "./lib/sourceProtection";
+
+// Initialize source code protection (production only)
+initSourceProtection();
 
 // Polyfill for requestIdleCallback
 if (!('requestIdleCallback' in window)) {
