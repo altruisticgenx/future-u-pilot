@@ -146,13 +146,13 @@ const ROISection = () => {
         technology projects. These are not estimates; these are real-world results:
       </p>
 
-      <div className="overflow-x-auto mb-6">
-        <table className="w-full border-collapse">
+      <div className="overflow-x-auto mb-6 scrollbar-thin">
+        <table className="w-full border-collapse min-w-[500px]">
           <thead>
             <tr className="border-b border-border">
-              <th className="text-left p-3 font-semibold text-foreground">Sector</th>
-              <th className="text-left p-3 font-semibold text-foreground">Payback Time</th>
-              <th className="text-left p-3 font-semibold text-foreground">ROI Multiplier</th>
+              <th className="text-left p-3 font-semibold text-foreground font-cyber">Sector</th>
+              <th className="text-left p-3 font-semibold text-foreground font-cyber">Payback Time</th>
+              <th className="text-left p-3 font-semibold text-foreground font-cyber">ROI Multiplier</th>
             </tr>
           </thead>
           <tbody>

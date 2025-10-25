@@ -29,24 +29,24 @@
     <link rel="preconnect" href="https://qwrkaktntdjsulthaask.supabase.co" crossorigin />
     <link rel="preconnect" href="https://storage.googleapis.com" />
     
-    <!-- Preload critical font -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=optional" as="style">
+    <!-- Preload critical fonts -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;600;700;800;900&display=swap" as="style">
     
     <!-- Optimized font loading with font-display swap for better performance -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" /></noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" /></noscript>
     
     <!-- Critical CSS for above-the-fold content -->
     <style>
       /* Prevent FOUC with minimal critical styles */
       *{box-sizing:border-box;margin:0;padding:0}
-      body{font-family:'Inter',system-ui,sans-serif;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;background:#0a0a0a;color:#fafafa;overflow-x:hidden}
+      body{font-family:'Rajdhani','Inter',system-ui,sans-serif;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;background:#0a0a0a;color:#fafafa;overflow-x:hidden}
       #root{min-height:100vh;display:flex;flex-direction:column}
       .container{max-width:80rem;margin:0 auto;padding:0 1rem}
       /* Content visibility optimization */
       section{content-visibility:auto;contain-intrinsic-size:auto 500px}
-      /* Initial loading state */
-      #root:empty::before{content:'';position:fixed;top:50%;left:50%;width:48px;height:48px;margin:-24px 0 0 -24px;border:3px solid #14b8a6;border-top-color:transparent;border-radius:50%;animation:spin 1s linear infinite}
+      /* Initial loading state - cyberpunk spin */
+      #root:empty::before{content:'';position:fixed;top:50%;left:50%;width:48px;height:48px;margin:-24px 0 0 -24px;border:3px solid #00ff9f;border-top-color:transparent;border-radius:50%;animation:spin 0.8s linear infinite;box-shadow:0 0 20px rgba(0,255,159,0.5)}
       @keyframes spin{to{transform:rotate(360deg)}}
       @media(min-width:640px){body{font-size:16px}}
     </style>

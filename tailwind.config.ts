@@ -263,9 +263,11 @@ export default {
         selector: "var(--radius-selector)",
       },
       fontFamily: {
-        sans: ["var(--font-sans)"],
-        display: ["var(--font-display)"],
-        mono: ["var(--font-mono)"],
+        sans: ["Rajdhani", "Inter", "var(--font-sans)"],
+        display: ["Rajdhani", "var(--font-display)"],
+        mono: ["Fira Code", "var(--font-mono)"],
+        cyber: ["Rajdhani", "sans-serif"],
+        code: ["Fira Code", "monospace"],
       },
       fontSize: {
         xs: "var(--text-xs)",
@@ -311,11 +313,18 @@ export default {
         accelerate: "var(--easing-accelerate)",
         smooth: "var(--easing-smooth)",
       },
+      textShadow: {
+        glow: "var(--text-glow-primary)",
+        "glow-accent": "var(--text-glow-accent)",
+        "glow-secondary": "var(--text-glow-secondary)",
+        none: "none",
+      },
     },
   },
   plugins: [
     require("tailwindcss-animate"),
-    plugin(function({ addUtilities }) {
+    plugin(function({ addUtilities, matchUtilities, theme }) {
+      // Glassmorphism utilities
       addUtilities({
         ".bg-glass": {
           "background-color": "hsl(var(--glass-bg))",
@@ -323,6 +332,7 @@ export default {
         ".border-glass": {
           "border-color": "hsl(var(--glass-border))",
         },
+        // Elevation utilities
         ".elevation-0": {
           "box-shadow": "var(--elevation-0)",
         },
@@ -341,7 +351,36 @@ export default {
         ".elevation-5": {
           "box-shadow": "var(--elevation-5)",
         },
+        // Text glow utilities
+        ".text-glow": {
+          "text-shadow": "var(--text-glow-primary)",
+        },
+        ".text-glow-accent": {
+          "text-shadow": "var(--text-glow-accent)",
+        },
+        ".text-glow-secondary": {
+          "text-shadow": "var(--text-glow-secondary)",
+        },
+        // Cyberpunk boot-up animation
+        ".cyber-fade-in": {
+          "animation": "fadeIn 1s ease-out forwards",
+          "opacity": "0",
+        },
+        // Performance hint
+        ".will-change-transform": {
+          "will-change": "transform",
+        },
       });
+      
+      // Dynamic text shadow utilities
+      matchUtilities(
+        {
+          "text-shadow": (value) => ({
+            textShadow: value,
+          }),
+        },
+        { values: theme("textShadow") }
+      );
     }),
   ],
 } satisfies Config;

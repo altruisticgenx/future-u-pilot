@@ -159,10 +159,12 @@ All colors MUST be HSL.
     --elevation-4: 0 12px 40px hsl(132 100% 64% / 0.24), 0 6px 20px hsl(132 100% 64% / 0.12);
     --elevation-5: 0 20px 60px hsl(132 100% 64% / 0.3), 0 10px 30px hsl(132 100% 64% / 0.15);
 
-    /* Typography Tokens */
-    --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    --font-display: 'Inter', system-ui, sans-serif;
-    --font-mono: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+    /* Typography Tokens - Cyberpunk Fonts */
+    --font-sans: 'Rajdhani', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-display: 'Rajdhani', system-ui, sans-serif;
+    --font-mono: 'Fira Code', 'JetBrains Mono', 'Courier New', monospace;
+    --font-cyber: 'Rajdhani', sans-serif;
+    --font-code: 'Fira Code', monospace;
     --text-xs: 0.75rem;
     --text-sm: 0.875rem;
     --text-base: 1rem;
@@ -174,6 +176,11 @@ All colors MUST be HSL.
     --leading-tight: 1.25;
     --leading-normal: 1.5;
     --leading-relaxed: 1.75;
+    
+    /* Text Shadow/Glow Effects - Cyberpunk */
+    --text-glow-primary: 0 0 10px hsl(var(--primary) / 0.5), 0 0 20px hsl(var(--primary) / 0.3), 0 0 30px hsl(var(--primary) / 0.2);
+    --text-glow-accent: 0 0 10px hsl(var(--accent) / 0.5), 0 0 20px hsl(var(--accent) / 0.3), 0 0 30px hsl(var(--accent) / 0.2);
+    --text-glow-secondary: 0 0 10px hsl(var(--secondary) / 0.5), 0 0 20px hsl(var(--secondary) / 0.3), 0 0 30px hsl(var(--secondary) / 0.2);
 
     /* Interactive Light Position */
     --light-x: 50%;
@@ -411,7 +418,7 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: var(--font-sans);
+    font-family: var(--font-cyber);
     font-size: var(--text-sm);
     line-height: var(--leading-normal);
     /* Performance: Force GPU acceleration for smoother rendering */
@@ -422,6 +429,16 @@ All colors MUST be HSL.
   }
   
   /* Ensure all custom fonts use font-display: swap */
+  @font-face {
+    font-family: 'Rajdhani';
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'Fira Code';
+    font-display: swap;
+  }
+  
   @font-face {
     font-family: 'Inter';
     font-display: swap;
@@ -434,15 +451,21 @@ All colors MUST be HSL.
     }
   }
 
-  /* Typography Scale */
+  /* Typography Scale - Cyberpunk Headings */
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-display);
+    font-family: var(--font-cyber);
     font-weight: 700;
     line-height: var(--leading-tight);
+    letter-spacing: -0.02em;
+  }
+  
+  h1 {
+    font-weight: 800;
+    letter-spacing: -0.04em;
   }
 
   code, pre, kbd {
-    font-family: var(--font-mono);
+    font-family: var(--font-code);
   }
   
   /* Better mobile text sizing */
@@ -515,6 +538,18 @@ All colors MUST be HSL.
     100% {
       text-shadow: 0.025em 0.05em 0 hsl(var(--error)), 0.05em 0 0 hsl(var(--info));
       transform: translate(0);
+    }
+  }
+  
+  /* Cyberpunk boot-up fade-in animation */
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
     }
   }
   
@@ -1245,9 +1280,17 @@ All colors MUST be HSL.
     opacity: 1;
   }
 
-  /* Typography Utilities */
+  /* Typography Utilities - Cyberpunk */
   .text-display {
     font-family: var(--font-display);
+  }
+  
+  .text-cyber {
+    font-family: var(--font-cyber);
+  }
+  
+  .text-code {
+    font-family: var(--font-code);
   }
 
   .text-mono {
@@ -1257,6 +1300,29 @@ All colors MUST be HSL.
   .leading-tight { line-height: var(--leading-tight); }
   .leading-normal { line-height: var(--leading-normal); }
   .leading-relaxed { line-height: var(--leading-relaxed); }
+  
+  /* Cyberpunk Heading Styles */
+  .heading-cyber {
+    font-family: var(--font-cyber);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    line-height: var(--leading-tight);
+  }
+  
+  .heading-impact {
+    font-family: var(--font-cyber);
+    font-weight: 900;
+    letter-spacing: -0.05em;
+    line-height: 0.9;
+    text-transform: uppercase;
+  }
+  
+  /* Data Display - Monospace for numbers/metrics */
+  .data-display {
+    font-family: var(--font-code);
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.02em;
+  }
 
   /* Smooth Performance */
   .smooth-rendering {
