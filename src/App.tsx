@@ -42,7 +42,7 @@ const QueryWrapper = lazy(() =>
 );
 
 const App = () => (
-  <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+  <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
     <TooltipProvider>
       <Suspense fallback={null}>
         <Toaster />

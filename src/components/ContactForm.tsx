@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -111,39 +110,31 @@ export const ContactForm = () => {
 
   if (isSuccess) {
     return (
-      <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        className="text-center space-y-6 py-12"
-      >
-        <div className="inline-flex p-4 rounded-full bg-primary/10">
-          <Send className="h-12 w-12 text-primary" />
+      <div className="text-center space-y-4 py-8 animate-scale-in">
+        <div className="inline-flex p-3 rounded-full bg-primary/10">
+          <Send className="h-8 w-8 text-primary" />
         </div>
-        <h3 className="text-3xl font-bold">Thank You!</h3>
-        <p className="text-lg text-muted-foreground max-w-md mx-auto">
+        <h3 className="text-2xl font-bold">Thank You!</h3>
+        <p className="text-base text-muted-foreground max-w-md mx-auto">
           We've received your inquiry and will reach out within 24 hours to plan your next 8 weeks.
         </p>
         <Button
           variant="outline"
           onClick={() => setIsSuccess(false)}
-          className="mt-4"
+          className="mt-3"
         >
           Submit Another Inquiry
         </Button>
-      </motion.div>
+      </div>
     );
   }
 
   return (
-    <motion.form
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.5 }}
-      viewport={{ once: true }}
+    <form
       onSubmit={handleSubmit}
-      className="space-y-4 max-w-xl mx-auto"
+      className="space-y-3 max-w-lg mx-auto animate-fade-in"
     >
-      <div className="grid sm:grid-cols-2 gap-3">
+      <div className="grid sm:grid-cols-2 gap-2">
         {/* Name */}
         <div className="space-y-1">
           <Label htmlFor="name" className="text-xs">Name *</Label>
@@ -154,7 +145,7 @@ export const ContactForm = () => {
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
             aria-invalid={!!errors.name}
             aria-describedby={errors.name ? "name-error" : undefined}
-            className="h-9 text-sm bg-card/60 border-2 shadow-[4px_4px_0px_0px_hsl(var(--primary)/0.3)] hover:shadow-[6px_6px_0px_0px_hsl(var(--primary)/0.4)] transition-shadow"
+            className="h-8 text-sm bg-card/60 border-2 shadow-[4px_4px_0px_0px_hsl(var(--primary)/0.3)] hover:shadow-[6px_6px_0px_0px_hsl(var(--primary)/0.4)] transition-shadow px-2.5"
           />
           {errors.name && (
             <p id="name-error" className="text-xs text-destructive">
@@ -173,7 +164,7 @@ export const ContactForm = () => {
             onChange={(e) => setFormData({ ...formData, organization: e.target.value })}
             aria-invalid={!!errors.organization}
             aria-describedby={errors.organization ? "organization-error" : undefined}
-            className="h-9 text-sm bg-card/60 border-2 shadow-[4px_4px_0px_0px_hsl(var(--accent)/0.3)] hover:shadow-[6px_6px_0px_0px_hsl(var(--accent)/0.4)] transition-shadow"
+            className="h-8 text-sm bg-card/60 border-2 shadow-[4px_4px_0px_0px_hsl(var(--accent)/0.3)] hover:shadow-[6px_6px_0px_0px_hsl(var(--accent)/0.4)] transition-shadow px-2.5"
           />
           {errors.organization && (
             <p id="organization-error" className="text-xs text-destructive">
@@ -194,7 +185,7 @@ export const ContactForm = () => {
           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
           aria-invalid={!!errors.email}
           aria-describedby={errors.email ? "email-error" : undefined}
-          className="h-9 text-sm bg-card/60 border-2 shadow-[4px_4px_0px_0px_hsl(var(--secondary)/0.3)] hover:shadow-[6px_6px_0px_0px_hsl(var(--secondary)/0.4)] transition-shadow"
+          className="h-8 text-sm bg-card/60 border-2 shadow-[4px_4px_0px_0px_hsl(var(--secondary)/0.3)] hover:shadow-[6px_6px_0px_0px_hsl(var(--secondary)/0.4)] transition-shadow px-2.5"
         />
         {errors.email && (
           <p id="email-error" className="text-xs text-destructive">
@@ -203,12 +194,12 @@ export const ContactForm = () => {
         )}
       </div>
 
-      <div className="grid sm:grid-cols-2 gap-3">
+      <div className="grid sm:grid-cols-2 gap-2">
         {/* Sector */}
         <div className="space-y-1">
           <Label htmlFor="sector" className="text-xs">Sector *</Label>
           <Select value={formData.sector} onValueChange={(value) => setFormData({ ...formData, sector: value })}>
-            <SelectTrigger id="sector" className="h-9 text-sm bg-card/60 border-2 shadow-[4px_4px_0px_0px_hsl(var(--primary)/0.2)]" aria-invalid={!!errors.sector}>
+            <SelectTrigger id="sector" className="h-8 text-sm bg-card/60 border-2 shadow-[4px_4px_0px_0px_hsl(var(--primary)/0.2)]" aria-invalid={!!errors.sector}>
               <SelectValue placeholder="Select sector" />
             </SelectTrigger>
             <SelectContent>
@@ -228,7 +219,7 @@ export const ContactForm = () => {
         <div className="space-y-1">
           <Label htmlFor="timeline" className="text-xs">Timeline *</Label>
           <Select value={formData.timeline} onValueChange={(value) => setFormData({ ...formData, timeline: value })}>
-            <SelectTrigger id="timeline" className="h-9 text-sm bg-card/60 border-2 shadow-[4px_4px_0px_0px_hsl(var(--accent)/0.2)]" aria-invalid={!!errors.timeline}>
+            <SelectTrigger id="timeline" className="h-8 text-sm bg-card/60 border-2 shadow-[4px_4px_0px_0px_hsl(var(--accent)/0.2)]" aria-invalid={!!errors.timeline}>
               <SelectValue placeholder="Select timeline" />
             </SelectTrigger>
             <SelectContent>
@@ -261,7 +252,7 @@ export const ContactForm = () => {
               "shadow-[3px_3px_0px_0px_hsl(var(--chart-5)/0.4)]"
             ];
             return (
-              <div key={interest} className={`flex items-center space-x-2 p-2 rounded border-2 ${colors[index % colors.length]} hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all bg-card/40`}>
+              <div key={interest} className={`flex items-center space-x-2 p-1.5 rounded border-2 ${colors[index % colors.length]} hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all bg-card/40`}>
                 <Checkbox
                   id={interest}
                   checked={formData.interests.includes(interest)}
@@ -293,7 +284,7 @@ export const ContactForm = () => {
       </div>
 
       {/* Consent */}
-      <div className="flex items-start space-x-2 p-2 rounded border-2 shadow-[3px_3px_0px_0px_hsl(var(--primary)/0.2)] bg-card/40">
+      <div className="flex items-start space-x-2 p-1.5 rounded border-2 shadow-[3px_3px_0px_0px_hsl(var(--primary)/0.2)] bg-card/40">
         <Checkbox
           id="consent"
           checked={formData.consent}
@@ -327,6 +318,6 @@ export const ContactForm = () => {
           </>
         )}
       </Button>
-    </motion.form>
+    </form>
   );
 };

@@ -127,68 +127,63 @@ export const Hero = () => {
               </p>
             </div>
 
-            {/* CTAs - Enhanced with Tailwind animations */}
-            <div className="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center animate-scale-in" style={{ animationDelay: '600ms' }}>
+            {/* CTAs - Smaller with Tailwind animations */}
+            <div className="flex flex-col sm:flex-row gap-2.5 items-stretch sm:items-center animate-scale-in" style={{ animationDelay: '600ms' }}>
               <Button
                 onClick={scrollToContact}
-                className="btn-3d-teal text-xs sm:text-sm px-4 py-2.5 font-bold w-full sm:w-auto min-w-[100px] flex items-center justify-center gap-2 shadow-xl hover:-translate-y-1 hover:shadow-2xl hover:shadow-primary/50 transition-all duration-300 animate-pulse-soft group"
+                className="btn-3d-teal text-[10px] sm:text-xs px-3 py-2 font-bold w-full sm:w-auto min-w-[90px] flex items-center justify-center gap-1.5 shadow-xl hover:-translate-y-0.5 hover:shadow-2xl hover:shadow-primary/50 transition-all duration-300 group"
                 data-analytics-id="cta_book_strategy"
                 aria-label="Book a strategy session"
               >
-                <Calendar className="h-4 w-4 group-hover:scale-110 transition-transform" aria-hidden="true" />
+                <Calendar className="h-3.5 w-3.5 group-hover:scale-110 transition-transform" aria-hidden="true" />
                 Book Session
               </Button>
               
               <Button
                 onClick={navigateToAbout}
-                className="btn-3d-purple text-xs sm:text-sm px-4 py-2.5 font-bold w-full sm:w-auto min-w-[100px] flex items-center justify-center gap-2 shadow-xl hover:-translate-y-1 hover:shadow-2xl hover:shadow-accent/50 transition-all duration-300 group"
+                className="btn-3d-purple text-[10px] sm:text-xs px-3 py-2 font-bold w-full sm:w-auto min-w-[90px] flex items-center justify-center gap-1.5 shadow-xl hover:-translate-y-0.5 hover:shadow-2xl hover:shadow-accent/50 transition-all duration-300 group"
                 aria-label="Learn about our approach"
               >
-                <Sparkles className="h-4 w-4 group-hover:rotate-180 transition-transform duration-500" aria-hidden="true" />
+                <Sparkles className="h-3.5 w-3.5 group-hover:rotate-180 transition-transform duration-500" aria-hidden="true" />
                 Learn More
               </Button>
             </div>
           </div>
 
-          {/* Right column - Enhanced Terminal with Pure CSS */}
+          {/* Right column - Optimized Terminal */}
           <div className="relative w-full animate-fade-in perspective-1000" style={{ animationDelay: '300ms' }}>
-            <div className="rounded-xl backdrop-blur-xl bg-gradient-to-br from-card/80 to-card/60 border-2 border-primary/30 shadow-2xl shadow-primary/40 overflow-hidden max-w-lg mx-auto hover:border-primary/50 hover:shadow-primary/60 transition-all duration-500 hover:scale-[1.02] hover-lift group">
-              {/* Terminal header - Enhanced */}
-              <div className="bg-gradient-to-r from-muted/70 to-muted/50 border-b-2 border-primary/20 px-3 sm:px-4 py-2 sm:py-2.5 flex items-center gap-3 backdrop-blur-sm">
-                <div className="flex gap-1.5 sm:gap-2">
-                  <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-red-500 hover:scale-110 transition-transform cursor-pointer shadow-lg shadow-red-500/50" />
-                  <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-yellow-500 hover:scale-110 transition-transform cursor-pointer shadow-lg shadow-yellow-500/50" />
-                  <div className="w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full bg-green-500 animate-pulse hover:scale-110 transition-transform cursor-pointer shadow-lg shadow-green-500/50" />
+            <div className="terminal-container rounded-xl backdrop-blur-xl bg-gradient-to-br from-card/90 to-card/70 border-2 border-primary/30 shadow-2xl shadow-primary/40 overflow-hidden max-w-md mx-auto hover:border-primary/50 hover:shadow-primary/60 transition-all duration-500 hover:scale-[1.01] group">
+              {/* Terminal header - Compact */}
+              <div className="bg-gradient-to-r from-muted/70 to-muted/50 border-b-2 border-primary/20 px-2 sm:px-3 py-1.5 sm:py-2 flex items-center gap-2 backdrop-blur-sm">
+                <div className="flex gap-1 sm:gap-1.5">
+                  <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-red-500 hover:scale-110 transition-transform cursor-pointer shadow-md shadow-red-500/50" />
+                  <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-yellow-500 hover:scale-110 transition-transform cursor-pointer shadow-md shadow-yellow-500/50" />
+                  <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-green-500 animate-pulse hover:scale-110 transition-transform cursor-pointer shadow-md shadow-green-500/50" />
                 </div>
-                <span className="text-xs sm:text-sm text-primary/90 ml-1 sm:ml-2 font-mono font-bold tracking-wider">
+                <span className="text-[10px] sm:text-xs text-primary/90 ml-1 font-mono font-bold tracking-wider">
                   advanced-tech.sh
                 </span>
-                <div className="ml-auto flex gap-1">
-                  <div className="w-1.5 h-1.5 rounded-full bg-primary/60 animate-pulse" />
-                  <div className="w-1.5 h-1.5 rounded-full bg-primary/40 animate-pulse" style={{ animationDelay: '0.5s' }} />
-                  <div className="w-1.5 h-1.5 rounded-full bg-primary/20 animate-pulse" style={{ animationDelay: '1s' }} />
+                <div className="ml-auto flex gap-0.5">
+                  <div className="w-1 h-1 rounded-full bg-primary/60 animate-pulse" />
+                  <div className="w-1 h-1 rounded-full bg-primary/40 animate-pulse" style={{ animationDelay: '0.5s' }} />
+                  <div className="w-1 h-1 rounded-full bg-primary/20 animate-pulse" style={{ animationDelay: '1s' }} />
                 </div>
               </div>
               
-              {/* Terminal content with enhanced effects */}
-              <div className="relative p-3 sm:p-4 font-mono text-[10px] xs:text-xs sm:text-sm min-h-[180px] sm:min-h-[220px] bg-gradient-to-b from-terminal-bg/70 to-terminal-bg/90 overflow-hidden">
-                {/* Enhanced scanline effect */}
-                <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(0deg,transparent_0%,hsl(173_80%_60%/0.08)_50%,transparent_100%)] h-full animate-scan" />
+              {/* Terminal content - Optimized */}
+              <div className="relative p-2 sm:p-3 font-mono text-[9px] xs:text-[10px] sm:text-xs min-h-[140px] sm:min-h-[180px] bg-gradient-to-b from-terminal-bg/90 to-terminal-bg/95 overflow-hidden">
+                {/* Combined overlay effects for performance */}
+                <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(0deg,transparent_0%,hsl(173_80%_60%/0.08)_50%,transparent_100%)] animate-scan opacity-30" style={{ willChange: 'transform' }} />
+                <div className="absolute inset-0 pointer-events-none bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,hsl(173_80%_60%/0.03)_2px,hsl(173_80%_60%/0.03)_4px)] bg-[radial-gradient(ellipse_at_center,hsl(173_80%_60%/0.15),transparent_70%)] opacity-40 group-hover:opacity-60 transition-opacity duration-500" />
                 
-                {/* CRT screen effect */}
-                <div className="absolute inset-0 pointer-events-none bg-[repeating-linear-gradient(0deg,transparent,transparent_2px,hsl(173_80%_60%/0.03)_2px,hsl(173_80%_60%/0.03)_4px)]" />
-                
-                {/* Glow effect */}
-                <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_center,hsl(173_80%_60%/0.15),transparent_70%)] opacity-50 group-hover:opacity-75 transition-opacity duration-500" />
-                
-                <div className="relative z-10 space-y-1 sm:space-y-1.5">
-                  {terminalCommands.slice(0, Math.min(cmdIndex + 1, 8)).map((cmd, i) => (
+                <div className="relative z-10 space-y-0.5 sm:space-y-1">
+                  {terminalCommands.slice(0, Math.min(cmdIndex + 1, 6)).map((cmd, i) => (
                     <div
                       key={i}
-                      className={`leading-relaxed animate-fade-in hover:translate-x-1 transition-transform ${
+                      className={`leading-relaxed animate-fade-in ${
                         cmd.startsWith('$') ? 'text-cmd-info font-extrabold text-shadow-glow' :
-                        cmd.startsWith('⚡') || cmd.startsWith('🤖') || cmd.startsWith('🔬') ? 'text-cmd-warning font-bold' :
-                        cmd.startsWith('✓') ? 'text-cmd-success font-semibold' :
+                        cmd.startsWith('⚡') || cmd.startsWith('🤖') || cmd.startsWith('🔬') ? 'text-cmd-warning font-bold opacity-90' :
+                        cmd.startsWith('✓') ? 'text-cmd-success font-semibold animate-pulse-soft' :
                         'text-terminal-text/60'
                       }`}
                       style={{ animationDelay: `${i * 50}ms` }}
@@ -196,7 +191,7 @@ export const Hero = () => {
                       {cmd}
                     </div>
                   ))}
-                  <span className="inline-block w-1.5 h-3 sm:w-2 sm:h-4 bg-cmd-success animate-pulse shadow-lg shadow-cmd-success/50" />
+                  <span className="inline-block w-1.5 h-2.5 sm:w-2 sm:h-3.5 bg-cmd-success/90 animate-pulse shadow-md shadow-cmd-success/40" />
                 </div>
               </div>
             </div>

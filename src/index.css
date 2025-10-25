@@ -351,6 +351,13 @@ All colors MUST be HSL.
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
   }
   
+  /* Terminal Performance Optimization */
+  .terminal-container {
+    contain: layout style paint;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+  
   /* Flowing Button Animation */
   @keyframes flow {
     0%, 100% { 
