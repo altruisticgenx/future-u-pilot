@@ -17,7 +17,7 @@ const stakeholders = [
     highlights: [
       "Paid fellowships · Open lab time · Career-ready repos",
       "K-12 through community college pathways",
-      "Keep Pennsylvania talent in Pennsylvania"
+      "Build local talent pipelines for emerging tech"
     ],
     color: "from-blue-500/15 via-cyan-500/10 to-blue-500/15"
   },
@@ -80,18 +80,18 @@ const About = () => {
           <div className="text-center space-y-2 animate-scale-in">
             <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-gradient-to-r from-primary/20 to-accent/20 border border-primary/40 glass-card-3d hover-scale"
               role="status"
-              aria-label="Pennsylvania Quantum Initiative"
+              aria-label="Quantum Readiness Initiative"
             >
               <Brain className="w-3 h-3 text-primary animate-pulse" aria-hidden="true" />
               <span className="text-[10px] font-semibold bg-gradient-hero bg-clip-text text-transparent">
-                Pennsylvania Quantum Initiative
+                Quantum Readiness Initiative
               </span>
             </div>
 
             <h1 className="text-lg sm:text-xl md:text-2xl font-bold">
               <span className="block text-foreground text-xs sm:text-sm md:text-base mb-1">The Quantum Leap</span>
               <span className="block bg-gradient-hero bg-clip-text text-transparent">
-                Pennsylvania's Path to Real Outcomes — Not Hype
+                Real Outcomes for Real Problems — Not Hype
               </span>
             </h1>
             
@@ -169,7 +169,7 @@ const About = () => {
             
             <div className="space-y-3 text-[11px] sm:text-xs text-muted-foreground leading-relaxed">
               <p className="text-center max-w-2xl mx-auto">
-                We build tech infrastructure for Pennsylvania: train talent, cut waste, speed science, govern tech with public-interest guardrails.
+                We build tech infrastructure that matters: train talent, cut waste, speed science, govern tech with public-interest guardrails.
               </p>
               
               <div className="grid sm:grid-cols-2 gap-2.5 mt-4">
@@ -227,13 +227,13 @@ const About = () => {
             
             <div className="space-y-2.5 text-[11px] sm:text-xs text-muted-foreground leading-relaxed">
               <p>
-                Pennsylvania is ready to lead. We're connecting students to careers, companies to efficiency, healthcare to breakthroughs, and policy to practice. No buzzwords—just systems that work.
+                We're solving real problems: connecting students to careers, companies to efficiency, healthcare to breakthroughs, and policy to practice. No buzzwords—just systems that work.
               </p>
               <p>
-                With smart investment, clear rules, and hands-on training, Pennsylvania becomes a tech leader—not just in innovation, but in jobs, security, and quality of life.
+                With smart investment, clear rules, and hands-on training, communities become tech leaders—not just in innovation, but in jobs, security, and quality of life.
               </p>
               <blockquote className="border-l-3 border-primary pl-3 py-1 italic text-[11px] sm:text-xs bg-gradient-to-r from-primary/5 to-transparent rounded-r">
-                "Advanced tech won't just compute—it will sense, simulate, and secure. Pennsylvania can build that future first."
+                "Advanced tech won't just compute—it will sense, simulate, and secure the future we need."
               </blockquote>
             </div>
           </div>
@@ -247,7 +247,7 @@ const About = () => {
             <Card className="glass-card-3d bg-gradient-to-br from-primary/15 via-accent/10 to-primary/15 border border-primary/40 hover:border-primary/60 transition-all duration-300 hover:-translate-y-1">
               <CardContent className="p-5 sm:p-6 space-y-3">
                 <h2 id="cta-heading" className="text-base sm:text-lg font-bold bg-gradient-hero bg-clip-text text-transparent">
-                  Join Pennsylvania's Tech Future
+                  Join the Movement
                 </h2>
                 <p className="text-[11px] sm:text-xs text-muted-foreground max-w-xl mx-auto">
                   Education, energy, healthcare, government, or business — there's a lane for you.
@@ -256,7 +256,7 @@ const About = () => {
                   <button
                     onClick={() => window.open("https://www.instagram.com/paquantumpubliclobbygroup?igsh=b2E5MTJna2MxbDZ2", "_blank")}
                     className="btn-3d-primary px-5 py-2 rounded-lg font-bold text-xs hover:-translate-y-1 hover:shadow-2xl transition-all duration-300"
-                    aria-label="Get involved in Pennsylvania's Initiative"
+                    aria-label="Get involved in the Initiative"
                   >
                     Get Involved Today
                   </button>
