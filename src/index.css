@@ -8,10 +8,18 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Ocean Gradient Colors - Deep to Bright Teal */
-    --ocean-deep: 195 85% 16%;      /* #04364A */
-    --ocean-mid: 190 84% 29%;       /* #0E7490 */
-    --ocean-bright: 173 80% 40%;    /* #14B8A6 */
+    /* Enhanced Ocean Palette - Mobile Optimized */
+    --ocean-darkest: 195 100% 5%;     /* #000D14 - Deepest Ocean */
+    --ocean-deeper: 195 95% 8%;       /* #011A26 - Deep Ocean */
+    --ocean-deep: 195 85% 16%;        /* #073347 - Ocean Depths */
+    --ocean-mid: 190 84% 29%;         /* #0D5F7D - Mid Ocean */
+    --ocean-light: 173 80% 40%;       /* #14B8A6 - Teal Accent */
+    --ocean-bright: 180 77% 58%;      /* #3DD5C3 - Bright Accent */
+    --ocean-glow: 185 85% 45%;        /* #14D4C4 - Glow/Highlight */
+    --ocean-surface: 195 60% 25%;     /* #19475C - Surface */
+    --ocean-foam: 180 30% 85%;        /* #C4DDD8 - Foam/Light Text */
+    --ocean-mist: 180 20% 95%;        /* #EDF5F4 - Mist/Lightest */
+    --ocean-text: 180 30% 85%;        /* Primary text color */
     
     /* Terminal Colors - Teal Ocean */
     --terminal-bg: 195 100% 8%;
@@ -102,12 +110,12 @@ All colors MUST be HSL.
     --syntax-comment: 195 30% 50%;
 
     /* Core UI Colors - Dark Teal Ocean */
-    --background: 195 100% 5%;
-    --foreground: 180 40% 95%;
-    --card: 195 90% 8%;
-    --card-foreground: 180 40% 95%;
-    --popover: 195 90% 8%;
-    --popover-foreground: 180 40% 95%;
+    --background: var(--ocean-darkest);
+    --foreground: var(--ocean-text);
+    --card: var(--ocean-deep);
+    --card-foreground: var(--ocean-foam);
+    --popover: var(--ocean-deep);
+    --popover-foreground: var(--ocean-text);
     
     /* Primary: Bright Teal */
     --primary: 185 90% 55%;
@@ -173,12 +181,17 @@ All colors MUST be HSL.
 @layer base {
   * {
     @apply border-border;
+    -webkit-tap-highlight-color: transparent;
   }
 
   body {
     @apply bg-background text-foreground antialiased;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    font-size: 14px;
+    font-size: 16px; /* Larger for mobile - prevent iOS zoom */
+    font-feature-settings: "rlig" 1, "calt" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
   }
   
   /* Mobile font optimization */
@@ -473,7 +486,7 @@ All colors MUST be HSL.
   /* Mobile-optimized animations */
   @media (max-width: 768px) {
     body {
-      font-size: 13px;
+      font-size: 16px; /* Prevents iOS zoom on input focus */
       line-height: 1.5;
     }
     
@@ -492,38 +505,89 @@ All colors MUST be HSL.
     /* Disable expensive animations on mobile */
     .animate-float-3d,
     .animate-rotate-3d,
-    .hero-light-overlay {
+    .animate-gradient,
+    .animate-shimmer,
+    .animate-particles,
+    .hero-light-overlay,
+    .glass-blur-4 {
       animation: none !important;
+      display: none;
     }
     
     /* Reduce blur intensity */
     .backdrop-blur-xl {
-      backdrop-filter: blur(8px);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
     }
     
-    /* Touch targets */
+    .glass-card-3d {
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    
+    /* Enhanced touch targets for iOS/Android (minimum 48x48px) */
     button, a[role="button"] {
-      min-height: 44px;
-      min-width: 44px;
-      padding: 12px 16px;
+      min-height: 48px !important;
+      min-width: 48px;
+      padding: 14px 20px;
+    }
+    
+    /* Smooth momentum scrolling on iOS */
+    * {
+      -webkit-overflow-scrolling: touch;
+    }
+    
+    /* Prevent text resize on orientation change in iOS */
+    html {
+      -webkit-text-size-adjust: 100%;
+    }
+    
+    /* Form elements - prevent iOS zoom */
+    input, select, textarea {
+      font-size: 16px !important;
     }
     
     .btn-3d-teal, .btn-3d-purple, .btn-3d-cyan, .btn-3d-gold {
-      min-height: 44px;
-      padding: 12px 20px;
+      min-height: 56px !important;
+      padding: 14px 24px !important;
+      font-size: 16px !important;
+    }
+    
+    /* Better spacing for mobile */
+    .container {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    
+    /* Optimize shadows on mobile */
+    [class*="shadow-"] {
+      box-shadow: 0 2px 8px hsl(173 80% 40% / 0.15);
     }
   }
   
-  /* Touch-friendly button states */
-  button, a {
-    -webkit-tap-highlight-color: transparent;
-    touch-action: manipulation;
-  }
-  
-  /* Smooth scrolling for all devices */
-  html {
-    scroll-behavior: smooth;
-  }
+/* Smooth scrolling - iOS Safari compatible */
+html {
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Touch-friendly button states - iOS/Android */
+button, a {
+  -webkit-tap-highlight-color: transparent;
+  tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+/* iOS Safari fixes */
+input, textarea, select {
+  font-size: 16px !important; /* Prevent zoom on focus */
+}
+
+/* Android fixes */
+button:active, a:active {
+  -webkit-tap-highlight-color: transparent;
+  tap-highlight-color: transparent;
+}
   
   /* Better text rendering on mobile */
   @media (max-width: 768px) {

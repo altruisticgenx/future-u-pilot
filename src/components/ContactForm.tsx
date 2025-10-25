@@ -143,10 +143,10 @@ export const ContactForm = () => {
       onSubmit={handleSubmit}
       className="space-y-4 max-w-xl mx-auto"
     >
-      <div className="grid sm:grid-cols-2 gap-3">
+      <div className="grid sm:grid-cols-2 gap-4">
         {/* Name */}
-        <div className="space-y-1">
-          <Label htmlFor="name" className="text-xs">Name *</Label>
+        <div className="space-y-2">
+          <Label htmlFor="name" className="text-sm font-medium">Name *</Label>
           <Input
             id="name"
             autoComplete="name"
@@ -154,7 +154,8 @@ export const ContactForm = () => {
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
             aria-invalid={!!errors.name}
             aria-describedby={errors.name ? "name-error" : undefined}
-            className="h-9 text-sm bg-card/60 border-2 shadow-[4px_4px_0px_0px_hsl(var(--primary)/0.3)] hover:shadow-[6px_6px_0px_0px_hsl(var(--primary)/0.4)] transition-shadow"
+            className="h-12 text-base bg-card/60 border-2 border-ocean-light/30 focus:border-ocean-glow shadow-[4px_4px_0px_0px_hsl(var(--primary)/0.3)] hover:shadow-[6px_6px_0px_0px_hsl(var(--primary)/0.4)] transition-all"
+            style={{ fontSize: '16px' }}
           />
           {errors.name && (
             <p id="name-error" className="text-xs text-destructive">
@@ -164,8 +165,8 @@ export const ContactForm = () => {
         </div>
 
         {/* Organization */}
-        <div className="space-y-1">
-          <Label htmlFor="organization" className="text-xs">Organization *</Label>
+        <div className="space-y-2">
+          <Label htmlFor="organization" className="text-sm font-medium">Organization *</Label>
           <Input
             id="organization"
             autoComplete="organization"
@@ -173,7 +174,8 @@ export const ContactForm = () => {
             onChange={(e) => setFormData({ ...formData, organization: e.target.value })}
             aria-invalid={!!errors.organization}
             aria-describedby={errors.organization ? "organization-error" : undefined}
-            className="h-9 text-sm bg-card/60 border-2 shadow-[4px_4px_0px_0px_hsl(var(--accent)/0.3)] hover:shadow-[6px_6px_0px_0px_hsl(var(--accent)/0.4)] transition-shadow"
+            className="h-12 text-base bg-card/60 border-2 border-ocean-light/30 focus:border-ocean-glow shadow-[4px_4px_0px_0px_hsl(var(--accent)/0.3)] hover:shadow-[6px_6px_0px_0px_hsl(var(--accent)/0.4)] transition-all"
+            style={{ fontSize: '16px' }}
           />
           {errors.organization && (
             <p id="organization-error" className="text-xs text-destructive">
@@ -184,8 +186,8 @@ export const ContactForm = () => {
       </div>
 
       {/* Email */}
-      <div className="space-y-1">
-        <Label htmlFor="email" className="text-xs">Email *</Label>
+      <div className="space-y-2">
+        <Label htmlFor="email" className="text-sm font-medium">Email *</Label>
         <Input
           id="email"
           type="email"
@@ -194,7 +196,8 @@ export const ContactForm = () => {
           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
           aria-invalid={!!errors.email}
           aria-describedby={errors.email ? "email-error" : undefined}
-          className="h-9 text-sm bg-card/60 border-2 shadow-[4px_4px_0px_0px_hsl(var(--secondary)/0.3)] hover:shadow-[6px_6px_0px_0px_hsl(var(--secondary)/0.4)] transition-shadow"
+          className="h-12 text-base bg-card/60 border-2 border-ocean-light/30 focus:border-ocean-glow shadow-[4px_4px_0px_0px_hsl(var(--secondary)/0.3)] hover:shadow-[6px_6px_0px_0px_hsl(var(--secondary)/0.4)] transition-all"
+          style={{ fontSize: '16px' }}
         />
         {errors.email && (
           <p id="email-error" className="text-xs text-destructive">

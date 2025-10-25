@@ -81,7 +81,7 @@ export const Hero = () => {
 
   return (
     <section 
-      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 sm:pt-20"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 sm:pt-24 md:pt-28"
       role="region"
       aria-labelledby="hero-heading"
     >
@@ -301,9 +301,9 @@ export const Hero = () => {
               </motion.p>
             </div>
 
-            {/* CTAs - Smaller 3D Flowing Buttons with Unique Colors */}
+            {/* CTAs - Mobile-Optimized Buttons */}
             <motion.div 
-              className="flex flex-col sm:flex-row gap-2 items-stretch sm:items-center"
+              className="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center"
               initial={prefersReducedMotion ? {} : { opacity: 0, y: 10 }}
               animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
               transition={prefersReducedMotion ? {} : { 
@@ -320,14 +320,15 @@ export const Hero = () => {
               >
                 <Button
                   onClick={scrollToContact}
-                  className="btn-3d-teal text-[10px] sm:text-xs px-3 py-2 font-semibold w-full sm:w-auto min-w-[90px] flex items-center justify-center gap-1.5 shadow-lg"
+                  className="btn-3d-teal text-sm sm:text-base px-6 py-3 font-semibold w-full sm:w-auto min-h-[56px] flex items-center justify-center gap-2 shadow-lg"
                   data-analytics-id="cta_book_strategy"
                   data-ph-capture-attribute-button-type="book"
                   data-ph-capture-attribute-button-position="hero-primary"
                   aria-label="Book a strategy session"
+                  style={{ WebkitTapHighlightColor: 'transparent' }}
                 >
-                  <Calendar className="h-3 w-3 animate-pulse" aria-hidden="true" />
-                  Book
+                  <Calendar className="h-4 w-4 sm:h-5 sm:w-5 animate-pulse" aria-hidden="true" />
+                  Book Session
                 </Button>
               </motion.div>
               
@@ -341,13 +342,14 @@ export const Hero = () => {
               >
                 <Button
                   onClick={navigateToAbout}
-                  className="btn-3d-purple text-[10px] sm:text-xs px-3 py-2 font-semibold w-full sm:w-auto min-w-[90px] flex items-center justify-center gap-1.5 shadow-lg"
+                  className="btn-3d-purple text-sm sm:text-base px-6 py-3 font-semibold w-full sm:w-auto min-h-[56px] flex items-center justify-center gap-2 shadow-lg"
                   data-ph-capture-attribute-button-type="about"
                   data-ph-capture-attribute-button-position="hero-secondary"
                   aria-label="Learn about our approach"
+                  style={{ WebkitTapHighlightColor: 'transparent' }}
                 >
-                  <Sparkles className="h-3 w-3 animate-rotate-3d" aria-hidden="true" />
-                  About
+                  <Sparkles className="h-4 w-4 sm:h-5 sm:w-5 animate-rotate-3d" aria-hidden="true" />
+                  Learn More
                 </Button>
               </motion.div>
 
@@ -361,13 +363,14 @@ export const Hero = () => {
               >
                 <Button
                   onClick={() => window.open('https://drive.google.com/file/d/1vuiN0NYOvToHIxkqjSSFFEYLitv-zyK7/view?usp=sharing', '_blank')}
-                  className="btn-3d-cyan text-[10px] sm:text-xs px-3 py-2 font-semibold w-full sm:w-auto min-w-[90px] flex items-center justify-center gap-1.5 shadow-lg"
+                  className="btn-3d-cyan text-sm sm:text-base px-6 py-3 font-semibold w-full sm:w-auto min-h-[56px] flex items-center justify-center gap-2 shadow-lg"
                   data-ph-capture-attribute-button-type="video"
                   data-ph-capture-attribute-button-position="hero-tertiary"
                   aria-label="Watch intro video"
+                  style={{ WebkitTapHighlightColor: 'transparent' }}
                 >
-                  <Video className="h-3 w-3 animate-pulse-soft" aria-hidden="true" />
-                  Video
+                  <Video className="h-4 w-4 sm:h-5 sm:w-5 animate-pulse-soft" aria-hidden="true" />
+                  Watch Video
                 </Button>
               </motion.div>
             </motion.div>
