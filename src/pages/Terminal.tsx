@@ -13,6 +13,18 @@ import { toast } from 'sonner';
 const Terminal = () => {
   const [currentProject, setCurrentProject] = useState<Project | null>(null);
   const [paletteOpen, setPaletteOpen] = useState(false);
+  const WELCOME_MESSAGES = [
+    '🚀 Quantum-AI Command Center  |  Type "help" to begin',
+    '🔬 Lab Terminal Online  |  Try "experiments" to see active research',
+    '🤖 AI Operations Center  |  Run "ai-models" to view available models',
+    '🔐 Security Console  |  Type "pqc-status" for quantum-readiness',
+    '📊 Analytics Dashboard  |  Use "trending" to see hot topics',
+    '⚛️  Quantum Lab  |  Run "qc-status" to check qubit systems',
+    '📋 Policy Center  |  Type "policy-check" for compliance status'
+  ];
+
+  const randomWelcome = WELCOME_MESSAGES[Math.floor(Math.random() * WELCOME_MESSAGES.length)];
+
   const [localMessages, setLocalMessages] = useState<Message[]>([
     {
       type: 'success',
@@ -24,7 +36,7 @@ const Terminal = () => {
     },
     {
       type: 'info',
-      content: '🚀 Quantum-AI Command Center  |  Type "help" to begin',
+      content: randomWelcome,
     },
     {
       type: 'system',
@@ -36,23 +48,23 @@ const Terminal = () => {
     },
     {
       type: 'list',
-      content: '  trending    - View trending quantum-AI topics',
+      content: '  qc-status   - Quantum computing system status',
     },
     {
       type: 'list',
-      content: '  budget      - Check project budgets & spending',
+      content: '  ai-models   - List available AI models',
     },
     {
       type: 'list',
-      content: '  status      - System and project health',
+      content: '  pqc-status  - Post-quantum crypto readiness',
     },
     {
       type: 'list',
-      content: '  channels    - View communication channels',
+      content: '  research    - Search research papers',
     },
     {
       type: 'list',
-      content: '  deploy      - Deploy projects to production',
+      content: '  tutorial    - Start interactive learning',
     },
     {
       type: 'system',

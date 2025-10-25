@@ -30,14 +30,7 @@ const App = () => (
             <Route path="/storytelling" element={<Storytelling />} />
             <Route path="/about" element={<About />} />
             <Route path="/auth" element={<Auth />} />
-            <Route
-              path="/terminal"
-              element={
-                <ProtectedRoute>
-                  <Terminal />
-                </ProtectedRoute>
-              }
-            />
+            <Route path="/terminal" element={<Terminal />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>

@@ -2,6 +2,14 @@ import { useCallback } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { Command, Message, TerminalContext, Project } from '@/types/terminal';
 import { toast } from 'sonner';
+import { QUANTUM_SYSTEMS, QUANTUM_ALGORITHMS, QC_BENCHMARKS, QUANTUM_CIRCUIT_EXAMPLES } from '@/data/terminal/quantum-computing';
+import { AI_MODELS, DATASETS, TRAINING_METRICS } from '@/data/terminal/ai-models';
+import { FEDERAL_POLICIES, COMPLIANCE_FRAMEWORKS, COMPLIANCE_CHECKLIST } from '@/data/terminal/policy-compliance';
+import { PQC_ALGORITHMS, CRYPTO_INVENTORY, SECURITY_SCAN_RESULTS, PQC_MIGRATION_CHECKLIST } from '@/data/terminal/security-crypto';
+import { RESEARCH_PAPERS, RESEARCH_TOPICS, CASE_STUDIES } from '@/data/terminal/research-papers';
+import { TUTORIALS, QUICK_START_GUIDE } from '@/data/terminal/tutorials';
+import { EXPERIMENTS, LAB_RESOURCES } from '@/data/terminal/experiments';
+import { ASCII_BANNERS, PROGRESS_BAR, STATUS_ICONS } from '@/data/terminal/ascii-art';
 
 const TRENDING_TOPICS = [
   'Quantum Computing Security', 'AI Policy Compliance', 'Post-Quantum Cryptography',
@@ -497,9 +505,6 @@ export const useTerminalCommands = () => {
         }
 
         const { data: { user } } = await supabase.auth.getUser();
-        if (!user) {
-          return [{ type: 'error', content: 'Please login first to use Git commands.' }];
-        }
 
         switch (action) {
           case 'status':
@@ -514,18 +519,16 @@ export const useTerminalCommands = () => {
               return [{ type: 'error', content: 'Usage: /git commit <message>' }];
             }
 
-            const { error } = await supabase
-              .from('git_actions')
-              .insert({
-                project_id: ctx.currentProjectId,
-                action: 'commit',
-                message,
-                author: user.email,
-                branch: 'main'
-              });
-
-            if (error) {
-              return [{ type: 'error', content: `Failed to record commit: ${error.message}` }];
+            if (user) {
+              await supabase
+                .from('git_actions')
+                .insert({
+                  project_id: ctx.currentProjectId,
+                  action: 'commit',
+                  message,
+                  author: user.email,
+                  branch: 'main'
+                });
             }
 
             return [{
