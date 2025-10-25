@@ -233,7 +233,8 @@ export const Hero = () => {
                 id="hero-heading"
                 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight"
                 style={{
-                  minHeight: '2.5em',
+                  minHeight: '3em',
+                  height: '3em',
                   textShadow: '0 2px 10px rgba(20, 184, 166, 0.3), 0 4px 20px rgba(14, 116, 144, 0.2)',
                 }}
               >

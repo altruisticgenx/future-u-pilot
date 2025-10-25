@@ -25,10 +25,11 @@ const Index = () => {
       </Suspense>
       
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
         transition={{ duration: 0.6 }}
         viewport={{ once: true, margin: "-100px" }}
+        style={{ minHeight: '8rem' }}
       >
         <Suspense fallback={<div className="h-32 animate-pulse bg-primary/5" />}>
           <LogoRow />
@@ -36,10 +37,11 @@ const Index = () => {
       </motion.div>
       
       <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
         transition={{ duration: 0.7, delay: 0.1 }}
         viewport={{ once: true, margin: "-100px" }}
+        style={{ minHeight: '24rem' }}
       >
         <Suspense fallback={<div className="h-96 animate-pulse bg-primary/5" />}>
           <ServiceCards />
@@ -47,10 +49,11 @@ const Index = () => {
       </motion.div>
       
       <motion.div
-        initial={{ opacity: 0, x: -50 }}
-        whileInView={{ opacity: 1, x: 0 }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 0.2 }}
         viewport={{ once: true, margin: "-100px" }}
+        style={{ minHeight: '16rem' }}
       >
         <Suspense fallback={<div className="h-64 animate-pulse bg-primary/5" />}>
           <WhyNow />
@@ -58,10 +61,11 @@ const Index = () => {
       </motion.div>
       
       <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        whileInView={{ opacity: 1, scale: 1 }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 0.1 }}
         viewport={{ once: true, margin: "-100px" }}
+        style={{ minHeight: '16rem' }}
       >
         <Suspense fallback={<div className="h-64 animate-pulse bg-primary/5" />}>
           <LabNotes />
@@ -69,10 +73,11 @@ const Index = () => {
       </motion.div>
       
       <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
         transition={{ duration: 0.6 }}
         viewport={{ once: true, margin: "-100px" }}
+        style={{ minHeight: '16rem' }}
       >
         <Suspense fallback={<div className="h-64 animate-pulse bg-primary/5" />}>
           <WhyItMatters />
@@ -81,10 +86,11 @@ const Index = () => {
       
       {/* AI Showcase Section */}
       <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        whileInView={{ opacity: 1, scale: 1 }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
         transition={{ duration: 0.7, delay: 0.1 }}
         viewport={{ once: true, margin: "-100px" }}
+        style={{ minHeight: '24rem' }}
       >
         <Suspense fallback={<div className="h-96 animate-pulse bg-primary/5" />}>
           <AIShowcase />
