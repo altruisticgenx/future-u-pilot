@@ -15,6 +15,9 @@ export const Navigation = () => {
     label: "About Us",
     href: "/about"
   }, {
+    label: "FAQ",
+    href: "/faq"
+  }, {
     label: "Open Project(s)",
     href: "https://keen-hardboard-afe.notion.site/28cf142372ef8050ac86f4a3b4c813db?v=28cf142372ef8073b8cf000c0ebfca06&source=copy_link"
   }, {
