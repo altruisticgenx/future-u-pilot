@@ -81,7 +81,7 @@ export const Hero = () => {
 
   return (
     <section 
-      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 sm:pt-20 md:pt-20"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 sm:pt-24 md:pt-28 perspective-2000"
       role="region"
       aria-labelledby="hero-heading"
     >
@@ -241,14 +241,15 @@ export const Hero = () => {
               </span>
             </motion.div>
 
-            {/* Headline with 3D Text Shadow */}
+            {/* Headline with Enhanced 3D Text Shadow */}
             <div className="space-y-3 sm:space-y-4">
               <h1 
                 id="hero-heading"
-                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight perspective-1000"
                 style={{
                   minHeight: '2.5em',
-                  textShadow: '0 2px 10px rgba(20, 184, 166, 0.3), 0 4px 20px rgba(14, 116, 144, 0.2)',
+                  textShadow: '0 2px 10px rgba(20, 184, 166, 0.5), 0 4px 20px rgba(14, 116, 144, 0.3), 0 8px 40px rgba(20, 184, 166, 0.2)',
+                  transform: 'translateZ(20px)',
                 }}
               >
                 <span className="block text-white">
@@ -292,10 +293,13 @@ export const Hero = () => {
               </h1>
               
               <motion.p 
-                className="text-sm sm:text-base md:text-lg text-white/90 max-w-2xl leading-relaxed"
-                initial={prefersReducedMotion ? {} : { opacity: 0, rotateX: -10 }}
-                animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, rotateX: 0 }}
-                transition={prefersReducedMotion ? {} : { delay: 0.3, duration: 0.4 }}
+                className="text-base sm:text-lg md:text-xl text-white/95 max-w-2xl leading-relaxed transform-3d"
+                initial={prefersReducedMotion ? {} : { opacity: 0, rotateX: -10, y: 10 }}
+                animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, rotateX: 0, y: 0 }}
+                transition={prefersReducedMotion ? {} : { delay: 0.3, duration: 0.5 }}
+                style={{
+                  textShadow: '0 2px 8px rgba(0, 0, 0, 0.3)',
+                }}
               >
                 AltruisticXAI is a sandbox for the future. We help governments, businesses, and policymakers deploy quantum and AI in ways that actually work—practical, bold, and ahead of the curve.
               </motion.p>
@@ -317,18 +321,19 @@ export const Hero = () => {
                 animate="animate"
                 whileHover="hover"
                 whileTap="tap"
+                className="hover-3d-lift"
               >
                 <Button
                   onClick={scrollToContact}
-                  className="btn-3d-teal text-sm sm:text-base px-6 py-3 font-semibold w-full sm:w-auto min-h-[56px] flex items-center justify-center gap-2 shadow-lg"
+                  className="btn-3d-teal btn-flow text-base sm:text-lg px-8 py-4 font-bold w-full sm:w-auto min-h-[64px] flex items-center justify-center gap-3 shadow-2xl rounded-xl"
                   data-analytics-id="cta_book_strategy"
                   data-ph-capture-attribute-button-type="book"
                   data-ph-capture-attribute-button-position="hero-primary"
                   aria-label="Book a strategy session"
                   style={{ WebkitTapHighlightColor: 'transparent' }}
                 >
-                  <Calendar className="h-4 w-4 sm:h-5 sm:w-5 animate-pulse" aria-hidden="true" />
-                  Book Session
+                  <Calendar className="h-5 w-5 sm:h-6 sm:w-6 animate-pulse" aria-hidden="true" />
+                  Book Strategy Session
                 </Button>
               </motion.div>
               
@@ -339,17 +344,18 @@ export const Hero = () => {
                 whileHover="hover"
                 whileTap="tap"
                 transition={prefersReducedMotion ? {} : { delay: 0.7 }}
+                className="hover-3d-lift"
               >
                 <Button
                   onClick={navigateToAbout}
-                  className="btn-3d-purple text-sm sm:text-base px-6 py-3 font-semibold w-full sm:w-auto min-h-[56px] flex items-center justify-center gap-2 shadow-lg"
+                  className="btn-3d-purple btn-flow text-base sm:text-lg px-8 py-4 font-bold w-full sm:w-auto min-h-[64px] flex items-center justify-center gap-3 shadow-2xl rounded-xl"
                   data-ph-capture-attribute-button-type="about"
                   data-ph-capture-attribute-button-position="hero-secondary"
                   aria-label="Learn about our approach"
                   style={{ WebkitTapHighlightColor: 'transparent' }}
                 >
-                  <Sparkles className="h-4 w-4 sm:h-5 sm:w-5 animate-rotate-3d" aria-hidden="true" />
-                  Learn More
+                  <Sparkles className="h-5 w-5 sm:h-6 sm:w-6 animate-rotate-3d" aria-hidden="true" />
+                  Explore Projects
                 </Button>
               </motion.div>
 
@@ -360,17 +366,18 @@ export const Hero = () => {
                 whileHover="hover"
                 whileTap="tap"
                 transition={prefersReducedMotion ? {} : { delay: 0.8 }}
+                className="hover-3d-lift"
               >
                 <Button
                   onClick={() => window.open('https://drive.google.com/file/d/1vuiN0NYOvToHIxkqjSSFFEYLitv-zyK7/view?usp=sharing', '_blank')}
-                  className="btn-3d-cyan text-sm sm:text-base px-6 py-3 font-semibold w-full sm:w-auto min-h-[56px] flex items-center justify-center gap-2 shadow-lg"
+                  className="btn-3d-cyan btn-flow text-base sm:text-lg px-8 py-4 font-bold w-full sm:w-auto min-h-[64px] flex items-center justify-center gap-3 shadow-2xl rounded-xl"
                   data-ph-capture-attribute-button-type="video"
                   data-ph-capture-attribute-button-position="hero-tertiary"
                   aria-label="Watch intro video"
                   style={{ WebkitTapHighlightColor: 'transparent' }}
                 >
-                  <Video className="h-4 w-4 sm:h-5 sm:w-5 animate-pulse-soft" aria-hidden="true" />
-                  Watch Video
+                  <Video className="h-5 w-5 sm:h-6 sm:w-6 animate-pulse-soft" aria-hidden="true" />
+                  Watch Demo Video
                 </Button>
               </motion.div>
             </motion.div>

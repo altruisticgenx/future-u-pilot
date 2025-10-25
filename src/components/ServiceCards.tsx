@@ -169,23 +169,23 @@ export const ServiceCards = () => {
   const [expandedCard, setExpandedCard] = useState<string | null>(null);
 
   return (
-    <section id="services" className="py-12 sm:py-16 md:py-20 relative overflow-hidden" aria-labelledby="services-heading">
+    <section id="services" className="py-16 sm:py-20 md:py-24 relative overflow-hidden" aria-labelledby="services-heading">
       <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/5 to-background" />
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-1/4 left-10 w-96 h-96 bg-primary/30 rounded-full blur-3xl animate-float" />
         <div className="absolute bottom-1/4 right-10 w-80 h-80 bg-accent/30 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }} />
       </div>
       
-      <div className="container relative mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+      <div className="container relative mx-auto px-3 sm:px-4 lg:px-6 max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="text-center space-y-2 sm:space-y-3 mb-8 sm:mb-10"
+          className="text-center space-y-2 sm:space-y-3 mb-6 sm:mb-8"
         >
-          <h2 id="services-heading" className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight">Current Initiatives</h2>
-          <p className="text-sm sm:text-base md:text-lg text-muted-foreground/80 max-w-3xl mx-auto px-4 leading-relaxed">
+          <h2 id="services-heading" className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold tracking-tight text-3d">Current Initiatives</h2>
+          <p className="text-sm sm:text-base md:text-lg text-muted-foreground/90 max-w-3xl mx-auto px-4 leading-relaxed">
             Empowering Quantum & AI Literacy through active programs across education, government, energy, and enterprise sectors worldwide.
           </p>
         </motion.div>
