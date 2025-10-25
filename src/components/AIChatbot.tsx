@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useToast } from "@/hooks/use-toast";
+import { useAutoScroll } from "@/hooks/useSmoothScroll";
 
 interface Message {
   role: "user" | "assistant";
@@ -23,12 +24,12 @@ export const AIChatbot = () => {
   const [isLoading, setIsLoading] = useState(false);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
+  const { scrollToBottom } = useAutoScroll([messages]);
 
+  // Use RAF-batched scrolling for better performance
   useEffect(() => {
-    if (scrollAreaRef.current) {
-      scrollAreaRef.current.scrollTop = scrollAreaRef.current.scrollHeight;
-    }
-  }, [messages]);
+    scrollToBottom(scrollAreaRef.current);
+  }, [messages, scrollToBottom]);
 
   const streamChat = async (userMessage: string) => {
     setIsLoading(true);

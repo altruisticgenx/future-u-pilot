@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Calendar, ArrowLeft, ExternalLink } from "lucide-react";
 import { Navigation } from "@/components/Navigation";
 import { useNavigate } from "react-router-dom";
+import { useSmoothScroll } from "@/hooks/useSmoothScroll";
 
 const experiments = [
   {
@@ -59,6 +60,7 @@ const experiments = [
 
 const Experiments = () => {
   const navigate = useNavigate();
+  const { scrollToElement } = useSmoothScroll();
   
   return (
     <div className="min-h-screen bg-background">
@@ -201,7 +203,7 @@ const Experiments = () => {
                   onClick={() => {
                     navigate('/');
                     setTimeout(() => {
-                      document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                      scrollToElement('contact');
                     }, 100);
                   }}
                   aria-label="Book a strategy session"

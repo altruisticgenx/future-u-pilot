@@ -7,6 +7,7 @@ import { StatusBadge } from "@/components/hero/StatusBadge";
 import { TerminalWindow } from "@/components/hero/TerminalWindow";
 import { HeroCTAGroup } from "@/components/hero/HeroCTAGroup";
 import { useNavigate } from "react-router-dom";
+import { useSmoothScroll } from "@/hooks/useSmoothScroll";
 
 const terminalCommands = [
   "$ quantum-check --infrastructure",
@@ -28,6 +29,7 @@ const terminalCommands = [
 export const Hero = () => {
   const heroRef = useRef<HTMLElement>(null);
   const navigate = useNavigate();
+  const { scrollToElement } = useSmoothScroll();
   const [cmdIndex, setCmdIndex] = useState(0);
   const [animationsReady, setAnimationsReady] = useState(false);
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -60,8 +62,7 @@ export const Hero = () => {
   }, [animationsReady]);
 
   const scrollToContact = () => {
-    const contactSection = document.getElementById("contact");
-    contactSection?.scrollIntoView({ behavior: "smooth" });
+    scrollToElement("contact");
   };
 
   const navigateToAbout = () => {

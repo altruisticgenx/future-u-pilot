@@ -1,11 +1,10 @@
 import { Mail, Github, Linkedin, Home } from "lucide-react";
 import { Link } from "react-router-dom";
 import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
+import { useSmoothScroll } from "@/hooks/useSmoothScroll";
 
 export const Footer = () => {
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
+  const { scrollToTop, scrollToElement } = useSmoothScroll();
 
   return (
     <footer className="relative border-t border-border/50 bg-muted/30 py-12">
@@ -46,7 +45,7 @@ export const Footer = () => {
                 className="text-xs sm:text-sm text-foreground/70 hover:text-primary transition-colors font-medium"
                 onClick={(e) => {
                   e.preventDefault();
-                  document.getElementById("services")?.scrollIntoView({ behavior: "smooth" });
+                  scrollToElement("services");
                 }}
               >
                 Services
@@ -62,7 +61,7 @@ export const Footer = () => {
                 className="text-xs sm:text-sm text-foreground/70 hover:text-primary transition-colors font-medium"
                 onClick={(e) => {
                   e.preventDefault();
-                  document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+                  scrollToElement("contact");
                 }}
               >
                 Contact

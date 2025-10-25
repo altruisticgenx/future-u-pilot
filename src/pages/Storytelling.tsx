@@ -5,14 +5,16 @@ import { Card } from "@/components/ui/card";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { useNavigate } from "react-router-dom";
+import { useSmoothScroll } from "@/hooks/useSmoothScroll";
 
 export default function Storytelling() {
   const navigate = useNavigate();
+  const { scrollToElement } = useSmoothScroll();
   
   const scrollToContact = () => {
     navigate('/');
     setTimeout(() => {
-      document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+      scrollToElement('contact');
     }, 100);
   };
 

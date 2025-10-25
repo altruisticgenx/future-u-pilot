@@ -5,10 +5,12 @@ import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button
 import { useNavigate } from "react-router-dom";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { AnimatedLogo } from "@/components/AnimatedLogo";
+import { useSmoothScroll } from "@/hooks/useSmoothScroll";
 
 export const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
+  const { scrollToElement } = useSmoothScroll();
   const navItems = [{
     label: "Home",
     href: "/"
@@ -37,16 +39,15 @@ export const Navigation = () => {
       window.open(href, "_blank", "noopener,noreferrer");
     } else if (href.startsWith("#")) {
       // Scroll to section on current page
+      const elementId = href.substring(1);
       if (window.location.pathname !== '/') {
         // If not on homepage, navigate to homepage first
         navigate('/');
         setTimeout(() => {
-          const element = document.getElementById(href.substring(1));
-          element?.scrollIntoView({ behavior: "smooth" });
+          scrollToElement(elementId);
         }, 100);
       } else {
-        const element = document.getElementById(href.substring(1));
-        element?.scrollIntoView({ behavior: "smooth" });
+        scrollToElement(elementId);
       }
     } else {
       // Use React Router navigate instead of window.location
