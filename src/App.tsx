@@ -15,7 +15,6 @@ const Storytelling = lazy(() => import("./pages/Storytelling"));
 const About = lazy(() => import("./pages/About"));
 const FAQ = lazy(() => import("./pages/FAQ"));
 const Terminal = lazy(() => import("./pages/Terminal"));
-const Auth = lazy(() => import("./pages/Auth"));
 const MapDemo = lazy(() => import("./pages/MapDemo"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
@@ -58,7 +57,6 @@ const App = () => (
           <Route path="/about" element={<QueryWrapper><About /></QueryWrapper>} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="/map" element={<MapDemo />} />
-          <Route path="/auth" element={<QueryWrapper><Auth /></QueryWrapper>} />
           <Route path="/terminal" element={<QueryWrapper><Terminal /></QueryWrapper>} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

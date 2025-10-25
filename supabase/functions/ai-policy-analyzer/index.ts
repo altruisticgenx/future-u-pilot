@@ -1,3 +1,4 @@
+import "https://deno.land/x/xhr@0.1.0/mod.ts";
 import { serve } from "https://deno.land/std@0.168.0/http/server.ts";
 
 const corsHeaders = {
@@ -5,9 +6,53 @@ const corsHeaders = {
   "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
 };
 
+// Simple in-memory rate limiter
+const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
+const RATE_LIMIT_WINDOW_MS = 60000; // 1 minute
+const MAX_REQUESTS_PER_WINDOW = 20;
+
+function checkRateLimit(identifier: string): { allowed: boolean; resetAt: number } {
+  const now = Date.now();
+  const entry = rateLimitMap.get(identifier);
+
+  if (!entry || now > entry.resetAt) {
+    rateLimitMap.set(identifier, { count: 1, resetAt: now + RATE_LIMIT_WINDOW_MS });
+    return { allowed: true, resetAt: now + RATE_LIMIT_WINDOW_MS };
+  }
+
+  if (entry.count < MAX_REQUESTS_PER_WINDOW) {
+    entry.count++;
+    return { allowed: true, resetAt: entry.resetAt };
+  }
+
+  return { allowed: false, resetAt: entry.resetAt };
+}
+
 serve(async (req) => {
   if (req.method === "OPTIONS") {
     return new Response(null, { headers: corsHeaders });
+  }
+
+  // Rate limiting check
+  const clientIp = req.headers.get("x-forwarded-for") || "unknown";
+  const rateLimit = checkRateLimit(clientIp);
+  
+  if (!rateLimit.allowed) {
+    const retryAfter = Math.ceil((rateLimit.resetAt - Date.now()) / 1000);
+    return new Response(
+      JSON.stringify({ 
+        error: "Rate limit exceeded. Please try again later.",
+        retryAfter 
+      }),
+      {
+        status: 429,
+        headers: {
+          ...corsHeaders,
+          "Content-Type": "application/json",
+          "Retry-After": retryAfter.toString(),
+        },
+      }
+    );
   }
 
   try {

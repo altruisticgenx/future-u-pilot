@@ -113,18 +113,6 @@ export const Navigation = () => {
             >
               <ThemeToggle />
             </motion.div>
-            
-            {/* Auth Button with 3D depth */}
-            <Button
-              size="sm"
-              onClick={() => navigate("/auth")}
-              className="ml-2 text-sm btn-3d-teal"
-              style={{
-                boxShadow: '0 4px 12px rgba(20, 184, 166, 0.3)',
-              }}
-            >
-              Login
-            </Button>
           </div>
 
           {/* Mobile Menu Button - Enhanced with 3D */}
@@ -199,29 +187,14 @@ export const Navigation = () => {
                 <span className="relative z-10">{item.label}</span>
               </motion.button>)}
               
-              {/* Mobile Theme Toggle & Auth */}
-              <div className="flex gap-3 mt-6 pt-4 border-t border-border/30">
+              {/* Mobile Theme Toggle */}
+              <div className="flex mt-6 pt-4 border-t border-border/30">
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.3 }}
-                  className="flex-shrink-0"
                 >
                   <ThemeToggle />
-                </motion.div>
-                <motion.div
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.35 }}
-                  className="flex-1"
-                >
-                  <Button 
-                    className="w-full min-h-[52px] btn-3d-teal text-base font-semibold" 
-                    onClick={() => navigate("/auth")} 
-                    aria-label="Login or Sign Up"
-                  >
-                    Login / Sign Up
-                  </Button>
                 </motion.div>
               </div>
             </div>

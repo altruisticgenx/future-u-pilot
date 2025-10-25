@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { LucideIcon, ChevronDown, ChevronUp, Activity } from "lucide-react";
 import { useSectorData } from "@/hooks/useSectorData";
 import { DataStreamText } from "@/components/DataStreamText";
+import DOMPurify from "dompurify";
 import {
   Dialog,
   DialogContent,
@@ -135,7 +136,7 @@ export const InteractiveCard = ({
                   <p className="text-foreground/90 leading-relaxed">{description}</p>
                   {detailedContent && (
                     <div className="prose prose-sm dark:prose-invert max-w-none">
-                      <div dangerouslySetInnerHTML={{ __html: detailedContent }} />
+                      <div dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(detailedContent) }} />
                     </div>
                   )}
                   {highlights && highlights.length > 0 && (
