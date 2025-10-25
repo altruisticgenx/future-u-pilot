@@ -5,7 +5,6 @@ import { ThemeProvider } from "next-themes";
 
 // Eager load homepage for fast FCP
 import Index from "./pages/Index";
-import IndexNew from "./pages/IndexNew";
 
 // Lazy load non-critical UI components
 const Toaster = lazy(() => import("@/components/ui/toaster").then(m => ({ default: m.Toaster })));
@@ -55,7 +54,6 @@ const App = () => (
       <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div></div>}>
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/new" element={<IndexNew />} />
           <Route path="/storytelling" element={<Storytelling />} />
           <Route path="/about" element={<About />} />
           <Route path="/faq" element={<FAQ />} />
