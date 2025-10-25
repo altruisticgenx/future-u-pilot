@@ -7,7 +7,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
-import { Send, Calendar } from "lucide-react";
+import { Send } from "lucide-react";
+import DOMPurify from 'dompurify';
 
 const sectors = ["Government", "University/Research", "Enterprise", "Startup"];
 const interests = [
@@ -57,6 +58,11 @@ export const ContactForm = () => {
     return Object.keys(newErrors).length === 0;
   };
 
+  const sanitizeInput = (input: string) => DOMPurify.sanitize(input.trim(), { 
+    ALLOWED_TAGS: [],
+    ALLOWED_ATTR: []
+  });
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -71,7 +77,19 @@ export const ContactForm = () => {
 
     setIsSubmitting(true);
     
-    // Simulate API call
+    // Sanitize all inputs
+    const sanitizedData = {
+      name: sanitizeInput(formData.name),
+      organization: sanitizeInput(formData.organization),
+      email: sanitizeInput(formData.email),
+      sector: formData.sector,
+      timeline: formData.timeline,
+      message: sanitizeInput(formData.message),
+      interests: formData.interests,
+      consent: formData.consent,
+    };
+    
+    // Simulate API call with sanitized data
     setTimeout(() => {
       setIsSubmitting(false);
       setIsSuccess(true);
@@ -131,6 +149,7 @@ export const ContactForm = () => {
           <Label htmlFor="name" className="text-xs">Name *</Label>
           <Input
             id="name"
+            autoComplete="name"
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
             aria-invalid={!!errors.name}
@@ -149,6 +168,7 @@ export const ContactForm = () => {
           <Label htmlFor="organization" className="text-xs">Organization *</Label>
           <Input
             id="organization"
+            autoComplete="organization"
             value={formData.organization}
             onChange={(e) => setFormData({ ...formData, organization: e.target.value })}
             aria-invalid={!!errors.organization}
@@ -169,6 +189,7 @@ export const ContactForm = () => {
         <Input
           id="email"
           type="email"
+          autoComplete="email"
           value={formData.email}
           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
           aria-invalid={!!errors.email}

@@ -1,24 +1,40 @@
-import { Hero } from "@/components/Hero";
-import { LogoRow } from "@/components/LogoRow";
-import { ServiceCards } from "@/components/ServiceCards";
-import { WhyNow } from "@/components/WhyNow";
-import { LabNotes } from "@/components/LabNotes";
-import { WhyItMatters } from "@/components/WhyItMatters";
-import { ContactForm } from "@/components/ContactForm";
-import { Footer } from "@/components/Footer";
+import { lazy, Suspense } from "react";
 import { Navigation } from "@/components/Navigation";
+import { Footer } from "@/components/Footer";
+import { HeroSkeleton } from "@/components/LoadingSkeleton";
 import { motion } from "framer-motion";
+
+// Lazy load heavy components
+const Hero = lazy(() => import("@/components/Hero").then(m => ({ default: m.Hero })));
+const LogoRow = lazy(() => import("@/components/LogoRow").then(m => ({ default: m.LogoRow })));
+const ServiceCards = lazy(() => import("@/components/ServiceCards").then(m => ({ default: m.ServiceCards })));
+const WhyNow = lazy(() => import("@/components/WhyNow").then(m => ({ default: m.WhyNow })));
+const LabNotes = lazy(() => import("@/components/LabNotes").then(m => ({ default: m.LabNotes })));
+const WhyItMatters = lazy(() => import("@/components/WhyItMatters").then(m => ({ default: m.WhyItMatters })));
+const ContactForm = lazy(() => import("@/components/ContactForm").then(m => ({ default: m.ContactForm })));
 
 const Index = () => {
   return (
     <div className="min-h-screen">
       <Navigation />
-      <Hero />
-      <LogoRow />
-      <ServiceCards />
-      <WhyNow />
-      <LabNotes />
-      <WhyItMatters />
+      <Suspense fallback={<HeroSkeleton />}>
+        <Hero />
+      </Suspense>
+      <Suspense fallback={<div className="h-32 animate-pulse bg-primary/5" />}>
+        <LogoRow />
+      </Suspense>
+      <Suspense fallback={<div className="h-96 animate-pulse bg-primary/5" />}>
+        <ServiceCards />
+      </Suspense>
+      <Suspense fallback={<div className="h-64 animate-pulse bg-primary/5" />}>
+        <WhyNow />
+      </Suspense>
+      <Suspense fallback={<div className="h-64 animate-pulse bg-primary/5" />}>
+        <LabNotes />
+      </Suspense>
+      <Suspense fallback={<div className="h-64 animate-pulse bg-primary/5" />}>
+        <WhyItMatters />
+      </Suspense>
       
       {/* Contact Section */}
       <section id="contact" className="py-16 sm:py-20 md:py-24 relative overflow-hidden" aria-labelledby="contact-heading">
@@ -41,14 +57,16 @@ const Index = () => {
             </p>
           </motion.div>
 
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="max-w-3xl mx-auto glass-card-3d bg-card/70 border-2 border-primary/20 rounded-2xl p-4 sm:p-6 md:p-8 shadow-2xl"
-          >
-            <ContactForm />
-          </motion.div>
+          <Suspense fallback={<div className="h-96 animate-pulse bg-primary/5 rounded-2xl" />}>
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="max-w-3xl mx-auto glass-card-3d bg-card/70 border-2 border-primary/20 rounded-2xl p-4 sm:p-6 md:p-8 shadow-2xl"
+            >
+              <ContactForm />
+            </motion.div>
+          </Suspense>
         </div>
       </section>
 

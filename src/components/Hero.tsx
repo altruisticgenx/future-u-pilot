@@ -35,7 +35,7 @@ export const Hero = () => {
     if (!animationsReady) return;
     const interval = setInterval(() => {
       setCmdIndex((prev) => (prev + 1) % terminalCommands.length);
-    }, 3000);
+    }, 5000);
     return () => clearInterval(interval);
   }, [animationsReady]);
 
@@ -85,8 +85,16 @@ export const Hero = () => {
       role="region"
       aria-labelledby="hero-heading"
     >
-      {/* Ocean Gradient Background - Deep to Bright Teal */}
-      <div className="absolute inset-0 bg-gradient-ocean" />
+      {/* 21st.dev Quantum Background */}
+      <div className="absolute inset-0 hero-quantum" />
+      
+      {/* Rotating Light Overlay */}
+      {animationsReady && !prefersReducedMotion && (
+        <div className="hero-light-overlay" />
+      )}
+      
+      {/* Noise Texture Overlay */}
+      <div className="noise-overlay" />
       
       {/* Floating Glass Blur Panels - 4% opacity */}
       {animationsReady && !prefersReducedMotion && (
@@ -239,6 +247,7 @@ export const Hero = () => {
                 id="hero-heading"
                 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight"
                 style={{
+                  minHeight: '2.5em',
                   textShadow: '0 2px 10px rgba(20, 184, 166, 0.3), 0 4px 20px rgba(14, 116, 144, 0.2)',
                 }}
               >
@@ -388,6 +397,7 @@ export const Hero = () => {
                 }
               }}
               style={{
+                minHeight: '280px',
                 boxShadow: '0 0 40px hsl(173 80% 40% / 0.3), 0 8px 32px rgba(0, 0, 0, 0.4)',
               }}
             >

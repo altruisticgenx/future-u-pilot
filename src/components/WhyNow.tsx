@@ -56,6 +56,7 @@ export const WhyNow = () => {
                   viewport={{ once: true }}
                   whileHover={{ x: 5, scale: 1.02 }}
                   className="flex items-start gap-3 sm:gap-4 p-3 sm:p-4 md:p-5 rounded-xl glass-card-3d bg-card/50 border-2 border-primary/20 hover:border-primary/40 transition-all"
+                  style={{ contain: 'layout style paint' }}
                 >
                   <motion.div 
                     className="p-2 rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 shrink-0"

@@ -190,7 +190,7 @@ export const ServiceCards = () => {
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 gap-3 sm:gap-4 md:gap-5 mb-6 sm:mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-5 mb-6 sm:mb-8">
           {services.map((service, index) => (
             <motion.div
               key={service.id}
@@ -208,6 +208,7 @@ export const ServiceCards = () => {
                   service.color,
                   expandedCard === service.id ? "ring-2 ring-primary shadow-[6px_6px_0px_0px_hsl(var(--primary)/0.35)]" : ""
                 )}
+                style={{ contain: 'layout style paint' }}
               >
                 <CardHeader className="relative space-y-3 pb-3 sm:pb-4">
                   <div className="flex items-start justify-between gap-3 sm:gap-4">
