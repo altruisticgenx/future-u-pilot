@@ -11,6 +11,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@axe-core/react": "^4.11.0",
     "@hookform/resolvers": "^3.10.0",
     "@radix-ui/react-accordion": "^1.2.11",
     "@radix-ui/react-alert-dialog": "^1.1.14",
@@ -42,7 +43,9 @@
     "@supabase/supabase-js": "^2.76.1",
     "@tanstack/react-query": "^5.83.0",
     "@types/dompurify": "^3.2.0",
+    "@types/mapbox-gl": "^3.4.1",
     "@types/react-syntax-highlighter": "^15.5.13",
+    "axe-core": "^4.11.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
@@ -53,6 +56,7 @@
     "input-otp": "^1.4.2",
     "jszip": "^3.10.1",
     "lucide-react": "^0.462.0",
+    "mapbox-gl": "^3.16.0",
     "next-themes": "^0.3.0",
     "posthog-js": "^1.280.1",
     "react": "^18.3.1",
