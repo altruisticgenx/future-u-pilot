@@ -13,11 +13,11 @@ const stakeholders = [
     icon: GraduationCap,
     title: "Students",
     subtitle: "Tomorrow's Tech Workforce",
-    description: "Train the next generation through hands-on quantum and AI projects. Access cloud-based quantum APIs (Qiskit, Cirq) and generative AI tools to build real-world solutions—no PhD required.",
+    description: "Train the next generation through hands-on quantum and AI projects using real cloud tools and open-source platforms.",
     highlights: [
-      "Build with real quantum APIs (Qiskit/Cirq)",
-      "Open-source sandbox environments",
-      "Career pipeline to PA quantum companies"
+      "Hands-on quantum projects",
+      "Real cloud computing tools",
+      "Direct job connections"
     ],
     detailedContent: `
       <h3>Building the Quantum Workforce</h3>
@@ -37,11 +37,11 @@ const stakeholders = [
     icon: Zap,
     title: "Energy",
     subtitle: "Smarter Grids & Quantum Security",
-    description: "Using PJM Interconnection Data APIs and smart meter feeds to train AI for grid optimization. Early pilots show 22% energy savings and quantum-safe intrusion detection for critical infrastructure.",
+    description: "Using real-time grid data and smart meter feeds to train AI for energy optimization and quantum-safe infrastructure protection.",
     highlights: [
-      "22% energy savings in pilot quantum grid projects",
-      "Real-time PJM data integration for load balancing",
-      "Quantum-safe cybersecurity for power networks"
+      "Real energy grid optimization",
+      "Smart power load balancing",
+      "Quantum-safe cyber protection"
     ],
     detailedContent: `
       <h3>Quantum-Enhanced Energy Systems</h3>
@@ -60,12 +60,12 @@ const stakeholders = [
   {
     icon: Heart,
     title: "Healthcare",
-    subtitle: "10x Faster Drug Discovery",
-    description: "Analyzing anonymized PA Department of Health datasets and molecular simulation data with HIPAA-compliant FHIR APIs. Result: 10x faster drug discovery simulations and personalized treatments.",
+    subtitle: "Accelerated Medical Innovation",
+    description: "Analyzing anonymized health data and molecular simulations with secure APIs to enable faster drug discovery and personalized treatments.",
     highlights: [
-      "10x faster drug discovery simulations at PA hospitals",
-      "HIPAA-compliant data pipelines with FHIR APIs",
-      "Personalized treatment using genetic + clinical data"
+      "Faster drug discovery",
+      "Secure medical data systems",
+      "Personalized treatments"
     ],
     detailedContent: `
       <h3>Quantum Healthcare Revolution</h3>
@@ -85,11 +85,11 @@ const stakeholders = [
     icon: Scale,
     title: "Policy & Governance",
     subtitle: "Evidence-Backed Guidelines",
-    description: "AI tools analyze federal PQC mandates (NIST standards) against current state IT infrastructure. Use GeoSpatial APIs with AI to model equitable deployment and regional economic impact.",
+    description: "AI tools analyze federal quantum mandates against state infrastructure and model equitable tech deployment across Pennsylvania.",
     highlights: [
-      "Rapid regulatory compliance assessment (PQC/NIST)",
-      "AI-driven policy text analysis tools",
-      "GeoSpatial APIs model economic & equity impact"
+      "Quick compliance checks",
+      "AI policy analysis",
+      "Fair regional deployment"
     ],
     detailedContent: `
       <h3>Quantum Policy & Governance</h3>
@@ -148,12 +148,45 @@ const About = () => {
             <p className="text-xs sm:text-sm text-muted-foreground max-w-2xl mx-auto leading-relaxed">
               Connecting students to tech careers, helping companies run smarter, speeding up healthcare breakthroughs.
             </p>
-          </motion.div>
-        </div>
-      </section>
+      </motion.div>
+    </div>
+  </section>
 
-      {/* Stakeholder Perspectives */}
-      <section className="py-12 bg-gradient-to-b from-muted/30 to-background" aria-labelledby="stakeholder-heading">
+  {/* What We Do & Mission - Condensed */}
+  <section className="py-8 sm:py-10" aria-labelledby="mission-heading">
+    <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-5xl">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="glass-card-3d p-6 sm:p-8 rounded-xl bg-gradient-to-br from-primary/10 via-accent/5 to-primary/10 border border-primary/30"
+      >
+        <div className="flex items-center gap-2 mb-4">
+          <Users className="h-5 w-5 text-primary animate-pulse" />
+          <h2 id="mission-heading" className="text-base sm:text-lg font-bold bg-gradient-hero bg-clip-text text-transparent">
+            What We Do & Why It Matters
+          </h2>
+        </div>
+
+        <div className="space-y-3 text-xs sm:text-sm text-foreground/80 leading-relaxed">
+          <p>
+            <strong className="text-foreground">What We Do:</strong> Help Pennsylvania use AI and quantum tech to solve real problems—smarter energy grids, faster drug discovery, secure infrastructure—through open-source projects anyone can build with.
+          </p>
+          
+          <p>
+            <strong className="text-foreground">Our Mission:</strong> Train quantum engineers, cut energy waste, speed up medical breakthroughs, and guide practical tech policy that works.
+          </p>
+
+          <blockquote className="border-l-2 border-primary pl-3 py-1 italic text-xs bg-primary/5 rounded-r mt-3">
+            Empower students. Modernize industries. Make Pennsylvania a quantum leader.
+          </blockquote>
+        </div>
+      </motion.div>
+    </div>
+  </section>
+
+  {/* Who We Help */}
+  <section className="py-12 bg-gradient-to-b from-muted/30 to-background" aria-labelledby="stakeholder-heading">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -161,15 +194,15 @@ const About = () => {
             viewport={{ once: true }}
             className="text-center mb-8"
           >
-            <h2 id="stakeholder-heading" className="text-lg sm:text-xl md:text-2xl font-bold mb-2 bg-gradient-hero bg-clip-text text-transparent">
-              Four Perspectives, One Vision
-            </h2>
-            <p className="text-xs sm:text-sm text-muted-foreground max-w-xl mx-auto">
-              Real people, real results. Here's how quantum helps everyone.
-            </p>
+        <h2 id="stakeholder-heading" className="text-base sm:text-lg md:text-xl font-bold mb-2 bg-gradient-hero bg-clip-text text-transparent">
+          Who We Help
+        </h2>
+        <p className="text-xs sm:text-sm text-muted-foreground max-w-xl mx-auto">
+          Real solutions for students, businesses, hospitals, and government.
+        </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-4">
+          <div className="grid sm:grid-cols-2 gap-3 sm:gap-4 max-w-5xl mx-auto">
             {stakeholders.map((stakeholder, index) => (
               <InteractiveCard
                 key={index}
@@ -203,55 +236,7 @@ const About = () => {
         </div>
       </section>
 
-      {/* Vision Statement */}
-      <section className="py-12 bg-gradient-to-b from-background to-muted/30" aria-labelledby="vision-heading">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="space-y-4"
-          >
-            <div className="text-center space-y-2">
-              <Users className="h-7 w-7 text-primary mx-auto animate-pulse" aria-hidden="true" />
-              <h2 id="vision-heading" className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-hero bg-clip-text text-transparent">Our Vision</h2>
-            </div>
-            
-            <div className="space-y-3 text-xs sm:text-sm text-muted-foreground leading-relaxed">
-              <h3 className="text-base sm:text-lg font-bold text-foreground mb-2">What We Do:</h3>
-              <p>
-                We help Pennsylvania businesses adopt AI and quantum technologies to solve real problems—optimizing energy grids, accelerating drug discovery, and securing critical infrastructure—while running open-source, experimental projects that let students, developers, and tech enthusiasts build and test real-world solutions.
-              </p>
-              
-              <h3 className="text-base sm:text-lg font-bold text-foreground mt-4 mb-2">Our Mission:</h3>
-              <ul className="space-y-2 ml-4">
-                <li className="flex items-start gap-2">
-                  <span className="text-primary mt-1">•</span>
-                  <span>Train the next generation of quantum engineers and AI developers through applied projects</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-primary mt-1">•</span>
-                  <span>Reduce energy waste and prevent cyberattacks on Pennsylvania's power networks</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-primary mt-1">•</span>
-                  <span>Enable hospitals and research centers to discover drugs faster and personalize treatments</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-primary mt-1">•</span>
-                  <span>Guide lawmakers with practical, evidence-backed policies for a quantum-ready economy</span>
-                </li>
-              </ul>
-              
-              <blockquote className="border-l-3 border-primary pl-4 py-1.5 italic text-xs sm:text-sm bg-gradient-to-r from-primary/5 to-transparent rounded-r mt-4">
-                <strong>Final Transmission:</strong> Empower students, modernize industries, and make Pennsylvania a national leader in applied AI and quantum technology.
-              </blockquote>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Call to Action */}
+  {/* Call to Action */}
       <section className="py-12" aria-labelledby="cta-heading">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl">
           <motion.div

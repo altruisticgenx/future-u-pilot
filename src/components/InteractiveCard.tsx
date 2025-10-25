@@ -47,16 +47,16 @@ export const InteractiveCard = ({
       viewport={{ once: true }}
       className="h-full"
     >
-      <div className={`glass-card-3d rounded-xl overflow-hidden h-full bg-gradient-to-br ${color} border border-primary/20`}>
-        <div className="p-6 space-y-4">
+      <div className={`glass-card-3d rounded-xl overflow-hidden h-full bg-gradient-to-br ${color} border border-primary/30 shadow-[0_8px_32px_rgba(0,0,0,0.12)] hover:shadow-[0_12px_48px_rgba(0,0,0,0.18)] transition-all duration-300`}>
+        <div className="p-4 sm:p-5 space-y-3">
           {/* Header */}
           <div className="flex items-start gap-4">
-            <div className="p-3 rounded-lg bg-primary/10 border border-primary/20">
-              <Icon className="w-6 h-6 text-primary" />
+            <div className="p-2 rounded-lg bg-primary/15 border border-primary/25 shadow-sm">
+              <Icon className="w-5 h-5 text-primary" />
             </div>
             <div className="flex-1">
               <div className="flex items-center justify-between gap-2">
-                <h3 className="text-lg font-bold text-foreground">{title}</h3>
+                <h3 className="text-base sm:text-lg font-bold text-foreground">{title}</h3>
                 {liveData && (
                   <div className="flex items-center gap-1 text-xs text-success">
                     <Activity className="h-3 w-3 animate-pulse" />
@@ -64,28 +64,14 @@ export const InteractiveCard = ({
                   </div>
                 )}
               </div>
-              <p className="text-sm text-muted-foreground">{subtitle}</p>
+              <p className="text-xs sm:text-sm text-muted-foreground/80">{subtitle}</p>
             </div>
           </div>
 
           {/* Description */}
-          <div className="text-sm text-foreground/90 leading-relaxed">
+          <div className="text-xs sm:text-sm text-foreground/85 leading-relaxed">
             <DataStreamText text={description} speed={20} showCursor={false} />
           </div>
-
-          {/* Live Metrics */}
-          {liveData && (
-            <div className="grid grid-cols-2 gap-2 p-3 rounded-lg bg-background/50 border border-border/50">
-              <div className="text-center">
-                <div className="text-lg font-bold text-primary">{liveData.liveData.currentProjects}</div>
-                <div className="text-xs text-muted-foreground">Projects</div>
-              </div>
-              <div className="text-center">
-                <div className="text-lg font-bold text-success">{liveData.liveData.completionRate}%</div>
-                <div className="text-xs text-muted-foreground">Success</div>
-              </div>
-            </div>
-          )}
 
           {/* Expandable Summary */}
           {highlights && highlights.length > 0 && (
