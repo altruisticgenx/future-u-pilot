@@ -3,6 +3,7 @@ import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { HeroSkeleton } from "@/components/LoadingSkeleton";
 import { AIChatbot } from "@/components/AIChatbot";
+import { CyberpunkTerminalWidget } from "@/components/CyberpunkTerminalWidget";
 import { motion } from "framer-motion";
 import { Calendar, Users, Target } from "lucide-react";
 
@@ -96,6 +97,35 @@ const Index = () => {
           <AIShowcase />
         </Suspense>
       </motion.div>
+      
+      {/* Cyberpunk Terminal Widget Showcase */}
+      <section className="py-16 sm:py-20 md:py-24 bg-gradient-to-b from-background via-muted/20 to-background" aria-labelledby="terminal-heading">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 id="terminal-heading" className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
+              Design System Showcase
+            </h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Interactive terminal widget demonstrating our Cyberpunk design system with glassmorphism, 3D effects, and dynamic animations.
+            </p>
+          </motion.div>
+          
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            <CyberpunkTerminalWidget />
+          </motion.div>
+        </div>
+      </section>
       
       {/* Contact Section - Enhanced with trust signals */}
       <section id="contact" className="py-16 sm:py-20 md:py-24 relative overflow-hidden" aria-labelledby="contact-heading">
