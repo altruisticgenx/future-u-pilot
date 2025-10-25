@@ -55,7 +55,7 @@ export const Navigation = () => {
     setIsMobileMenuOpen(false);
   };
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-background/90 border-b border-primary/20 shadow-2xl" 
+    <nav className="fixed top-0 left-0 right-0 z-50 glass-light bg-background/90 border-b border-primary/20 shadow-2xl" 
          style={{
            boxShadow: '0 8px 32px rgba(20, 184, 166, 0.15), 0 2px 8px rgba(0, 0, 0, 0.1)',
            transform: 'translateZ(0)',
@@ -169,7 +169,7 @@ export const Navigation = () => {
             rotateX: -15
           }}
           transition={{ duration: 0.3, ease: "easeOut" }}
-          className="lg:hidden border-t border-border/50 backdrop-blur-xl overflow-hidden"
+          className="lg:hidden border-t border-border/50 glass-light overflow-hidden"
           style={{
             background: 'linear-gradient(180deg, rgba(20, 184, 166, 0.05), rgba(14, 116, 144, 0.08))',
             boxShadow: 'inset 0 1px 0 rgba(255, 255, 255, 0.1)',

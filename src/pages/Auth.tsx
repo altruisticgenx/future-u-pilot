@@ -125,7 +125,7 @@ const Auth = () => {
         animate={{ opacity: 1, y: 0 }}
         className="w-full max-w-md relative z-10"
       >
-        <div className="backdrop-blur-md bg-card/60 border border-border/50 rounded-2xl p-8 shadow-2xl">
+        <div className="glass-heavy bg-card/60 border border-border/50 rounded-2xl p-8 shadow-2xl">
           {/* Back button */}
           <Button
             variant="ghost"

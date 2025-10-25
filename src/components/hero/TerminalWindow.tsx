@@ -27,7 +27,7 @@ export const TerminalWindow = ({
       aria-label="Terminal command output demonstration"
     >
       <motion.div
-        className="rounded-lg backdrop-blur-md bg-card/60 border border-border/50 shadow-xl overflow-hidden max-w-md mx-auto"
+        className="rounded-lg glass-heavy bg-card/60 border border-border/50 shadow-xl overflow-hidden max-w-md mx-auto"
         animate={prefersReducedMotion ? {} : {
           y: [0, -10, 0],
           transition: {

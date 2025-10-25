@@ -16,7 +16,7 @@ export const TerminalLayout = ({ sidebar, children }: TerminalLayoutProps) => {
     return (
       <div className="h-screen flex flex-col bg-terminal-bg overflow-hidden">
         <div 
-          className="flex items-center justify-between p-2.5 sm:p-3 border-b border-terminal-border bg-terminal-surface/95 backdrop-blur-sm sticky top-0 z-10 min-h-[50px]"
+          className="flex items-center justify-between p-2.5 sm:p-3 border-b border-terminal-border bg-terminal-surface/95 glass-light sticky top-0 z-10 min-h-[50px]"
         >
           <div className="flex items-center gap-1.5 sm:gap-2 flex-1 min-w-0">
             <Sheet>

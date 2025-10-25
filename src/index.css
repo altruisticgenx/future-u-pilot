@@ -776,11 +776,38 @@ All colors MUST be HSL.
     }
   }
   
-  /* Glass Card 3D Effect */
-  .glass-card-3d {
-    @apply backdrop-blur-xl border;
+  /* Optimized Glass Effects - Apply to smallest containers only */
+  
+  /* Light glass effect - use for larger containers */
+  .glass-light {
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
     background: hsl(var(--glass-bg));
     border-color: hsl(var(--glass-border));
+    /* Performance: GPU acceleration */
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+  
+  /* Heavy glass effect - ONLY for small, critical UI elements */
+  .glass-heavy {
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    background: hsl(var(--glass-bg));
+    border-color: hsl(var(--glass-border));
+    /* Performance: GPU acceleration */
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    will-change: backdrop-filter;
+  }
+  
+  /* Glass Card 3D Effect - Optimized for performance */
+  .glass-card-3d {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    background: hsl(var(--glass-bg));
+    border-color: hsl(var(--glass-border));
+    @apply border;
     box-shadow: 
       0 4px 6px hsl(var(--primary) / 0.1),
       0 8px 16px hsl(var(--primary) / 0.08),
@@ -862,11 +889,17 @@ All colors MUST be HSL.
   }
 
   .glass-panel-float {
-    backdrop-filter: blur(20px) saturate(180%);
+    /* Use glass-heavy class for floating panels */
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
     background-color: rgba(255, 255, 255, 0.06);
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 24px;
     box-shadow: 0 0 60px hsl(173 80% 40% / 0.25);
+    /* Performance optimization */
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    will-change: backdrop-filter;
   }
 
   .noise-overlay {
@@ -904,9 +937,17 @@ All colors MUST be HSL.
       animation: none !important;
     }
     
-    /* Reduce blur intensity */
-    .backdrop-blur-xl {
-      backdrop-filter: blur(8px);
+    /* Reduce blur intensity on mobile for better performance */
+    .backdrop-blur-xl,
+    .glass-card-3d,
+    .glass-heavy {
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+    
+    .glass-light {
+      backdrop-filter: blur(3px);
+      -webkit-backdrop-filter: blur(3px);
     }
     
     /* Touch targets */

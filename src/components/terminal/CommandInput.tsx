@@ -41,7 +41,7 @@ export const CommandInput = ({ onSubmit, disabled = false, placeholder = 'Type h
   };
 
   return (
-    <form onSubmit={handleSubmit} className="border-t border-terminal-border sticky bottom-0 backdrop-blur-sm bg-terminal-surface/95">
+    <form onSubmit={handleSubmit} className="border-t border-terminal-border sticky bottom-0 glass-light bg-terminal-surface/95">
       <div className="flex items-center gap-2 sm:gap-3 p-2 sm:p-4">
         <Terminal className="h-4 w-4 sm:h-5 sm:w-5 flex-shrink-0 text-cmd-success" />
         <Input

@@ -65,7 +65,7 @@ const Experiments = () => {
       <Navigation />
       
       {/* Header */}
-      <header className="border-b border-border/50 bg-card/30 backdrop-blur-sm sticky top-16 sm:top-20 z-40 mt-16 sm:mt-20">
+      <header className="border-b border-border/50 bg-card/30 glass-light sticky top-16 sm:top-20 z-40 mt-16 sm:mt-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-4">
           <div className="flex items-center gap-4">
             <Button
