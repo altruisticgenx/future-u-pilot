@@ -39,7 +39,7 @@ export default function OpenLetterSection() {
           transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
-          <h2 id="letter-heading" className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
+          <h2 id="letter-heading" className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4">
             Open Letter — Pennsylvania Quantum Public Lobby Group
           </h2>
           <p className="text-lg text-muted-foreground">
@@ -131,7 +131,7 @@ export default function OpenLetterSection() {
                   </DialogTrigger>
                   <DialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto">
                     <DialogHeader>
-                      <DialogTitle className="text-2xl">
+                      <DialogTitle className="text-xl">
                         Open Letter to Pennsylvania Lawmakers
                       </DialogTitle>
                       <DialogDescription>

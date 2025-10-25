@@ -22,7 +22,7 @@ export default function OpenProjectsGrid() {
           transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
-          <h2 id="projects-heading" className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
+          <h2 id="projects-heading" className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4">
             Open Projects{' '}
             <span className="text-muted-foreground">(Contribute Today)</span>
           </h2>
@@ -56,7 +56,7 @@ export default function OpenProjectsGrid() {
                   <Icon className="h-6 w-6" />
                 </div>
 
-                <h3 className="text-xl font-bold mb-2 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
+                <h3 className="text-lg font-bold mb-2 bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-transparent">
                   {project.name}
                 </h3>
 

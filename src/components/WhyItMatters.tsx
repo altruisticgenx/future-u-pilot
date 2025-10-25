@@ -43,7 +43,7 @@ export const WhyItMatters = () => {
           viewport={{ once: true }}
           className="text-center space-y-2 sm:space-y-3 mb-8 sm:mb-10 md:mb-12"
         >
-          <h2 id="why-matters-heading" className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold">Why It Matters</h2>
+          <h2 id="why-matters-heading" className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold">Why It Matters</h2>
           <p className="text-xs sm:text-sm md:text-base lg:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
             From friction to forward momentum
           </p>

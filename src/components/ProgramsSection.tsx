@@ -15,7 +15,7 @@ export default function ProgramsSection() {
           transition={{ duration: 0.5 }}
           className="text-center mb-12"
         >
-          <h2 id="programs-heading" className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
+          <h2 id="programs-heading" className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-4">
             Programs{' '}
             <span className="text-muted-foreground">(Built with the Public in Mind)</span>
           </h2>

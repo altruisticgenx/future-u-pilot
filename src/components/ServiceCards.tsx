@@ -184,7 +184,7 @@ export const ServiceCards = () => {
           viewport={{ once: true }}
           className="text-center space-y-2 sm:space-y-3 mb-8 sm:mb-10"
         >
-          <h2 id="services-heading" className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold">Current Initiatives</h2>
+          <h2 id="services-heading" className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold">Current Initiatives</h2>
           <p className="text-xs sm:text-sm md:text-base lg:text-lg text-muted-foreground max-w-3xl mx-auto px-4">
             Empowering Quantum & AI Literacy through active programs across education, government, energy, and enterprise sectors worldwide.
           </p>

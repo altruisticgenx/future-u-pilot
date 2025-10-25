@@ -125,7 +125,7 @@ const About = () => {
             viewport={{ once: true }}
             className="text-center mb-8"
           >
-            <h2 id="stakeholder-heading" className="text-lg sm:text-xl md:text-2xl font-bold mb-2 bg-gradient-hero bg-clip-text text-transparent">
+            <h2 id="stakeholder-heading" className="text-base sm:text-lg md:text-xl font-bold mb-2 bg-gradient-hero bg-clip-text text-transparent">
               Four Perspectives, One Vision
             </h2>
             <p className="text-xs sm:text-sm text-muted-foreground max-w-xl mx-auto">
@@ -154,7 +154,7 @@ const About = () => {
             viewport={{ once: true }}
             className="text-center mb-8"
           >
-            <h2 id="roi-heading" className="text-lg sm:text-xl md:text-2xl font-bold mb-2 bg-gradient-hero bg-clip-text text-transparent">
+            <h2 id="roi-heading" className="text-base sm:text-lg md:text-xl font-bold mb-2 bg-gradient-hero bg-clip-text text-transparent">
               Return on Investment
             </h2>
             <p className="text-xs sm:text-sm text-muted-foreground max-w-xl mx-auto">
@@ -187,7 +187,7 @@ const About = () => {
             className="space-y-6"
           >
             <div className="text-center space-y-2">
-              <h2 id="mission-heading" className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-hero bg-clip-text text-transparent">
+              <h2 id="mission-heading" className="text-base sm:text-lg md:text-xl font-bold bg-gradient-hero bg-clip-text text-transparent">
                 What We Do — and Why It Matters
               </h2>
             </div>
@@ -255,7 +255,7 @@ const About = () => {
           >
             <div className="text-center space-y-2">
               <Users className="h-7 w-7 text-primary mx-auto animate-pulse" aria-hidden="true" />
-              <h2 id="vision-heading" className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-hero bg-clip-text text-transparent">Our Vision</h2>
+              <h2 id="vision-heading" className="text-base sm:text-lg md:text-xl font-bold bg-gradient-hero bg-clip-text text-transparent">Our Vision</h2>
             </div>
             
             <div className="space-y-3 text-xs sm:text-sm text-muted-foreground leading-relaxed">
@@ -284,7 +284,7 @@ const About = () => {
           >
             <Card className="glass-card-3d bg-gradient-to-br from-primary/15 via-accent/10 to-primary/15 border border-primary/40">
               <CardContent className="p-6 sm:p-8 space-y-4">
-                <h2 id="cta-heading" className="text-xl sm:text-2xl font-bold bg-gradient-hero bg-clip-text text-transparent">
+                <h2 id="cta-heading" className="text-lg sm:text-xl font-bold bg-gradient-hero bg-clip-text text-transparent">
                   Join Pennsylvania's Quantum Future
                 </h2>
                 <p className="text-xs sm:text-sm text-muted-foreground max-w-xl mx-auto">

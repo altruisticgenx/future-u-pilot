@@ -45,7 +45,7 @@ export const Navigation = () => {
           {/* Logo */}
           <motion.button 
             onClick={() => navigate("/")}
-            className="text-base sm:text-lg font-bold bg-gradient-hero bg-clip-text text-transparent" 
+            className="text-sm sm:text-base font-bold bg-gradient-hero bg-clip-text text-transparent"
             whileHover={{ scale: 1.05 }} 
             whileTap={{ scale: 0.95 }}
             aria-label="AltruisticXAI Home"
@@ -58,7 +58,7 @@ export const Navigation = () => {
             {navItems.map(item => <motion.button 
               key={item.label} 
               onClick={() => handleNavClick(item.href)} 
-              className="px-2.5 py-1.5 rounded-lg text-xs font-medium text-foreground hover:bg-primary/10 hover:text-primary transition-all glass-card-3d" 
+              className="px-2.5 py-1.5 rounded-lg text-[10px] sm:text-xs font-medium text-foreground hover:bg-primary/10 hover:text-primary transition-all glass-card-3d"
               whileHover={{ y: -1, scale: 1.02 }} 
               whileTap={{ scale: 0.98 }}
               aria-label={`Navigate to ${item.label}`}
@@ -68,15 +68,6 @@ export const Navigation = () => {
             
             {/* Theme Toggle */}
             <ThemeToggle />
-            
-            {/* Auth Button */}
-            <Button
-              size="sm"
-              onClick={() => navigate("/auth")}
-              className="ml-2 text-xs"
-            >
-              Login
-            </Button>
           </div>
 
           {/* Mobile Menu Button - Enhanced touch target */}
@@ -107,7 +98,7 @@ export const Navigation = () => {
               {navItems.map((item, index) => <motion.button 
               key={item.label} 
               onClick={() => handleNavClick(item.href)} 
-              className="w-full text-left px-4 py-3.5 rounded-lg text-foreground hover:bg-primary/10 hover:text-primary transition-all font-medium text-base min-h-[44px]"
+              className="w-full text-left px-4 py-3.5 rounded-lg text-foreground hover:bg-primary/10 hover:text-primary transition-all font-medium text-sm min-h-[44px]"
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: index * 0.05 }}
@@ -116,12 +107,9 @@ export const Navigation = () => {
                   {item.label}
                 </motion.button>)}
               
-              {/* Mobile Theme Toggle & Auth */}
-              <div className="flex gap-2 mt-4">
+              {/* Mobile Theme Toggle */}
+              <div className="mt-4">
                 <ThemeToggle />
-                <Button className="flex-1 min-h-[44px]" onClick={() => navigate("/auth")} aria-label="Login or Sign Up">
-                  Login / Sign Up
-                </Button>
               </div>
             </div>
           </motion.div>}

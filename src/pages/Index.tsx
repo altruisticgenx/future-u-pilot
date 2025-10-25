@@ -89,7 +89,7 @@ const Index = () => {
             viewport={{ once: true }}
             className="text-center space-y-2 sm:space-y-3 mb-8 sm:mb-12"
           >
-            <h2 id="contact-heading" className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold">
+            <h2 id="contact-heading" className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold">
               Let's Plan Your Next 8 Weeks
             </h2>
             <p className="text-xs sm:text-sm md:text-base lg:text-lg text-muted-foreground max-w-2xl mx-auto px-4">

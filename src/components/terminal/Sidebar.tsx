@@ -11,10 +11,9 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 interface SidebarProps {
   currentProjectId: string | null;
   onProjectSelect: (project: Project) => void;
-  onNewProject: () => void;
 }
 
-export const Sidebar = ({ currentProjectId, onProjectSelect, onNewProject }: SidebarProps) => {
+export const Sidebar = ({ currentProjectId, onProjectSelect }: SidebarProps) => {
   const [projects, setProjects] = useState<Project[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [loading, setLoading] = useState(true);
@@ -85,8 +84,9 @@ export const Sidebar = ({ currentProjectId, onProjectSelect, onNewProject }: Sid
           </h2>
         </div>
         
-        <div className="flex gap-2 mb-3">
-          <div className="relative flex-1">
+        {/* Search Projects */}
+        <div className="mb-3">
+          <div className="relative">
             <Search className="absolute left-2 top-2.5 h-3.5 w-3.5 sm:h-4 sm:w-4 opacity-50" style={{ color: 'hsl(var(--terminal-text))' }} />
             <Input
               placeholder="Search..."
@@ -99,17 +99,6 @@ export const Sidebar = ({ currentProjectId, onProjectSelect, onNewProject }: Sid
               }}
             />
           </div>
-          <Button
-            size="icon"
-            onClick={onNewProject}
-            className="flex-shrink-0 h-9 w-9"
-            style={{ 
-              backgroundColor: 'hsl(var(--cmd-success))',
-              color: 'hsl(var(--terminal-bg))'
-            }}
-          >
-            <Plus className="h-4 w-4" />
-          </Button>
         </div>
       </div>
 

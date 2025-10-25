@@ -14,16 +14,16 @@ const Terminal = () => {
   const [currentProject, setCurrentProject] = useState<Project | null>(null);
   const [paletteOpen, setPaletteOpen] = useState(false);
   const WELCOME_MESSAGES = [
-    '🚀 Quantum-AI Command Center  |  Type "help" to begin',
-    '🔬 Lab Terminal Online  |  Try "experiments" to see active research',
-    '🤖 AI Operations Center  |  Run "ai-models" to view available models',
-    '🔐 Security Console  |  Type "pqc-status" for quantum-readiness',
-    '📊 Analytics Dashboard  |  Use "trending" to see hot topics',
-    '⚛️  Quantum Lab  |  Run "qc-status" to check qubit systems',
-    '📋 Policy Center  |  Type "policy-check" for compliance status',
-    '🛡️  Security Ops  |  Run "security-scan" for vulnerability check',
-    '📚 Research Hub  |  Type "research quantum" to search papers',
-    '🎓 Learning Center  |  Run "tutorial" to start interactive guides'
+    '🚀 Quantum-AI Command Center  |  Type "/help" to begin',
+    '🔬 Lab Terminal Online  |  Run "/help" to see available commands',
+    '🤖 AI Operations Center  |  Use "/help" for command list',
+    '🔐 Security Console  |  Type "/help" for guidance',
+    '📊 Analytics Dashboard  |  Run "/help" to get started',
+    '⚛️  Quantum Lab  |  Type "/help" for available commands',
+    '📋 Policy Center  |  Use "/help" to see options',
+    '🛡️  Security Ops  |  Run "/help" for instructions',
+    '📚 Research Hub  |  Type "/help" for command reference',
+    '🎓 Learning Center  |  Use "/help" to see all options'
   ];
 
   const randomWelcome = WELCOME_MESSAGES[Math.floor(Math.random() * WELCOME_MESSAGES.length)];
@@ -47,7 +47,7 @@ const Terminal = () => {
     },
     {
       type: 'table',
-      content: 'Quick Start Commands:',
+      content: 'Quick Start Commands (type "/help" for full list):',
     },
     {
       type: 'list',
@@ -186,13 +186,6 @@ const Terminal = () => {
     toast.success(`Switched to ${project.name}`);
   }, [switchProject]);
 
-  const handleNewProject = useCallback(() => {
-    const projectName = prompt('Enter project name:');
-    if (projectName) {
-      handleCommandSubmit(`/new ${projectName}`);
-    }
-  }, [handleCommandSubmit]);
-
   const handlePaletteCommand = useCallback((command: string) => {
     handleCommandSubmit(command);
   }, [handleCommandSubmit]);
@@ -222,7 +215,6 @@ const Terminal = () => {
           <Sidebar
             currentProjectId={currentProject?.id || null}
             onProjectSelect={handleProjectSelect}
-            onNewProject={handleNewProject}
           />
         }
       >
