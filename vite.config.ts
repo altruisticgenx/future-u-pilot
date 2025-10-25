@@ -1,7 +1,27 @@
-import { defineConfig } from "vite";
+import { defineConfig, Plugin } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 import { componentTagger } from "lovable-tagger";
+
+// Plugin to make CSS non-render-blocking
+const asyncCssPlugin = (): Plugin => ({
+  name: 'async-css',
+  enforce: 'post' as const,
+  transformIndexHtml(html: string) {
+    // Transform CSS links to load asynchronously
+    return html.replace(
+      /<link([^>]*rel=["']stylesheet["'][^>]*)>/gi,
+      (match: string, attrs: string) => {
+        // Skip if already has media attribute or if it's a font
+        if (attrs.includes('media=') || attrs.includes('fonts.googleapis')) {
+          return match;
+        }
+        // Add media="print" and onload handler for async loading
+        return `<link${attrs} media="print" onload="this.media='all';this.onload=null">`;
+      }
+    );
+  }
+});
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
@@ -9,7 +29,11 @@ export default defineConfig(({ mode }) => ({
     host: "::",
     port: 8080,
   },
-  plugins: [react(), mode === "development" && componentTagger()].filter(Boolean),
+  plugins: [
+    react(), 
+    mode === "development" && componentTagger(),
+    asyncCssPlugin()
+  ].filter(Boolean),
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
