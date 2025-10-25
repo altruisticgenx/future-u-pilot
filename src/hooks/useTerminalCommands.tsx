@@ -2,14 +2,14 @@ import { useCallback } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 import { Command, Message, TerminalContext, Project } from '@/types/terminal';
 import { toast } from 'sonner';
-import { QUANTUM_SYSTEMS, QUANTUM_ALGORITHMS, QC_BENCHMARKS, QUANTUM_CIRCUIT_EXAMPLES } from '@/data/terminal/quantum-computing';
+import { QUANTUM_SYSTEMS, QUANTUM_ALGORITHMS, QC_BENCHMARKS } from '@/data/terminal/quantum-computing';
 import { AI_MODELS, DATASETS, TRAINING_METRICS } from '@/data/terminal/ai-models';
 import { FEDERAL_POLICIES, COMPLIANCE_FRAMEWORKS, COMPLIANCE_CHECKLIST } from '@/data/terminal/policy-compliance';
 import { PQC_ALGORITHMS, CRYPTO_INVENTORY, SECURITY_SCAN_RESULTS, PQC_MIGRATION_CHECKLIST } from '@/data/terminal/security-crypto';
 import { RESEARCH_PAPERS, RESEARCH_TOPICS, CASE_STUDIES } from '@/data/terminal/research-papers';
 import { TUTORIALS, QUICK_START_GUIDE } from '@/data/terminal/tutorials';
 import { EXPERIMENTS, LAB_RESOURCES } from '@/data/terminal/experiments';
-import { ASCII_BANNERS, PROGRESS_BAR, STATUS_ICONS } from '@/data/terminal/ascii-art';
+import { ASCII_BANNERS, PROGRESS_BAR, STATUS_ICONS, AI_TRAINING_VIZ, PQC_COMPARISON_TABLE, QUANTUM_CIRCUIT_EXAMPLES } from '@/data/terminal/ascii-art';
 
 const TRENDING_TOPICS = [
   'Quantum Computing Security', 'AI Policy Compliance', 'Post-Quantum Cryptography',
@@ -495,10 +495,6 @@ export const useTerminalCommands = () => {
       usage: '/git <action> [args]',
       category: 'git',
       handler: async (args, ctx) => {
-        if (!ctx.currentProjectId) {
-          return [{ type: 'error', content: 'No project selected. Use /open <name> first.' }];
-        }
-
         const action = args[0];
         if (!action) {
           return [{ type: 'error', content: 'Usage: /git <action> [args]' }];
@@ -519,7 +515,7 @@ export const useTerminalCommands = () => {
               return [{ type: 'error', content: 'Usage: /git commit <message>' }];
             }
 
-            if (user) {
+            if (user && ctx.currentProjectId) {
               await supabase
                 .from('git_actions')
                 .insert({
@@ -569,6 +565,542 @@ export const useTerminalCommands = () => {
         }
       },
     },
+    // ============ QUANTUM COMPUTING COMMANDS ============
+    {
+      name: 'qc-status',
+      aliases: ['quantum', 'qubits'],
+      description: 'View quantum computing system status',
+      usage: '/qc-status [system]',
+      category: 'quantum',
+      handler: async (args, ctx) => {
+        const messages: Message[] = [
+          { type: 'code', content: ASCII_BANNERS.quantum },
+          { type: 'system', content: '' },
+        ];
+
+        if (args[0]) {
+          const system = QUANTUM_SYSTEMS.find(s => s.name.toLowerCase().includes(args[0].toLowerCase()));
+          if (!system) {
+            return [{ type: 'error', content: 'Quantum system not found' }];
+          }
+          messages.push(
+            { type: 'success', content: `${STATUS_ICONS.online} ${system.name} - ONLINE` },
+            { type: 'table', content: `  Qubits: ${system.qubits}` },
+            { type: 'table', content: `  Topology: ${system.topology}` },
+            { type: 'table', content: `  Coherence Time: ${system.coherence_time}` },
+            { type: 'table', content: `  Gate Error: ${system.gate_error}` },
+            { type: 'table', content: `  Status: ${system.status}` },
+          );
+        } else {
+          QUANTUM_SYSTEMS.slice(0, 5).forEach(system => {
+            const statusIcon = system.status === 'online' ? STATUS_ICONS.online : 
+                               system.status === 'maintenance' ? STATUS_ICONS.maintenance : STATUS_ICONS.offline;
+            messages.push({
+              type: 'list',
+              content: `${statusIcon} ${system.name} (${system.qubits} qubits) - ${system.status}`
+            });
+          });
+        }
+        return messages;
+      },
+    },
+    {
+      name: 'qc-simulate',
+      aliases: ['simulate', 'run-circuit'],
+      description: 'Simulate a quantum circuit',
+      usage: '/qc-simulate <algorithm>',
+      category: 'quantum',
+      handler: async (args, ctx) => {
+        if (!args[0]) {
+          const messages: Message[] = [
+            { type: 'info', content: 'Available Algorithms:' },
+            { type: 'system', content: '' },
+          ];
+          QUANTUM_ALGORITHMS.slice(0, 5).forEach((algo, i) => {
+            messages.push({
+              type: 'list',
+              content: `${i + 1}. ${algo.name} - ${algo.use_case}`
+            });
+          });
+          return messages;
+        }
+
+        const algo = QUANTUM_ALGORITHMS.find(a => a.name.toLowerCase().includes(args[0].toLowerCase()));
+        if (!algo) {
+          return [{ type: 'error', content: 'Algorithm not found. Use /qc-simulate to see available algorithms.' }];
+        }
+
+        return [
+          { type: 'loading', content: `Initializing ${algo.name}...` },
+          { type: 'code', content: `→ Circuit Depth: ${Math.floor(Math.random() * 50) + 20}` },
+          { type: 'code', content: `→ Gate Count: ${Math.floor(Math.random() * 200) + 100}` },
+          { type: 'code', content: `→ Complexity: ${algo.complexity}` },
+          { type: 'code', content: `→ Use Case: ${algo.use_case}` },
+          { type: 'system', content: '' },
+          { type: 'code', content: QUANTUM_CIRCUIT_EXAMPLES[0].circuit },
+          { type: 'system', content: '' },
+          { type: 'success', content: `✓ Simulation complete! Expected runtime: ${Math.random() * 2 + 0.5}s` },
+        ];
+      },
+    },
+    {
+      name: 'qc-benchmark',
+      aliases: ['qc-bench', 'quantum-volume'],
+      description: 'Run quantum benchmarks',
+      usage: '/qc-benchmark',
+      category: 'quantum',
+      handler: async (args, ctx) => {
+        return [
+          { type: 'success', content: '⚡ Quantum Benchmarks' },
+          { type: 'system', content: '' },
+          { type: 'table', content: `Quantum Volume: ${QC_BENCHMARKS.quantum_volume}` },
+          { type: 'table', content: `Circuit Depth: ${QC_BENCHMARKS.circuit_depth}` },
+          { type: 'table', content: `2-Qubit Gate Fidelity: ${QC_BENCHMARKS.two_qubit_gate_fidelity}` },
+          { type: 'table', content: `Readout Fidelity: ${QC_BENCHMARKS.readout_fidelity}` },
+          { type: 'system', content: '' },
+          { type: 'info', content: '📈 Performance exceeds industry average by 23%' },
+        ];
+      },
+    },
+    // ============ AI/ML COMMANDS ============
+    {
+      name: 'ai-models',
+      aliases: ['models', 'ml-models'],
+      description: 'List available AI models',
+      usage: '/ai-models [filter]',
+      category: 'ai',
+      handler: async (args, ctx) => {
+        const messages: Message[] = [
+          { type: 'code', content: ASCII_BANNERS.ai },
+          { type: 'system', content: '' },
+        ];
+
+        const filter = args[0]?.toLowerCase();
+        const filtered = filter 
+          ? AI_MODELS.filter(m => m.type.toLowerCase() === filter || m.name.toLowerCase().includes(filter))
+          : AI_MODELS.slice(0, 8);
+
+        filtered.forEach((model, i) => {
+          messages.push({
+            type: 'list',
+            content: `${i + 1}. ${model.name} (${model.type}) - ${model.parameters}`
+          });
+        });
+
+        messages.push(
+          { type: 'system', content: '' },
+          { type: 'info', content: `📊 Showing ${filtered.length} models | Use filter: LLM, Vision, Multimodal` }
+        );
+        return messages;
+      },
+    },
+    {
+      name: 'ai-train',
+      aliases: ['train', 'fine-tune'],
+      description: 'Start model training (simulated)',
+      usage: '/ai-train <model> <dataset>',
+      category: 'ai',
+      handler: async (args, ctx) => {
+        if (args.length < 2) {
+          return [{ type: 'error', content: 'Usage: /ai-train <model> <dataset>' }];
+        }
+
+        const model = args[0];
+        const dataset = args[1];
+        const epochs = 10;
+
+        const messages: Message[] = [
+          { type: 'loading', content: `Starting training: ${model} on ${dataset}...` },
+          { type: 'system', content: '' },
+          { type: 'code', content: AI_TRAINING_VIZ },
+          { type: 'system', content: '' },
+        ];
+
+        for (let i = 1; i <= 3; i++) {
+          messages.push({
+            type: 'code',
+            content: `Epoch ${i}/${epochs}: ${PROGRESS_BAR((i / epochs) * 100)} - loss: ${(2 - i * 0.5).toFixed(3)}`
+          });
+        }
+
+        messages.push(
+          { type: 'system', content: '' },
+          { type: 'success', content: `✓ Training started! ETA: ${Math.floor(Math.random() * 3 + 1)}h ${Math.floor(Math.random() * 60)}m` },
+        );
+
+        return messages;
+      },
+    },
+    {
+      name: 'ai-inference',
+      aliases: ['predict', 'infer'],
+      description: 'Run model inference',
+      usage: '/ai-inference <model> <prompt>',
+      category: 'ai',
+      handler: async (args, ctx) => {
+        if (!args[0]) {
+          return [{ type: 'error', content: 'Usage: /ai-inference <model> <prompt>' }];
+        }
+
+        const model = args[0];
+        const prompt = args.slice(1).join(' ') || 'sample input';
+
+        return [
+          { type: 'loading', content: `Running inference with ${model}...` },
+          { type: 'system', content: '' },
+          { type: 'code', content: `Input: "${prompt}"` },
+          { type: 'code', content: `Model: ${model}` },
+          { type: 'code', content: `Tokens: ${Math.floor(Math.random() * 100) + 20}` },
+          { type: 'code', content: `Latency: ${(Math.random() * 200 + 50).toFixed(0)}ms` },
+          { type: 'system', content: '' },
+          { type: 'success', content: `✓ Inference complete` },
+        ];
+      },
+    },
+    // ============ POLICY & COMPLIANCE COMMANDS ============
+    {
+      name: 'policy-check',
+      aliases: ['compliance', 'policy'],
+      description: 'Check AI policy compliance',
+      usage: '/policy-check [policy-id]',
+      category: 'policy',
+      handler: async (args, ctx) => {
+        const messages: Message[] = [
+          { type: 'code', content: ASCII_BANNERS.policy },
+          { type: 'system', content: '' },
+        ];
+
+        if (args[0]) {
+          const policy = FEDERAL_POLICIES.find(p => p.id.toLowerCase() === args[0].toLowerCase());
+          if (!policy) {
+            return [{ type: 'error', content: 'Policy not found' }];
+          }
+
+          messages.push(
+            { type: 'success', content: `${policy.name} (${policy.id})` },
+            { type: 'table', content: `Date: ${policy.date}` },
+            { type: 'table', content: `Agency: ${policy.agency}` },
+            { type: 'table', content: `Status: ${policy.status}` },
+            { type: 'system', content: '' },
+            { type: 'info', content: 'Requirements:' },
+          );
+
+          policy.requirements.forEach((req, i) => {
+            messages.push({ type: 'list', content: `${i + 1}. ${req}` });
+          });
+        } else {
+          FEDERAL_POLICIES.forEach(policy => {
+            const statusIcon = policy.status === 'Active' ? STATUS_ICONS.active : STATUS_ICONS.pending;
+            messages.push({
+              type: 'list',
+              content: `${statusIcon} ${policy.id} - ${policy.name}`
+            });
+          });
+        }
+
+        return messages;
+      },
+    },
+    {
+      name: 'audit-report',
+      aliases: ['audit', 'report'],
+      description: 'Generate compliance audit report',
+      usage: '/audit-report <framework>',
+      category: 'policy',
+      handler: async (args, ctx) => {
+        const framework = args[0] || 'NIST AI RMF';
+        const compliancePercent = Math.floor(Math.random() * 20) + 75;
+
+        return [
+          { type: 'loading', content: `Generating ${framework} audit report...` },
+          { type: 'system', content: '' },
+          { type: 'success', content: `${framework} Compliance Report` },
+          { type: 'code', content: `Compliance Score: ${PROGRESS_BAR(compliancePercent)}` },
+          { type: 'system', content: '' },
+          { type: 'table', content: `${STATUS_ICONS.success} Passed: ${Math.floor(compliancePercent * 3.25)} controls` },
+          { type: 'table', content: `${STATUS_ICONS.warning} Partial: ${Math.floor((100 - compliancePercent) * 2)} controls` },
+          { type: 'table', content: `${STATUS_ICONS.error} Failed: ${Math.floor((100 - compliancePercent) * 0.5)} controls` },
+          { type: 'system', content: '' },
+          { type: 'info', content: '📄 Full report available at: /reports/audit-latest.pdf' },
+        ];
+      },
+    },
+    {
+      name: 'fedramp',
+      aliases: ['fed-ramp', 'federal'],
+      description: 'FedRAMP compliance status',
+      usage: '/fedramp [level]',
+      category: 'policy',
+      handler: async (args, ctx) => {
+        const level = args[0] || 'High';
+        const framework = COMPLIANCE_FRAMEWORKS.find(f => f.name === 'FedRAMP');
+
+        return [
+          { type: 'success', content: `🔒 FedRAMP ${level} Compliance` },
+          { type: 'system', content: '' },
+          { type: 'table', content: `Total Controls: ${framework?.requirements || 325}` },
+          { type: 'table', content: `Implemented: ${Math.floor((framework?.requirements || 325) * 0.87)}` },
+          { type: 'table', content: `In Progress: ${Math.floor((framework?.requirements || 325) * 0.10)}` },
+          { type: 'table', content: `Remaining: ${Math.floor((framework?.requirements || 325) * 0.03)}` },
+          { type: 'system', content: '' },
+          { type: 'code', content: `Status: ${PROGRESS_BAR(87)}` },
+          { type: 'info', content: '📋 Estimated certification date: Q2 2025' },
+        ];
+      },
+    },
+    // ============ SECURITY & CRYPTO COMMANDS ============
+    {
+      name: 'security-scan',
+      aliases: ['scan', 'security'],
+      description: 'Run security vulnerability scan',
+      usage: '/security-scan [target]',
+      category: 'security',
+      handler: async (args, ctx) => {
+        const target = args[0] || 'all-systems';
+
+        return [
+          { type: 'code', content: ASCII_BANNERS.security },
+          { type: 'loading', content: `Scanning ${target}...` },
+          { type: 'system', content: '' },
+          { type: 'success', content: `${STATUS_ICONS.success} Critical: 0 vulnerabilities` },
+          { type: 'info', content: `${STATUS_ICONS.warning} High: ${Math.floor(Math.random() * 3)} vulnerabilities` },
+          { type: 'info', content: `${STATUS_ICONS.info} Medium: ${Math.floor(Math.random() * 8) + 2} vulnerabilities` },
+          { type: 'code', content: `${STATUS_ICONS.info} Low: ${Math.floor(Math.random() * 15) + 5} vulnerabilities` },
+          { type: 'system', content: '' },
+          { type: 'success', content: '✓ No critical threats detected' },
+        ];
+      },
+    },
+    {
+      name: 'pqc-status',
+      aliases: ['post-quantum', 'pqc'],
+      description: 'Post-quantum cryptography status',
+      usage: '/pqc-status',
+      category: 'security',
+      handler: async (args, ctx) => {
+        return [
+          { type: 'success', content: '🔐 Post-Quantum Cryptography Status' },
+          { type: 'system', content: '' },
+          { type: 'code', content: PQC_COMPARISON_TABLE },
+          { type: 'system', content: '' },
+          { type: 'success', content: 'PQC Migration Progress:' },
+          { type: 'code', content: `${PROGRESS_BAR(65)}` },
+          { type: 'system', content: '' },
+          { type: 'list', content: `${STATUS_ICONS.completed} Key Exchange: CRYSTALS-Kyber` },
+          { type: 'list', content: `${STATUS_ICONS.active} Digital Signatures: CRYSTALS-Dilithium` },
+          { type: 'list', content: `${STATUS_ICONS.pending} Legacy Systems: In Progress` },
+        ];
+      },
+    },
+    {
+      name: 'crypto-audit',
+      aliases: ['crypto', 'encryption'],
+      description: 'Audit cryptographic implementations',
+      usage: '/crypto-audit [algorithm]',
+      category: 'security',
+      handler: async (args, ctx) => {
+        const messages: Message[] = [
+          { type: 'loading', content: 'Auditing cryptographic implementations...' },
+          { type: 'system', content: '' },
+          { type: 'success', content: '📋 Cryptography Inventory' },
+          { type: 'system', content: '' },
+        ];
+
+        CRYPTO_INVENTORY.slice(0, 6).forEach(item => {
+          const quantumSafe = item.status === 'Quantum-resistant';
+          const statusIcon = quantumSafe ? STATUS_ICONS.success : STATUS_ICONS.warning;
+          messages.push({
+            type: 'list',
+            content: `${statusIcon} ${item.algorithm} (${item.type}) - ${item.action}`
+          });
+        });
+
+        messages.push(
+          { type: 'system', content: '' },
+          { type: 'warning', content: '⚠️  3 legacy algorithms require migration' },
+        );
+
+        return messages;
+      },
+    },
+    // ============ RESEARCH & DATA COMMANDS ============
+    {
+      name: 'research',
+      aliases: ['papers', 'publications'],
+      description: 'Search research papers',
+      usage: '/research <topic>',
+      category: 'research',
+      handler: async (args, ctx) => {
+        if (!args[0]) {
+          return [
+            { type: 'info', content: 'Popular Research Topics:' },
+            ...RESEARCH_TOPICS.slice(0, 6).map((topic, i) => ({
+              type: 'list' as const,
+              content: `${i + 1}. ${topic}`
+            }))
+          ];
+        }
+
+        const topic = args.join(' ');
+        const papers = RESEARCH_PAPERS.filter(p => 
+          p.title.toLowerCase().includes(topic.toLowerCase()) ||
+          p.topic.toLowerCase().includes(topic.toLowerCase())
+        ).slice(0, 5);
+
+        if (papers.length === 0) {
+          return [{ type: 'error', content: 'No papers found matching your query' }];
+        }
+
+        const messages: Message[] = [
+          { type: 'success', content: `📚 Found ${papers.length} papers on "${topic}"` },
+          { type: 'system', content: '' },
+        ];
+
+        papers.forEach((paper, i) => {
+          messages.push(
+            { type: 'success', content: `${i + 1}. ${paper.title}` },
+            { type: 'table', content: `   Authors: ${paper.authors.join(', ')}` },
+            { type: 'table', content: `   Venue: ${paper.venue} (${paper.year})` },
+            { type: 'table', content: `   Citations: ${paper.citations}` },
+            { type: 'system', content: '' },
+          );
+        });
+
+        return messages;
+      },
+    },
+    {
+      name: 'datasets',
+      aliases: ['data', 'ds'],
+      description: 'Browse available datasets',
+      usage: '/datasets [domain]',
+      category: 'research',
+      handler: async (args, ctx) => {
+        const messages: Message[] = [
+          { type: 'success', content: '📊 Available Datasets' },
+          { type: 'system', content: '' },
+        ];
+
+        DATASETS.slice(0, 8).forEach((ds, i) => {
+          messages.push({
+            type: 'list',
+            content: `${i + 1}. ${ds.name} (${ds.size}) - ${ds.task}`
+          });
+        });
+
+        return messages;
+      },
+    },
+    {
+      name: 'experiments',
+      aliases: ['exp', 'lab'],
+      description: 'View lab experiments',
+      usage: '/experiments [status]',
+      category: 'research',
+      handler: async (args, ctx) => {
+        const status = args[0]?.toLowerCase();
+        const filtered = status 
+          ? EXPERIMENTS.filter(e => e.status.toLowerCase() === status)
+          : EXPERIMENTS;
+
+        const messages: Message[] = [
+          { type: 'code', content: ASCII_BANNERS.lab },
+          { type: 'system', content: '' },
+        ];
+
+        filtered.slice(0, 6).forEach(exp => {
+          const statusIcon = exp.status === 'Running' ? STATUS_ICONS.active :
+                           exp.status === 'Completed' ? STATUS_ICONS.completed :
+                           STATUS_ICONS.pending;
+          messages.push({
+            type: 'list',
+            content: `${statusIcon} ${exp.name} - ${exp.status}`
+          });
+        });
+
+        return messages;
+      },
+    },
+    // ============ TUTORIAL & LEARNING COMMANDS ============
+    {
+      name: 'tutorial',
+      aliases: ['learn', 'guide'],
+      description: 'Start interactive tutorial',
+      usage: '/tutorial <topic>',
+      category: 'help',
+      handler: async (args, ctx) => {
+        if (!args[0]) {
+          return [
+            { type: 'info', content: 'Available Tutorials:' },
+            { type: 'list', content: '1. quantum-101 - Quantum Computing Fundamentals (Beginner)' },
+            { type: 'list', content: '2. ai-basics - AI/ML Fundamentals (Beginner)' },
+            { type: 'list', content: '3. pqc-migration - Post-Quantum Cryptography Migration (Advanced)' },
+            { type: 'list', content: '4. ai-policy - AI Policy Compliance (Intermediate)' }
+          ];
+        }
+
+        const topic = args[0].toLowerCase();
+        const tutorial = TUTORIALS[topic as keyof typeof TUTORIALS];
+
+        if (!tutorial) {
+          return [{ type: 'error', content: 'Tutorial not found' }];
+        }
+
+        return [
+          { type: 'success', content: `📖 ${tutorial.title}` },
+          { type: 'table', content: `Duration: ${tutorial.duration}` },
+          { type: 'table', content: `Level: ${tutorial.level}` },
+          { type: 'system', content: '' },
+          { type: 'info', content: 'Steps:' },
+          ...tutorial.steps.map((step, i) => ({
+            type: 'list' as const,
+            content: `${i + 1}. ${step.title}`
+          })),
+          { type: 'system', content: '' },
+          { type: 'info', content: '💡 Type "next" to continue through the tutorial' },
+        ];
+      },
+    },
+    {
+      name: 'docs',
+      aliases: ['doc', 'documentation'],
+      description: 'View documentation',
+      usage: '/docs [topic]',
+      category: 'help',
+      handler: async (args, ctx) => {
+        return [
+          { type: 'success', content: '📚 Documentation' },
+          { type: 'system', content: '' },
+          { type: 'list', content: '1. Getting Started Guide' },
+          { type: 'list', content: '2. API Reference' },
+          { type: 'list', content: '3. Command Reference' },
+          { type: 'list', content: '4. Best Practices' },
+          { type: 'list', content: '5. Troubleshooting' },
+          { type: 'system', content: '' },
+          { type: 'info', content: '🌐 Full docs: https://docs.altruisticxai.com' },
+        ];
+      },
+    },
+    {
+      name: 'quickstart',
+      aliases: ['quick', 'start'],
+      description: 'Quick start guide',
+      usage: '/quickstart',
+      category: 'help',
+      handler: async (args, ctx) => {
+        const content = QUICK_START_GUIDE.sections.map(section => {
+          const lines = [`\n${section.category}:`];
+          section.commands.forEach(cmd => {
+            lines.push(`  ${cmd.cmd.padEnd(30)} - ${cmd.desc}`);
+          });
+          return lines.join('\n');
+        }).join('\n');
+
+        return [
+          { type: 'code', content },
+        ];
+      },
+    },
   ];
 
   const executeCommand = useCallback(
@@ -577,7 +1109,11 @@ export const useTerminalCommands = () => {
       if (!trimmed) return [];
 
       const parts = trimmed.split(/\s+/);
-      const commandName = parts[0].toLowerCase();
+      // Remove leading slash if present
+      let commandName = parts[0].toLowerCase();
+      if (commandName.startsWith('/')) {
+        commandName = commandName.substring(1);
+      }
       const args = parts.slice(1);
 
       const command = commands.find(

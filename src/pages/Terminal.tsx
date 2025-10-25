@@ -20,7 +20,10 @@ const Terminal = () => {
     '🔐 Security Console  |  Type "pqc-status" for quantum-readiness',
     '📊 Analytics Dashboard  |  Use "trending" to see hot topics',
     '⚛️  Quantum Lab  |  Run "qc-status" to check qubit systems',
-    '📋 Policy Center  |  Type "policy-check" for compliance status'
+    '📋 Policy Center  |  Type "policy-check" for compliance status',
+    '🛡️  Security Ops  |  Run "security-scan" for vulnerability check',
+    '📚 Research Hub  |  Type "research quantum" to search papers',
+    '🎓 Learning Center  |  Run "tutorial" to start interactive guides'
   ];
 
   const randomWelcome = WELCOME_MESSAGES[Math.floor(Math.random() * WELCOME_MESSAGES.length)];
@@ -48,23 +51,35 @@ const Terminal = () => {
     },
     {
       type: 'list',
-      content: '  qc-status   - Quantum computing system status',
+      content: '  qc-status      - Quantum computing system status',
     },
     {
       type: 'list',
-      content: '  ai-models   - List available AI models',
+      content: '  ai-models      - List available AI models',
     },
     {
       type: 'list',
-      content: '  pqc-status  - Post-quantum crypto readiness',
+      content: '  pqc-status     - Post-quantum crypto readiness',
     },
     {
       type: 'list',
-      content: '  research    - Search research papers',
+      content: '  security-scan  - Run security vulnerability scan',
     },
     {
       type: 'list',
-      content: '  tutorial    - Start interactive learning',
+      content: '  policy-check   - Check AI policy compliance',
+    },
+    {
+      type: 'list',
+      content: '  research       - Search research papers',
+    },
+    {
+      type: 'list',
+      content: '  experiments    - View lab experiments',
+    },
+    {
+      type: 'list',
+      content: '  tutorial       - Start interactive learning',
     },
     {
       type: 'system',

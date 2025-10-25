@@ -9,7 +9,7 @@ interface CommandInputProps {
   placeholder?: string;
 }
 
-export const CommandInput = ({ onSubmit, disabled = false, placeholder = 'Type /help for commands...' }: CommandInputProps) => {
+export const CommandInput = ({ onSubmit, disabled = false, placeholder = 'Type help or /help for commands...' }: CommandInputProps) => {
   const [input, setInput] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
   const { addToHistory, navigateHistory, resetIndex } = useCommandHistory();

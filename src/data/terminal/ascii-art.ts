@@ -58,23 +58,6 @@ export const STATUS_ICONS = {
   maintenance: '🟡'
 };
 
-export const QUANTUM_CIRCUIT_BELL = `
-╔═════════════════════════════════════╗
-║  Bell State Circuit (Entanglement)  ║
-╚═════════════════════════════════════╝
-
-      ┌───┐     ┌─┐   
-q_0: ─┤ H ├──■──┤M├───
-      └───┘┌─┴─┐└╥┘┌─┐
-q_1: ──────┤ X ├─╫─┤M├
-           └───┘ ║ └╥┘
-c: 2/════════════╩══╩═
-                 0  1 
-
-Creates maximally entangled state:
-|Φ+⟩ = (|00⟩ + |11⟩) / √2
-`;
-
 export const AI_TRAINING_VIZ = `
 ╔════════════════════════════════════════╗
 ║  Training Progress - Epoch 8/20        ║
@@ -103,6 +86,24 @@ export const PQC_COMPARISON_TABLE = `
 ║ Quantum Safe?  │ NO ⚠️          │ YES ✓              ║
 ╚════════════════╧════════════════╧════════════════════╝
 `;
+
+export const QUANTUM_CIRCUIT_EXAMPLES = [
+  {
+    name: 'Bell State',
+    circuit: `
+      ┌───┐     ┌─┐   
+q_0: ─┤ H ├──■──┤M├───
+      └───┘┌─┴─┐└╥┘┌─┐
+q_1: ──────┤ X ├─╫─┤M├
+           └───┘ ║ └╥┘
+c: 2/════════════╩══╩═
+                 0  1 
+
+Creates maximally entangled state:
+|Φ+⟩ = (|00⟩ + |11⟩) / √2
+    `
+  }
+];
 
 export const WELCOME_ASCII = `
    █████╗ ██╗  ████████╗██████╗ ██╗   ██╗██╗███████╗████████╗██╗ ██████╗
