@@ -24,13 +24,13 @@ const services = [
     sector: "Education",
     status: "Active",
     icon: GraduationCap,
-    title: "Quantum Computing Education Program",
-    shortDesc: "Partnering with 15+ universities to integrate quantum computing curricula and provide hands-on quantum hardware access to students.",
-    fullDesc: "We partner with educational institutions to build quantum-aware curricula, establish quantum computing labs, and train the next generation of quantum engineers and scientists. Our comprehensive approach includes curriculum development, faculty training, lab setup, and ongoing research support.",
+    title: "Quantum Education Program",
+    shortDesc: "Partnering with 15+ universities to introduce quantum computing in classrooms and give students hands-on access to quantum systems.",
+    fullDesc: "We work with schools to create quantum-focused courses, train teachers, set up labs, and support student research projects. Our goal is to prepare the next generation of quantum scientists and engineers.",
     deliverables: [
-      "Quantum curriculum development",
-      "Faculty training programs",
-      "Lab setup & hardware access",
+      "Course development",
+      "Teacher training programs",
+      "Lab setup & system access",
       "Student research projects"
     ],
     impact: "1,200+ students enrolled",
@@ -42,14 +42,14 @@ const services = [
     sector: "Governance",
     status: "Active",
     icon: Building2,
-    title: "AI Literacy for Public Sector",
-    shortDesc: "Training government officials and public sector employees on AI fundamentals, ethical considerations, and practical applications.",
-    fullDesc: "Empowering public sector leaders with AI knowledge and quantum-safe security practices. We provide comprehensive training programs that cover AI ethics, governance frameworks, and practical implementation strategies for government agencies.",
+    title: "AI Training for Public Sector",
+    shortDesc: "Teaching government officials and public sector employees the fundamentals of AI, ethics, and practical uses.",
+    fullDesc: "We help public sector leaders understand AI and prepare for emerging security challenges. Training covers AI ethics, policy frameworks, and implementation strategies.",
     deliverables: [
-      "AI ethics & governance training",
-      "Policy framework development",
-      "Quantum-safe security protocols",
-      "Implementation roadmaps"
+      "AI ethics & policy training",
+      "Framework development",
+      "Security protocols",
+      "Implementation guides"
     ],
     impact: "500+ officials trained",
     timeline: "2024-2025",
@@ -60,14 +60,14 @@ const services = [
     sector: "Energy",
     status: "Active",
     icon: Zap,
-    title: "Quantum Grid Optimization",
-    shortDesc: "Leveraging quantum computing for real-time energy grid management, renewable integration, and predictive maintenance.",
-    fullDesc: "Transform energy infrastructure with quantum-powered optimization algorithms. We help utilities and energy providers implement quantum solutions for grid stability, renewable energy integration, and enhanced cybersecurity with quantum key distribution.",
+    title: "Grid Optimization with Quantum",
+    shortDesc: "Using quantum computing for real-time energy management, renewable integration, and predictive maintenance.",
+    fullDesc: "We help utilities and energy providers use quantum solutions to improve grid stability, integrate renewable energy better, and enhance security.",
     deliverables: [
-      "Grid optimization algorithms",
-      "Quantum Key Distribution setup",
+      "Grid optimization systems",
+      "Advanced security setup",
       "Renewable energy forecasting",
-      "Predictive maintenance systems"
+      "Predictive maintenance"
     ],
     impact: "22% peak-hour reduction achieved",
     timeline: "2024-2030",
@@ -78,14 +78,14 @@ const services = [
     sector: "Business Automation",
     status: "Active",
     icon: Briefcase,
-    title: "Business Automation & AI Readiness",
-    shortDesc: "Helping organizations assess their AI maturity, identify quantum-safe cryptography needs, and develop transformation roadmaps.",
-    fullDesc: "Accelerate digital transformation with AI-powered automation and quantum readiness assessments. We guide enterprises through the complexity of modern AI implementation while ensuring future-proof quantum-safe infrastructure.",
+    title: "Business Automation & AI Strategy",
+    shortDesc: "Helping organizations assess their AI readiness, identify security needs, and develop transformation plans.",
+    fullDesc: "We guide enterprises through AI implementation and ensure future-proof infrastructure with clear roadmaps and ROI frameworks.",
     deliverables: [
       "AI readiness assessment",
       "Process automation strategy",
-      "Quantum-safe migration plan",
-      "ROI optimization framework"
+      "Security migration plan",
+      "ROI framework"
     ],
     impact: "45+ organizations assessed",
     timeline: "2024-2026",
@@ -96,13 +96,13 @@ const services = [
     sector: "Quantum Computing",
     status: "Active",
     icon: Shield,
-    title: "Quantum-Safe Cryptography Transition",
-    shortDesc: "Guiding organizations through the transition to post-quantum cryptographic standards to protect against future quantum threats.",
-    fullDesc: "Protect your organization from quantum computing threats with comprehensive post-quantum cryptography migration. We implement NIST-approved PQC algorithms and establish quantum-resistant security infrastructure.",
+    title: "Security for the Quantum Age",
+    shortDesc: "Helping organizations transition to next-generation security standards to protect against future threats.",
+    fullDesc: "We help protect your organization from emerging security challenges by implementing modern security standards and building resilient infrastructure.",
     deliverables: [
-      "Crypto inventory & risk assessment",
-      "PQC algorithm implementation",
-      "Security architecture redesign",
+      "Security inventory & risk assessment",
+      "Modern security implementation",
+      "Architecture redesign",
       "Compliance verification"
     ],
     impact: "12+ critical infrastructure partners",
@@ -114,9 +114,9 @@ const services = [
     sector: "Lobby",
     status: "Active",
     icon: Scale,
-    title: "Pennsylvania Quantum Public Lobby",
-    shortDesc: "Grassroots advocacy initiative connecting scientists and academics to advance quantum computing policy and education in Pennsylvania.",
-    fullDesc: "Community-driven advocacy for quantum technology advancement. We connect researchers, educators, policymakers, and industry leaders to shape quantum policy and expand educational opportunities across Pennsylvania.",
+    title: "Pennsylvania Quantum Advocacy",
+    shortDesc: "Community initiative connecting scientists and educators to advance quantum technology policy and education in Pennsylvania.",
+    fullDesc: "We connect researchers, educators, policymakers, and industry leaders to shape quantum policy and expand educational opportunities across Pennsylvania.",
     deliverables: [
       "Legislative outreach programs",
       "Community engagement events",
@@ -132,13 +132,13 @@ const services = [
     sector: "Curiosity",
     status: "Planning",
     icon: Sparkles,
-    title: "Open Quantum Hardware Platform",
-    shortDesc: "Creating accessible quantum computing testbeds for educational institutions and research organizations worldwide.",
-    fullDesc: "Democratizing quantum computing access through open-source hardware platforms. Our initiative aims to make quantum experimentation accessible to researchers and educators globally, fostering innovation and accelerating quantum literacy.",
+    title: "Open Quantum Hardware",
+    shortDesc: "Creating accessible quantum computing systems for schools and research organizations worldwide.",
+    fullDesc: "Making quantum computing accessible through open-source hardware. Our initiative helps researchers and educators globally experiment with quantum technology and accelerate learning.",
     deliverables: [
-      "Open-source quantum testbeds",
-      "Cloud-based quantum simulators",
-      "Educational resource library",
+      "Open-source quantum systems",
+      "Cloud-based simulators",
+      "Educational resources",
       "Global collaboration network"
     ],
     impact: "Global accessibility target",
@@ -150,14 +150,14 @@ const services = [
     sector: "AI Safety",
     status: "Launching Q2 2025",
     icon: AlertTriangle,
-    title: "Explainable AI Governance Framework",
-    shortDesc: "Building transparent AI systems with robust safety protocols, ethical guidelines, and accountability mechanisms.",
-    fullDesc: "Ensure AI systems are safe, transparent, and aligned with human values. We develop comprehensive governance frameworks that prioritize explainability, fairness, and ethical AI deployment across all sectors.",
+    title: "Transparent AI Systems",
+    shortDesc: "Building AI systems with clear safety protocols, ethical guidelines, and accountability.",
+    fullDesc: "We help ensure AI systems are safe, transparent, and aligned with human values through comprehensive oversight frameworks.",
     deliverables: [
-      "AI ethics framework development",
-      "Explainability tooling",
-      "Bias detection & mitigation",
-      "Safety compliance audits"
+      "AI ethics framework",
+      "Transparency tooling",
+      "Bias detection & fixing",
+      "Safety audits"
     ],
     impact: "Targeting 100+ AI systems audited",
     timeline: "2025-2027",
@@ -186,7 +186,7 @@ export const ServiceCards = () => {
         >
           <h2 id="services-heading" className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold">Current Initiatives</h2>
           <p className="text-xs sm:text-sm md:text-base lg:text-lg text-muted-foreground max-w-3xl mx-auto px-4">
-            Empowering Quantum & AI Literacy through active programs across education, government, energy, and enterprise sectors worldwide.
+            Active programs across education, government, energy, and business sectors worldwide.
           </p>
         </motion.div>
 

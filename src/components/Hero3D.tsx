@@ -3,7 +3,7 @@ import { OrbitControls, Sphere, MeshDistortMaterial, Float } from '@react-three/
 import { useRef, Suspense } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { Calendar, Sparkles, Video } from 'lucide-react';
+import { Calendar, Sparkles } from 'lucide-react';
 import { TypeAnimation } from 'react-type-animation';
 import * as THREE from 'three';
 
@@ -185,7 +185,7 @@ export const Hero3D = () => {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3 }}
               >
-                We help governments, businesses, and policymakers deploy quantum and AI solutions—practical, bold, and ahead of the curve.
+                We help organizations adopt emerging technologies—making them practical, proven, and ready for real-world use.
               </motion.p>
             </div>
 
@@ -202,7 +202,7 @@ export const Hero3D = () => {
                 size="lg"
               >
                 <Calendar className="h-4 w-4" />
-                Book Strategy Session
+                Get Started
               </Button>
               
               <Button
@@ -212,17 +212,7 @@ export const Hero3D = () => {
                 size="lg"
               >
                 <Sparkles className="h-4 w-4" />
-                Learn More
-              </Button>
-
-              <Button
-                onClick={() => window.open('https://drive.google.com/file/d/1vuiN0NYOvToHIxkqjSSFFEYLitv-zyK7/view?usp=sharing', '_blank')}
-                variant="ghost"
-                className="text-sm px-6 py-6 font-semibold w-full sm:w-auto flex items-center justify-center gap-2"
-                size="lg"
-              >
-                <Video className="h-4 w-4" />
-                Watch Demo
+                See How It Works
               </Button>
             </motion.div>
 

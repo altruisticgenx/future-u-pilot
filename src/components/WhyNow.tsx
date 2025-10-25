@@ -3,14 +3,14 @@ import { AlertCircle, CheckCircle2, Clock } from "lucide-react";
 
 const milestones = [
   { year: "2023", label: "AI Adoption Surge", position: 20 },
-  { year: "2024", label: "PQC Standards", position: 50 },
-  { year: "2025+", label: "Integrated Governance", position: 80 },
+  { year: "2024", label: "New Standards", position: 50 },
+  { year: "2025+", label: "Integrated Systems", position: 80 },
 ];
 
 const challenges = [
-  { icon: AlertCircle, text: "AI adoption outpaces policy" },
-  { icon: Clock, text: "Post-quantum migration takes years" },
-  { icon: CheckCircle2, text: "Explainability and auditability are table stakes" },
+  { icon: AlertCircle, text: "AI adoption moves faster than regulation" },
+  { icon: Clock, text: "Security updates take years to implement" },
+  { icon: CheckCircle2, text: "Transparency and accountability are essential" },
 ];
 
 export const WhyNow = () => {
@@ -32,7 +32,7 @@ export const WhyNow = () => {
         >
           <h2 id="why-now-heading" className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold">Why Now?</h2>
           <p className="text-xs sm:text-sm md:text-base lg:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
-            Quantum timelines are uncertain; preparedness isn't.
+            The future is uncertain; being prepared isn't.
           </p>
         </motion.div>
 
