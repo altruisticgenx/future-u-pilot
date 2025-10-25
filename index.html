@@ -30,9 +30,9 @@
     <!-- Preload critical font -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" as="style">
     
-    <!-- Defer font loading -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=optional" as="style" onload="this.onload=null;this.rel='stylesheet'" />
-    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=optional" rel="stylesheet" /></noscript>
+    <!-- Critical font loading with block to prevent CLS -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=block" as="style" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=block" rel="stylesheet" />
     
     <!-- Critical CSS inlined for instant render -->
     <style>
@@ -53,7 +53,10 @@
       @keyframes spin{to{transform:rotate(360deg)}}
       
       /* Hero section minimum space - Prevent CLS */
-      .hero-section{min-height:400px}
+      .hero-section{min-height:600px}
+      
+      /* Reserve space for dynamic content */
+      section{min-height:200px}
       
       /* Navigation - Above fold */
       nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(8px);background:rgba(10,10,10,0.8)}

@@ -215,8 +215,8 @@ export const Hero = () => {
         <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center">
           {/* Left column - Content */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
             className="space-y-6 sm:space-y-8"
           >
@@ -233,11 +233,11 @@ export const Hero = () => {
                 id="hero-heading"
                 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight"
                 style={{
-                  minHeight: '2.5em',
+                  minHeight: '3.5em',
                   textShadow: '0 2px 10px rgba(20, 184, 166, 0.3), 0 4px 20px rgba(14, 116, 144, 0.2)',
                 }}
               >
-                <span className="block text-white">
+                <span className="block text-white" style={{ minHeight: '1.2em', display: 'inline-block', minWidth: '300px' }}>
                   {animationsReady ? (
                     <TypeAnimation
                       sequence={[
@@ -259,6 +259,8 @@ export const Hero = () => {
                         WebkitBackgroundClip: 'text',
                         WebkitTextFillColor: 'transparent',
                         backgroundClip: 'text',
+                        minWidth: '300px',
+                        display: 'inline-block',
                       }}
                     />
                   ) : (
@@ -269,6 +271,8 @@ export const Hero = () => {
                         WebkitBackgroundClip: 'text',
                         WebkitTextFillColor: 'transparent',
                         backgroundClip: 'text',
+                        minWidth: '300px',
+                        display: 'inline-block',
                       }}
                     >
                       Quantum Computing
@@ -279,9 +283,9 @@ export const Hero = () => {
               
               <motion.p 
                 className="text-sm sm:text-base md:text-lg text-white/90 max-w-2xl leading-relaxed"
-                initial={prefersReducedMotion ? {} : { opacity: 0, rotateX: -10 }}
-                animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, rotateX: 0 }}
-                transition={prefersReducedMotion ? {} : { delay: 0.3, duration: 0.4 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.3, duration: 0.4 }}
               >
                 AltruisticXAI is a sandbox for the future. We help governments, businesses, and policymakers deploy quantum and AI in ways that actually work—practical, bold, and ahead of the curve.
               </motion.p>

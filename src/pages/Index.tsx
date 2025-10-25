@@ -25,68 +25,74 @@ const Index = () => {
       </Suspense>
       
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
         transition={{ duration: 0.6 }}
         viewport={{ once: true, margin: "-100px" }}
+        style={{ minHeight: '128px' }}
       >
-        <Suspense fallback={<div className="h-32 animate-pulse bg-primary/5" />}>
+        <Suspense fallback={<div style={{ height: '128px' }} className="animate-pulse bg-primary/5" />}>
           <LogoRow />
         </Suspense>
       </motion.div>
       
       <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
         transition={{ duration: 0.7, delay: 0.1 }}
         viewport={{ once: true, margin: "-100px" }}
+        style={{ minHeight: '384px' }}
       >
-        <Suspense fallback={<div className="h-96 animate-pulse bg-primary/5" />}>
+        <Suspense fallback={<div style={{ height: '384px' }} className="animate-pulse bg-primary/5" />}>
           <ServiceCards />
         </Suspense>
       </motion.div>
       
       <motion.div
-        initial={{ opacity: 0, x: -50 }}
-        whileInView={{ opacity: 1, x: 0 }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 0.2 }}
         viewport={{ once: true, margin: "-100px" }}
+        style={{ minHeight: '256px' }}
       >
-        <Suspense fallback={<div className="h-64 animate-pulse bg-primary/5" />}>
+        <Suspense fallback={<div style={{ height: '256px' }} className="animate-pulse bg-primary/5" />}>
           <WhyNow />
         </Suspense>
       </motion.div>
       
       <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        whileInView={{ opacity: 1, scale: 1 }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 0.1 }}
         viewport={{ once: true, margin: "-100px" }}
+        style={{ minHeight: '256px' }}
       >
-        <Suspense fallback={<div className="h-64 animate-pulse bg-primary/5" />}>
+        <Suspense fallback={<div style={{ height: '256px' }} className="animate-pulse bg-primary/5" />}>
           <LabNotes />
         </Suspense>
       </motion.div>
       
       <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
         transition={{ duration: 0.6 }}
         viewport={{ once: true, margin: "-100px" }}
+        style={{ minHeight: '256px' }}
       >
-        <Suspense fallback={<div className="h-64 animate-pulse bg-primary/5" />}>
+        <Suspense fallback={<div style={{ height: '256px' }} className="animate-pulse bg-primary/5" />}>
           <WhyItMatters />
         </Suspense>
       </motion.div>
       
       {/* AI Showcase Section */}
       <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        whileInView={{ opacity: 1, scale: 1 }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
         transition={{ duration: 0.7, delay: 0.1 }}
         viewport={{ once: true, margin: "-100px" }}
+        style={{ minHeight: '384px' }}
       >
-        <Suspense fallback={<div className="h-96 animate-pulse bg-primary/5" />}>
+        <Suspense fallback={<div style={{ height: '384px' }} className="animate-pulse bg-primary/5" />}>
           <AIShowcase />
         </Suspense>
       </motion.div>
@@ -98,8 +104,8 @@ const Index = () => {
         
         <div className="container relative mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
             className="text-center space-y-3 sm:space-y-4 mb-8 sm:mb-12"
@@ -113,8 +119,8 @@ const Index = () => {
             
             {/* Trust signals */}
             <motion.div 
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
               className="flex flex-wrap justify-center gap-4 sm:gap-6 pt-4"
@@ -134,12 +140,13 @@ const Index = () => {
             </motion.div>
           </motion.div>
 
-          <Suspense fallback={<div className="h-96 animate-pulse bg-primary/5 rounded-2xl" />}>
+          <Suspense fallback={<div style={{ height: '384px' }} className="animate-pulse bg-primary/5 rounded-2xl" />}>
             <motion.div 
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               className="max-w-3xl mx-auto glass-card-3d bg-card/70 border-2 border-primary/20 rounded-2xl p-4 sm:p-6 md:p-8 shadow-2xl"
+              style={{ minHeight: '384px' }}
             >
               <ContactForm />
             </motion.div>
