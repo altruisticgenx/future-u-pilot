@@ -610,6 +610,14 @@ All colors MUST be HSL.
     contain: layout;
   }
   
+  /* Card components - prevent layout thrashing */
+  [class*="Card"],
+  [class*="card"],
+  [data-card] {
+    contain: layout style paint;
+    will-change: transform;
+  }
+  
   /* Prevent Radix UI reflow propagation - Portal containers */
   [data-radix-popper-content-wrapper],
   [data-radix-portal],
@@ -628,6 +636,24 @@ All colors MUST be HSL.
   [data-state="open"] {
     contain: layout style paint;
     will-change: transform, opacity;
+  }
+  
+  /* Framer Motion viewport animations - reduce reflow overhead */
+  [data-projection-id] {
+    contain: layout style;
+  }
+  
+  /* Button components - isolate layout calculations */
+  button,
+  [role="button"],
+  a[class*="button"] {
+    contain: layout style;
+  }
+  
+  /* Grid and flex containers - prevent child reflow propagation */
+  [class*="grid"],
+  [class*="flex"] {
+    contain: layout;
   }
   
   @media (prefers-reduced-motion: reduce) {
