@@ -185,7 +185,7 @@ export const ServiceCards = () => {
           className="text-center space-y-2 sm:space-y-3 mb-8 sm:mb-10"
         >
           <h2 id="services-heading" className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold">Current Initiatives</h2>
-          <p className="text-xs sm:text-sm md:text-base lg:text-lg text-muted-foreground max-w-3xl mx-auto px-4">
+          <p className="text-xs sm:text-sm md:text-base lg:text-lg text-foreground/80 max-w-3xl mx-auto px-4 font-medium">
             Empowering Quantum & AI Literacy through active programs across education, government, energy, and enterprise sectors worldwide.
           </p>
         </motion.div>
@@ -256,12 +256,12 @@ export const ServiceCards = () => {
                 <CardContent className="relative space-y-4 pt-0">
                   <div className="grid grid-cols-2 gap-3 py-3 border-t-2 border-dashed border-border/50">
                     <div className="space-y-1">
-                      <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Impact</span>
-                      <p className="text-sm font-medium">{service.impact}</p>
+                      <span className="text-xs font-bold text-foreground/70 uppercase tracking-wider">Impact</span>
+                      <p className="text-sm font-semibold">{service.impact}</p>
                     </div>
                     <div className="space-y-1">
-                      <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Timeline</span>
-                      <p className="text-sm font-medium">{service.timeline}</p>
+                      <span className="text-xs font-bold text-foreground/70 uppercase tracking-wider">Timeline</span>
+                      <p className="text-sm font-semibold">{service.timeline}</p>
                     </div>
                   </div>
 
@@ -285,7 +285,7 @@ export const ServiceCards = () => {
                         className="space-y-4 overflow-hidden"
                       >
                         <div className="pt-4 border-t-2 border-dashed border-border/50 space-y-4">
-                          <p className="text-sm text-muted-foreground leading-relaxed">
+                          <p className="text-sm text-foreground/80 leading-relaxed font-medium">
                             {service.fullDesc}
                           </p>
                           
@@ -293,7 +293,7 @@ export const ServiceCards = () => {
                             <p className="text-sm font-semibold uppercase tracking-wider text-primary">Key Deliverables</p>
                             <ul className="space-y-2">
                               {service.deliverables.map((deliverable, idx) => (
-                                <li key={idx} className="text-sm text-muted-foreground flex items-start gap-2">
+                                <li key={idx} className="text-sm text-foreground/80 flex items-start gap-2 font-medium">
                                   <ChevronRight className="w-4 h-4 mt-0.5 text-primary flex-shrink-0" />
                                   <span>{deliverable}</span>
                                 </li>

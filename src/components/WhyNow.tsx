@@ -30,8 +30,8 @@ export const WhyNow = () => {
           viewport={{ once: true }}
           className="text-center space-y-2 sm:space-y-3 mb-8 sm:mb-10 md:mb-12"
         >
-          <h2 id="why-now-heading" className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold">Why Now?</h2>
-          <p className="text-xs sm:text-sm md:text-base lg:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
+          <h2 id="why-now-heading" className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-foreground">Why Now?</h2>
+          <p className="text-xs sm:text-sm md:text-base lg:text-lg text-foreground/80 dark:text-foreground/90 max-w-2xl mx-auto px-4 font-medium">
             Quantum timelines are uncertain; preparedness isn't.
           </p>
         </motion.div>
@@ -65,7 +65,7 @@ export const WhyNow = () => {
                   >
                     <Icon className="h-5 w-5 sm:h-6 sm:w-6 text-primary" aria-hidden="true" />
                   </motion.div>
-                  <p className="text-xs sm:text-sm md:text-base text-foreground pt-0.5 sm:pt-1 leading-relaxed">
+                  <p className="text-xs sm:text-sm md:text-base text-foreground dark:text-foreground/95 pt-0.5 sm:pt-1 leading-relaxed font-medium">
                     {challenge.text}
                   </p>
                 </motion.div>

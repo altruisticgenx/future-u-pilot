@@ -28,50 +28,25 @@
     <link rel="preconnect" href="https://qwrkaktntdjsulthaask.supabase.co" crossorigin />
     
     <!-- Preload critical font -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=optional" as="style">
     
-    <!-- Critical font loading with block to prevent CLS -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=block" as="style" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=block" rel="stylesheet" />
+    <!-- Optimized font loading with font-display optional to prevent layout shift -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=optional" rel="stylesheet" media="print" onload="this.media='all'" />
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=optional" rel="stylesheet" /></noscript>
     
-    <!-- Critical CSS inlined for instant render -->
+    <!-- Critical CSS for above-the-fold content -->
     <style>
-      /* Reset & Base - Critical for layout */
+      /* Prevent FOUC with minimal critical styles */
       *{box-sizing:border-box;margin:0;padding:0}
-      body{font-family:'Inter',system-ui,-apple-system,sans-serif;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;background:#0a0a0a;color:#fafafa;overflow-x:hidden}
+      body{font-family:'Inter',system-ui,sans-serif;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;background:#0a0a0a;color:#fafafa;overflow-x:hidden}
       #root{min-height:100vh;display:flex;flex-direction:column}
-      main{flex:1;display:flex;flex-direction:column}
-      
-      /* Container - Critical for layout */
-      .container{max-width:80rem;margin:0 auto;padding:0 1rem;width:100%}
-      
-      /* Content visibility - Performance */
+      .container{max-width:80rem;margin:0 auto;padding:0 1rem}
+      /* Content visibility optimization */
       section{content-visibility:auto;contain-intrinsic-size:auto 500px}
-      
-      /* Loading state - Above fold */
+      /* Initial loading state */
       #root:empty::before{content:'';position:fixed;top:50%;left:50%;width:48px;height:48px;margin:-24px 0 0 -24px;border:3px solid #14b8a6;border-top-color:transparent;border-radius:50%;animation:spin 1s linear infinite}
       @keyframes spin{to{transform:rotate(360deg)}}
-      
-      /* Hero section minimum space - Prevent CLS */
-      .hero-section{min-height:600px}
-      
-      /* Reserve space for dynamic content */
-      section{min-height:200px}
-      
-      /* Navigation - Above fold */
-      nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(8px);background:rgba(10,10,10,0.8)}
-      
-      /* Button base - Critical interaction */
-      button{cursor:pointer;border:0;background:transparent;font:inherit}
-      
-      /* Links */
-      a{color:inherit;text-decoration:none}
-      
-      /* Responsive text */
       @media(min-width:640px){body{font-size:16px}}
-      
-      /* Prevent invisible text during font load */
-      body{font-display:optional}
     </style>
 
     
@@ -100,9 +75,6 @@
 
   <body>
     <div id="root"></div>
-    <!-- Preload critical chunks -->
-    <link rel="modulepreload" href="/src/main.tsx" />
-    <!-- Defer main script slightly to prioritize critical CSS render -->
-    <script type="module" src="/src/main.tsx" defer></script>
+    <script type="module" src="/src/main.tsx" fetchpriority="high"></script>
   </body>
 </html>

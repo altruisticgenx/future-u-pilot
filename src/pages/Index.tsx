@@ -3,7 +3,6 @@ import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { HeroSkeleton } from "@/components/LoadingSkeleton";
 import { AIChatbot } from "@/components/AIChatbot";
-import { CyberpunkTerminalWidget } from "@/components/CyberpunkTerminalWidget";
 import { motion } from "framer-motion";
 import { Calendar, Users, Target } from "lucide-react";
 
@@ -30,9 +29,9 @@ const Index = () => {
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.6 }}
         viewport={{ once: true, margin: "-100px" }}
-        style={{ minHeight: '128px' }}
+        style={{ minHeight: '8rem' }}
       >
-        <Suspense fallback={<div style={{ height: '128px' }} className="animate-pulse bg-primary/5" />}>
+        <Suspense fallback={<div className="h-32 animate-pulse bg-primary/5" />}>
           <LogoRow />
         </Suspense>
       </motion.div>
@@ -42,9 +41,9 @@ const Index = () => {
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.7, delay: 0.1 }}
         viewport={{ once: true, margin: "-100px" }}
-        style={{ minHeight: '384px' }}
+        style={{ minHeight: '24rem' }}
       >
-        <Suspense fallback={<div style={{ height: '384px' }} className="animate-pulse bg-primary/5" />}>
+        <Suspense fallback={<div className="h-96 animate-pulse bg-primary/5" />}>
           <ServiceCards />
         </Suspense>
       </motion.div>
@@ -54,9 +53,9 @@ const Index = () => {
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 0.2 }}
         viewport={{ once: true, margin: "-100px" }}
-        style={{ minHeight: '256px' }}
+        style={{ minHeight: '16rem' }}
       >
-        <Suspense fallback={<div style={{ height: '256px' }} className="animate-pulse bg-primary/5" />}>
+        <Suspense fallback={<div className="h-64 animate-pulse bg-primary/5" />}>
           <WhyNow />
         </Suspense>
       </motion.div>
@@ -66,9 +65,9 @@ const Index = () => {
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 0.1 }}
         viewport={{ once: true, margin: "-100px" }}
-        style={{ minHeight: '256px' }}
+        style={{ minHeight: '16rem' }}
       >
-        <Suspense fallback={<div style={{ height: '256px' }} className="animate-pulse bg-primary/5" />}>
+        <Suspense fallback={<div className="h-64 animate-pulse bg-primary/5" />}>
           <LabNotes />
         </Suspense>
       </motion.div>
@@ -78,9 +77,9 @@ const Index = () => {
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.6 }}
         viewport={{ once: true, margin: "-100px" }}
-        style={{ minHeight: '256px' }}
+        style={{ minHeight: '16rem' }}
       >
-        <Suspense fallback={<div style={{ height: '256px' }} className="animate-pulse bg-primary/5" />}>
+        <Suspense fallback={<div className="h-64 animate-pulse bg-primary/5" />}>
           <WhyItMatters />
         </Suspense>
       </motion.div>
@@ -91,41 +90,12 @@ const Index = () => {
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.7, delay: 0.1 }}
         viewport={{ once: true, margin: "-100px" }}
-        style={{ minHeight: '384px' }}
+        style={{ minHeight: '24rem' }}
       >
-        <Suspense fallback={<div style={{ height: '384px' }} className="animate-pulse bg-primary/5" />}>
+        <Suspense fallback={<div className="h-96 animate-pulse bg-primary/5" />}>
           <AIShowcase />
         </Suspense>
       </motion.div>
-      
-      {/* Cyberpunk Terminal Widget Showcase */}
-      <section className="py-16 sm:py-20 md:py-24 bg-gradient-to-b from-background via-muted/20 to-background" aria-labelledby="terminal-heading">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <h2 id="terminal-heading" className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-              Design System Showcase
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              Interactive terminal widget demonstrating our Cyberpunk design system with glassmorphism, 3D effects, and dynamic animations.
-            </p>
-          </motion.div>
-          
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            <CyberpunkTerminalWidget />
-          </motion.div>
-        </div>
-      </section>
       
       {/* Contact Section - Enhanced with trust signals */}
       <section id="contact" className="py-16 sm:py-20 md:py-24 relative overflow-hidden" aria-labelledby="contact-heading">
@@ -134,8 +104,8 @@ const Index = () => {
         
         <div className="container relative mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
             className="text-center space-y-3 sm:space-y-4 mb-8 sm:mb-12"
@@ -149,8 +119,8 @@ const Index = () => {
             
             {/* Trust signals */}
             <motion.div 
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               viewport={{ once: true }}
               className="flex flex-wrap justify-center gap-4 sm:gap-6 pt-4"
@@ -170,13 +140,12 @@ const Index = () => {
             </motion.div>
           </motion.div>
 
-          <Suspense fallback={<div style={{ height: '384px' }} className="animate-pulse bg-primary/5 rounded-2xl" />}>
+          <Suspense fallback={<div className="h-96 animate-pulse bg-primary/5 rounded-2xl" />}>
             <motion.div 
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               className="max-w-3xl mx-auto glass-card-3d bg-card/70 border-2 border-primary/20 rounded-2xl p-4 sm:p-6 md:p-8 shadow-2xl"
-              style={{ minHeight: '384px' }}
             >
               <ContactForm />
             </motion.div>

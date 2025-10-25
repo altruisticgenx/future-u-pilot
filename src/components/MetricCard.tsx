@@ -35,14 +35,14 @@ export const MetricCard = ({
           <div>
             <h3 className="text-xs font-bold mb-1.5 text-foreground">{sector}</h3>
             <div className="space-y-1">
-              <div className="flex items-center justify-center gap-1 text-[10px] text-muted-foreground">
+              <div className="flex items-center justify-center gap-1 text-[10px] text-foreground/70 font-medium">
                 <TrendingUp className="h-3 w-3 text-cmd-success" aria-hidden="true" />
                 <span>Payback: <strong className="text-foreground">{payback}</strong></span>
               </div>
               <div className="text-xl font-bold bg-gradient-hero bg-clip-text text-transparent">
                 {roi}
               </div>
-              <p className="text-[10px] text-muted-foreground/70">ROI</p>
+              <p className="text-[10px] text-foreground/60 font-medium">ROI</p>
             </div>
           </div>
         </CardContent>
