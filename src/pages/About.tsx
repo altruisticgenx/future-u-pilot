@@ -6,7 +6,6 @@ import { GraduationCap, Zap, Heart, Scale, Users, Brain } from "lucide-react";
 import { StakeholderCard } from "@/components/StakeholderCard";
 import { MetricCard } from "@/components/MetricCard";
 import ProgramsSection from "@/components/ProgramsSection";
-import OpenProjectsGrid from "@/components/OpenProjectsGrid";
 import TerminalCTA from "@/components/TerminalCTA";
 import OpenLetterSection from "@/components/OpenLetterSection";
 
@@ -235,9 +234,6 @@ const About = () => {
       {/* Programs Section */}
       <ProgramsSection />
 
-      {/* Open Projects Section */}
-      <OpenProjectsGrid />
-
       {/* Terminal CTA */}
       <TerminalCTA />
 
@@ -299,15 +295,6 @@ const About = () => {
                     aria-label="Get involved in Pennsylvania's Quantum Initiative"
                   >
                     Get Involved Today
-                  </motion.button>
-                  <motion.button
-                    onClick={() => window.location.href = "mailto:paquantumpubliclobbygroup@gmail.com"}
-                    className="px-6 py-2.5 rounded-lg font-semibold text-xs sm:text-sm border border-primary/40 hover:bg-primary/10 transition-colors"
-                    whileHover={{ scale: 1.03, y: -2 }}
-                    whileTap={{ scale: 0.97 }}
-                    aria-label="Partner with Pennsylvania Quantum Initiative"
-                  >
-                    Partner With Us
                   </motion.button>
                 </div>
               </CardContent>

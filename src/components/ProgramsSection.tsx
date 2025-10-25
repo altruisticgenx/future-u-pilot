@@ -69,15 +69,6 @@ export default function ProgramsSection() {
                           {program.details}
                         </p>
                       </div>
-                      <Button 
-                        variant="outline" 
-                        className="mt-4"
-                        asChild
-                      >
-                        <a href={program.ctaLink}>
-                          {program.ctaText}
-                        </a>
-                      </Button>
                     </AccordionContent>
                   </AccordionItem>
                 </Accordion>

@@ -1,29 +1,10 @@
-import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { openLetter } from '@/data/openLetter';
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Mail, Phone, MapPin, ExternalLink, Download, Share2 } from 'lucide-react';
-import { toast } from '@/hooks/use-toast';
+import { Mail, Phone, MapPin, ExternalLink } from 'lucide-react';
 
 export default function OpenLetterSection() {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const handleShare = () => {
-    navigator.clipboard.writeText(window.location.origin + '/about#open-letter');
-    toast({
-      title: 'Link copied!',
-      description: 'Share link copied to clipboard',
-    });
-  };
-
-  const handleDownloadPDF = () => {
-    toast({
-      title: 'Coming soon',
-      description: 'PDF download will be available soon',
-    });
-  };
 
   return (
     <section 
@@ -122,46 +103,20 @@ export default function OpenLetterSection() {
               <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-card/80 to-transparent pointer-events-none" />
 
               <div className="relative z-10 mt-8 flex flex-wrap gap-3">
-                <Dialog open={isOpen} onOpenChange={setIsOpen}>
-                  <DialogTrigger asChild>
-                    <Button variant="default" size="lg">
-                      Read Full Letter
-                      <ExternalLink className="ml-2 h-4 w-4" />
-                    </Button>
-                  </DialogTrigger>
-                  <DialogContent className="max-w-3xl max-h-[80vh] overflow-y-auto">
-                    <DialogHeader>
-                      <DialogTitle className="text-xl">
-                        Open Letter to Pennsylvania Lawmakers
-                      </DialogTitle>
-                      <DialogDescription>
-                        From {openLetter.organization} · {openLetter.date}
-                      </DialogDescription>
-                    </DialogHeader>
-
-                    <div className="prose prose-sm prose-invert max-w-none mt-6">
-                      {openLetter.content.map((paragraph, index) => (
-                        <p key={index} className="text-foreground/90 leading-relaxed mb-4">
-                          {paragraph}
-                        </p>
-                      ))}
-                      <p className="italic mt-8 font-serif text-muted-foreground">
-                        — {openLetter.author}
-                      </p>
-                    </div>
-
-                    <div className="flex gap-3 mt-6 pt-6 border-t border-border/40">
-                      <Button variant="outline" onClick={handleDownloadPDF}>
-                        <Download className="mr-2 h-4 w-4" />
-                        Download PDF
-                      </Button>
-                      <Button variant="outline" onClick={handleShare}>
-                        <Share2 className="mr-2 h-4 w-4" />
-                        Share
-                      </Button>
-                    </div>
-                  </DialogContent>
-                </Dialog>
+                <Button 
+                  variant="default" 
+                  size="lg"
+                  asChild
+                >
+                  <a 
+                    href="https://docs.google.com/document/d/1NlzqlnBLt_iWwqLGH3SUTUlASFIZBEaimJYq6MFXB8I/edit?usp=sharing" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                  >
+                    Read Full Letter
+                    <ExternalLink className="ml-2 h-4 w-4" />
+                  </a>
+                </Button>
               </div>
             </div>
           </motion.div>
