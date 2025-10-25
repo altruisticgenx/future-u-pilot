@@ -15,8 +15,8 @@ export const Navigation = () => {
     label: "About Us",
     href: "/about"
   }, {
-    label: "Forms Demo",
-    href: "/forms"
+    label: "Experiments",
+    href: "/storytelling"
   }, {
     label: "Open Project(s)",
     href: "https://keen-hardboard-afe.notion.site/28cf142372ef8050ac86f4a3b4c813db?v=28cf142372ef8073b8cf000c0ebfca06&source=copy_link"
@@ -32,10 +32,18 @@ export const Navigation = () => {
       // External link
       window.open(href, "_blank", "noopener,noreferrer");
     } else if (href.startsWith("#")) {
-      const element = document.getElementById(href.substring(1));
-      element?.scrollIntoView({
-        behavior: "smooth"
-      });
+      // Scroll to section on current page
+      if (window.location.pathname !== '/') {
+        // If not on homepage, navigate to homepage first
+        navigate('/');
+        setTimeout(() => {
+          const element = document.getElementById(href.substring(1));
+          element?.scrollIntoView({ behavior: "smooth" });
+        }, 100);
+      } else {
+        const element = document.getElementById(href.substring(1));
+        element?.scrollIntoView({ behavior: "smooth" });
+      }
     } else {
       // Use React Router navigate instead of window.location
       navigate(href);

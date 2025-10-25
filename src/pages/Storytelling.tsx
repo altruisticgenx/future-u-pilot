@@ -4,10 +4,16 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
+import { useNavigate } from "react-router-dom";
 
 export default function Storytelling() {
+  const navigate = useNavigate();
+  
   const scrollToContact = () => {
-    window.location.href = "/#contact";
+    navigate('/');
+    setTimeout(() => {
+      document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+    }, 100);
   };
 
   return (
@@ -26,7 +32,7 @@ export default function Storytelling() {
             <Button
               variant="ghost"
               size="sm"
-              onClick={() => window.history.back()}
+              onClick={() => navigate(-1)}
               className="gap-2"
             >
               <ArrowLeft className="h-4 w-4" />

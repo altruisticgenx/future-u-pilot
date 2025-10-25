@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, ArrowLeft, ExternalLink } from "lucide-react";
 import { Navigation } from "@/components/Navigation";
+import { useNavigate } from "react-router-dom";
 
 const experiments = [
   {
@@ -57,6 +58,8 @@ const experiments = [
 ];
 
 const Experiments = () => {
+  const navigate = useNavigate();
+  
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
@@ -196,7 +199,10 @@ const Experiments = () => {
                 <Button
                   size="lg"
                   onClick={() => {
-                    window.location.href = "/#contact";
+                    navigate('/');
+                    setTimeout(() => {
+                      document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                    }, 100);
                   }}
                   aria-label="Book a strategy session"
                 >

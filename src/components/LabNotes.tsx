@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Calendar, ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const experiments = [
   {
@@ -22,6 +23,7 @@ const experiments = [
 ];
 
 export const LabNotes = () => {
+  const navigate = useNavigate();
   return (
     <section className="py-12 sm:py-16 md:py-20 relative overflow-hidden" aria-labelledby="lab-notes-heading">
       <div className="absolute inset-0 bg-gradient-to-t from-primary/5 to-transparent" />
@@ -106,7 +108,7 @@ export const LabNotes = () => {
             variant="outline"
             size="lg"
             className="btn-3d-primary text-xs sm:text-sm"
-            onClick={() => window.location.href = "/storytelling"}
+            onClick={() => navigate("/storytelling")}
             aria-label="View all experiments"
           >
             View All Experiments

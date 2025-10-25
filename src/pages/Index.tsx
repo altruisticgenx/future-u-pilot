@@ -4,6 +4,7 @@ import { Footer } from "@/components/Footer";
 import { HeroSkeleton } from "@/components/LoadingSkeleton";
 import { AIChatbot } from "@/components/AIChatbot";
 import { motion } from "framer-motion";
+import { Calendar, Users, Target } from "lucide-react";
 
 // Lazy load heavy components
 const Hero = lazy(() => import("@/components/Hero").then(m => ({ default: m.Hero })));
@@ -90,7 +91,7 @@ const Index = () => {
         </Suspense>
       </motion.div>
       
-      {/* Contact Section */}
+      {/* Contact Section - Enhanced with trust signals */}
       <section id="contact" className="py-16 sm:py-20 md:py-24 relative overflow-hidden" aria-labelledby="contact-heading">
         <div className="absolute inset-0 bg-gradient-to-b from-background via-accent/5 to-background" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsl(var(--primary)/0.1),transparent_70%)]" />
@@ -101,7 +102,7 @@ const Index = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
-            className="text-center space-y-2 sm:space-y-3 mb-8 sm:mb-12"
+            className="text-center space-y-3 sm:space-y-4 mb-8 sm:mb-12"
           >
             <h2 id="contact-heading" className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold">
               Let's Plan Your Next 8 Weeks
@@ -109,6 +110,28 @@ const Index = () => {
             <p className="text-xs sm:text-sm md:text-base lg:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
               Tell us where you are and we'll propose a pilot that proves value—fast.
             </p>
+            
+            {/* Trust signals */}
+            <motion.div 
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="flex flex-wrap justify-center gap-4 sm:gap-6 pt-4"
+            >
+              <div className="flex items-center gap-2 text-muted-foreground text-xs sm:text-sm">
+                <Calendar className="h-4 w-4 text-primary" />
+                <span>8-week pilots</span>
+              </div>
+              <div className="flex items-center gap-2 text-muted-foreground text-xs sm:text-sm">
+                <Users className="h-4 w-4 text-primary" />
+                <span>Collaborative approach</span>
+              </div>
+              <div className="flex items-center gap-2 text-muted-foreground text-xs sm:text-sm">
+                <Target className="h-4 w-4 text-primary" />
+                <span>Measurable outcomes</span>
+              </div>
+            </motion.div>
           </motion.div>
 
           <Suspense fallback={<div className="h-96 animate-pulse bg-primary/5 rounded-2xl" />}>

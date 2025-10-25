@@ -3,6 +3,7 @@ import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button
 import { Calendar, Sparkles, Video } from "lucide-react";
 import type { HeroCTAGroupProps } from "@/types/hero";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 /**
  * Hero CTA button group with accessibility enhancements
@@ -16,6 +17,7 @@ export const HeroCTAGroup = ({
   prefersReducedMotion
 }: HeroCTAGroupProps) => {
   const [announcement, setAnnouncement] = useState("");
+  const navigate = useNavigate();
 
   const springConfig = {
     type: "spring" as const,
@@ -55,7 +57,7 @@ export const HeroCTAGroup = ({
 
   const handleAboutClick = () => {
     setAnnouncement("Opening about page");
-    onAbout();
+    navigate('/about');
   };
 
   const handleVideoClick = () => {

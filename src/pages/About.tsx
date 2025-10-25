@@ -6,6 +6,7 @@ import { GraduationCap, Zap, Heart, Scale, Users, Brain } from "lucide-react";
 import { InteractiveCard } from "@/components/InteractiveCard";
 import { MetricCard } from "@/components/MetricCard";
 import { AIChatbot } from "@/components/AIChatbot";
+import { useNavigate } from "react-router-dom";
 
 const stakeholders = [
   {
@@ -114,6 +115,8 @@ const investmentMetrics = [
 ];
 
 const About = () => {
+  const navigate = useNavigate();
+  
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
@@ -262,7 +265,12 @@ const About = () => {
                   Whether you're in education, energy, healthcare, government, or business—Pennsylvania's quantum future needs you.
                 </p>
                 <motion.button
-                  onClick={() => window.location.href = "/#contact"}
+                  onClick={() => {
+                    navigate('/');
+                    setTimeout(() => {
+                      document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                    }, 100);
+                  }}
                   className="btn-3d-primary px-6 py-2.5 rounded-lg font-semibold text-xs sm:text-sm"
                   whileHover={{ scale: 1.03, y: -2 }}
                   whileTap={{ scale: 0.97 }}
