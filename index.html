@@ -35,12 +35,28 @@
     <style>
       /* Prevent FOUC with minimal critical styles */
       *{box-sizing:border-box;margin:0;padding:0}
-      body{font-family:'Inter',system-ui,sans-serif;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased;background:#0a0a0a;color:#fafafa}
-      #root{min-height:100vh}
+      body{font-family:'Inter',system-ui,sans-serif;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased;background:hsl(195 100% 5%);color:hsl(180 30% 85%)}
+      #root{min-height:100vh;display:flex;flex-direction:column}
       .container{max-width:80rem;margin:0 auto;padding:0 1rem}
+      
+      /* Hero critical styles */
+      nav{position:fixed;top:0;left:0;right:0;z-index:50;backdrop-filter:blur(12px);background:hsl(195 100% 5% / 0.85);border-bottom:1px solid hsl(195 60% 25% / 0.2)}
+      nav .container{display:flex;align-items:center;justify-content:space-between;height:3.5rem}
+      
+      /* Loading spinner */
+      .spinner{width:48px;height:48px;border:3px solid hsl(173 80% 40%);border-top-color:transparent;border-radius:50%;animation:spin 1s linear infinite}
+      @keyframes spin{to{transform:rotate(360deg)}}
+      
+      /* Gradient background */
+      .bg-gradient-hero{background:linear-gradient(135deg,hsl(185 85% 45%),hsl(195 65% 55%));-webkit-background-clip:text;background-clip:text;color:transparent}
+      
+      /* Lazy sections optimization */
+      section:not(:first-of-type){content-visibility:auto;contain-intrinsic-size:auto 500px}
+      
       @media(min-width:640px){body{font-size:16px}}
+      @media(min-width:1024px){nav .container{height:4rem}}
     </style>
-
+    
     
     
     <meta property="og:type" content="website" />
