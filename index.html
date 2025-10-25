@@ -19,10 +19,13 @@
     <!-- DNS prefetch for external domains -->
     <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
     <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+    <link rel="dns-prefetch" href="https://qwrkaktntdjsulthaask.supabase.co" />
+    <link rel="dns-prefetch" href="https://us.i.posthog.com" />
     
     <!-- Preconnect to critical origins -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://qwrkaktntdjsulthaask.supabase.co" crossorigin />
     
     <!-- Preload critical font -->
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" as="style">
@@ -35,9 +38,14 @@
     <style>
       /* Prevent FOUC with minimal critical styles */
       *{box-sizing:border-box;margin:0;padding:0}
-      body{font-family:'Inter',system-ui,sans-serif;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased;background:#0a0a0a;color:#fafafa}
-      #root{min-height:100vh}
+      body{font-family:'Inter',system-ui,sans-serif;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;background:#0a0a0a;color:#fafafa;overflow-x:hidden}
+      #root{min-height:100vh;display:flex;flex-direction:column}
       .container{max-width:80rem;margin:0 auto;padding:0 1rem}
+      /* Content visibility optimization */
+      section{content-visibility:auto;contain-intrinsic-size:auto 500px}
+      /* Initial loading state */
+      #root:empty::before{content:'';position:fixed;top:50%;left:50%;width:48px;height:48px;margin:-24px 0 0 -24px;border:3px solid #14b8a6;border-top-color:transparent;border-radius:50%;animation:spin 1s linear infinite}
+      @keyframes spin{to{transform:rotate(360deg)}}
       @media(min-width:640px){body{font-size:16px}}
     </style>
 
