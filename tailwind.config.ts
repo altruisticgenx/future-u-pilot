@@ -15,6 +15,11 @@ export default {
     'perspective-2000',
     'transform-3d',
     'text-3d',
+    'btn-3d-teal',
+    'btn-3d-purple',
+    'btn-3d-gold',
+    'btn-3d-cyan',
+    'btn-flow',
   ],
   future: {
     hoverOnlyWhenSupported: true,
