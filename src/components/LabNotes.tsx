@@ -57,9 +57,21 @@ export const LabNotes = () => {
               }}
               viewport={{ once: true }}
               whileHover={{ scale: 1.03, y: -5, rotateY: 3 }}
-              style={{ transformStyle: 'preserve-3d' }}
+              style={{ 
+                transformStyle: 'preserve-3d',
+                transform: 'translateZ(0)',
+                backfaceVisibility: 'hidden',
+                willChange: 'transform, opacity'
+              }}
             >
-              <Card className="h-full glass-card-3d bg-card/70 border-2 border-primary/20 hover:border-primary/50 transition-all duration-300 hover:shadow-xl overflow-hidden relative group">
+              <Card 
+                className="h-full glass-card-3d bg-card/70 border-2 border-primary/20 hover:border-primary/50 transition-all duration-300 hover:shadow-xl overflow-hidden relative group"
+                style={{
+                  minHeight: '220px',
+                  transform: 'translateZ(0)',
+                  backfaceVisibility: 'hidden',
+                }}
+              >
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <CardContent className="p-4 sm:p-5 md:p-6 space-y-3 relative z-10">
                   <motion.div 

@@ -101,6 +101,9 @@ export const Hero = () => {
               height: '150px',
               top: '15%',
               left: '8%',
+              transform: 'translateZ(0)',
+              backfaceVisibility: 'hidden',
+              willChange: 'transform',
             }}
             animate={{
               x: [0, 30, 0],
@@ -161,6 +164,9 @@ export const Hero = () => {
             className="absolute top-20 left-10 w-64 h-64 md:w-72 md:h-72 rounded-full blur-3xl"
             style={{
               background: 'radial-gradient(circle, hsl(173 80% 40% / 0.25), transparent)',
+              transform: 'translateZ(0)',
+              backfaceVisibility: 'hidden',
+              willChange: 'transform, opacity',
             }}
             animate={{
               y: [0, 30, 0],
@@ -236,6 +242,8 @@ export const Hero = () => {
                   minHeight: '3em',
                   height: '3em',
                   textShadow: '0 2px 10px rgba(20, 184, 166, 0.3), 0 4px 20px rgba(14, 116, 144, 0.2)',
+                  transform: 'translateZ(0)',
+                  backfaceVisibility: 'hidden',
                 }}
               >
                 <span className="block text-primary-foreground font-bold">

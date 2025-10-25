@@ -213,7 +213,11 @@ export const ServiceCards = () => {
                 style={{ 
                   contain: 'layout style paint',
                   transformStyle: 'preserve-3d',
-                  transition: 'all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)'
+                  transition: 'all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)',
+                  minHeight: '320px',
+                  transform: 'translateZ(0)',
+                  backfaceVisibility: 'hidden',
+                  willChange: 'transform, opacity'
                 }}
               >
                 <CardHeader className="relative space-y-3 pb-3 sm:pb-4">

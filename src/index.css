@@ -414,6 +414,17 @@ All colors MUST be HSL.
     font-family: var(--font-sans);
     font-size: var(--text-sm);
     line-height: var(--leading-normal);
+    /* Performance: Force GPU acceleration for smoother rendering */
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Ensure all custom fonts use font-display: swap */
+  @font-face {
+    font-family: 'Inter';
+    font-display: swap;
   }
   
   /* Mobile font optimization */
@@ -776,10 +787,15 @@ All colors MUST be HSL.
       inset 0 1px 0 hsl(var(--primary-glow) / 0.15);
     @apply transition-all duration-300;
     transform-style: preserve-3d;
+    /* Performance: Prevent CLS and enable GPU acceleration */
+    min-height: 200px;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    will-change: transform, opacity;
   }
 
   .glass-card-3d:hover {
-    @apply -translate-y-[2px];
+    transform: translateY(-2px) translateZ(0);
     box-shadow: 
       0 6px 12px hsl(var(--primary) / 0.15),
       0 12px 24px hsl(var(--primary) / 0.12),
@@ -790,6 +806,8 @@ All colors MUST be HSL.
   .hover-3d-lift {
     @apply transition-all duration-300;
     transform: translateZ(0);
+    backface-visibility: hidden;
+    will-change: transform, opacity;
     box-shadow: 0 2px 8px hsl(var(--primary) / 0.1);
   }
 
