@@ -1,8 +1,29 @@
-import { Mail, Github, Linkedin } from "lucide-react";
+import { Mail, Github, Linkedin, Home } from "lucide-react";
+import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
 
 export const Footer = () => {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
-    <footer className="border-t border-border/50 bg-muted/30 py-12">
+    <footer className="relative border-t border-border/50 bg-muted/30 py-12">
+      {/* Back to Top Button */}
+      <div className="absolute -top-6 right-4 sm:right-8">
+        <InteractiveHoverButton
+          variant="3d-teal"
+          size="xs"
+          icon={Home}
+          iconPosition="left"
+          onClick={scrollToTop}
+          className="shadow-lg"
+          aria-label="Scroll back to top"
+          hasLighthouse
+        >
+          Top
+        </InteractiveHoverButton>
+      </div>
+
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div className="grid md:grid-cols-3 gap-12">
           {/* Brand */}

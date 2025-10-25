@@ -1,9 +1,12 @@
 import { useState, useCallback, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Home } from 'lucide-react';
 import { TerminalLayout } from '@/components/terminal/TerminalLayout';
 import { Sidebar } from '@/components/terminal/Sidebar';
 import { MessageStream } from '@/components/terminal/MessageStream';
 import { CommandInput } from '@/components/terminal/CommandInput';
 import { CommandPalette } from '@/components/terminal/CommandPalette';
+import { InteractiveHoverButton } from '@/components/ui/interactive-hover-button';
 import { useTerminalCommands } from '@/hooks/useTerminalCommands';
 import { useTerminalMessages } from '@/hooks/useTerminalMessages';
 import { supabase } from '@/integrations/supabase/client';
@@ -11,6 +14,7 @@ import { Project, Message, TerminalContext } from '@/types/terminal';
 import { toast } from 'sonner';
 
 const Terminal = () => {
+  const navigate = useNavigate();
   const [currentProject, setCurrentProject] = useState<Project | null>(null);
   const [paletteOpen, setPaletteOpen] = useState(false);
   const WELCOME_MESSAGES = [
@@ -217,6 +221,20 @@ const Terminal = () => {
 
   return (
     <>
+      {/* Back to Home Button - Fixed Position */}
+      <div className="fixed top-4 right-4 z-50 lg:hidden">
+        <InteractiveHoverButton
+          variant="3d-teal"
+          size="xs"
+          icon={Home}
+          onClick={() => navigate('/')}
+          className="shadow-lg"
+          aria-label="Go back to homepage"
+        >
+          Home
+        </InteractiveHoverButton>
+      </div>
+
       <TerminalLayout
         sidebar={
           <Sidebar
