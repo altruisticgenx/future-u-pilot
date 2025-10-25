@@ -8,113 +8,113 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Base Color Scale */
-    --base-100: 210 20% 98%;
-    --base-200: 210 20% 95%;
-    --base-300: 210 15% 85%;
-    --base: 200 20% 98%;
-    --base-content: 210 20% 15%;
+    /* Base Color Scale - Bumblebee Theme */
+    --base-100: 272 10% 96%;
+    --base-200: 273 15% 93%;
+    --base-300: 274 30% 87%;
+    --base: 272 10% 96%;
+    --base-content: 279 60% 25%;
 
-    /* Primary Color Scale - Teal */
-    --primary-100: 190 100% 95%;
-    --primary-200: 190 95% 88%;
-    --primary-300: 190 90% 78%;
-    --primary: 185 85% 45%;
-    --primary-foreground: 180 100% 99%;
-    --primary-glow: 185 90% 70%;
+    /* Primary Color Scale - Yellow Gold (Bumblebee) */
+    --primary-100: 48 100% 95%;
+    --primary-200: 48 95% 85%;
+    --primary-300: 48 90% 75%;
+    --primary: 48 85% 60%;
+    --primary-foreground: 272 10% 96%;
+    --primary-glow: 48 90% 75%;
 
-    /* Secondary Color Scale - Ocean Blue */
-    --secondary-100: 195 85% 95%;
-    --secondary-200: 195 75% 85%;
-    --secondary-300: 195 70% 70%;
-    --secondary: 195 65% 55%;
-    --secondary-foreground: 195 100% 10%;
+    /* Secondary Color Scale - Purple/Blue */
+    --secondary-100: 260 85% 95%;
+    --secondary-200: 260 75% 85%;
+    --secondary-300: 260 70% 70%;
+    --secondary: 260 70% 55%;
+    --secondary-foreground: 272 10% 96%;
 
-    /* Accent Color Scale - Gold */
-    --accent-100: 45 100% 95%;
-    --accent-200: 45 100% 85%;
-    --accent-300: 45 100% 70%;
-    --accent: 43 96% 56%;
-    --accent-foreground: 195 100% 10%;
+    /* Accent Color Scale - Yellow Gold (matches Primary) */
+    --accent-100: 48 100% 95%;
+    --accent-200: 48 95% 85%;
+    --accent-300: 48 90% 75%;
+    --accent: 48 85% 60%;
+    --accent-foreground: 279 60% 25%;
 
-    /* Neutral Color Scale */
-    --neutral-100: 220 15% 95%;
-    --neutral-200: 220 15% 85%;
-    --neutral-300: 220 15% 75%;
-    --neutral: 195 15% 45%;
-    --neutral-content: 220 15% 15%;
+    /* Neutral Color Scale - Dark Blue-Purple */
+    --neutral-100: 279 40% 95%;
+    --neutral-200: 279 40% 85%;
+    --neutral-300: 279 50% 65%;
+    --neutral: 279 60% 25%;
+    --neutral-content: 272 10% 96%;
 
-    /* Info Color Scale - Cyan */
-    --info-100: 185 100% 95%;
-    --info-200: 185 95% 85%;
-    --info-300: 185 90% 70%;
-    --info: 185 90% 55%;
-    --info-content: 185 100% 10%;
+    /* Info Color Scale - Blue */
+    --info-100: 222 80% 95%;
+    --info-200: 222 70% 85%;
+    --info-300: 222 65% 70%;
+    --info: 222 60% 60%;
+    --info-content: 222 100% 10%;
 
     /* Success Color Scale - Green */
-    --success-100: 160 100% 95%;
-    --success-200: 160 84% 85%;
-    --success-300: 160 76% 60%;
-    --success: 160 84% 39%;
-    --success-content: 160 100% 10%;
+    --success-100: 132 85% 95%;
+    --success-200: 132 75% 85%;
+    --success-300: 132 70% 70%;
+    --success: 132 70% 55%;
+    --success-content: 132 100% 10%;
 
-    /* Warning Color Scale - Yellow */
-    --warning-100: 43 100% 95%;
-    --warning-200: 43 100% 85%;
-    --warning-300: 43 96% 70%;
-    --warning: 43 96% 56%;
-    --warning-content: 43 100% 15%;
+    /* Warning Color Scale - Orange-Yellow */
+    --warning-100: 58 95% 95%;
+    --warning-200: 58 85% 85%;
+    --warning-300: 58 80% 75%;
+    --warning: 58 75% 60%;
+    --warning-content: 58 100% 15%;
 
     /* Error Color Scale - Red */
     --error-100: 0 100% 95%;
-    --error-200: 0 84% 85%;
-    --error-300: 0 84% 70%;
-    --error: 0 84% 60%;
+    --error-200: 0 85% 85%;
+    --error-300: 0 85% 70%;
+    --error: 0 85% 55%;
     --error-content: 0 100% 15%;
     
-    /* Ocean Gradient Colors - Deep to Bright Teal */
-    --ocean-deep: 195 85% 16%;
-    --ocean-mid: 190 84% 29%;
-    --ocean-bright: 173 80% 40%;
+    /* Bumblebee Gradient Colors - Yellow to Purple */
+    --ocean-deep: 48 85% 30%;
+    --ocean-mid: 260 70% 40%;
+    --ocean-bright: 48 90% 60%;
     
-    /* Terminal Colors - Teal Ocean */
-    --terminal-bg: 195 100% 8%;
-    --terminal-surface: 195 95% 12%;
-    --terminal-border: 195 60% 25%;
-    --terminal-text: 180 30% 85%;
+    /* Terminal Colors - Bumblebee */
+    --terminal-bg: 279 60% 12%;
+    --terminal-surface: 279 50% 16%;
+    --terminal-border: 48 60% 50%;
+    --terminal-text: 272 10% 90%;
 
-    /* Command Colors */
-    --cmd-success: 160 84% 39%;
-    --cmd-error: 0 72% 51%;
-    --cmd-info: 185 90% 55%;
-    --cmd-warning: 43 96% 56%;
+    /* Command Colors - Bumblebee */
+    --cmd-success: 132 70% 55%;
+    --cmd-error: 0 85% 55%;
+    --cmd-info: 222 60% 60%;
+    --cmd-warning: 58 75% 60%;
 
-    /* Syntax Highlighting */
-    --syntax-keyword: 185 90% 55%;
-    --syntax-string: 160 84% 39%;
-    --syntax-number: 43 96% 56%;
-    --syntax-comment: 195 30% 50%;
+    /* Syntax Highlighting - Bumblebee */
+    --syntax-keyword: 48 85% 60%;
+    --syntax-string: 132 70% 55%;
+    --syntax-number: 260 70% 55%;
+    --syntax-comment: 279 30% 55%;
 
-    /* Core UI Colors */
-    --background: 200 20% 98%;
-    --foreground: 195 100% 10%;
-    --card: 180 100% 99%;
-    --card-foreground: 195 100% 12%;
-    --popover: 180 100% 99%;
-    --popover-foreground: 195 100% 12%;
-    --muted: 195 20% 94%;
-    --muted-foreground: 195 30% 35%;
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 195 30% 88%;
-    --input: 195 30% 88%;
-    --ring: 185 85% 45%;
+    /* Core UI Colors - Bumblebee Theme */
+    --background: 272 10% 96%;
+    --foreground: 279 60% 25%;
+    --card: 272 10% 98%;
+    --card-foreground: 279 60% 25%;
+    --popover: 272 10% 98%;
+    --popover-foreground: 279 60% 25%;
+    --muted: 273 15% 90%;
+    --muted-foreground: 279 40% 45%;
+    --destructive: 0 85% 55%;
+    --destructive-foreground: 272 10% 96%;
+    --border: 274 20% 85%;
+    --input: 274 20% 85%;
+    --ring: 48 85% 60%;
 
-    /* Component Radius */
+    /* Component Radius - Bumblebee Theme */
     --radius: 0.5rem;
-    --radius-box: 0.75rem;
+    --radius-box: 0rem;
     --radius-field: 0.5rem;
-    --radius-selector: 0.375rem;
+    --radius-selector: 0.5rem;
     
     /* Field Sizes */
     --field-xs: 1.5rem;
@@ -123,15 +123,21 @@ All colors MUST be HSL.
     --field-lg: 3rem;
     --field-xl: 3.5rem;
     
-    /* Selector Sizes */
+    /* Selector Sizes - Bumblebee Theme */
     --selector-xs: 1rem;
     --selector-sm: 1.25rem;
     --selector-md: 1.5rem;
     --selector-lg: 1.75rem;
     --selector-xl: 2rem;
+    --size-selector: 0.25rem;
+    --size-field: 0.25rem;
     
     /* Border Width */
     --border-width: 1px;
+    
+    /* Depth & Noise */
+    --depth: 0;
+    --noise: 0;
 
     /* Motion Design Language */
     --motion-instant: 0ms;
@@ -181,23 +187,23 @@ All colors MUST be HSL.
                           0 8px 16px hsl(var(--primary) / 0.12),
                           inset 0 -2px 4px hsl(0 0% 0% / 0.15);
 
-    /* Gradients - Deep Ocean to Teal */
-    --gradient-start: 195 100% 20%;
-    --gradient-mid: 185 85% 45%;
-    --gradient-end: 175 80% 60%;
+    /* Gradients - Bumblebee Yellow to Purple */
+    --gradient-start: 48 85% 60%;
+    --gradient-mid: 260 70% 55%;
+    --gradient-end: 48 90% 75%;
 
-    /* Glassmorphism - Teal Glass */
-    --glass-bg: 185 85% 45% / 0.08;
-    --glass-border: 185 85% 45% / 0.2;
+    /* Glassmorphism - Bumblebee Yellow Glass */
+    --glass-bg: 48 85% 60% / 0.08;
+    --glass-border: 48 85% 60% / 0.2;
 
-    /* Sidebar Variables */
-    --sidebar-background: 195 30% 97%;
-    --sidebar-foreground: 195 50% 25%;
-    --sidebar-primary: 185 85% 45%;
-    --sidebar-primary-foreground: 180 100% 99%;
-    --sidebar-accent: 195 25% 92%;
-    --sidebar-accent-foreground: 195 100% 10%;
-    --sidebar-border: 195 30% 88%;
+    /* Sidebar Variables - Bumblebee Theme */
+    --sidebar-background: 272 10% 96%;
+    --sidebar-foreground: 279 60% 25%;
+    --sidebar-primary: 48 85% 60%;
+    --sidebar-primary-foreground: 272 10% 96%;
+    --sidebar-accent: 273 15% 93%;
+    --sidebar-accent-foreground: 279 60% 25%;
+    --sidebar-border: 274 20% 85%;
     --sidebar-ring: 185 85% 45%;
   }
 
@@ -254,129 +260,129 @@ All colors MUST be HSL.
   }
 
   .dark {
-    /* Base Color Scale - Dark */
-    --base-100: 220 15% 12%;
-    --base-200: 220 15% 18%;
-    --base-300: 220 15% 25%;
-    --base: 195 100% 5%;
-    --base-content: 210 20% 95%;
+    /* Base Color Scale - Dark Bumblebee */
+    --base-100: 279 40% 12%;
+    --base-200: 279 40% 18%;
+    --base-300: 279 40% 25%;
+    --base: 279 60% 8%;
+    --base-content: 272 10% 96%;
 
-    /* Primary Color Scale - Dark */
-    --primary-100: 190 85% 20%;
-    --primary-200: 190 85% 35%;
-    --primary-300: 190 85% 50%;
-    --primary: 185 90% 55%;
-    --primary-foreground: 195 100% 5%;
-    --primary-glow: 185 100% 75%;
+    /* Primary Color Scale - Dark Bumblebee Yellow */
+    --primary-100: 48 85% 25%;
+    --primary-200: 48 85% 40%;
+    --primary-300: 48 85% 55%;
+    --primary: 48 85% 60%;
+    --primary-foreground: 279 60% 10%;
+    --primary-glow: 48 90% 75%;
 
-    /* Secondary Color Scale - Dark */
-    --secondary-100: 195 60% 20%;
-    --secondary-200: 195 60% 30%;
-    --secondary-300: 195 60% 40%;
-    --secondary: 195 60% 40%;
-    --secondary-foreground: 180 40% 95%;
+    /* Secondary Color Scale - Dark Purple */
+    --secondary-100: 260 60% 25%;
+    --secondary-200: 260 65% 40%;
+    --secondary-300: 260 70% 50%;
+    --secondary: 260 70% 55%;
+    --secondary-foreground: 272 10% 96%;
 
-    /* Accent Color Scale - Dark */
-    --accent-100: 45 100% 30%;
-    --accent-200: 45 100% 45%;
-    --accent-300: 45 100% 60%;
-    --accent: 43 96% 56%;
-    --accent-foreground: 195 100% 5%;
+    /* Accent Color Scale - Dark Bumblebee Yellow */
+    --accent-100: 48 85% 25%;
+    --accent-200: 48 85% 40%;
+    --accent-300: 48 85% 55%;
+    --accent: 48 85% 60%;
+    --accent-foreground: 279 60% 10%;
 
     /* Neutral Color Scale - Dark */
-    --neutral-100: 220 15% 25%;
-    --neutral-200: 220 15% 35%;
-    --neutral-300: 220 15% 45%;
-    --neutral: 195 25% 65%;
-    --neutral-content: 220 15% 95%;
+    --neutral-100: 279 40% 25%;
+    --neutral-200: 279 40% 35%;
+    --neutral-300: 279 40% 45%;
+    --neutral: 279 50% 65%;
+    --neutral-content: 272 10% 96%;
 
-    /* Info Color Scale - Dark */
-    --info-100: 185 90% 25%;
-    --info-200: 185 90% 40%;
-    --info-300: 185 90% 55%;
-    --info: 185 90% 55%;
-    --info-content: 185 100% 10%;
+    /* Info Color Scale - Dark Blue */
+    --info-100: 222 60% 25%;
+    --info-200: 222 60% 40%;
+    --info-300: 222 60% 55%;
+    --info: 222 60% 60%;
+    --info-content: 222 100% 95%;
 
-    /* Success Color Scale - Dark */
-    --success-100: 160 84% 25%;
-    --success-200: 160 84% 35%;
-    --success-300: 160 84% 45%;
-    --success: 160 84% 39%;
-    --success-content: 160 100% 95%;
+    /* Success Color Scale - Dark Green */
+    --success-100: 132 70% 25%;
+    --success-200: 132 70% 40%;
+    --success-300: 132 70% 50%;
+    --success: 132 70% 55%;
+    --success-content: 132 100% 95%;
 
-    /* Warning Color Scale - Dark */
-    --warning-100: 43 96% 30%;
-    --warning-200: 43 96% 45%;
-    --warning-300: 43 96% 60%;
-    --warning: 43 96% 56%;
-    --warning-content: 43 100% 15%;
+    /* Warning Color Scale - Dark Orange */
+    --warning-100: 58 75% 30%;
+    --warning-200: 58 75% 45%;
+    --warning-300: 58 75% 55%;
+    --warning: 58 75% 60%;
+    --warning-content: 58 100% 15%;
 
-    /* Error Color Scale - Dark */
-    --error-100: 0 84% 30%;
-    --error-200: 0 84% 45%;
-    --error-300: 0 84% 60%;
-    --error: 0 84% 60%;
+    /* Error Color Scale - Dark Red */
+    --error-100: 0 85% 30%;
+    --error-200: 0 85% 45%;
+    --error-300: 0 85% 55%;
+    --error: 0 85% 55%;
     --error-content: 0 100% 95%;
     
-    /* Terminal Colors - Dark Ocean */
-    --terminal-bg: 195 100% 5%;
-    --terminal-surface: 195 90% 8%;
-    --terminal-border: 195 60% 18%;
-    --terminal-text: 180 40% 80%;
+    /* Terminal Colors - Dark Bumblebee */
+    --terminal-bg: 279 60% 8%;
+    --terminal-surface: 279 50% 12%;
+    --terminal-border: 48 60% 35%;
+    --terminal-text: 272 10% 85%;
 
-    /* Command Colors (same) */
-    --cmd-success: 160 84% 39%;
-    --cmd-error: 0 72% 51%;
-    --cmd-info: 185 90% 55%;
-    --cmd-warning: 43 96% 56%;
+    /* Command Colors - Dark Bumblebee */
+    --cmd-success: 132 70% 55%;
+    --cmd-error: 0 85% 55%;
+    --cmd-info: 222 60% 60%;
+    --cmd-warning: 58 75% 60%;
 
-    /* Syntax Highlighting (same) */
-    --syntax-keyword: 185 90% 55%;
-    --syntax-string: 160 84% 39%;
-    --syntax-number: 43 96% 56%;
-    --syntax-comment: 195 30% 50%;
+    /* Syntax Highlighting - Dark Bumblebee */
+    --syntax-keyword: 48 85% 60%;
+    --syntax-string: 132 70% 55%;
+    --syntax-number: 260 70% 55%;
+    --syntax-comment: 279 30% 60%;
 
-    /* Core UI Colors - Dark */
-    --background: 195 100% 5%;
-    --foreground: 180 20% 95%;
-    --card: 195 90% 8%;
-    --card-foreground: 180 20% 95%;
-    --popover: 195 90% 8%;
-    --popover-foreground: 180 20% 95%;
-    --muted: 195 40% 15%;
-    --muted-foreground: 195 20% 70%;
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 195 50% 20%;
-    --input: 195 50% 20%;
-    --ring: 185 90% 55%;
+    /* Core UI Colors - Dark Bumblebee */
+    --background: 279 60% 8%;
+    --foreground: 272 10% 96%;
+    --card: 279 50% 12%;
+    --card-foreground: 272 10% 96%;
+    --popover: 279 50% 12%;
+    --popover-foreground: 272 10% 96%;
+    --muted: 279 40% 18%;
+    --muted-foreground: 279 30% 70%;
+    --destructive: 0 85% 55%;
+    --destructive-foreground: 272 10% 96%;
+    --border: 279 40% 25%;
+    --input: 279 40% 25%;
+    --ring: 48 85% 60%;
 
-    /* 3D Depth Effects - Dark */
-    --depth-shadow: 0 2px 4px hsl(var(--primary) / 0.2), 
-                    0 4px 8px hsl(var(--primary) / 0.15),
+    /* 3D Depth Effects - Dark Bumblebee */
+    --depth-shadow: 0 2px 4px hsl(48 85% 60% / 0.2), 
+                    0 4px 8px hsl(48 85% 60% / 0.15),
                     inset 0 -2px 4px hsl(0 0% 0% / 0.3);
-    --depth-shadow-hover: 0 4px 8px hsl(var(--primary) / 0.3), 
-                          0 8px 16px hsl(var(--primary) / 0.2),
+    --depth-shadow-hover: 0 4px 8px hsl(48 85% 60% / 0.3), 
+                          0 8px 16px hsl(48 85% 60% / 0.2),
                           inset 0 -2px 4px hsl(0 0% 0% / 0.4);
 
-    /* Gradients - Deep Ocean to Bright Teal */
-    --gradient-start: 195 100% 25%;
-    --gradient-mid: 185 90% 50%;
-    --gradient-end: 175 85% 65%;
+    /* Gradients - Bumblebee Dark Yellow to Purple */
+    --gradient-start: 48 85% 40%;
+    --gradient-mid: 260 70% 45%;
+    --gradient-end: 48 90% 60%;
 
-    /* Glassmorphism - Dark Teal Glass */
-    --glass-bg: 185 90% 55% / 0.12;
-    --glass-border: 185 90% 55% / 0.25;
+    /* Glassmorphism - Dark Bumblebee Yellow Glass */
+    --glass-bg: 48 85% 60% / 0.12;
+    --glass-border: 48 85% 60% / 0.25;
 
-    /* Sidebar Variables */
-    --sidebar-background: 195 90% 8%;
-    --sidebar-foreground: 180 40% 90%;
-    --sidebar-primary: 185 90% 55%;
-    --sidebar-primary-foreground: 195 100% 5%;
-    --sidebar-accent: 195 60% 15%;
-    --sidebar-accent-foreground: 180 40% 90%;
-    --sidebar-border: 195 50% 20%;
-    --sidebar-ring: 185 90% 55%;
+    /* Sidebar Variables - Dark Bumblebee */
+    --sidebar-background: 279 50% 12%;
+    --sidebar-foreground: 272 10% 90%;
+    --sidebar-primary: 48 85% 60%;
+    --sidebar-primary-foreground: 279 60% 10%;
+    --sidebar-accent: 279 40% 18%;
+    --sidebar-accent-foreground: 272 10% 96%;
+    --sidebar-border: 279 40% 25%;
+    --sidebar-ring: 48 85% 60%;
   }
   
   /* Custom scrollbar styles */
