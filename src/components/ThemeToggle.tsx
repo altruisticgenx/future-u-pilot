@@ -1,30 +1,10 @@
 import { Moon, Sun } from "lucide-react";
+import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
 
 export const ThemeToggle = () => {
-  const [isDark, setIsDark] = useState(false);
-
-  useEffect(() => {
-    const root = document.documentElement;
-    const currentTheme = root.classList.contains('dark');
-    setIsDark(currentTheme);
-  }, []);
-
-  const toggleTheme = () => {
-    const root = document.documentElement;
-    const newTheme = !isDark;
-    
-    if (newTheme) {
-      root.classList.add('dark');
-    } else {
-      root.classList.remove('dark');
-    }
-    
-    setIsDark(newTheme);
-    localStorage.setItem('theme', newTheme ? 'dark' : 'light');
-  };
+  const { theme, setTheme } = useTheme();
 
   return (
     <motion.div
@@ -35,7 +15,7 @@ export const ThemeToggle = () => {
       <Button
         variant="ghost"
         size="icon"
-        onClick={toggleTheme}
+        onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
         className="relative h-9 w-9 rounded-lg hover:bg-primary/10"
         aria-label="Toggle theme"
       >

@@ -234,10 +234,10 @@ export const Hero = () => {
                 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight"
                 style={{
                   minHeight: '2.5em',
-                  textShadow: '0 2px 10px hsl(var(--primary) / 0.3), 0 4px 20px hsl(var(--secondary) / 0.2)',
+                  textShadow: '0 2px 10px rgba(20, 184, 166, 0.3), 0 4px 20px rgba(14, 116, 144, 0.2)',
                 }}
               >
-                <span className="block text-foreground">
+                <span className="block text-white">
                   {animationsReady ? (
                     <TypeAnimation
                       sequence={[
@@ -253,10 +253,24 @@ export const Hero = () => {
                       wrapper="span"
                       speed={50}
                       repeat={Infinity}
-                      className="relative inline-block bg-gradient-to-r from-primary via-primary-glow to-secondary bg-clip-text text-transparent"
+                      className="relative inline-block"
+                      style={{
+                        background: 'linear-gradient(135deg, hsl(173 80% 70%), hsl(190 84% 50%))',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        backgroundClip: 'text',
+                      }}
                     />
                   ) : (
-                    <span className="relative inline-block bg-gradient-to-r from-primary via-primary-glow to-secondary bg-clip-text text-transparent">
+                    <span 
+                      className="relative inline-block"
+                      style={{
+                        background: 'linear-gradient(135deg, hsl(173 80% 70%), hsl(190 84% 50%))',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        backgroundClip: 'text',
+                      }}
+                    >
                       Quantum Computing
                     </span>
                   )}
@@ -264,7 +278,7 @@ export const Hero = () => {
               </h1>
               
               <motion.p 
-                className="text-sm sm:text-base md:text-lg text-muted-foreground max-w-2xl leading-relaxed"
+                className="text-sm sm:text-base md:text-lg text-white/90 max-w-2xl leading-relaxed"
                 initial={prefersReducedMotion ? {} : { opacity: 0, rotateX: -10 }}
                 animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, rotateX: 0 }}
                 transition={prefersReducedMotion ? {} : { delay: 0.3, duration: 0.4 }}
