@@ -18,14 +18,43 @@ export default defineConfig(({ mode }) => ({
   build: {
     rollupOptions: {
       output: {
-        manualChunks: {
-          'vendor-react': ['react', 'react-dom', 'react-router-dom'],
-          'vendor-motion': ['framer-motion'],
-          'vendor-ui': ['@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu', '@radix-ui/react-select'],
-          'vendor-forms': ['react-hook-form', 'zod'],
-          'vendor-query': ['@tanstack/react-query'],
-          'vendor-supabase': ['@supabase/supabase-js'],
-          'posthog': ['posthog-js'],
+        manualChunks: (id) => {
+          // Defer analytics to separate chunk
+          if (id.includes('posthog')) {
+            return 'analytics';
+          }
+          // Core React bundle
+          if (id.includes('react') || id.includes('react-dom') || id.includes('react-router-dom')) {
+            return 'vendor-react';
+          }
+          // Animation library
+          if (id.includes('framer-motion')) {
+            return 'vendor-motion';
+          }
+          // UI components
+          if (id.includes('@radix-ui')) {
+            return 'vendor-ui';
+          }
+          // Forms
+          if (id.includes('react-hook-form') || id.includes('zod')) {
+            return 'vendor-forms';
+          }
+          // Data fetching
+          if (id.includes('@tanstack/react-query')) {
+            return 'vendor-query';
+          }
+          // Backend
+          if (id.includes('@supabase/supabase-js')) {
+            return 'vendor-supabase';
+          }
+          // Chart libraries (defer)
+          if (id.includes('recharts') || id.includes('chart.js')) {
+            return 'vendor-charts';
+          }
+          // Syntax highlighting (defer)
+          if (id.includes('react-syntax-highlighter')) {
+            return 'vendor-syntax';
+          }
         },
       },
     },
@@ -36,14 +65,21 @@ export default defineConfig(({ mode }) => ({
         drop_console: true,
         drop_debugger: true,
         pure_funcs: ['console.log', 'console.info', 'console.debug'],
-        passes: 2,
+        passes: 3,
+        dead_code: true,
+        unused: true,
       },
       mangle: {
         safari10: true,
       },
+      format: {
+        comments: false,
+      },
     },
     cssMinify: true,
+    cssCodeSplit: true,
     target: 'es2020',
     sourcemap: false,
+    reportCompressedSize: false,
   },
 }));

@@ -2,25 +2,25 @@ import { lazy, Suspense } from "react";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
 import { HeroSkeleton } from "@/components/LoadingSkeleton";
-import { AIChatbot } from "@/components/AIChatbot";
 import { motion } from "framer-motion";
 
-// Lazy load heavy components
-const Hero = lazy(() => import("@/components/Hero").then(m => ({ default: m.Hero })));
-const LogoRow = lazy(() => import("@/components/LogoRow").then(m => ({ default: m.LogoRow })));
+// Eager load critical above-the-fold components for better FCP
+import { Hero } from "@/components/Hero";
+import { LogoRow } from "@/components/LogoRow";
+
+// Lazy load below-the-fold components
 const ServiceCards = lazy(() => import("@/components/ServiceCards").then(m => ({ default: m.ServiceCards })));
 const WhyNow = lazy(() => import("@/components/WhyNow").then(m => ({ default: m.WhyNow })));
 const LabNotes = lazy(() => import("@/components/LabNotes").then(m => ({ default: m.LabNotes })));
 const WhyItMatters = lazy(() => import("@/components/WhyItMatters").then(m => ({ default: m.WhyItMatters })));
 const ContactForm = lazy(() => import("@/components/ContactForm").then(m => ({ default: m.ContactForm })));
+const AIChatbot = lazy(() => import("@/components/AIChatbot").then(m => ({ default: m.AIChatbot })));
 
 const Index = () => {
   return (
     <div className="min-h-screen">
       <Navigation />
-      <Suspense fallback={<HeroSkeleton />}>
-        <Hero />
-      </Suspense>
+      <Hero />
       
       <motion.div
         initial={{ opacity: 0, y: 30 }}
@@ -28,9 +28,7 @@ const Index = () => {
         transition={{ duration: 0.6 }}
         viewport={{ once: true, margin: "-100px" }}
       >
-        <Suspense fallback={<div className="h-32 animate-pulse bg-primary/5" />}>
-          <LogoRow />
-        </Suspense>
+        <LogoRow />
       </motion.div>
       
       <motion.div
@@ -113,8 +111,10 @@ const Index = () => {
 
       <Footer />
       
-      {/* AI Chatbot */}
-      <AIChatbot />
+      {/* AI Chatbot - Load after interaction */}
+      <Suspense fallback={null}>
+        <AIChatbot />
+      </Suspense>
     </div>
   );
 };
