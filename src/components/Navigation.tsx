@@ -35,7 +35,8 @@ export const Navigation = () => {
         behavior: "smooth"
       });
     } else {
-      window.location.href = href;
+      // Use React Router navigate instead of window.location
+      navigate(href);
     }
     setIsMobileMenuOpen(false);
   };
@@ -43,15 +44,15 @@ export const Navigation = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div className="flex items-center justify-between h-14 sm:h-16">
           {/* Logo */}
-          <motion.a 
-            href="/" 
+          <motion.button 
+            onClick={() => navigate("/")}
             className="text-base sm:text-lg font-bold bg-gradient-hero bg-clip-text text-transparent" 
             whileHover={{ scale: 1.05 }} 
             whileTap={{ scale: 0.95 }}
             aria-label="AltruisticXAI Home"
           >
             AltruisticXAI
-          </motion.a>
+          </motion.button>
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-0.5">

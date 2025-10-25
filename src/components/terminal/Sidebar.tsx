@@ -71,28 +71,28 @@ export const Sidebar = ({ currentProjectId, onProjectSelect, onNewProject }: Sid
 
   return (
     <div 
-      className="w-full h-full flex flex-col border-r"
+      className="w-full h-full flex flex-col"
       style={{ 
         backgroundColor: 'hsl(var(--terminal-surface))',
         borderColor: 'hsl(var(--terminal-border))'
       }}
     >
-      <div className="p-4 border-b" style={{ borderColor: 'hsl(var(--terminal-border))' }}>
+      <div className="p-3 sm:p-4 border-b" style={{ borderColor: 'hsl(var(--terminal-border))' }}>
         <div className="flex items-center gap-2 mb-3">
-          <Activity className="h-5 w-5" style={{ color: 'hsl(var(--cmd-success))' }} />
-          <h2 className="text-lg font-semibold" style={{ color: 'hsl(var(--terminal-text))' }}>
+          <Activity className="h-4 w-4 sm:h-5 sm:w-5" style={{ color: 'hsl(var(--cmd-success))' }} />
+          <h2 className="text-base sm:text-lg font-semibold" style={{ color: 'hsl(var(--terminal-text))' }}>
             Projects
           </h2>
         </div>
         
         <div className="flex gap-2 mb-3">
           <div className="relative flex-1">
-            <Search className="absolute left-2 top-2.5 h-4 w-4 opacity-50" style={{ color: 'hsl(var(--terminal-text))' }} />
+            <Search className="absolute left-2 top-2.5 h-3.5 w-3.5 sm:h-4 sm:w-4 opacity-50" style={{ color: 'hsl(var(--terminal-text))' }} />
             <Input
               placeholder="Search..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-8 bg-transparent border"
+              className="pl-7 sm:pl-8 bg-transparent border text-sm"
               style={{ 
                 borderColor: 'hsl(var(--terminal-border))',
                 color: 'hsl(var(--terminal-text))'
@@ -102,7 +102,7 @@ export const Sidebar = ({ currentProjectId, onProjectSelect, onNewProject }: Sid
           <Button
             size="icon"
             onClick={onNewProject}
-            className="flex-shrink-0"
+            className="flex-shrink-0 h-9 w-9"
             style={{ 
               backgroundColor: 'hsl(var(--cmd-success))',
               color: 'hsl(var(--terminal-bg))'
@@ -116,11 +116,11 @@ export const Sidebar = ({ currentProjectId, onProjectSelect, onNewProject }: Sid
       <ScrollArea className="flex-1">
         <div className="p-2 space-y-1">
           {loading ? (
-            <div className="p-4 text-center text-sm" style={{ color: 'hsl(var(--terminal-text))', opacity: 0.5 }}>
+            <div className="p-4 text-center text-xs sm:text-sm" style={{ color: 'hsl(var(--terminal-text))', opacity: 0.5 }}>
               Loading projects...
             </div>
           ) : filteredProjects.length === 0 ? (
-            <div className="p-4 text-center text-sm" style={{ color: 'hsl(var(--terminal-text))', opacity: 0.5 }}>
+            <div className="p-4 text-center text-xs sm:text-sm" style={{ color: 'hsl(var(--terminal-text))', opacity: 0.5 }}>
               {searchQuery ? 'No matching projects' : 'No projects yet'}
             </div>
           ) : (
@@ -131,28 +131,28 @@ export const Sidebar = ({ currentProjectId, onProjectSelect, onNewProject }: Sid
                   key={project.id}
                   onClick={() => onProjectSelect(project)}
                   whileHover={{ x: 4 }}
-                  className="w-full text-left p-3 rounded-lg transition-colors"
+                  className="w-full text-left p-2.5 sm:p-3 rounded-lg transition-colors"
                   style={{
                     backgroundColor: isActive ? 'hsl(var(--terminal-border))' : 'transparent',
                   }}
                 >
-                  <div className="flex items-start gap-3">
+                  <div className="flex items-start gap-2 sm:gap-3">
                     {isActive ? (
-                      <FolderOpen className="h-5 w-5 flex-shrink-0 mt-0.5" style={{ color: 'hsl(var(--cmd-success))' }} />
+                      <FolderOpen className="h-4 w-4 sm:h-5 sm:w-5 flex-shrink-0 mt-0.5" style={{ color: 'hsl(var(--cmd-success))' }} />
                     ) : (
-                      <Folder className="h-5 w-5 flex-shrink-0 mt-0.5" style={{ color: 'hsl(var(--terminal-text))', opacity: 0.5 }} />
+                      <Folder className="h-4 w-4 sm:h-5 sm:w-5 flex-shrink-0 mt-0.5" style={{ color: 'hsl(var(--terminal-text))', opacity: 0.5 }} />
                     )}
                     <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2 mb-1">
+                      <div className="flex items-center gap-1.5 sm:gap-2 mb-1">
                         <p 
-                          className="font-mono text-sm font-medium truncate"
+                          className="font-mono text-xs sm:text-sm font-medium truncate"
                           style={{ color: 'hsl(var(--terminal-text))' }}
                         >
                           {project.name}
                         </p>
                         <Badge 
                           variant="outline" 
-                          className="text-xs flex-shrink-0"
+                          className="text-[10px] sm:text-xs flex-shrink-0 px-1 sm:px-2"
                           style={{ 
                             borderColor: getStatusColor(project.status),
                             color: getStatusColor(project.status)
@@ -163,18 +163,18 @@ export const Sidebar = ({ currentProjectId, onProjectSelect, onNewProject }: Sid
                       </div>
                       {project.description && (
                         <p 
-                          className="text-xs truncate"
+                          className="text-[10px] sm:text-xs truncate"
                           style={{ color: 'hsl(var(--terminal-text))', opacity: 0.6 }}
                         >
                           {project.description}
                         </p>
                       )}
                       {project.tags && project.tags.length > 0 && (
-                        <div className="flex flex-wrap gap-1 mt-2">
+                        <div className="flex flex-wrap gap-1 mt-1.5 sm:mt-2">
                           {project.tags.slice(0, 3).map((tag) => (
                             <span 
                               key={tag}
-                              className="text-xs px-1.5 py-0.5 rounded"
+                              className="text-[10px] sm:text-xs px-1 sm:px-1.5 py-0.5 rounded"
                               style={{ 
                                 backgroundColor: 'hsl(var(--terminal-bg))',
                                 color: 'hsl(var(--syntax-keyword))'

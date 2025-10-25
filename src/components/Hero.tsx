@@ -378,7 +378,7 @@ export const Hero = () => {
             initial={prefersReducedMotion ? {} : { opacity: 0, x: 20 }}
             animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, x: 0 }}
             transition={prefersReducedMotion ? {} : { duration: 0.6, delay: 0.3 }}
-            className="relative hidden md:block"
+            className="relative w-full"
             whileHover={prefersReducedMotion ? {} : {
               rotateY: 5,
               rotateX: -2,
@@ -397,24 +397,24 @@ export const Hero = () => {
                 }
               }}
               style={{
-                minHeight: '280px',
+                minHeight: '200px',
                 boxShadow: '0 0 40px hsl(173 80% 40% / 0.3), 0 8px 32px rgba(0, 0, 0, 0.4)',
               }}
             >
               {/* Terminal header */}
-              <div className="bg-muted/50 border-b border-border/50 px-3 py-2 flex items-center gap-2">
-                <div className="flex gap-1.5">
-                  <div className="w-2 h-2 rounded-full bg-red-500" />
-                  <div className="w-2 h-2 rounded-full bg-yellow-500" />
-                  <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+              <div className="bg-muted/50 border-b border-border/50 px-2 sm:px-3 py-1.5 sm:py-2 flex items-center gap-2">
+                <div className="flex gap-1 sm:gap-1.5">
+                  <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-red-500" />
+                  <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-yellow-500" />
+                  <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-green-500 animate-pulse" />
                 </div>
-                <span className="text-xs text-muted-foreground ml-2 font-mono">
+                <span className="text-[10px] sm:text-xs text-muted-foreground ml-1 sm:ml-2 font-mono">
                   quantum.sh
                 </span>
               </div>
               
               {/* Terminal content with scanline effect */}
-              <div className="relative p-3 font-mono text-[10px] sm:text-xs min-h-[200px] bg-terminal-bg/50 overflow-hidden">
+              <div className="relative p-2 sm:p-3 font-mono text-[9px] xs:text-[10px] sm:text-xs min-h-[160px] sm:min-h-[200px] bg-terminal-bg/50 overflow-hidden">
                 {/* Scanline animation overlay */}
                 {animationsReady && !prefersReducedMotion && (
                   <motion.div
@@ -433,14 +433,14 @@ export const Hero = () => {
                     }}
                   />
                 )}
-                <div className="relative z-10 space-y-1">
+                <div className="relative z-10 space-y-0.5 sm:space-y-1">
                   {terminalCommands.slice(0, Math.min(cmdIndex + 1, 8)).map((cmd, i) => (
                     <motion.div
                       key={i}
                       initial={prefersReducedMotion ? {} : { opacity: 0, x: -10 }}
                       animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, x: 0 }}
                       transition={prefersReducedMotion ? {} : { delay: i * 0.05 }}
-                      className={`${
+                      className={`leading-relaxed ${
                         cmd.startsWith('$') ? 'text-cmd-info font-bold' :
                         cmd.startsWith('⚡') || cmd.startsWith('🤖') || cmd.startsWith('🔬') ? 'text-cmd-warning' :
                         cmd.startsWith('✓') ? 'text-cmd-success' :
@@ -450,7 +450,7 @@ export const Hero = () => {
                       {cmd}
                     </motion.div>
                   ))}
-                  <span className="inline-block w-1.5 h-3 bg-cmd-success animate-pulse" />
+                  <span className="inline-block w-1 h-2.5 sm:w-1.5 sm:h-3 bg-cmd-success animate-pulse" />
                 </div>
               </div>
             </motion.div>
