@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 export const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -65,6 +66,9 @@ export const Navigation = () => {
                 {item.label}
               </motion.button>)}
             
+            {/* Theme Toggle */}
+            <ThemeToggle />
+            
             {/* Auth Button */}
             <Button
               size="sm"
@@ -112,10 +116,13 @@ export const Navigation = () => {
                   {item.label}
                 </motion.button>)}
               
-              {/* Mobile Auth Button */}
-              <Button className="w-full mt-4 min-h-[44px]" onClick={() => navigate("/auth")} aria-label="Login or Sign Up">
-                Login / Sign Up
-              </Button>
+              {/* Mobile Theme Toggle & Auth */}
+              <div className="flex gap-2 mt-4">
+                <ThemeToggle />
+                <Button className="flex-1 min-h-[44px]" onClick={() => navigate("/auth")} aria-label="Login or Sign Up">
+                  Login / Sign Up
+                </Button>
+              </div>
             </div>
           </motion.div>}
       </AnimatePresence>

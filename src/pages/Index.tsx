@@ -20,21 +20,61 @@ const Index = () => {
       <Suspense fallback={<HeroSkeleton />}>
         <Hero />
       </Suspense>
-      <Suspense fallback={<div className="h-32 animate-pulse bg-primary/5" />}>
-        <LogoRow />
-      </Suspense>
-      <Suspense fallback={<div className="h-96 animate-pulse bg-primary/5" />}>
-        <ServiceCards />
-      </Suspense>
-      <Suspense fallback={<div className="h-64 animate-pulse bg-primary/5" />}>
-        <WhyNow />
-      </Suspense>
-      <Suspense fallback={<div className="h-64 animate-pulse bg-primary/5" />}>
-        <LabNotes />
-      </Suspense>
-      <Suspense fallback={<div className="h-64 animate-pulse bg-primary/5" />}>
-        <WhyItMatters />
-      </Suspense>
+      
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true, margin: "-100px" }}
+      >
+        <Suspense fallback={<div className="h-32 animate-pulse bg-primary/5" />}>
+          <LogoRow />
+        </Suspense>
+      </motion.div>
+      
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, delay: 0.1 }}
+        viewport={{ once: true, margin: "-100px" }}
+      >
+        <Suspense fallback={<div className="h-96 animate-pulse bg-primary/5" />}>
+          <ServiceCards />
+        </Suspense>
+      </motion.div>
+      
+      <motion.div
+        initial={{ opacity: 0, x: -50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.6, delay: 0.2 }}
+        viewport={{ once: true, margin: "-100px" }}
+      >
+        <Suspense fallback={<div className="h-64 animate-pulse bg-primary/5" />}>
+          <WhyNow />
+        </Suspense>
+      </motion.div>
+      
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.6, delay: 0.1 }}
+        viewport={{ once: true, margin: "-100px" }}
+      >
+        <Suspense fallback={<div className="h-64 animate-pulse bg-primary/5" />}>
+          <LabNotes />
+        </Suspense>
+      </motion.div>
+      
+      <motion.div
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true, margin: "-100px" }}
+      >
+        <Suspense fallback={<div className="h-64 animate-pulse bg-primary/5" />}>
+          <WhyItMatters />
+        </Suspense>
+      </motion.div>
       
       {/* Contact Section */}
       <section id="contact" className="py-16 sm:py-20 md:py-24 relative overflow-hidden" aria-labelledby="contact-heading">

@@ -1,6 +1,7 @@
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { lazy, Suspense } from "react";
+import { ThemeProvider } from "next-themes";
 
 // Eager load homepage for fast FCP
 import Index from "./pages/Index";
@@ -42,12 +43,13 @@ const QueryWrapper = lazy(() =>
 );
 
 const App = () => (
-  <TooltipProvider>
-    <Suspense fallback={null}>
-      <Toaster />
-      <Sonner />
-    </Suspense>
-    <BrowserRouter>
+  <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+    <TooltipProvider>
+      <Suspense fallback={null}>
+        <Toaster />
+        <Sonner />
+      </Suspense>
+      <BrowserRouter>
       <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div></div>}>
         <Routes>
           <Route path="/" element={<Index />} />
@@ -61,7 +63,8 @@ const App = () => (
         </Routes>
       </Suspense>
     </BrowserRouter>
-  </TooltipProvider>
+    </TooltipProvider>
+  </ThemeProvider>
 );
 
 export default App;
