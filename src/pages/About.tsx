@@ -211,7 +211,6 @@ const ROISection = () => {
 
 const VisionCoreSection = () => {
   const [highlightsOpen, setHighlightsOpen] = useState(false);
-  const [learnMoreOpen, setLearnMoreOpen] = useState(false);
 
   return (
     <section className="relative z-10 py-24">
@@ -270,21 +269,14 @@ const VisionCoreSection = () => {
               </CollapsibleContent>
             </Collapsible>
 
-            <Collapsible open={learnMoreOpen} onOpenChange={setLearnMoreOpen}>
-              <CollapsibleTrigger className="flex items-center justify-between w-full p-4 rounded-lg bg-accent/5 hover:bg-accent/10 transition-colors">
-                <span className="font-semibold text-foreground">Learn More</span>
-                <ChevronDown
-                  className={`h-5 w-5 text-accent transition-transform duration-300 ${
-                    learnMoreOpen ? "rotate-180" : ""
-                  }`}
-                />
-              </CollapsibleTrigger>
-              <CollapsibleContent className="mt-2 p-4 rounded-lg bg-card/50 border border-border">
-                <p className="text-sm text-muted-foreground">
-                  Join programs, competitions, and mentorship networks.
-                </p>
-              </CollapsibleContent>
-            </Collapsible>
+            <a
+              href="https://docs.google.com/document/d/1NlzqlnBLt_iWwqLGH3SUTUlASFIZBEaimJYq6MFXB8I/edit?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center w-full p-4 rounded-lg bg-accent/5 hover:bg-accent/10 transition-colors font-semibold text-foreground hover:text-accent"
+            >
+              See Proposal
+            </a>
           </div>
         </motion.div>
       </div>
