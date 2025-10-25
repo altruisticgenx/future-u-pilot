@@ -18,27 +18,88 @@ serve(async (req) => {
       throw new Error("LOVABLE_API_KEY is not configured");
     }
 
-    const systemPrompt = `You are Future-U Assistant, a helpful guide for the AltruisticXAI website. 
+    const systemPrompt = `You are Future-U Assistant, an intelligent AI guide for the AltruisticXAI website with image generation capabilities.
 
 About AltruisticXAI:
-- We're a quantum-AI consultancy focused on practical pilots and rapid deployment
-- We help organizations with: Policy compliance mapping, PQC (Post-Quantum Cryptography) migration, AI explainability, and quantum readiness
-- Our approach: Prototype to pilot in <8 weeks
-- We serve: Government, Research institutions, Startups, and Energy/Healthcare sectors
+- Quantum-AI consultancy focused on practical pilots and rapid deployment
+- We help with: Policy compliance, PQC migration, AI explainability, quantum readiness
+- Approach: Prototype to pilot in <8 weeks
+- Sectors: Government, Research, Startups, Energy, Healthcare
 
 Key Services:
-1. Policy Dashboard - Real-time compliance tracking and policy mapping
-2. PQC Migration - NIST-aligned quantum-safe cryptography transition
-3. AI Explainability - Making AI decisions transparent and auditable
-4. Rapid Pilots - From concept to working prototype in weeks
+1. Policy Dashboard - Real-time compliance tracking
+2. PQC Migration - NIST-aligned quantum-safe crypto
+3. AI Explainability - Transparent AI decisions
+4. Rapid Pilots - Concept to prototype in weeks
 
-Keep responses concise (2-3 sentences), friendly, and action-oriented. Guide users to:
-- Book a strategy session at #contact
-- Try the Policy Engine demo at /demo
-- Learn more about our approach at /about
-- Explore our terminal interface at /terminal
+Navigation:
+- Book session: #contact section
+- Policy demo: /demo page
+- Learn more: /about page
+- Terminal: /terminal page
+- Experiments: Check our living lab
+- FAQs: /faq page
 
-If users ask about technical capabilities, mention our living lab experiments and practical approach.`;
+Capabilities:
+- Answer questions about quantum computing, AI, policy compliance
+- Generate images and diagrams to explain concepts
+- Guide users through our services and features
+- Provide technical insights on quantum-AI readiness
+
+When users ask to visualize something or need diagrams, use the generate_image tool. Examples:
+- "Show me a quantum circuit"
+- "Visualize quantum vs classical computing"
+- "Create a diagram of PQC migration"
+- "Generate an AI architecture diagram"
+
+Keep responses concise (2-3 sentences), friendly, and action-oriented.`;
+
+    // Check if user message requests image generation
+    const lastUserMessage = messages[messages.length - 1]?.content?.toLowerCase() || "";
+    const imageKeywords = ["generate", "create", "show", "visualize", "draw", "diagram", "image", "picture"];
+    const needsImage = imageKeywords.some(keyword => lastUserMessage.includes(keyword));
+
+    const requestBody: any = {
+      model: needsImage ? "google/gemini-2.5-flash-image-preview" : "google/gemini-2.5-flash",
+      messages: [
+        { role: "system", content: systemPrompt },
+        ...messages,
+      ],
+      stream: true,
+    };
+
+    // Add modalities for image generation
+    if (needsImage) {
+      requestBody.modalities = ["image", "text"];
+    }
+
+    // Add tools definition for explicit image generation requests
+    if (needsImage && (lastUserMessage.includes("diagram") || lastUserMessage.includes("architecture") || lastUserMessage.includes("visual"))) {
+      requestBody.tools = [
+        {
+          type: "function",
+          function: {
+            name: "generate_image",
+            description: "Generate a diagram or image to visualize concepts, architectures, or technical explanations",
+            parameters: {
+              type: "object",
+              properties: {
+                prompt: {
+                  type: "string",
+                  description: "Detailed description of the image to generate"
+                },
+                style: {
+                  type: "string",
+                  enum: ["technical_diagram", "conceptual", "infographic", "realistic"],
+                  description: "Visual style of the image"
+                }
+              },
+              required: ["prompt"],
+            }
+          }
+        }
+      ];
+    }
 
     const response = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
       method: "POST",
@@ -46,14 +107,7 @@ If users ask about technical capabilities, mention our living lab experiments an
         Authorization: `Bearer ${LOVABLE_API_KEY}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
-        model: "google/gemini-2.5-flash",
-        messages: [
-          { role: "system", content: systemPrompt },
-          ...messages,
-        ],
-        stream: true,
-      }),
+      body: JSON.stringify(requestBody),
     });
 
     if (!response.ok) {

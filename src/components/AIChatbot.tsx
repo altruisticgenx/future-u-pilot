@@ -9,6 +9,7 @@ import { useToast } from "@/hooks/use-toast";
 interface Message {
   role: "user" | "assistant";
   content: string;
+  images?: Array<{ type: "image_url"; image_url: { url: string } }>;
 }
 
 export const AIChatbot = () => {
@@ -16,7 +17,7 @@ export const AIChatbot = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: "assistant",
-      content: "Hi! I'm Future-U Assistant. Ask me about our quantum-AI solutions, policy compliance, or how to get started with a pilot project.",
+      content: "Hi! I'm Future-U Assistant. I can help you learn about our quantum-AI solutions, policy compliance, pilot projects, and even generate diagrams to visualize concepts. How can I assist you today?",
     },
   ]);
   const [input, setInput] = useState("");
@@ -98,10 +99,23 @@ export const AIChatbot = () => {
           try {
             const parsed = JSON.parse(jsonStr);
             const content = parsed.choices?.[0]?.delta?.content as string | undefined;
+            const images = parsed.choices?.[0]?.message?.images;
+            
             if (content) {
               assistantMessage += content;
-              setMessages([...newMessages, { role: "assistant", content: assistantMessage }]);
             }
+            
+            // Update message with both text and images
+            const updatedMessage: Message = {
+              role: "assistant",
+              content: assistantMessage || "Here's the generated image:",
+            };
+            
+            if (images && images.length > 0) {
+              updatedMessage.images = images;
+            }
+            
+            setMessages([...newMessages, updatedMessage]);
           } catch {
             textBuffer = line + "\n" + textBuffer;
             break;
@@ -204,6 +218,19 @@ export const AIChatbot = () => {
                       }`}
                     >
                       <p className="text-sm whitespace-pre-wrap">{msg.content}</p>
+                      {msg.images && msg.images.length > 0 && (
+                        <div className="mt-3 space-y-2">
+                          {msg.images.map((img, imgIdx) => (
+                            <img
+                              key={imgIdx}
+                              src={img.image_url.url}
+                              alt="Generated visualization"
+                              className="rounded-lg max-w-full h-auto border border-border shadow-lg"
+                              loading="lazy"
+                            />
+                          ))}
+                        </div>
+                      )}
                     </div>
                   </motion.div>
                 ))}
@@ -223,7 +250,7 @@ export const AIChatbot = () => {
                 <Input
                   value={input}
                   onChange={(e) => setInput(e.target.value)}
-                  placeholder="Ask me anything..."
+                  placeholder="Ask anything or request an image..."
                   disabled={isLoading}
                   className="flex-1"
                 />
