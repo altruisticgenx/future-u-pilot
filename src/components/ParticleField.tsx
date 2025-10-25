@@ -19,12 +19,24 @@ export const ParticleField = ({ count = 12 }: { count?: number }) => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) return;
 
+    // Detect device performance tier
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    const isTablet = isMobile && window.innerWidth >= 768;
+    
+    // Adjust particle count based on device
+    let adjustedCount = count;
+    if (isMobile && !isTablet) {
+      adjustedCount = Math.min(6, count); // Mobile: max 6 particles
+    } else if (isTablet) {
+      adjustedCount = Math.min(10, count); // Tablet: max 10 particles
+    }
+
     // Cache viewport height to avoid repeated layout queries
     const vh = window.innerHeight;
     setViewportHeight(vh);
     
     // Generate particles with cached dimensions
-    const newParticles = Array.from({ length: count }, (_, i) => ({
+    const newParticles = Array.from({ length: adjustedCount }, (_, i) => ({
       id: i,
       x: Math.random() * 100,
       delay: Math.random() * 5,

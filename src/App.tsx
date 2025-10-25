@@ -47,13 +47,21 @@ const QueryWrapper = lazy(() =>
 const App = () => (
   <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
     <TooltipProvider>
+      {/* Skip to main content link for accessibility */}
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:rounded-md focus:shadow-lg focus:ring-2 focus:ring-ring focus:ring-offset-2"
+      >
+        Skip to main content
+      </a>
       <Suspense fallback={null}>
         <Toaster />
         <Sonner />
       </Suspense>
       <BrowserRouter>
       <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div></div>}>
-        <Routes>
+        <main id="main-content">
+          <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/new" element={<IndexNew />} />
           <Route path="/storytelling" element={<Storytelling />} />
@@ -62,9 +70,10 @@ const App = () => (
           <Route path="/forms" element={<FormsDemo />} />
           <Route path="/auth" element={<QueryWrapper><Auth /></QueryWrapper>} />
           <Route path="/terminal" element={<QueryWrapper><Terminal /></QueryWrapper>} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </main>
       </Suspense>
     </BrowserRouter>
     </TooltipProvider>
