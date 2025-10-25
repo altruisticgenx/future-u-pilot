@@ -555,13 +555,44 @@ All colors MUST be HSL.
     transform: translateZ(0);
   }
   
-  /* Reduce repaints with containment */
+  /* Reduce repaints and isolate reflows with aggressive containment */
   .glass-card-3d,
   .btn-3d-teal,
   .btn-3d-purple,
   .btn-3d-gold,
   .btn-3d-cyan {
     contain: layout style paint;
+  }
+  
+  /* Isolate reflows in major sections */
+  section,
+  main,
+  header,
+  footer,
+  nav,
+  article,
+  aside {
+    contain: layout;
+  }
+  
+  /* Prevent Radix UI reflow propagation - Portal containers */
+  [data-radix-popper-content-wrapper],
+  [data-radix-portal],
+  [data-radix-dialog-content],
+  [data-radix-dropdown-menu-content],
+  [data-radix-select-content] {
+    contain: layout style paint;
+    will-change: transform;
+  }
+  
+  /* Overlay components optimization */
+  [role="dialog"],
+  [role="menu"],
+  [role="listbox"],
+  [role="combobox"],
+  [data-state="open"] {
+    contain: layout style paint;
+    will-change: transform, opacity;
   }
   
   @media (prefers-reduced-motion: reduce) {
