@@ -136,39 +136,36 @@ export default defineConfig(({ mode }) => ({
         drop_console: true,
         drop_debugger: true,
         pure_funcs: ['console.log', 'console.info', 'console.debug', 'console.trace'],
-        passes: 4, // Increased for better optimization
+        passes: 4,
         dead_code: true,
         unused: true,
         pure_getters: true,
         unsafe: true,
         unsafe_comps: true,
         unsafe_math: true,
-        // Additional tree-shaking options
-        side_effects: true, // Remove code with no side effects
-        collapse_vars: true, // Collapse single-use variables
-        reduce_vars: true, // Optimize variable assignments
-        hoist_props: true, // Hoist object properties
-        join_vars: true, // Join consecutive var statements
-        conditionals: true, // Optimize if/else and conditional expressions
-        comparisons: true, // Optimize comparisons
-        evaluate: true, // Evaluate constant expressions
-        booleans: true, // Optimize boolean expressions
-        loops: true, // Optimize loops
-        if_return: true, // Optimize if/return sequences
-        inline: 3, // Inline functions aggressively
-        drop_unreachable: true, // Remove unreachable code
+        collapse_vars: true,
+        reduce_vars: true,
+        hoist_props: true,
+        join_vars: true,
+        conditionals: true,
+        comparisons: true,
+        evaluate: true,
+        booleans: true,
+        loops: true,
+        if_return: true,
+        inline: 3,
       },
       mangle: {
         safari10: true,
         toplevel: true,
         properties: {
-          regex: /^_/, // Mangle properties starting with underscore
+          regex: /^_/,
         },
       },
       format: {
         comments: false,
         ecma: 2020,
-        ascii_only: true, // Use ASCII for better compatibility and smaller size
+        ascii_only: true,
       },
     },
     cssMinify: true,
