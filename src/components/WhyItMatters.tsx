@@ -27,7 +27,7 @@ const points = [
 
 export const WhyItMatters = () => {
   return (
-    <section className="py-16 sm:py-20 md:py-24 lg:py-32 border-t border-primary/20 relative overflow-hidden" aria-labelledby="why-matters-heading">
+    <section className="py-12 sm:py-16 md:py-20 border-t border-primary/20 relative overflow-hidden" aria-labelledby="why-matters-heading">
       {/* Animated gradient background */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/30 to-background" />
       <div className="absolute inset-0 opacity-20">
@@ -44,12 +44,12 @@ export const WhyItMatters = () => {
           className="text-center space-y-2 sm:space-y-3 mb-8 sm:mb-10 md:mb-12"
         >
           <h2 id="why-matters-heading" className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold">Why It Matters</h2>
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-foreground/90 max-w-2xl mx-auto px-4 leading-relaxed">
+          <p className="text-xs sm:text-sm md:text-base lg:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
             From friction to forward momentum
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 md:gap-8 max-w-5xl mx-auto">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6 max-w-5xl mx-auto">
           {points.map((point, index) => {
             const Icon = point.icon;
             return (
@@ -77,10 +77,10 @@ export const WhyItMatters = () => {
                 </motion.div>
                 
                 <div className="space-y-2">
-                  <p className="text-xs sm:text-sm font-bold uppercase tracking-wider text-foreground/90">
+                  <p className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-muted-foreground">
                     {point.label}
                   </p>
-                  <p className="text-sm sm:text-base md:text-lg text-foreground/90 leading-loose px-2">
+                  <p className="text-xs sm:text-sm md:text-base font-medium text-foreground leading-relaxed px-2">
                     {point.text}
                   </p>
                 </div>

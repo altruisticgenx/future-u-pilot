@@ -1,28 +1,19 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, LogIn } from "lucide-react";
-import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
+import { Menu, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { useNavigate } from "react-router-dom";
 import { ThemeToggle } from "@/components/ThemeToggle";
-import { AnimatedLogo } from "@/components/AnimatedLogo";
-import { useSmoothScroll } from "@/hooks/useSmoothScroll";
 
 export const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
-  const { scrollToElement } = useSmoothScroll();
   const navItems = [{
     label: "Home",
     href: "/"
   }, {
     label: "About Us",
     href: "/about"
-  }, {
-    label: "FAQ",
-    href: "/faq"
-  }, {
-    label: "Storytelling",
-    href: "/storytelling"
   }, {
     label: "Open Project(s)",
     href: "https://keen-hardboard-afe.notion.site/28cf142372ef8050ac86f4a3b4c813db?v=28cf142372ef8073b8cf000c0ebfca06&source=copy_link"
@@ -38,17 +29,10 @@ export const Navigation = () => {
       // External link
       window.open(href, "_blank", "noopener,noreferrer");
     } else if (href.startsWith("#")) {
-      // Scroll to section on current page
-      const elementId = href.substring(1);
-      if (window.location.pathname !== '/') {
-        // If not on homepage, navigate to homepage first
-        navigate('/');
-        setTimeout(() => {
-          scrollToElement(elementId);
-        }, 100);
-      } else {
-        scrollToElement(elementId);
-      }
+      const element = document.getElementById(href.substring(1));
+      element?.scrollIntoView({
+        behavior: "smooth"
+      });
     } else {
       // Use React Router navigate instead of window.location
       navigate(href);
@@ -56,7 +40,7 @@ export const Navigation = () => {
     setIsMobileMenuOpen(false);
   };
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 glass-light bg-background/90 border-b border-primary/20 shadow-2xl" 
+    <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-background/90 border-b border-primary/20 shadow-2xl" 
          style={{
            boxShadow: '0 8px 32px rgba(20, 184, 166, 0.15), 0 2px 8px rgba(0, 0, 0, 0.1)',
            transform: 'translateZ(0)',
@@ -66,8 +50,27 @@ export const Navigation = () => {
          aria-label="Main navigation">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <div className="flex items-center justify-between h-16 sm:h-18">
-          {/* Animated Logo with Globe */}
-          <AnimatedLogo onClick={() => navigate("/")} />
+          {/* Logo with 3D Transform */}
+          <motion.button 
+            onClick={() => navigate("/")}
+            className="text-lg sm:text-xl font-bold bg-gradient-hero bg-clip-text text-transparent relative" 
+            whileHover={{ 
+              scale: 1.05,
+              rotateY: 5,
+              transition: { duration: 0.3 }
+            }} 
+            whileTap={{ scale: 0.95 }}
+            style={{
+              textShadow: '0 4px 12px rgba(20, 184, 166, 0.4)',
+              transformStyle: 'preserve-3d',
+              perspective: '1000px'
+            }}
+            aria-label="AltruisticXAI Home"
+          >
+            <span className="relative block" style={{ transform: 'translateZ(20px)' }}>
+              AltruisticXAI
+            </span>
+          </motion.button>
 
           {/* Desktop Navigation with 3D Cards */}
           <div className="hidden lg:flex items-center gap-1">
@@ -100,29 +103,25 @@ export const Navigation = () => {
               <span className="relative z-10">{item.label}</span>
             </motion.button>)}
             
-            {/* Theme Controls */}
-            <div className="flex items-center gap-2">
-              <motion.div
-                whileHover={{ scale: 1.1, rotateZ: 180 }}
-                transition={{ duration: 0.3 }}
-              >
-                <ThemeToggle />
-              </motion.div>
-            </div>
+            {/* Theme Toggle with 3D effect */}
+            <motion.div
+              whileHover={{ scale: 1.1, rotateZ: 180 }}
+              transition={{ duration: 0.3 }}
+            >
+              <ThemeToggle />
+            </motion.div>
             
-            {/* Auth Button with Interactive Hover */}
-            <InteractiveHoverButton
+            {/* Auth Button with 3D depth */}
+            <Button
               size="sm"
-              variant="3d-teal"
-              icon={LogIn}
               onClick={() => navigate("/auth")}
-              className="ml-2"
+              className="ml-2 text-sm btn-3d-teal"
               style={{
                 boxShadow: '0 4px 12px rgba(20, 184, 166, 0.3)',
               }}
             >
               Login
-            </InteractiveHoverButton>
+            </Button>
           </div>
 
           {/* Mobile Menu Button - Enhanced with 3D */}
@@ -170,7 +169,7 @@ export const Navigation = () => {
             rotateX: -15
           }}
           transition={{ duration: 0.3, ease: "easeOut" }}
-          className="lg:hidden border-t border-border/50 glass-light overflow-hidden"
+          className="lg:hidden border-t border-border/50 backdrop-blur-xl overflow-hidden"
           style={{
             background: 'linear-gradient(180deg, rgba(20, 184, 166, 0.05), rgba(14, 116, 144, 0.08))',
             boxShadow: 'inset 0 1px 0 rgba(255, 255, 255, 0.1)',
@@ -197,12 +196,13 @@ export const Navigation = () => {
                 <span className="relative z-10">{item.label}</span>
               </motion.button>)}
               
-              {/* Mobile Theme Controls & Auth */}
+              {/* Mobile Theme Toggle & Auth */}
               <div className="flex gap-3 mt-6 pt-4 border-t border-border/30">
                 <motion.div
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.3 }}
+                  className="flex-shrink-0"
                 >
                   <ThemeToggle />
                 </motion.div>
@@ -212,16 +212,13 @@ export const Navigation = () => {
                   transition={{ delay: 0.35 }}
                   className="flex-1"
                 >
-                  <InteractiveHoverButton 
-                    className="w-full min-h-[52px]" 
-                    variant="3d-teal"
-                    size="lg"
-                    icon={LogIn}
+                  <Button 
+                    className="w-full min-h-[52px] btn-3d-teal text-base font-semibold" 
                     onClick={() => navigate("/auth")} 
                     aria-label="Login or Sign Up"
                   >
                     Login / Sign Up
-                  </InteractiveHoverButton>
+                  </Button>
                 </motion.div>
               </div>
             </div>

@@ -1,7 +1,6 @@
 import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
-import { resourceLoader } from "./lib/resource-hints";
 
 // Polyfill for requestIdleCallback
 if (!('requestIdleCallback' in window)) {
@@ -16,17 +15,22 @@ if (!('requestIdleCallback' in window)) {
   };
 }
 
-// Render app immediately for fast TTI (loading indicator now in CSS)
+// Show loading screen immediately
 const rootElement = document.getElementById("root")!;
+rootElement.innerHTML = `
+  <div style="min-height: 100vh; display: flex; align-items: center; justify-content: center; background: hsl(195 100% 5%);">
+    <div style="text-align: center;">
+      <div style="width: 48px; height: 48px; border: 3px solid hsl(173 80% 40%); border-top-color: transparent; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto;"></div>
+      <style>@keyframes spin { to { transform: rotate(360deg); }}</style>
+    </div>
+  </div>
+`;
+
+// Render app immediately for fast TTI
 createRoot(rootElement).render(<App />);
 
-// Preload critical resources immediately after initial render
-requestAnimationFrame(() => {
-  resourceLoader.preloadCritical();
-});
-
 // Initialize accessibility auditing in development
-if (import.meta.env.DEV) {
+if (process.env.NODE_ENV !== 'production') {
   import('./lib/accessibility').then(({ initAccessibilityAuditing }) => {
     initAccessibilityAuditing();
   });
@@ -50,25 +54,3 @@ window.addEventListener('touchstart', loadAnalytics, { once: true, passive: true
 
 // Fallback: load after 5 seconds if no interaction
 setTimeout(loadAnalytics, 5000);
-
-// Prefetch next-page resources on link hover (when idle)
-const setupPrefetching = () => {
-  document.addEventListener('mouseover', (e) => {
-    const link = (e.target as HTMLElement).closest('a');
-    if (!link || !link.href) return;
-    
-    const url = new URL(link.href);
-    if (url.origin !== window.location.origin) return;
-    
-    requestIdleCallback(() => {
-      resourceLoader.prefetchNextPage(url.pathname);
-    });
-  }, { passive: true });
-};
-
-// Setup prefetching after initial load
-if (document.readyState === 'complete') {
-  setupPrefetching();
-} else {
-  window.addEventListener('load', setupPrefetching, { once: true });
-}

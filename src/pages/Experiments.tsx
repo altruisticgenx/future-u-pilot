@@ -4,8 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Calendar, ArrowLeft, ExternalLink } from "lucide-react";
 import { Navigation } from "@/components/Navigation";
-import { useNavigate } from "react-router-dom";
-import { useSmoothScroll } from "@/hooks/useSmoothScroll";
 
 const experiments = [
   {
@@ -59,15 +57,12 @@ const experiments = [
 ];
 
 const Experiments = () => {
-  const navigate = useNavigate();
-  const { scrollToElement } = useSmoothScroll();
-  
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
       
       {/* Header */}
-      <header className="border-b border-border/50 bg-card/30 glass-light sticky top-16 sm:top-20 z-40 mt-16 sm:mt-20">
+      <header className="border-b border-border/50 bg-card/30 backdrop-blur-sm sticky top-16 sm:top-20 z-40 mt-16 sm:mt-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl py-4">
           <div className="flex items-center gap-4">
             <Button
@@ -201,10 +196,7 @@ const Experiments = () => {
                 <Button
                   size="lg"
                   onClick={() => {
-                    navigate('/');
-                    setTimeout(() => {
-                      scrollToElement('contact');
-                    }, 100);
+                    window.location.href = "/#contact";
                   }}
                   aria-label="Book a strategy session"
                 >

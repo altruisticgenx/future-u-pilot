@@ -1,22 +1,8 @@
 import type { Config } from "tailwindcss";
-import plugin from "tailwindcss/plugin";
-
-// Helper function to support opacity with HSL CSS variables
-const withOpacityValue = (variable: string) => {
-  return ({ opacityValue }: { opacityValue?: string }) => {
-    if (opacityValue !== undefined) {
-      return `hsl(var(${variable}) / ${opacityValue})`;
-    }
-    return `hsl(var(${variable}))`;
-  };
-};
 
 export default {
   darkMode: ["class"],
-  content: [
-    "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx,mdx}",
-  ],
+  content: ["./pages/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./app/**/*.{ts,tsx}", "./src/**/*.{ts,tsx}"],
   prefix: "",
   future: {
     hoverOnlyWhenSupported: true,
@@ -127,256 +113,85 @@ export default {
         },
       },
       colors: {
-        border: withOpacityValue("--border"),
-        input: withOpacityValue("--input"),
-        ring: withOpacityValue("--ring"),
-        background: withOpacityValue("--background"),
-        foreground: withOpacityValue("--foreground"),
-        base: {
-          100: withOpacityValue("--base-100"),
-          200: withOpacityValue("--base-200"),
-          300: withOpacityValue("--base-300"),
-          DEFAULT: withOpacityValue("--base"),
-          content: withOpacityValue("--base-content"),
-        },
+        border: "hsl(var(--border))",
+        input: "hsl(var(--input))",
+        ring: "hsl(var(--ring))",
+        background: "hsl(var(--background))",
+        foreground: "hsl(var(--foreground))",
         primary: {
-          100: withOpacityValue("--primary-100"),
-          200: withOpacityValue("--primary-200"),
-          300: withOpacityValue("--primary-300"),
-          DEFAULT: withOpacityValue("--primary"),
-          foreground: withOpacityValue("--primary-foreground"),
-          glow: withOpacityValue("--primary-glow"),
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
+          glow: "hsl(var(--primary-glow))",
         },
         secondary: {
-          100: withOpacityValue("--secondary-100"),
-          200: withOpacityValue("--secondary-200"),
-          300: withOpacityValue("--secondary-300"),
-          DEFAULT: withOpacityValue("--secondary"),
-          foreground: withOpacityValue("--secondary-foreground"),
-        },
-        accent: {
-          100: withOpacityValue("--accent-100"),
-          200: withOpacityValue("--accent-200"),
-          300: withOpacityValue("--accent-300"),
-          DEFAULT: withOpacityValue("--accent"),
-          foreground: withOpacityValue("--accent-foreground"),
-        },
-        neutral: {
-          100: withOpacityValue("--neutral-100"),
-          200: withOpacityValue("--neutral-200"),
-          300: withOpacityValue("--neutral-300"),
-          DEFAULT: withOpacityValue("--neutral"),
-          content: withOpacityValue("--neutral-content"),
-        },
-        info: {
-          100: withOpacityValue("--info-100"),
-          200: withOpacityValue("--info-200"),
-          300: withOpacityValue("--info-300"),
-          DEFAULT: withOpacityValue("--info"),
-          content: withOpacityValue("--info-content"),
-        },
-        success: {
-          100: withOpacityValue("--success-100"),
-          200: withOpacityValue("--success-200"),
-          300: withOpacityValue("--success-300"),
-          DEFAULT: withOpacityValue("--success"),
-          content: withOpacityValue("--success-content"),
-        },
-        warning: {
-          100: withOpacityValue("--warning-100"),
-          200: withOpacityValue("--warning-200"),
-          300: withOpacityValue("--warning-300"),
-          DEFAULT: withOpacityValue("--warning"),
-          content: withOpacityValue("--warning-content"),
-        },
-        error: {
-          100: withOpacityValue("--error-100"),
-          200: withOpacityValue("--error-200"),
-          300: withOpacityValue("--error-300"),
-          DEFAULT: withOpacityValue("--error"),
-          content: withOpacityValue("--error-content"),
+          DEFAULT: "hsl(var(--secondary))",
+          foreground: "hsl(var(--secondary-foreground))",
         },
         destructive: {
-          DEFAULT: withOpacityValue("--destructive"),
-          foreground: withOpacityValue("--destructive-foreground"),
+          DEFAULT: "hsl(var(--destructive))",
+          foreground: "hsl(var(--destructive-foreground))",
         },
         muted: {
-          DEFAULT: withOpacityValue("--muted"),
-          foreground: withOpacityValue("--muted-foreground"),
+          DEFAULT: "hsl(var(--muted))",
+          foreground: "hsl(var(--muted-foreground))",
+        },
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
         },
         popover: {
-          DEFAULT: withOpacityValue("--popover"),
-          foreground: withOpacityValue("--popover-foreground"),
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
         },
         card: {
-          DEFAULT: withOpacityValue("--card"),
-          foreground: withOpacityValue("--card-foreground"),
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
         },
         sidebar: {
-          DEFAULT: withOpacityValue("--sidebar-background"),
-          foreground: withOpacityValue("--sidebar-foreground"),
-          primary: withOpacityValue("--sidebar-primary"),
-          "primary-foreground": withOpacityValue("--sidebar-primary-foreground"),
-          accent: withOpacityValue("--sidebar-accent"),
-          "accent-foreground": withOpacityValue("--sidebar-accent-foreground"),
-          border: withOpacityValue("--sidebar-border"),
-          ring: withOpacityValue("--sidebar-ring"),
+          DEFAULT: "hsl(var(--sidebar-background))",
+          foreground: "hsl(var(--sidebar-foreground))",
+          primary: "hsl(var(--sidebar-primary))",
+          "primary-foreground": "hsl(var(--sidebar-primary-foreground))",
+          accent: "hsl(var(--sidebar-accent))",
+          "accent-foreground": "hsl(var(--sidebar-accent-foreground))",
+          border: "hsl(var(--sidebar-border))",
+          ring: "hsl(var(--sidebar-ring))",
         },
         gradient: {
-          start: withOpacityValue("--gradient-start"),
-          mid: withOpacityValue("--gradient-mid"),
-          end: withOpacityValue("--gradient-end"),
+          start: "hsl(var(--gradient-start))",
+          mid: "hsl(var(--gradient-mid))",
+          end: "hsl(var(--gradient-end))",
         },
         terminal: {
-          bg: withOpacityValue("--terminal-bg"),
-          surface: withOpacityValue("--terminal-surface"),
-          border: withOpacityValue("--terminal-border"),
-          text: withOpacityValue("--terminal-text"),
+          bg: "hsl(var(--terminal-bg))",
+          surface: "hsl(var(--terminal-surface))",
+          border: "hsl(var(--terminal-border))",
+          text: "hsl(var(--terminal-text))",
         },
         cmd: {
-          success: withOpacityValue("--cmd-success"),
-          error: withOpacityValue("--cmd-error"),
-          info: withOpacityValue("--cmd-info"),
-          warning: withOpacityValue("--cmd-warning"),
+          success: "hsl(var(--cmd-success))",
+          error: "hsl(var(--cmd-error))",
+          info: "hsl(var(--cmd-info))",
+          warning: "hsl(var(--cmd-warning))",
         },
         syntax: {
-          keyword: withOpacityValue("--syntax-keyword"),
-          string: withOpacityValue("--syntax-string"),
-          number: withOpacityValue("--syntax-number"),
-          comment: withOpacityValue("--syntax-comment"),
-        },
-        glass: {
-          bg: withOpacityValue("--glass-bg"),
-          border: withOpacityValue("--glass-border"),
+          keyword: "hsl(var(--syntax-keyword))",
+          string: "hsl(var(--syntax-string))",
+          number: "hsl(var(--syntax-number))",
+          comment: "hsl(var(--syntax-comment))",
         },
       },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
-        box: "var(--radius-box)",
-        field: "var(--radius-field)",
-        selector: "var(--radius-selector)",
-      },
-      fontFamily: {
-        sans: ["Rajdhani", "Inter", "var(--font-sans)"],
-        display: ["Rajdhani", "var(--font-display)"],
-        mono: ["Fira Code", "var(--font-mono)"],
-        cyber: ["Rajdhani", "sans-serif"],
-        code: ["Fira Code", "monospace"],
-      },
-      fontSize: {
-        xs: "var(--text-xs)",
-        sm: "var(--text-sm)",
-        base: "var(--text-base)",
-        lg: "var(--text-lg)",
-        xl: "var(--text-xl)",
-        "2xl": "var(--text-2xl)",
-        "3xl": "var(--text-3xl)",
-        "4xl": "var(--text-4xl)",
-      },
-      lineHeight: {
-        tight: "var(--leading-tight)",
-        normal: "var(--leading-normal)",
-        relaxed: "var(--leading-relaxed)",
-      },
-      boxShadow: {
-        "elevation-0": "var(--elevation-0)",
-        "elevation-1": "var(--elevation-1)",
-        "elevation-2": "var(--elevation-2)",
-        "elevation-3": "var(--elevation-3)",
-        "elevation-4": "var(--elevation-4)",
-        "elevation-5": "var(--elevation-5)",
-        depth: "var(--depth-shadow)",
-        "depth-hover": "var(--depth-shadow-hover)",
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-hero": "linear-gradient(135deg, hsl(var(--gradient-start)), hsl(var(--gradient-mid)), hsl(var(--gradient-end)))",
         "gradient-ocean": "linear-gradient(135deg, hsl(195 85% 16%) 0%, hsl(190 84% 29%) 50%, hsl(173 80% 40%) 100%)",
       },
-      transitionDuration: {
-        instant: "var(--motion-instant)",
-        fast: "var(--motion-fast)",
-        medium: "var(--motion-medium)",
-        slow: "var(--motion-slow)",
-        slower: "var(--motion-slower)",
-      },
-      transitionTimingFunction: {
-        standard: "var(--easing-standard)",
-        emphatic: "var(--easing-emphatic)",
-        decelerate: "var(--easing-decelerate)",
-        accelerate: "var(--easing-accelerate)",
-        smooth: "var(--easing-smooth)",
-      },
-      textShadow: {
-        glow: "var(--text-glow-primary)",
-        "glow-accent": "var(--text-glow-accent)",
-        "glow-secondary": "var(--text-glow-secondary)",
-        none: "none",
-      },
     },
   },
-  plugins: [
-    require("tailwindcss-animate"),
-    plugin(function({ addUtilities, matchUtilities, theme }) {
-      // Glassmorphism utilities
-      addUtilities({
-        ".bg-glass": {
-          "background-color": "hsl(var(--glass-bg))",
-        },
-        ".border-glass": {
-          "border-color": "hsl(var(--glass-border))",
-        },
-        // Elevation utilities
-        ".elevation-0": {
-          "box-shadow": "var(--elevation-0)",
-        },
-        ".elevation-1": {
-          "box-shadow": "var(--elevation-1)",
-        },
-        ".elevation-2": {
-          "box-shadow": "var(--elevation-2)",
-        },
-        ".elevation-3": {
-          "box-shadow": "var(--elevation-3)",
-        },
-        ".elevation-4": {
-          "box-shadow": "var(--elevation-4)",
-        },
-        ".elevation-5": {
-          "box-shadow": "var(--elevation-5)",
-        },
-        // Text glow utilities
-        ".text-glow": {
-          "text-shadow": "var(--text-glow-primary)",
-        },
-        ".text-glow-accent": {
-          "text-shadow": "var(--text-glow-accent)",
-        },
-        ".text-glow-secondary": {
-          "text-shadow": "var(--text-glow-secondary)",
-        },
-        // Cyberpunk boot-up animation
-        ".cyber-fade-in": {
-          "animation": "fadeIn 1s ease-out forwards",
-          "opacity": "0",
-        },
-        // Performance hint
-        ".will-change-transform": {
-          "will-change": "transform",
-        },
-      });
-      
-      // Dynamic text shadow utilities
-      matchUtilities(
-        {
-          "text-shadow": (value) => ({
-            textShadow: value,
-          }),
-        },
-        { values: theme("textShadow") }
-      );
-    }),
-  ],
+  plugins: [require("tailwindcss-animate")],
 } satisfies Config;

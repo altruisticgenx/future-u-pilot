@@ -1,13 +1,8 @@
 import { motion } from "framer-motion";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Calendar, Sparkles, Video } from "lucide-react";
 import { TypeAnimation } from 'react-type-animation';
-import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
-import { usePerformanceMonitor } from "@/hooks/usePerformanceMonitor";
-import { StatusBadge } from "@/components/hero/StatusBadge";
-import { TerminalWindow } from "@/components/hero/TerminalWindow";
-import { HeroCTAGroup } from "@/components/hero/HeroCTAGroup";
-import { useNavigate } from "react-router-dom";
-import { useSmoothScroll } from "@/hooks/useSmoothScroll";
 
 const terminalCommands = [
   "$ quantum-check --infrastructure",
@@ -27,31 +22,14 @@ const terminalCommands = [
 ];
 
 export const Hero = () => {
-  const heroRef = useRef<HTMLElement>(null);
-  const navigate = useNavigate();
-  const { scrollToElement } = useSmoothScroll();
   const [cmdIndex, setCmdIndex] = useState(0);
   const [animationsReady, setAnimationsReady] = useState(false);
   const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  
-  // Intersection Observer for lazy animations
-  const isVisible = useIntersectionObserver(heroRef, {
-    threshold: 0.2,
-    freezeOnceVisible: true,
-  });
-
-  // Performance monitoring (dev only)
-  const { shouldReduceAnimations } = usePerformanceMonitor('Hero');
-  
-  // Combine user preference with performance detection
-  const shouldAnimate = !prefersReducedMotion && !shouldReduceAnimations && isVisible;
 
   useEffect(() => {
-    // Only start animations when component is visible
-    if (!isVisible) return;
     const timer = setTimeout(() => setAnimationsReady(true), 100);
     return () => clearTimeout(timer);
-  }, [isVisible]);
+  }, []);
 
   useEffect(() => {
     if (!animationsReady) return;
@@ -62,21 +40,47 @@ export const Hero = () => {
   }, [animationsReady]);
 
   const scrollToContact = () => {
-    scrollToElement("contact");
+    const contactSection = document.getElementById("contact");
+    contactSection?.scrollIntoView({ behavior: "smooth" });
   };
 
   const navigateToAbout = () => {
-    navigate('/about');
+    window.location.href = "/about";
   };
 
-  const handleVideoClick = () => {
-    window.open('https://drive.google.com/file/d/1vuiN0NYOvToHIxkqjSSFFEYLitv-zyK7/view?usp=sharing', '_blank');
+  const springConfig = {
+    type: "spring" as const,
+    stiffness: 260,
+    damping: 20,
+    mass: 1,
+  };
+
+  const buttonVariants = {
+    initial: prefersReducedMotion ? {} : { scale: 0, opacity: 0 },
+    animate: prefersReducedMotion 
+      ? { scale: 1, opacity: 1 }
+      : { 
+          scale: 1, 
+          opacity: 1,
+          transition: {
+            ...springConfig,
+            delay: 0.5,
+          }
+        },
+    hover: prefersReducedMotion ? {} : {
+      scale: 1.05,
+      y: -2,
+      transition: { duration: 0.2 }
+    },
+    tap: prefersReducedMotion ? {} : {
+      scale: 0.98,
+      y: 0,
+      transition: { duration: 0.15 }
+    }
   };
 
   return (
     <section 
-      ref={heroRef}
-      id="hero-section"
       className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 sm:pt-20"
       role="region"
       aria-labelledby="hero-heading"
@@ -85,15 +89,15 @@ export const Hero = () => {
       <div className="absolute inset-0 hero-quantum" />
       
       {/* Rotating Light Overlay */}
-      {animationsReady && shouldAnimate && (
-        <div className="hero-light-overlay" aria-hidden="true" />
+      {animationsReady && !prefersReducedMotion && (
+        <div className="hero-light-overlay" />
       )}
       
       {/* Noise Texture Overlay */}
       <div className="noise-overlay" />
       
       {/* Floating Glass Blur Panels - 4% opacity */}
-      {animationsReady && shouldAnimate && (
+      {animationsReady && !prefersReducedMotion && (
         <>
           <motion.div
             className="glass-blur-4 absolute rounded-2xl hidden md:block"
@@ -102,9 +106,6 @@ export const Hero = () => {
               height: '150px',
               top: '15%',
               left: '8%',
-              transform: 'translateZ(0)',
-              backfaceVisibility: 'hidden',
-              willChange: 'transform',
             }}
             animate={{
               x: [0, 30, 0],
@@ -159,15 +160,12 @@ export const Hero = () => {
       )}
       
       {/* 3D Layered Floating Orbs - Multiple Depths */}
-      {animationsReady && shouldAnimate && (
+      {animationsReady && !prefersReducedMotion && (
         <>
           <motion.div
             className="absolute top-20 left-10 w-64 h-64 md:w-72 md:h-72 rounded-full blur-3xl"
             style={{
               background: 'radial-gradient(circle, hsl(173 80% 40% / 0.25), transparent)',
-              transform: 'translateZ(0)',
-              backfaceVisibility: 'hidden',
-              willChange: 'transform, opacity',
             }}
             animate={{
               y: [0, 30, 0],
@@ -228,11 +226,20 @@ export const Hero = () => {
             className="space-y-6 sm:space-y-8"
           >
             {/* Status tag - Spring Bounce Animation */}
-            <StatusBadge 
-              status="Experiment status: active"
-              animationsReady={animationsReady}
-              prefersReducedMotion={!shouldAnimate}
-            />
+            <motion.div
+              initial={prefersReducedMotion ? {} : { opacity: 0, scale: 0.9 }}
+              animate={prefersReducedMotion ? { opacity: 1, scale: 1 } : { opacity: 1, scale: 1 }}
+              transition={prefersReducedMotion ? {} : { delay: 0.2, ...springConfig }}
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 backdrop-blur-sm animate-spring-bounce"
+            >
+              <span
+                className="w-2 h-2 rounded-full bg-primary animate-pulse-soft"
+                aria-hidden="true"
+              />
+              <span className="text-sm font-medium text-primary">
+                Experiment status: active
+              </span>
+            </motion.div>
 
             {/* Headline with 3D Text Shadow */}
             <div className="space-y-3 sm:space-y-4">
@@ -240,14 +247,11 @@ export const Hero = () => {
                 id="hero-heading"
                 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight"
                 style={{
-                  minHeight: '3em',
-                  height: '3em',
+                  minHeight: '2.5em',
                   textShadow: '0 2px 10px rgba(20, 184, 166, 0.3), 0 4px 20px rgba(14, 116, 144, 0.2)',
-                  transform: 'translateZ(0)',
-                  backfaceVisibility: 'hidden',
                 }}
               >
-                <span className="block text-primary-foreground font-bold">
+                <span className="block text-white">
                   {animationsReady ? (
                     <TypeAnimation
                       sequence={[
@@ -288,7 +292,7 @@ export const Hero = () => {
               </h1>
               
               <motion.p 
-                className="text-sm sm:text-base md:text-lg text-primary-foreground/95 max-w-2xl leading-relaxed font-medium"
+                className="text-sm sm:text-base md:text-lg text-white/90 max-w-2xl leading-relaxed"
                 initial={prefersReducedMotion ? {} : { opacity: 0, rotateX: -10 }}
                 animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, rotateX: 0 }}
                 transition={prefersReducedMotion ? {} : { delay: 0.3, duration: 0.4 }}
@@ -297,23 +301,160 @@ export const Hero = () => {
               </motion.p>
             </div>
 
-            {/* CTAs - Interactive Hover Buttons */}
-            <HeroCTAGroup
-              onBookStrategy={scrollToContact}
-              onAbout={navigateToAbout}
-              onVideo={handleVideoClick}
-              animationsReady={animationsReady}
-              prefersReducedMotion={!shouldAnimate}
-            />
+            {/* CTAs - Smaller 3D Flowing Buttons with Unique Colors */}
+            <motion.div 
+              className="flex flex-col sm:flex-row gap-2 items-stretch sm:items-center"
+              initial={prefersReducedMotion ? {} : { opacity: 0, y: 10 }}
+              animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, y: 0 }}
+              transition={prefersReducedMotion ? {} : { 
+                delay: 0.6,
+                staggerChildren: 0.1 
+              }}
+            >
+              <motion.div
+                variants={buttonVariants}
+                initial="initial"
+                animate="animate"
+                whileHover="hover"
+                whileTap="tap"
+              >
+                <Button
+                  onClick={scrollToContact}
+                  className="btn-3d-teal text-[10px] sm:text-xs px-3 py-2 font-semibold w-full sm:w-auto min-w-[90px] flex items-center justify-center gap-1.5 shadow-lg"
+                  data-analytics-id="cta_book_strategy"
+                  data-ph-capture-attribute-button-type="book"
+                  data-ph-capture-attribute-button-position="hero-primary"
+                  aria-label="Book a strategy session"
+                >
+                  <Calendar className="h-3 w-3 animate-pulse" aria-hidden="true" />
+                  Book
+                </Button>
+              </motion.div>
+              
+              <motion.div
+                variants={buttonVariants}
+                initial="initial"
+                animate="animate"
+                whileHover="hover"
+                whileTap="tap"
+                transition={prefersReducedMotion ? {} : { delay: 0.7 }}
+              >
+                <Button
+                  onClick={navigateToAbout}
+                  className="btn-3d-purple text-[10px] sm:text-xs px-3 py-2 font-semibold w-full sm:w-auto min-w-[90px] flex items-center justify-center gap-1.5 shadow-lg"
+                  data-ph-capture-attribute-button-type="about"
+                  data-ph-capture-attribute-button-position="hero-secondary"
+                  aria-label="Learn about our approach"
+                >
+                  <Sparkles className="h-3 w-3 animate-rotate-3d" aria-hidden="true" />
+                  About
+                </Button>
+              </motion.div>
+
+              <motion.div
+                variants={buttonVariants}
+                initial="initial"
+                animate="animate"
+                whileHover="hover"
+                whileTap="tap"
+                transition={prefersReducedMotion ? {} : { delay: 0.8 }}
+              >
+                <Button
+                  onClick={() => window.open('https://drive.google.com/file/d/1vuiN0NYOvToHIxkqjSSFFEYLitv-zyK7/view?usp=sharing', '_blank')}
+                  className="btn-3d-cyan text-[10px] sm:text-xs px-3 py-2 font-semibold w-full sm:w-auto min-w-[90px] flex items-center justify-center gap-1.5 shadow-lg"
+                  data-ph-capture-attribute-button-type="video"
+                  data-ph-capture-attribute-button-position="hero-tertiary"
+                  aria-label="Watch intro video"
+                >
+                  <Video className="h-3 w-3 animate-pulse-soft" aria-hidden="true" />
+                  Video
+                </Button>
+              </motion.div>
+            </motion.div>
           </motion.div>
 
           {/* Right column - 3D Terminal with Parallax & Glow */}
-          <TerminalWindow
-            cmdIndex={cmdIndex}
-            commands={terminalCommands}
-            animationsReady={animationsReady}
-            prefersReducedMotion={!shouldAnimate}
-          />
+          <motion.div
+            initial={prefersReducedMotion ? {} : { opacity: 0, x: 20 }}
+            animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, x: 0 }}
+            transition={prefersReducedMotion ? {} : { duration: 0.6, delay: 0.3 }}
+            className="relative w-full"
+            whileHover={prefersReducedMotion ? {} : {
+              rotateY: 5,
+              rotateX: -2,
+              transition: { duration: 0.3 }
+            }}
+            style={{ perspective: '1000px' }}
+          >
+            <motion.div
+              className="rounded-lg backdrop-blur-md bg-card/60 border border-border/50 shadow-xl overflow-hidden max-w-md mx-auto"
+              animate={prefersReducedMotion ? {} : {
+                y: [0, -10, 0],
+                transition: {
+                  duration: 6,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }
+              }}
+              style={{
+                minHeight: '200px',
+                boxShadow: '0 0 40px hsl(173 80% 40% / 0.3), 0 8px 32px rgba(0, 0, 0, 0.4)',
+              }}
+            >
+              {/* Terminal header */}
+              <div className="bg-muted/50 border-b border-border/50 px-2 sm:px-3 py-1.5 sm:py-2 flex items-center gap-2">
+                <div className="flex gap-1 sm:gap-1.5">
+                  <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-red-500" />
+                  <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-yellow-500" />
+                  <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-green-500 animate-pulse" />
+                </div>
+                <span className="text-[10px] sm:text-xs text-muted-foreground ml-1 sm:ml-2 font-mono">
+                  quantum.sh
+                </span>
+              </div>
+              
+              {/* Terminal content with scanline effect */}
+              <div className="relative p-2 sm:p-3 font-mono text-[9px] xs:text-[10px] sm:text-xs min-h-[160px] sm:min-h-[200px] bg-terminal-bg/50 overflow-hidden">
+                {/* Scanline animation overlay */}
+                {animationsReady && !prefersReducedMotion && (
+                  <motion.div
+                    className="absolute inset-0 pointer-events-none"
+                    style={{
+                      background: 'linear-gradient(0deg, transparent 0%, hsl(173 80% 60% / 0.05) 50%, transparent 100%)',
+                      height: '100%',
+                    }}
+                    animate={{
+                      y: ['-100%', '200%'],
+                    }}
+                    transition={{
+                      duration: 4,
+                      repeat: Infinity,
+                      ease: "linear",
+                    }}
+                  />
+                )}
+                <div className="relative z-10 space-y-0.5 sm:space-y-1">
+                  {terminalCommands.slice(0, Math.min(cmdIndex + 1, 8)).map((cmd, i) => (
+                    <motion.div
+                      key={i}
+                      initial={prefersReducedMotion ? {} : { opacity: 0, x: -10 }}
+                      animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, x: 0 }}
+                      transition={prefersReducedMotion ? {} : { delay: i * 0.05 }}
+                      className={`leading-relaxed ${
+                        cmd.startsWith('$') ? 'text-cmd-info font-bold' :
+                        cmd.startsWith('⚡') || cmd.startsWith('🤖') || cmd.startsWith('🔬') ? 'text-cmd-warning' :
+                        cmd.startsWith('✓') ? 'text-cmd-success' :
+                        'text-terminal-text/50'
+                      }`}
+                    >
+                      {cmd}
+                    </motion.div>
+                  ))}
+                  <span className="inline-block w-1 h-2.5 sm:w-1.5 sm:h-3 bg-cmd-success animate-pulse" />
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
     </section>

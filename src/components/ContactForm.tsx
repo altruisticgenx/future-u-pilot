@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -120,17 +120,16 @@ export const ContactForm = () => {
           <Send className="h-12 w-12 text-primary" />
         </div>
         <h3 className="text-3xl font-bold">Thank You!</h3>
-        <p className="text-lg text-foreground/80 max-w-md mx-auto font-medium">
+        <p className="text-lg text-muted-foreground max-w-md mx-auto">
           We've received your inquiry and will reach out within 24 hours to plan your next 8 weeks.
         </p>
-        <InteractiveHoverButton
-          variant="3d-teal"
-          size="default"
+        <Button
+          variant="outline"
           onClick={() => setIsSuccess(false)}
           className="mt-4"
         >
           Submit Another Inquiry
-        </InteractiveHoverButton>
+        </Button>
       </motion.div>
     );
   }
@@ -212,7 +211,7 @@ export const ContactForm = () => {
             <SelectTrigger id="sector" className="h-9 text-sm bg-card/60 border-2 shadow-[4px_4px_0px_0px_hsl(var(--primary)/0.2)]" aria-invalid={!!errors.sector}>
               <SelectValue placeholder="Select sector" />
             </SelectTrigger>
-            <SelectContent className="bg-background border-2 z-50">
+            <SelectContent>
               {sectors.map((sector) => (
                 <SelectItem key={sector} value={sector}>
                   {sector}
@@ -232,7 +231,7 @@ export const ContactForm = () => {
             <SelectTrigger id="timeline" className="h-9 text-sm bg-card/60 border-2 shadow-[4px_4px_0px_0px_hsl(var(--accent)/0.2)]" aria-invalid={!!errors.timeline}>
               <SelectValue placeholder="Select timeline" />
             </SelectTrigger>
-            <SelectContent className="bg-background border-2 z-50">
+            <SelectContent>
               {timelines.map((timeline) => (
                 <SelectItem key={timeline} value={timeline}>
                   {timeline}
@@ -313,17 +312,21 @@ export const ContactForm = () => {
       )}
 
       {/* Submit */}
-      <InteractiveHoverButton
+      <Button
         type="submit"
-        variant="3d-teal"
         size="default"
-        hasLighthouse
-        icon={Send}
         disabled={isSubmitting}
-        className="w-full sm:w-auto shadow-[6px_6px_0px_0px_hsl(var(--primary)/0.5)]"
+        className="w-full sm:w-auto shadow-[6px_6px_0px_0px_hsl(var(--primary)/0.5)] hover:shadow-[8px_8px_0px_0px_hsl(var(--primary)/0.6)] hover:translate-x-[-2px] hover:translate-y-[-2px] transition-all border-2"
       >
-        {isSubmitting ? "Submitting..." : "Submit Inquiry"}
-      </InteractiveHoverButton>
+        {isSubmitting ? (
+          "Submitting..."
+        ) : (
+          <>
+            Submit Inquiry
+            <Send className="ml-2 h-4 w-4" />
+          </>
+        )}
+      </Button>
     </motion.form>
   );
 };

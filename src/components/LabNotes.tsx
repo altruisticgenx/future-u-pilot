@@ -2,7 +2,6 @@ import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Calendar, ArrowRight } from "lucide-react";
-import { useNavigate } from "react-router-dom";
 
 const experiments = [
   {
@@ -23,7 +22,6 @@ const experiments = [
 ];
 
 export const LabNotes = () => {
-  const navigate = useNavigate();
   return (
     <section className="py-12 sm:py-16 md:py-20 relative overflow-hidden" aria-labelledby="lab-notes-heading">
       <div className="absolute inset-0 bg-gradient-to-t from-primary/5 to-transparent" />
@@ -57,21 +55,9 @@ export const LabNotes = () => {
               }}
               viewport={{ once: true }}
               whileHover={{ scale: 1.03, y: -5, rotateY: 3 }}
-              style={{ 
-                transformStyle: 'preserve-3d',
-                transform: 'translateZ(0)',
-                backfaceVisibility: 'hidden',
-                willChange: 'transform, opacity'
-              }}
+              style={{ transformStyle: 'preserve-3d' }}
             >
-              <Card 
-                className="h-full glass-card-3d bg-card/70 border-2 border-primary/20 hover:border-primary/50 transition-all duration-300 hover:shadow-xl overflow-hidden relative group"
-                style={{
-                  minHeight: '220px',
-                  transform: 'translateZ(0)',
-                  backfaceVisibility: 'hidden',
-                }}
-              >
+              <Card className="h-full glass-card-3d bg-card/70 border-2 border-primary/20 hover:border-primary/50 transition-all duration-300 hover:shadow-xl overflow-hidden relative group">
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 <CardContent className="p-4 sm:p-5 md:p-6 space-y-3 relative z-10">
                   <motion.div 
@@ -120,7 +106,7 @@ export const LabNotes = () => {
             variant="outline"
             size="lg"
             className="btn-3d-primary text-xs sm:text-sm"
-            onClick={() => navigate("/storytelling")}
+            onClick={() => window.location.href = "/storytelling"}
             aria-label="View all experiments"
           >
             View All Experiments

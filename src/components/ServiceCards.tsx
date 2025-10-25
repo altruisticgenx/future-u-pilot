@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
+import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { 
@@ -169,7 +169,7 @@ export const ServiceCards = () => {
   const [expandedCard, setExpandedCard] = useState<string | null>(null);
 
   return (
-    <section id="services" className="py-16 sm:py-20 md:py-24 lg:py-32 relative overflow-hidden" aria-labelledby="services-heading">
+    <section id="services" className="py-12 sm:py-16 md:py-20 relative overflow-hidden" aria-labelledby="services-heading">
       <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/5 to-background" />
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-1/4 left-10 w-96 h-96 bg-primary/30 rounded-full blur-3xl animate-float" />
@@ -185,12 +185,12 @@ export const ServiceCards = () => {
           className="text-center space-y-2 sm:space-y-3 mb-8 sm:mb-10"
         >
           <h2 id="services-heading" className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold">Current Initiatives</h2>
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-foreground/90 max-w-3xl mx-auto px-4 leading-relaxed">
+          <p className="text-xs sm:text-sm md:text-base lg:text-lg text-muted-foreground max-w-3xl mx-auto px-4">
             Empowering Quantum & AI Literacy through active programs across education, government, energy, and enterprise sectors worldwide.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 md:gap-6 lg:gap-8 mb-8 sm:mb-10 md:mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-5 mb-6 sm:mb-8">
           {services.map((service, index) => (
             <motion.div
               key={service.id}
@@ -201,41 +201,21 @@ export const ServiceCards = () => {
             >
               <Card 
                 className={cn(
-                  "group relative overflow-hidden transition-all duration-500 h-full",
-                  "hover:shadow-[8px_8px_0px_0px_hsl(var(--primary)/0.3),0_10px_40px_hsl(var(--primary)/0.2)]",
-                  "hover:-translate-y-2 hover:rotate-[0.5deg]",
-                  "border-2 shadow-[4px_4px_0px_0px_hsl(var(--border))]",
+                  "group relative overflow-hidden transition-all duration-300 h-full",
+                  "hover:shadow-[6px_6px_0px_0px_hsl(var(--primary)/0.25)] hover:-translate-y-1",
+                  "border-2 shadow-[3px_3px_0px_0px_hsl(var(--border))]",
                   "glass-card-3d bg-gradient-to-br backdrop-blur-sm",
-                  "transform-gpu perspective-1000",
                   service.color,
-                  expandedCard === service.id ? "ring-2 ring-primary shadow-[8px_8px_0px_0px_hsl(var(--primary)/0.4)] scale-[1.02]" : ""
+                  expandedCard === service.id ? "ring-2 ring-primary shadow-[6px_6px_0px_0px_hsl(var(--primary)/0.35)]" : ""
                 )}
-                style={{ 
-                  contain: 'layout style paint',
-                  transformStyle: 'preserve-3d',
-                  transition: 'all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)',
-                  minHeight: '320px',
-                  transform: 'translateZ(0)',
-                  backfaceVisibility: 'hidden',
-                  willChange: 'transform, opacity'
-                }}
+                style={{ contain: 'layout style paint' }}
               >
                 <CardHeader className="relative space-y-3 pb-3 sm:pb-4">
                   <div className="flex items-start justify-between gap-3 sm:gap-4">
                     <motion.div 
                       className="p-2 sm:p-2.5 rounded-lg bg-background/80 backdrop-blur-sm w-fit border-2 shadow-[2px_2px_0px_0px_hsl(var(--border))]"
-                      whileHover={{ 
-                        rotate: [0, -10, 10, -10, 0],
-                        scale: [1, 1.1, 1.1, 1.1, 1],
-                        y: [0, -4, -4, -4, 0]
-                      }}
-                      transition={{ 
-                        duration: 0.6,
-                        times: [0, 0.2, 0.4, 0.6, 1]
-                      }}
-                      style={{
-                        transformStyle: 'preserve-3d'
-                      }}
+                      whileHover={{ rotate: 360 }}
+                      transition={{ duration: 0.6 }}
                     >
                       <service.icon className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-primary" aria-hidden="true" />
                     </motion.div>
@@ -252,7 +232,7 @@ export const ServiceCards = () => {
                     </div>
                   </div>
                   <CardTitle className="text-sm sm:text-base md:text-lg leading-tight">{service.title}</CardTitle>
-                  <CardDescription className="text-xs sm:text-sm md:text-base leading-relaxed">
+                  <CardDescription className="text-[11px] sm:text-xs md:text-sm leading-relaxed">
                     {service.shortDesc}
                   </CardDescription>
                 </CardHeader>
@@ -260,24 +240,27 @@ export const ServiceCards = () => {
                 <CardContent className="relative space-y-4 pt-0">
                   <div className="grid grid-cols-2 gap-3 py-3 border-t-2 border-dashed border-border/50">
                     <div className="space-y-1">
-                      <span className="text-xs font-bold text-foreground/90 uppercase tracking-wider">Impact</span>
-                      <p className="text-sm font-semibold">{service.impact}</p>
+                      <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Impact</span>
+                      <p className="text-sm font-medium">{service.impact}</p>
                     </div>
                     <div className="space-y-1">
-                      <span className="text-xs font-bold text-foreground/90 uppercase tracking-wider">Timeline</span>
-                      <p className="text-sm font-semibold">{service.timeline}</p>
+                      <span className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Timeline</span>
+                      <p className="text-sm font-medium">{service.timeline}</p>
                     </div>
                   </div>
 
-                  <InteractiveHoverButton
-                    variant="flat"
-                    size="sm"
-                    icon={expandedCard === service.id ? ChevronDown : ChevronRight}
-                    className="w-full shadow-[2px_2px_0px_0px_hsl(var(--border))] hover:shadow-[3px_3px_0px_0px_hsl(var(--primary)/0.2)]"
+                  <Button
+                    variant="ghost"
+                    className="w-full justify-between group/btn border-2 shadow-[2px_2px_0px_0px_hsl(var(--border))] hover:shadow-[3px_3px_0px_0px_hsl(var(--primary)/0.2)] hover:-translate-y-0.5 transition-all"
                     onClick={() => setExpandedCard(expandedCard === service.id ? null : service.id)}
                   >
-                    Details
-                  </InteractiveHoverButton>
+                    <span className="text-xs sm:text-sm font-semibold">Details</span>
+                    {expandedCard === service.id ? (
+                      <ChevronDown className="w-4 h-4 transition-transform" />
+                    ) : (
+                      <ChevronRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                    )}
+                  </Button>
 
                   <AnimatePresence>
                     {expandedCard === service.id && (
@@ -289,17 +272,17 @@ export const ServiceCards = () => {
                         className="space-y-4 overflow-hidden"
                       >
                         <div className="pt-4 border-t-2 border-dashed border-border/50 space-y-4">
-                          <p className="text-sm sm:text-base text-foreground/90 leading-loose">
+                          <p className="text-sm text-muted-foreground leading-relaxed">
                             {service.fullDesc}
                           </p>
                           
                           <div className="space-y-3 p-4 rounded-lg bg-background/60 backdrop-blur-sm border-2 shadow-[2px_2px_0px_0px_hsl(var(--border))]">
                             <p className="text-sm font-semibold uppercase tracking-wider text-primary">Key Deliverables</p>
-                            <ul className="space-y-3">
+                            <ul className="space-y-2">
                               {service.deliverables.map((deliverable, idx) => (
-                                <li key={idx} className="text-sm sm:text-base text-foreground/90 flex items-start gap-2">
-                                  <ChevronRight className="w-4 h-4 mt-1 text-primary flex-shrink-0" />
-                                  <span className="leading-relaxed">{deliverable}</span>
+                                <li key={idx} className="text-sm text-muted-foreground flex items-start gap-2">
+                                  <ChevronRight className="w-4 h-4 mt-0.5 text-primary flex-shrink-0" />
+                                  <span>{deliverable}</span>
                                 </li>
                               ))}
                             </ul>
@@ -320,16 +303,14 @@ export const ServiceCards = () => {
           viewport={{ once: true }}
           className="text-center"
         >
-          <InteractiveHoverButton
+          <Button 
             size="lg"
-            variant="3d-teal"
-            hasLighthouse
-            icon={ChevronRight}
             onClick={() => window.open('https://keen-hardboard-afe.notion.site/28cf142372ef8050ac86f4a3b4c813db?v=28cf142372ef8073b8cf000c0ebfca06&source=copy_link', '_blank', 'noopener,noreferrer')}
-            className="border-2 shadow-[4px_4px_0px_0px_hsl(var(--primary)/0.3)]"
+            className="group border-2 shadow-[4px_4px_0px_0px_hsl(var(--primary)/0.3)] hover:shadow-[6px_6px_0px_0px_hsl(var(--primary)/0.4)] hover:-translate-y-0.5 transition-all"
           >
             View All Initiatives
-          </InteractiveHoverButton>
+            <ChevronRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </Button>
         </motion.div>
       </div>
     </section>

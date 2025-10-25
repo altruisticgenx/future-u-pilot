@@ -2,419 +2,153 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Import responsive utilities */
-@import './styles/responsive.css';
-
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
 All colors MUST be HSL.
 */
 
 @layer base {
   :root {
-    /* Base Color Scale - Cyberpunk Theme */
-    --base-100: 255 7% 97%;
-    --base-200: 256 16% 93%;
-    --base-300: 254 29% 88%;
-    --base: 255 7% 97%;
-    --base-content: 266 73% 37%;
-
-    /* Primary Color Scale - Neon Green (Cyberpunk) */
-    --primary-100: 132 100% 95%;
-    --primary-200: 132 95% 85%;
-    --primary-300: 132 90% 75%;
-    --primary: 132 100% 64%;
-    --primary-foreground: 121 31% 98%;
-    --primary-glow: 132 100% 75%;
-
-    /* Secondary Color Scale - Magenta/Pink (Cyberpunk) */
-    --secondary-100: 302 100% 95%;
-    --secondary-200: 302 90% 85%;
-    --secondary-300: 302 80% 70%;
-    --secondary: 302 100% 55%;
-    --secondary-foreground: 308 7% 97%;
-
-    /* Accent Color Scale - Orange (Cyberpunk) */
-    --accent-100: 27 100% 95%;
-    --accent-200: 27 95% 85%;
-    --accent-300: 27 90% 75%;
-    --accent: 27 100% 57%;
-    --accent-foreground: 17 7% 97%;
-
-    /* Neutral Color Scale - Deep Blue-Purple (Cyberpunk) */
-    --neutral-100: 266 60% 90%;
-    --neutral-200: 266 55% 75%;
-    --neutral-300: 266 50% 60%;
-    --neutral: 266 73% 37%;
-    --neutral-content: 255 7% 97%;
-
-    /* Info Color Scale - Purple-Blue (Cyberpunk) */
-    --info-100: 260 100% 95%;
-    --info-200: 260 90% 85%;
-    --info-300: 260 80% 70%;
-    --info: 260 100% 62%;
-    --info-content: 255 7% 97%;
-
-    /* Success Color Scale - Light Green (Cyberpunk) */
-    --success-100: 131 100% 95%;
-    --success-200: 131 95% 85%;
-    --success-300: 131 90% 75%;
-    --success: 131 100% 76%;
-    --success-content: 121 31% 98%;
-
-    /* Warning Color Scale - Yellow-Green (Cyberpunk) */
-    --warning-100: 86 100% 95%;
-    --warning-200: 86 95% 90%;
-    --warning-300: 86 90% 85%;
-    --warning: 86 100% 79%;
-    --warning-content: 102 26% 98%;
-
-    /* Error Color Scale - Red-Orange (Cyberpunk) */
-    --error-100: 25 100% 95%;
-    --error-200: 25 95% 85%;
-    --error-300: 25 90% 75%;
-    --error: 25 100% 63%;
-    --error-content: 17 7% 97%;
+    /* Ocean Gradient Colors - Deep to Bright Teal */
+    --ocean-deep: 195 85% 16%;      /* #04364A */
+    --ocean-mid: 190 84% 29%;       /* #0E7490 */
+    --ocean-bright: 173 80% 40%;    /* #14B8A6 */
     
-    /* Cyberpunk Gradient Colors - Green to Magenta to Orange */
-    --ocean-deep: 132 100% 50%;
-    --ocean-mid: 302 100% 55%;
-    --ocean-bright: 27 100% 70%;
-    
-    /* Terminal Colors - Cyberpunk */
-    --terminal-bg: 266 60% 12%;
-    --terminal-surface: 266 50% 18%;
-    --terminal-border: 132 80% 55%;
-    --terminal-text: 255 10% 92%;
+    /* Terminal Colors - Teal Ocean */
+    --terminal-bg: 195 100% 8%;
+    --terminal-surface: 195 95% 12%;
+    --terminal-border: 195 60% 25%;
+    --terminal-text: 180 30% 85%;
 
-    /* Command Colors - Cyberpunk */
-    --cmd-success: 132 100% 64%;
-    --cmd-error: 25 100% 63%;
-    --cmd-info: 260 100% 62%;
-    --cmd-warning: 86 100% 79%;
+    /* Command Colors */
+    --cmd-success: 160 84% 39%;
+    --cmd-error: 0 72% 51%;
+    --cmd-info: 185 90% 55%;
+    --cmd-warning: 43 96% 56%;
 
-    /* Syntax Highlighting - Cyberpunk */
-    --syntax-keyword: 132 100% 64%;
-    --syntax-string: 302 100% 55%;
-    --syntax-number: 27 100% 57%;
-    --syntax-comment: 266 40% 60%;
+    /* Syntax Highlighting */
+    --syntax-keyword: 185 90% 55%;
+    --syntax-string: 160 84% 39%;
+    --syntax-number: 43 96% 56%;
+    --syntax-comment: 195 30% 50%;
 
-    /* Core UI Colors - Cyberpunk Theme */
-    --background: 255 7% 97%;
-    --foreground: 266 73% 37%;
-    --card: 255 7% 99%;
-    --card-foreground: 266 73% 37%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 266 73% 37%;
-    --muted: 256 16% 90%;
-    --muted-foreground: 266 50% 50%;
-    --destructive: 25 100% 63%;
-    --destructive-foreground: 17 7% 97%;
-    --border: 254 29% 85%;
-    --input: 256 16% 93%;
-    --ring: 132 100% 64%;
-
-    /* Component Radius - Cyberpunk Theme */
-    --radius: 0.5rem;
-    --radius-box: 0.5rem;
-    --radius-field: 0.25rem;
-    --radius-selector: 2rem;
-    
-    /* Field Sizes */
-    --field-xs: 1.5rem;
-    --field-sm: 2rem;
-    --field-md: 2.5rem;
-    --field-lg: 3rem;
-    --field-xl: 3.5rem;
-    
-    /* Selector Sizes - Bumblebee Theme */
-    --selector-xs: 1rem;
-    --selector-sm: 1.25rem;
-    --selector-md: 1.5rem;
-    --selector-lg: 1.75rem;
-    --selector-xl: 2rem;
-    --size-selector: 0.25rem;
-    --size-field: 0.25rem;
-    
-    /* Border Width */
-    --border-width: 1px;
-    
-    /* Depth & Noise - Bumblebee */
-    --depth: 1;
-    --noise: 1;
-
-    /* Motion Design Language */
-    --motion-instant: 0ms;
-    --motion-fast: 150ms;
-    --motion-medium: 300ms;
-    --motion-slow: 600ms;
-    --motion-slower: 900ms;
-    --easing-standard: cubic-bezier(0.4, 0, 0.2, 1);
-    --easing-emphatic: cubic-bezier(0.34, 1.56, 0.64, 1);
-    --easing-decelerate: cubic-bezier(0, 0, 0.2, 1);
-    --easing-accelerate: cubic-bezier(0.4, 0, 1, 1);
-    --easing-smooth: cubic-bezier(0.4, 0, 0.6, 1);
-
-    /* Elevation System (3D Depth Tokens) - Cyberpunk Green Glow */
-    --elevation-0: none;
-    --elevation-1: 0 1px 2px hsl(132 100% 64% / 0.08);
-    --elevation-2: 0 2px 8px hsl(132 100% 64% / 0.12), 0 1px 4px hsl(132 100% 64% / 0.06);
-    --elevation-3: 0 8px 24px hsl(132 100% 64% / 0.18), 0 4px 12px hsl(132 100% 64% / 0.1);
-    --elevation-4: 0 12px 40px hsl(132 100% 64% / 0.24), 0 6px 20px hsl(132 100% 64% / 0.12);
-    --elevation-5: 0 20px 60px hsl(132 100% 64% / 0.3), 0 10px 30px hsl(132 100% 64% / 0.15);
-
-    /* Typography Tokens - Cyberpunk Fonts */
-    --font-sans: 'Rajdhani', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    --font-display: 'Rajdhani', system-ui, sans-serif;
-    --font-mono: 'Fira Code', 'JetBrains Mono', 'Courier New', monospace;
-    --font-cyber: 'Rajdhani', sans-serif;
-    --font-code: 'Fira Code', monospace;
-    
-    /* Typography Size Tokens - Fluid with clamp() for responsive scaling */
-    --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);        /* 12-14px */
-    --text-sm: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);          /* 14-16px */
-    --text-base: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);          /* 16-18px */
-    --text-lg: clamp(1.125rem, 1rem + 0.625vw, 1.25rem);         /* 18-20px */
-    --text-xl: clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem);          /* 20-24px */
-    --text-2xl: clamp(1.5rem, 1.3rem + 1vw, 1.875rem);           /* 24-30px */
-    --text-3xl: clamp(1.875rem, 1.5rem + 1.875vw, 2.5rem);       /* 30-40px */
-    --text-4xl: clamp(2.25rem, 1.75rem + 2.5vw, 3rem);           /* 36-48px */
-    --text-5xl: clamp(2.5rem, 2rem + 2.5vw, 3.5rem);             /* 40-56px */
-    --text-6xl: clamp(3rem, 2.5rem + 2.5vw, 4rem);               /* 48-64px */
-    
-    /* Touch Target Sizes - Minimum 44px for accessibility */
-    --touch-target-min: 44px;
-    --touch-target-comfortable: 48px;
-    --touch-target-large: 56px;
-    
-    /* Spacing Scale - Mobile-first with fluid values */
-    --space-xs: clamp(0.25rem, 0.2rem + 0.25vw, 0.375rem);      /* 4-6px */
-    --space-sm: clamp(0.5rem, 0.4rem + 0.5vw, 0.75rem);         /* 8-12px */
-    --space-md: clamp(0.75rem, 0.6rem + 0.75vw, 1rem);          /* 12-16px */
-    --space-lg: clamp(1rem, 0.8rem + 1vw, 1.5rem);              /* 16-24px */
-    --space-xl: clamp(1.5rem, 1.2rem + 1.5vw, 2rem);            /* 24-32px */
-    --space-2xl: clamp(2rem, 1.5rem + 2.5vw, 3rem);             /* 32-48px */
-    --space-3xl: clamp(3rem, 2rem + 5vw, 4rem);                 /* 48-64px */
-    --space-4xl: clamp(4rem, 3rem + 5vw, 6rem);                 /* 64-96px */
-    
-    /* Line Height Tokens - Enhanced for readability */
-    --leading-tight: 1.25;
-    --leading-normal: 1.5;
-    --leading-relaxed: 1.75;
-    --leading-loose: 1.875;    /* 1.875 for optimal paragraph readability */
-    
-    /* Text Shadow/Glow Effects - Cyberpunk */
-    --text-glow-primary: 0 0 10px hsl(var(--primary) / 0.5), 0 0 20px hsl(var(--primary) / 0.3), 0 0 30px hsl(var(--primary) / 0.2);
-    --text-glow-accent: 0 0 10px hsl(var(--accent) / 0.5), 0 0 20px hsl(var(--accent) / 0.3), 0 0 30px hsl(var(--accent) / 0.2);
-    --text-glow-secondary: 0 0 10px hsl(var(--secondary) / 0.5), 0 0 20px hsl(var(--secondary) / 0.3), 0 0 30px hsl(var(--secondary) / 0.2);
-
-    /* Interactive Light Position */
-    --light-x: 50%;
-    --light-y: 50%;
-    
-    /* 3D Depth Effects - Cyberpunk Green */
-    --depth-shadow: 0 2px 4px hsl(132 100% 64% / 0.15), 
-                    0 4px 8px hsl(132 100% 64% / 0.12),
-                    inset 0 -2px 4px hsl(0 0% 0% / 0.1);
-    --depth-shadow-hover: 0 4px 8px hsl(132 100% 64% / 0.2), 
-                          0 8px 16px hsl(132 100% 64% / 0.18),
-                          inset 0 -2px 4px hsl(0 0% 0% / 0.15);
-
-    /* Gradients - Cyberpunk Green to Magenta to Orange */
-    --gradient-start: 132 100% 64%;
-    --gradient-mid: 302 100% 55%;
-    --gradient-end: 27 100% 57%;
-
-    /* Glassmorphism - Cyberpunk Green Glass */
-    --glass-bg: 132 100% 64% / 0.08;
-    --glass-border: 132 100% 64% / 0.2;
-
-    /* Sidebar Variables - Cyberpunk Theme */
-    --sidebar-background: 255 7% 97%;
-    --sidebar-foreground: 266 73% 37%;
-    --sidebar-primary: 132 100% 64%;
-    --sidebar-primary-foreground: 121 31% 98%;
-    --sidebar-accent: 256 16% 90%;
-    --sidebar-accent-foreground: 266 73% 37%;
-    --sidebar-border: 254 29% 85%;
-    --sidebar-ring: 132 100% 64%;
-  }
-
-  /* Custom Theme: Quantum */
-  [data-theme="quantum"] {
-    --primary: 185 90% 55%;
-    --primary-foreground: 195 100% 5%;
-    --primary-glow: 185 100% 75%;
-    --accent: 43 96% 56%;
-    --accent-foreground: 195 100% 5%;
-    --secondary: 258 90% 66%;
-    --secondary-foreground: 180 40% 98%;
+    /* Core UI Colors - Teal Glass & Quantum Light */
     --background: 200 20% 98%;
-    --foreground: 195 100% 10%;
+    --foreground: 195 100% 8%;
     --card: 180 100% 99%;
-    --card-foreground: 195 100% 12%;
-    --border: 195 30% 88%;
-    --ring: 185 90% 55%;
+    --card-foreground: 195 100% 10%;
+    --popover: 180 100% 99%;
+    --popover-foreground: 195 100% 10%;
+    
+    /* Primary: Deep Teal */
+    --primary: 185 85% 45%;
+    --primary-foreground: 180 100% 99%;
+    --primary-glow: 185 90% 70%;
+    
+    /* Secondary: Ocean Blue */
+    --secondary: 195 65% 55%;
+    --secondary-foreground: 195 100% 10%;
+    
     --muted: 195 20% 94%;
-    --muted-foreground: 195 30% 35%;
-  }
-
-  [data-theme="quantum"].dark {
-    --primary: 185 90% 55%;
-    --primary-foreground: 195 100% 5%;
-    --background: 195 100% 5%;
-    --foreground: 180 20% 95%;
-    --card: 195 90% 8%;
-    --card-foreground: 180 20% 95%;
-    --muted-foreground: 195 20% 70%;
-  }
-
-  /* Custom Theme: Terminal */
-  [data-theme="terminal"] {
-    --primary: 160 84% 39%;
-    --primary-foreground: 160 100% 98%;
-    --primary-glow: 160 100% 60%;
+    --muted-foreground: 195 15% 45%;
+    
+    /* Accent: Gold (trust) */
     --accent: 43 96% 56%;
-    --accent-foreground: 195 100% 5%;
-    --secondary: 195 60% 40%;
-    --secondary-foreground: 180 40% 98%;
-    --background: 195 100% 5%;
-    --foreground: 180 20% 90%;
-    --card: 195 90% 8%;
-    --card-foreground: 180 20% 92%;
-    --border: 195 50% 20%;
-    --ring: 160 84% 39%;
-    --muted: 195 40% 15%;
-    --muted-foreground: 195 20% 75%;
-    --terminal-bg: 195 100% 5%;
-    --terminal-surface: 195 95% 8%;
-    --terminal-border: 195 60% 18%;
-    --terminal-text: 180 20% 85%;
+    --accent-foreground: 195 100% 10%;
+    
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 195 30% 88%;
+    --input: 195 30% 88%;
+    --ring: 185 85% 45%;
+    --radius: 0.875rem;
+
+    /* Gradients - Deep Ocean to Teal */
+    --gradient-start: 195 100% 20%;
+    --gradient-mid: 185 85% 45%;
+    --gradient-end: 175 80% 60%;
+
+    /* Glassmorphism - Teal Glass */
+    --glass-bg: 185 85% 45% / 0.08;
+    --glass-border: 185 85% 45% / 0.2;
+
+    /* Sidebar Variables */
+    --sidebar-background: 195 30% 97%;
+    --sidebar-foreground: 195 50% 25%;
+    --sidebar-primary: 185 85% 45%;
+    --sidebar-primary-foreground: 180 100% 99%;
+    --sidebar-accent: 195 25% 92%;
+    --sidebar-accent-foreground: 195 100% 10%;
+    --sidebar-border: 195 30% 88%;
+    --sidebar-ring: 185 85% 45%;
   }
 
   .dark {
-    /* Base Color Scale - Dark Cyberpunk */
-    --base-100: 266 60% 10%;
-    --base-200: 266 55% 15%;
-    --base-300: 266 50% 22%;
-    --base: 266 60% 8%;
-    --base-content: 255 7% 97%;
+    /* Terminal Colors - Dark Ocean */
+    --terminal-bg: 195 100% 5%;
+    --terminal-surface: 195 90% 8%;
+    --terminal-border: 195 60% 18%;
+    --terminal-text: 180 40% 80%;
 
-    /* Primary Color Scale - Dark Neon Green */
-    --primary-100: 132 100% 25%;
-    --primary-200: 132 100% 40%;
-    --primary-300: 132 100% 55%;
-    --primary: 132 100% 64%;
-    --primary-foreground: 266 60% 10%;
-    --primary-glow: 132 100% 75%;
+    /* Command Colors (same) */
+    --cmd-success: 160 84% 39%;
+    --cmd-error: 0 72% 51%;
+    --cmd-info: 185 90% 55%;
+    --cmd-warning: 43 96% 56%;
 
-    /* Secondary Color Scale - Dark Magenta */
-    --secondary-100: 302 100% 25%;
-    --secondary-200: 302 100% 40%;
-    --secondary-300: 302 100% 50%;
-    --secondary: 302 100% 55%;
-    --secondary-foreground: 255 7% 97%;
+    /* Syntax Highlighting (same) */
+    --syntax-keyword: 185 90% 55%;
+    --syntax-string: 160 84% 39%;
+    --syntax-number: 43 96% 56%;
+    --syntax-comment: 195 30% 50%;
 
-    /* Accent Color Scale - Dark Orange */
-    --accent-100: 27 100% 25%;
-    --accent-200: 27 100% 40%;
-    --accent-300: 27 100% 50%;
-    --accent: 27 100% 57%;
-    --accent-foreground: 266 60% 10%;
-
-    /* Neutral Color Scale - Dark Purple */
-    --neutral-100: 266 50% 25%;
-    --neutral-200: 266 45% 35%;
-    --neutral-300: 266 40% 45%;
-    --neutral: 266 50% 60%;
-    --neutral-content: 255 7% 97%;
-
-    /* Info Color Scale - Dark Purple-Blue */
-    --info-100: 260 100% 25%;
-    --info-200: 260 100% 40%;
-    --info-300: 260 100% 55%;
-    --info: 260 100% 62%;
-    --info-content: 255 7% 97%;
-
-    /* Success Color Scale - Dark Green */
-    --success-100: 131 100% 25%;
-    --success-200: 131 100% 40%;
-    --success-300: 131 100% 60%;
-    --success: 131 100% 76%;
-    --success-content: 121 31% 98%;
-
-    /* Warning Color Scale - Dark Yellow-Green */
-    --warning-100: 86 100% 30%;
-    --warning-200: 86 100% 50%;
-    --warning-300: 86 100% 65%;
-    --warning: 86 100% 79%;
-    --warning-content: 102 26% 98%;
-
-    /* Error Color Scale - Dark Red-Orange */
-    --error-100: 25 100% 30%;
-    --error-200: 25 100% 45%;
-    --error-300: 25 100% 55%;
-    --error: 25 100% 63%;
-    --error-content: 17 7% 97%;
+    /* Core UI Colors - Dark Teal Ocean */
+    --background: 195 100% 5%;
+    --foreground: 180 40% 95%;
+    --card: 195 90% 8%;
+    --card-foreground: 180 40% 95%;
+    --popover: 195 90% 8%;
+    --popover-foreground: 180 40% 95%;
     
-    /* Terminal Colors - Dark Cyberpunk */
-    --terminal-bg: 266 60% 8%;
-    --terminal-surface: 266 55% 12%;
-    --terminal-border: 132 90% 50%;
-    --terminal-text: 255 10% 85%;
+    /* Primary: Bright Teal */
+    --primary: 185 90% 55%;
+    --primary-foreground: 195 100% 5%;
+    --primary-glow: 185 100% 75%;
+    
+    /* Secondary: Light Ocean */
+    --secondary: 195 60% 40%;
+    --secondary-foreground: 180 40% 95%;
+    
+    --muted: 195 40% 15%;
+    --muted-foreground: 195 25% 65%;
+    
+    /* Accent: Gold */
+    --accent: 43 96% 56%;
+    --accent-foreground: 195 100% 5%;
+    
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 195 50% 20%;
+    --input: 195 50% 20%;
+    --ring: 185 90% 55%;
 
-    /* Command Colors - Dark Cyberpunk */
-    --cmd-success: 132 100% 64%;
-    --cmd-error: 25 100% 63%;
-    --cmd-info: 260 100% 62%;
-    --cmd-warning: 86 100% 79%;
+    /* Gradients - Deep Ocean to Bright Teal */
+    --gradient-start: 195 100% 25%;
+    --gradient-mid: 185 90% 50%;
+    --gradient-end: 175 85% 65%;
 
-    /* Syntax Highlighting - Dark Cyberpunk */
-    --syntax-keyword: 132 100% 64%;
-    --syntax-string: 302 100% 55%;
-    --syntax-number: 27 100% 57%;
-    --syntax-comment: 266 30% 65%;
+    /* Glassmorphism - Dark Teal Glass */
+    --glass-bg: 185 90% 55% / 0.12;
+    --glass-border: 185 90% 55% / 0.25;
 
-    /* Core UI Colors - Dark Cyberpunk */
-    --background: 266 60% 8%;
-    --foreground: 255 7% 97%;
-    --card: 266 55% 12%;
-    --card-foreground: 255 7% 97%;
-    --popover: 266 55% 12%;
-    --popover-foreground: 255 7% 97%;
-    --muted: 266 50% 18%;
-    --muted-foreground: 266 30% 70%;
-    --destructive: 25 100% 63%;
-    --destructive-foreground: 17 7% 97%;
-    --border: 266 50% 25%;
-    --input: 266 50% 25%;
-    --ring: 132 100% 64%;
-
-    /* 3D Depth Effects - Dark Cyberpunk */
-    --depth-shadow: 0 2px 4px hsl(132 100% 64% / 0.2), 
-                    0 4px 8px hsl(132 100% 64% / 0.15),
-                    inset 0 -2px 4px hsl(0 0% 0% / 0.3);
-    --depth-shadow-hover: 0 4px 8px hsl(132 100% 64% / 0.3), 
-                          0 8px 16px hsl(132 100% 64% / 0.2),
-                          inset 0 -2px 4px hsl(0 0% 0% / 0.4);
-
-    /* Gradients - Dark Cyberpunk Green to Magenta to Orange */
-    --gradient-start: 132 100% 50%;
-    --gradient-mid: 302 100% 50%;
-    --gradient-end: 27 100% 60%;
-
-    /* Glassmorphism - Dark Cyberpunk Green Glass */
-    --glass-bg: 132 100% 64% / 0.12;
-    --glass-border: 132 100% 64% / 0.25;
-
-    /* Sidebar Variables - Dark Cyberpunk */
-    --sidebar-background: 266 55% 12%;
-    --sidebar-foreground: 255 7% 90%;
-    --sidebar-primary: 132 100% 64%;
-    --sidebar-primary-foreground: 266 60% 10%;
-    --sidebar-accent: 266 50% 18%;
-    --sidebar-accent-foreground: 255 7% 97%;
-    --sidebar-border: 266 50% 25%;
-    --sidebar-ring: 132 100% 64%;
+    /* Sidebar Variables */
+    --sidebar-background: 195 90% 8%;
+    --sidebar-foreground: 180 40% 90%;
+    --sidebar-primary: 185 90% 55%;
+    --sidebar-primary-foreground: 195 100% 5%;
+    --sidebar-accent: 195 60% 15%;
+    --sidebar-accent-foreground: 180 40% 90%;
+    --sidebar-border: 195 50% 20%;
+    --sidebar-ring: 185 90% 55%;
   }
   
   /* Custom scrollbar styles */
@@ -443,54 +177,15 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: var(--font-cyber);
-    font-size: var(--text-sm);
-    line-height: var(--leading-normal);
-    /* Performance: Force GPU acceleration for smoother rendering */
-    transform: translateZ(0);
-    backface-visibility: hidden;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-  
-  /* Ensure all custom fonts use font-display: swap */
-  @font-face {
-    font-family: 'Rajdhani';
-    font-display: swap;
-  }
-  
-  @font-face {
-    font-family: 'Fira Code';
-    font-display: swap;
-  }
-  
-  @font-face {
-    font-family: 'Inter';
-    font-display: swap;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-size: 14px;
   }
   
   /* Mobile font optimization */
   @media (min-width: 640px) {
     body {
-      font-size: var(--text-base);
+      font-size: 16px;
     }
-  }
-
-  /* Typography Scale - Cyberpunk Headings */
-  h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-cyber);
-    font-weight: 700;
-    line-height: var(--leading-tight);
-    letter-spacing: -0.02em;
-  }
-  
-  h1 {
-    font-weight: 800;
-    letter-spacing: -0.04em;
-  }
-
-  code, pre, kbd {
-    font-family: var(--font-code);
   }
   
   /* Better mobile text sizing */
@@ -537,44 +232,16 @@ All colors MUST be HSL.
   
   @keyframes glitch {
     0% {
-      text-shadow: 0.05em 0 0 hsl(var(--error)), -0.05em -0.025em 0 hsl(var(--info));
-      transform: translate(0);
+      text-shadow: 0.05em 0 0 hsl(var(--cmd-error)), -0.05em -0.025em 0 hsl(var(--cmd-info));
     }
     15% {
-      text-shadow: -0.05em -0.025em 0 hsl(var(--error)), 0.025em 0.025em 0 hsl(var(--info));
-      transform: translate(-2px, 2px);
+      text-shadow: -0.05em -0.025em 0 hsl(var(--cmd-error)), 0.025em 0.025em 0 hsl(var(--cmd-info));
     }
-    30% {
-      text-shadow: 0.025em 0.05em 0 hsl(var(--error)), 0.05em 0 0 hsl(var(--info));
-      transform: translate(2px, -1px);
-    }
-    45% {
-      text-shadow: -0.025em 0 0 hsl(var(--error)), -0.025em -0.025em 0 hsl(var(--info));
-      transform: translate(0, 1px);
-    }
-    60% {
-      text-shadow: 0.05em 0 0 hsl(var(--error)), -0.05em -0.025em 0 hsl(var(--info));
-      transform: translate(-1px, -2px);
-    }
-    75% {
-      text-shadow: -0.05em -0.025em 0 hsl(var(--error)), 0.025em 0.025em 0 hsl(var(--info));
-      transform: translate(1px, 1px);
+    50% {
+      text-shadow: 0.025em 0.05em 0 hsl(var(--cmd-error)), 0.05em 0 0 hsl(var(--cmd-info));
     }
     100% {
-      text-shadow: 0.025em 0.05em 0 hsl(var(--error)), 0.05em 0 0 hsl(var(--info));
-      transform: translate(0);
-    }
-  }
-  
-  /* Cyberpunk boot-up fade-in animation */
-  @keyframes fadeIn {
-    0% {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
+      text-shadow: -0.025em 0 0 hsl(var(--cmd-error)), -0.025em -0.025em 0 hsl(var(--cmd-info));
     }
   }
   
@@ -616,59 +283,6 @@ All colors MUST be HSL.
   .perspective-1000 {
     perspective: 1000px;
   }
-
-  /* Container Query Support */
-  @supports (container-type: inline-size) {
-    .hero-container {
-      container-type: inline-size;
-      container-name: hero;
-    }
-
-    @container hero (min-width: 768px) {
-      .terminal-window {
-        max-width: 600px;
-      }
-    }
-  }
-
-  /* Enhanced Focus Styles for Accessibility */
-  *:focus-visible {
-    outline: 2px solid hsl(var(--ring));
-    outline-offset: 2px;
-    border-radius: 4px;
-  }
-
-  button:focus-visible,
-  a:focus-visible,
-  [role="button"]:focus-visible {
-    outline: 3px solid hsl(var(--ring));
-    outline-offset: 3px;
-  }
-
-  /* Screen Reader Only utility class */
-  .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border-width: 0;
-  }
-
-  .sr-only:focus,
-  .sr-only:active {
-    position: static;
-    width: auto;
-    height: auto;
-    padding: inherit;
-    margin: inherit;
-    overflow: visible;
-    clip: auto;
-    white-space: normal;
-  }
   
   /* Flowing Button Animation */
   @keyframes flow {
@@ -692,12 +306,12 @@ All colors MUST be HSL.
     background: linear-gradient(135deg, hsl(173 80% 40%) 0%, hsl(190 84% 29%) 100%);
     box-shadow: 
       0 4px 0 hsl(190 84% 20%),
-      var(--elevation-2),
+      0 8px 20px hsl(173 80% 40% / 0.4),
       inset 0 1px 0 hsl(173 80% 50% / 0.3);
     color: white;
     font-weight: 600;
     transform: translateY(0) translateZ(0);
-    transition: all var(--motion-medium) var(--easing-emphatic);
+    transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
     border: 1px solid hsl(173 80% 50% / 0.3);
   }
 
@@ -705,7 +319,7 @@ All colors MUST be HSL.
     transform: translateY(-3px) translateZ(10px);
     box-shadow: 
       0 7px 0 hsl(190 84% 20%),
-      var(--elevation-4),
+      0 14px 28px hsl(173 80% 40% / 0.6),
       inset 0 1px 0 hsl(173 80% 50% / 0.4);
     animation: flow 1.5s ease-in-out infinite;
   }
@@ -714,7 +328,7 @@ All colors MUST be HSL.
     transform: translateY(2px) translateZ(0);
     box-shadow: 
       0 2px 0 hsl(190 84% 20%),
-      var(--elevation-1),
+      0 4px 10px hsl(173 80% 40% / 0.3),
       inset 0 1px 0 hsl(173 80% 50% / 0.2);
   }
 
@@ -722,12 +336,12 @@ All colors MUST be HSL.
     background: linear-gradient(135deg, hsl(258 90% 66%) 0%, hsl(262 83% 58%) 100%);
     box-shadow: 
       0 4px 0 hsl(258 59% 38%),
-      var(--elevation-2),
+      0 8px 20px hsl(258 90% 66% / 0.4),
       inset 0 1px 0 hsl(258 90% 76% / 0.3);
     color: white;
     font-weight: 600;
     transform: translateY(0) translateZ(0);
-    transition: all var(--motion-medium) var(--easing-emphatic);
+    transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
     border: 1px solid hsl(258 90% 76% / 0.3);
   }
 
@@ -735,7 +349,7 @@ All colors MUST be HSL.
     transform: translateY(-3px) translateZ(10px);
     box-shadow: 
       0 7px 0 hsl(258 59% 38%),
-      var(--elevation-4),
+      0 14px 28px hsl(258 90% 66% / 0.6),
       inset 0 1px 0 hsl(258 90% 76% / 0.4);
     animation: flow 1.5s ease-in-out infinite;
   }
@@ -744,7 +358,7 @@ All colors MUST be HSL.
     transform: translateY(2px) translateZ(0);
     box-shadow: 
       0 2px 0 hsl(258 59% 38%),
-      var(--elevation-1),
+      0 4px 10px hsl(258 90% 66% / 0.3),
       inset 0 1px 0 hsl(258 90% 76% / 0.2);
   }
 
@@ -752,12 +366,12 @@ All colors MUST be HSL.
     background: linear-gradient(135deg, hsl(38 92% 50%) 0%, hsl(32 95% 44%) 100%);
     box-shadow: 
       0 4px 0 hsl(30 100% 34%),
-      var(--elevation-2),
+      0 8px 20px hsl(38 92% 50% / 0.4),
       inset 0 1px 0 hsl(38 92% 60% / 0.3);
     color: white;
     font-weight: 600;
     transform: translateY(0) translateZ(0);
-    transition: all var(--motion-medium) var(--easing-emphatic);
+    transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
     border: 1px solid hsl(38 92% 60% / 0.3);
   }
 
@@ -765,7 +379,7 @@ All colors MUST be HSL.
     transform: translateY(-3px) translateZ(10px);
     box-shadow: 
       0 7px 0 hsl(30 100% 34%),
-      var(--elevation-4),
+      0 14px 28px hsl(38 92% 50% / 0.6),
       inset 0 1px 0 hsl(38 92% 60% / 0.4);
     animation: flow 1.5s ease-in-out infinite;
   }
@@ -774,7 +388,7 @@ All colors MUST be HSL.
     transform: translateY(2px) translateZ(0);
     box-shadow: 
       0 2px 0 hsl(30 100% 34%),
-      var(--elevation-1),
+      0 4px 10px hsl(38 92% 50% / 0.3),
       inset 0 1px 0 hsl(38 92% 60% / 0.2);
   }
 
@@ -782,12 +396,12 @@ All colors MUST be HSL.
     background: linear-gradient(135deg, hsl(187 92% 43%) 0%, hsl(189 85% 35%) 100%);
     box-shadow: 
       0 4px 0 hsl(190 84% 29%),
-      var(--elevation-2),
+      0 8px 20px hsl(187 92% 43% / 0.4),
       inset 0 1px 0 hsl(187 92% 53% / 0.3);
     color: white;
     font-weight: 600;
     transform: translateY(0) translateZ(0);
-    transition: all var(--motion-medium) var(--easing-emphatic);
+    transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
     border: 1px solid hsl(187 92% 53% / 0.3);
   }
 
@@ -795,7 +409,7 @@ All colors MUST be HSL.
     transform: translateY(-3px) translateZ(10px);
     box-shadow: 
       0 7px 0 hsl(190 84% 29%),
-      var(--elevation-4),
+      0 14px 28px hsl(187 92% 43% / 0.6),
       inset 0 1px 0 hsl(187 92% 53% / 0.4);
     animation: flow 1.5s ease-in-out infinite;
   }
@@ -804,7 +418,7 @@ All colors MUST be HSL.
     transform: translateY(2px) translateZ(0);
     box-shadow: 
       0 2px 0 hsl(190 84% 29%),
-      var(--elevation-1),
+      0 4px 10px hsl(187 92% 43% / 0.3),
       inset 0 1px 0 hsl(187 92% 53% / 0.2);
   }
   
@@ -814,111 +428,24 @@ All colors MUST be HSL.
     100% { transform: translateX(200%); }
   }
   
-  /* Lighthouse sweep animation */
-  @keyframes lighthouse-sweep {
-    0% {
-      transform: rotate(0deg);
-      opacity: 0;
-    }
-    25% {
-      opacity: 0.8;
-    }
-    50% {
-      transform: rotate(180deg);
-      opacity: 0.4;
-    }
-    75% {
-      opacity: 0.8;
-    }
-    100% {
-      transform: rotate(360deg);
-      opacity: 0;
-    }
-  }
-  
-  /* Optimized Glass Effects - Apply to smallest containers only */
-  
-  /* Light glass effect - use for larger containers */
-  .glass-light {
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    background: hsl(var(--glass-bg));
-    border-color: hsl(var(--glass-border));
-    /* Performance: GPU acceleration */
-    transform: translateZ(0);
-    backface-visibility: hidden;
-  }
-  
-  /* Heavy glass effect - ONLY for small, critical UI elements */
-  .glass-heavy {
-    backdrop-filter: blur(12px) saturate(180%);
-    -webkit-backdrop-filter: blur(12px) saturate(180%);
-    background: hsl(var(--glass-bg));
-    border-color: hsl(var(--glass-border));
-    /* Performance: GPU acceleration */
-    transform: translateZ(0);
-    backface-visibility: hidden;
-    will-change: backdrop-filter;
-  }
-  
-  /* Glass Card 3D Effect - Optimized for performance */
+  /* Glass Card 3D Effect */
   .glass-card-3d {
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    @apply backdrop-blur-xl border;
     background: hsl(var(--glass-bg));
     border-color: hsl(var(--glass-border));
-    @apply border;
     box-shadow: 
       0 4px 6px hsl(var(--primary) / 0.1),
       0 8px 16px hsl(var(--primary) / 0.08),
       inset 0 1px 0 hsl(var(--primary-glow) / 0.15);
     @apply transition-all duration-300;
-    transform-style: preserve-3d;
-    /* Performance: Prevent CLS and enable GPU acceleration */
-    min-height: 200px;
-    transform: translateZ(0);
-    backface-visibility: hidden;
-    will-change: transform, opacity;
   }
 
   .glass-card-3d:hover {
-    transform: translateY(-2px) translateZ(0);
+    @apply -translate-y-[2px];
     box-shadow: 
       0 6px 12px hsl(var(--primary) / 0.15),
       0 12px 24px hsl(var(--primary) / 0.12),
       inset 0 1px 0 hsl(var(--primary-glow) / 0.2);
-  }
-
-  /* 3D Lift effect for interactive elements */
-  .hover-3d-lift {
-    @apply transition-all duration-300;
-    transform: translateZ(0);
-    backface-visibility: hidden;
-    will-change: transform, opacity;
-    box-shadow: 0 2px 8px hsl(var(--primary) / 0.1);
-  }
-
-  .hover-3d-lift:hover {
-    transform: translateY(-4px) translateZ(10px);
-    box-shadow: 
-      0 8px 24px hsl(var(--primary) / 0.2),
-      0 4px 12px hsl(var(--primary) / 0.15);
-  }
-
-  /* Card reveal animation */
-  @keyframes card-reveal {
-    0% {
-      opacity: 0;
-      transform: perspective(1000px) rotateX(-20deg) translateY(30px);
-    }
-    100% {
-      opacity: 1;
-      transform: perspective(1000px) rotateX(0deg) translateY(0);
-    }
-  }
-
-  .animate-card-reveal {
-    animation: card-reveal 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
   }
 
   /* Glass Blur 4% - Floating Panels */
@@ -949,17 +476,11 @@ All colors MUST be HSL.
   }
 
   .glass-panel-float {
-    /* Use glass-heavy class for floating panels */
-    backdrop-filter: blur(12px) saturate(180%);
-    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    backdrop-filter: blur(20px) saturate(180%);
     background-color: rgba(255, 255, 255, 0.06);
     border: 1px solid rgba(255, 255, 255, 0.15);
     border-radius: 24px;
     box-shadow: 0 0 60px hsl(173 80% 40% / 0.25);
-    /* Performance optimization */
-    transform: translateZ(0);
-    backface-visibility: hidden;
-    will-change: backdrop-filter;
   }
 
   .noise-overlay {
@@ -997,17 +518,9 @@ All colors MUST be HSL.
       animation: none !important;
     }
     
-    /* Reduce blur intensity on mobile for better performance */
-    .backdrop-blur-xl,
-    .glass-card-3d,
-    .glass-heavy {
-      backdrop-filter: blur(6px);
-      -webkit-backdrop-filter: blur(6px);
-    }
-    
-    .glass-light {
-      backdrop-filter: blur(3px);
-      -webkit-backdrop-filter: blur(3px);
+    /* Reduce blur intensity */
+    .backdrop-blur-xl {
+      backdrop-filter: blur(8px);
     }
     
     /* Touch targets */
@@ -1121,336 +634,5 @@ All colors MUST be HSL.
     .hero-light-overlay {
       display: none;
     }
-  }
-}
-
-/* ============================================
-   UTILITY LAYER - Motion, Lighting, Interactions
-   ============================================ */
-@layer utilities {
-  /* Elevation Utilities */
-  .elevation-0 { box-shadow: var(--elevation-0); }
-  .elevation-1 { box-shadow: var(--elevation-1); }
-  .elevation-2 { box-shadow: var(--elevation-2); }
-  .elevation-3 { box-shadow: var(--elevation-3); }
-  .elevation-4 { box-shadow: var(--elevation-4); }
-  .elevation-5 { box-shadow: var(--elevation-5); }
-
-  /* Motion Utilities */
-  .transition-fast { transition-duration: var(--motion-fast); }
-  .transition-medium { transition-duration: var(--motion-medium); }
-  .transition-slow { transition-duration: var(--motion-slow); }
-  .transition-slower { transition-duration: var(--motion-slower); }
-  
-  .ease-standard { transition-timing-function: var(--easing-standard); }
-  .ease-emphatic { transition-timing-function: var(--easing-emphatic); }
-  .ease-decelerate { transition-timing-function: var(--easing-decelerate); }
-  .ease-accelerate { transition-timing-function: var(--easing-accelerate); }
-  .ease-smooth { transition-timing-function: var(--easing-smooth); }
-
-  /* Ambient Lighting Effect */
-  .ambient-light {
-    position: relative;
-    overflow: hidden;
-  }
-
-  .ambient-light::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(
-      circle at var(--light-x, 50%) var(--light-y, 50%),
-      hsl(var(--primary) / 0.3) 0%,
-      hsl(var(--primary) / 0.15) 30%,
-      transparent 70%
-    );
-    pointer-events: none;
-    transition: background var(--motion-medium) var(--easing-smooth);
-    z-index: 0;
-  }
-
-  .ambient-light > * {
-    position: relative;
-    z-index: 1;
-  }
-
-  /* Interactive Gradient Background */
-  .gradient-interactive {
-    background: radial-gradient(
-      circle at var(--light-x, 50%) var(--light-y, 50%),
-      hsl(var(--primary) / 0.2),
-      hsl(var(--accent) / 0.1),
-      transparent 80%
-    );
-    transition: background var(--motion-slow) var(--easing-smooth);
-  }
-
-  /* Micro-interaction: Button Ripple */
-  .btn-ripple {
-    position: relative;
-    overflow: hidden;
-  }
-
-  .btn-ripple::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(
-      circle,
-      hsl(var(--primary-glow) / 0.5) 10%,
-      transparent 10.01%
-    );
-    transform: scale(10);
-    opacity: 0;
-    pointer-events: none;
-    transition: transform var(--motion-slow) var(--easing-standard),
-                opacity var(--motion-medium);
-  }
-
-  .btn-ripple:active::after {
-    transform: scale(0);
-    opacity: 0.6;
-    transition: transform 0ms, opacity var(--motion-fast);
-  }
-
-  /* Micro-interaction: Focus Halo */
-  .focus-halo:focus-visible {
-    outline: none;
-    box-shadow: 
-      0 0 0 3px hsl(var(--background)),
-      0 0 0 5px hsl(var(--primary)),
-      0 0 20px hsl(var(--primary) / 0.4);
-    transition: box-shadow var(--motion-fast) var(--easing-standard);
-  }
-
-  /* Micro-interaction: Hover Glow */
-  .hover-glow {
-    position: relative;
-    transition: all var(--motion-medium) var(--easing-standard);
-  }
-
-  .hover-glow::before {
-    content: "";
-    position: absolute;
-    inset: -2px;
-    background: linear-gradient(
-      135deg,
-      hsl(var(--primary) / 0.4),
-      hsl(var(--accent) / 0.4)
-    );
-    border-radius: inherit;
-    opacity: 0;
-    filter: blur(8px);
-    transition: opacity var(--motion-medium) var(--easing-standard);
-    z-index: -1;
-  }
-
-  .hover-glow:hover::before {
-    opacity: 1;
-  }
-
-  /* Micro-interaction: Press Scale */
-  .press-scale {
-    transition: transform var(--motion-fast) var(--easing-emphatic);
-  }
-
-  .press-scale:active {
-    transform: scale(0.96);
-  }
-
-  /* Touch Optimization */
-  .touch-manipulation {
-    touch-action: manipulation;
-    -webkit-tap-highlight-color: transparent;
-  }
-
-  /* Micro-interaction: Magnetic Hover */
-  .magnetic-hover {
-    transition: transform var(--motion-medium) var(--easing-smooth);
-  }
-
-  .magnetic-hover:hover {
-    transform: translateY(-2px);
-  }
-
-  /* 3D Card Hover Effect */
-  .card-3d-hover {
-    position: relative;
-    transform-style: preserve-3d;
-    transition: transform var(--motion-slow) var(--easing-emphatic), 
-                box-shadow var(--motion-slow) var(--easing-standard);
-  }
-
-  .card-3d-hover:hover {
-    transform: rotateY(6deg) rotateX(3deg) scale(1.03);
-    box-shadow: 0 20px 40px hsl(var(--primary) / 0.2);
-  }
-
-  .card-3d-hover::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(
-      circle at 50% 50%, 
-      hsl(var(--primary-glow) / 0.3), 
-      transparent 70%
-    );
-    opacity: 0;
-    transition: opacity var(--motion-medium);
-    pointer-events: none;
-    border-radius: inherit;
-  }
-
-  .card-3d-hover:hover::after {
-    opacity: 1;
-  }
-
-  /* Typography Utilities - Cyberpunk */
-  .text-display {
-    font-family: var(--font-display);
-  }
-  
-  .text-cyber {
-    font-family: var(--font-cyber);
-  }
-  
-  .text-code {
-    font-family: var(--font-code);
-  }
-
-  .text-mono {
-    font-family: var(--font-mono);
-  }
-
-  .leading-tight { line-height: var(--leading-tight); }
-  .leading-normal { line-height: var(--leading-normal); }
-  .leading-relaxed { line-height: var(--leading-relaxed); }
-  
-  /* Cyberpunk Heading Styles */
-  .heading-cyber {
-    font-family: var(--font-cyber);
-    font-weight: 800;
-    letter-spacing: -0.04em;
-    line-height: var(--leading-tight);
-  }
-  
-  .heading-impact {
-    font-family: var(--font-cyber);
-    font-weight: 900;
-    letter-spacing: -0.05em;
-    line-height: 0.9;
-    text-transform: uppercase;
-  }
-  
-  /* Data Display - Monospace for numbers/metrics */
-  .data-display {
-    font-family: var(--font-code);
-    font-variant-numeric: tabular-nums;
-    letter-spacing: 0.02em;
-  }
-
-  /* Smooth Performance */
-  .smooth-rendering {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
-  }
-
-  .gpu-accelerated {
-    will-change: transform;
-    transform: translateZ(0);
-    backface-visibility: hidden;
-  }
-
-  /* Cyberpunk Terminal Effects */
-  .terminal-scanline {
-    position: relative;
-    overflow: hidden;
-  }
-
-  .terminal-scanline::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      to bottom,
-      transparent 0%,
-      hsl(var(--terminal-border) / 0.05) 50%,
-      transparent 100%
-    );
-    background-size: 100% 4px;
-    animation: scanline 8s linear infinite;
-    pointer-events: none;
-    z-index: 1;
-  }
-
-  @keyframes scanline {
-    0% { background-position: 0 0; }
-    100% { background-position: 0 100vh; }
-  }
-
-  /* CRT Screen Effect */
-  .crt-screen {
-    box-shadow: 
-      inset 0 0 60px hsl(var(--terminal-border) / 0.1),
-      inset 0 0 20px hsl(var(--primary) / 0.05);
-    border-radius: 4px;
-  }
-
-  /* Glitch Text Effect */
-  @keyframes glitch {
-    0%, 100% { transform: translate(0); }
-    20% { transform: translate(-2px, 2px); }
-    40% { transform: translate(2px, -2px); }
-    60% { transform: translate(-2px, -2px); }
-    80% { transform: translate(2px, 2px); }
-  }
-
-  .glitch-text:hover {
-    animation: glitch 0.3s ease-in-out;
-  }
-
-  /* Matrix Data Rain (subtle) */
-  .data-rain {
-    position: relative;
-    overflow: hidden;
-  }
-
-  .data-rain::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: 
-      linear-gradient(transparent, hsl(var(--primary) / 0.02)),
-      repeating-linear-gradient(
-        to bottom,
-        transparent 0%,
-        transparent 98%,
-        hsl(var(--primary) / 0.03) 98%,
-        hsl(var(--primary) / 0.03) 100%
-      );
-    background-size: 100% 100%, 100% 20px;
-    pointer-events: none;
-    opacity: 0.5;
-  }
-
-  /* Flickering Neon Border */
-  @keyframes neon-flicker {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.8; }
-  }
-
-  .neon-border {
-    border: 1px solid hsl(var(--terminal-border));
-    box-shadow: 
-      0 0 10px hsl(var(--terminal-border) / 0.5),
-      inset 0 0 10px hsl(var(--terminal-border) / 0.2);
-  }
-
-  .neon-border:hover {
-    animation: neon-flicker 2s ease-in-out infinite;
-    box-shadow: 
-      0 0 20px hsl(var(--terminal-border) / 0.8),
-      inset 0 0 15px hsl(var(--terminal-border) / 0.3);
   }
 }

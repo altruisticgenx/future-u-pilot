@@ -5,6 +5,7 @@ import { ThemeProvider } from "next-themes";
 
 // Eager load homepage for fast FCP
 import Index from "./pages/Index";
+import IndexNew from "./pages/IndexNew";
 
 // Lazy load non-critical UI components
 const Toaster = lazy(() => import("@/components/ui/toaster").then(m => ({ default: m.Toaster })));
@@ -13,9 +14,9 @@ const Sonner = lazy(() => import("@/components/ui/sonner").then(m => ({ default:
 // Lazy load non-critical routes to reduce initial bundle
 const Storytelling = lazy(() => import("./pages/Storytelling"));
 const About = lazy(() => import("./pages/About"));
-const FAQ = lazy(() => import("./pages/FAQ"));
 const Terminal = lazy(() => import("./pages/Terminal"));
 const Auth = lazy(() => import("./pages/Auth"));
+const MapDemo = lazy(() => import("./pages/MapDemo"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 // Lazy wrapper that only loads QueryClient when needed
@@ -45,35 +46,25 @@ const QueryWrapper = lazy(() =>
 const App = () => (
   <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
     <TooltipProvider>
-      <div className="overflow-x-hidden">
-      {/* Skip to main content link for accessibility */}
-      <a
-        href="#main-content"
-        className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:rounded-md focus:shadow-lg focus:ring-2 focus:ring-ring focus:ring-offset-2"
-      >
-        Skip to main content
-      </a>
       <Suspense fallback={null}>
         <Toaster />
         <Sonner />
       </Suspense>
       <BrowserRouter>
       <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div></div>}>
-        <main id="main-content">
-          <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/storytelling" element={<Storytelling />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/faq" element={<FAQ />} />
-            <Route path="/auth" element={<QueryWrapper><Auth /></QueryWrapper>} />
-            <Route path="/terminal" element={<QueryWrapper><Terminal /></QueryWrapper>} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </main>
+        <Routes>
+          <Route path="/" element={<Index />} />
+          <Route path="/new" element={<IndexNew />} />
+          <Route path="/storytelling" element={<Storytelling />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/map" element={<MapDemo />} />
+          <Route path="/auth" element={<QueryWrapper><Auth /></QueryWrapper>} />
+          <Route path="/terminal" element={<QueryWrapper><Terminal /></QueryWrapper>} />
+          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
       </Suspense>
     </BrowserRouter>
-    </div>
     </TooltipProvider>
   </ThemeProvider>
 );

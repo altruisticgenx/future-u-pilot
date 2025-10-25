@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { useToast } from "@/hooks/use-toast";
-import { useAutoScroll } from "@/hooks/useSmoothScroll";
 
 interface Message {
   role: "user" | "assistant";
@@ -17,19 +16,19 @@ export const AIChatbot = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: "assistant",
-      content: "Hi! I'm Alix, your AI guide. Ask me about our quantum-AI solutions, policy compliance, or how to get started with a pilot project.",
+      content: "Hi! I'm Future-U Assistant. Ask me about our quantum-AI solutions, policy compliance, or how to get started with a pilot project.",
     },
   ]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const scrollAreaRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
-  const { scrollToBottom } = useAutoScroll([messages]);
 
-  // Use RAF-batched scrolling for better performance
   useEffect(() => {
-    scrollToBottom(scrollAreaRef.current);
-  }, [messages, scrollToBottom]);
+    if (scrollAreaRef.current) {
+      scrollAreaRef.current.scrollTop = scrollAreaRef.current.scrollHeight;
+    }
+  }, [messages]);
 
   const streamChat = async (userMessage: string) => {
     setIsLoading(true);
@@ -170,18 +169,18 @@ export const AIChatbot = () => {
             <div className="bg-gradient-to-r from-primary to-primary/80 p-4 flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center">
-                  <MessageCircle className="w-5 h-5 text-primary-foreground" />
+                  <MessageCircle className="w-5 h-5 text-white" />
                 </div>
                 <div>
-                  <h3 className="text-primary-foreground font-bold">Alix</h3>
-                  <p className="text-primary-foreground/90 text-xs font-medium">AI Guide</p>
+                  <h3 className="text-white font-semibold">Future-U Assistant</h3>
+                  <p className="text-white/80 text-xs">Powered by AI</p>
                 </div>
               </div>
               <Button
                 variant="ghost"
                 size="icon"
                 onClick={() => setIsOpen(false)}
-                className="text-primary-foreground hover:bg-primary-foreground/20"
+                className="text-white hover:bg-white/20"
               >
                 <X className="w-5 h-5" />
               </Button>
@@ -226,7 +225,7 @@ export const AIChatbot = () => {
                   onChange={(e) => setInput(e.target.value)}
                   placeholder="Ask me anything..."
                   disabled={isLoading}
-                  className="flex-1 text-foreground placeholder:text-muted-foreground"
+                  className="flex-1"
                 />
                 <Button
                   type="submit"

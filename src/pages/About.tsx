@@ -1,449 +1,284 @@
 import { motion } from "framer-motion";
 import { Navigation } from "@/components/Navigation";
 import { Footer } from "@/components/Footer";
-import { ChevronDown, Zap, Shield, Activity, Users, TrendingUp, Target, BarChart3 } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import { GraduationCap, Zap, Heart, Scale, Users, Brain } from "lucide-react";
+import { InteractiveCard } from "@/components/InteractiveCard";
+import { MetricCard } from "@/components/MetricCard";
 import { AIChatbot } from "@/components/AIChatbot";
-import { useState } from "react";
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
-import { useSectorData } from "@/hooks/useSectorData";
-import { MarketDataPanel } from "@/components/MarketDataPanel";
-import { APIExplorer } from "@/components/APIExplorer";
-import { ROIChart } from "@/components/ROIChart";
-import { QuantumDashboard } from "@/components/QuantumDashboard";
-import { Skeleton } from "@/components/ui/skeleton";
 
-const sectorFocusData = [
+const stakeholders = [
   {
-    id: "01",
-    title: "Student Workforce",
-    apiKey: "students",
-    mission: "Build Your Quantum Career Core",
-    icon: Users,
-    color: "cyan",
-    gist: "Stop waiting for tomorrow's jobs. Start mastering the code and concepts today—from your high school club to your college lab. We give you real quantum programming skills and hands-on experience—no PhD required. Secure your future and keep Pennsylvania talent at the forefront of innovation.",
+    icon: GraduationCap,
+    title: "Students",
+    subtitle: "Tomorrow's Tech Workforce",
+    description: "Making quantum tech jobs accessible from high school through college. Learn coding for quantum computers without needing a PhD. Keep Pennsylvania talent in Pennsylvania.",
+    highlights: [
+      "Career paths anyone can follow",
+      "Learn quantum without advanced degrees",
+      "Good jobs close to home"
+    ],
+    detailedContent: `
+      <h3>Building the Quantum Workforce</h3>
+      <p>Pennsylvania has a unique opportunity to train the next generation of quantum engineers, researchers, and technicians. Our programs bridge the gap between traditional education and emerging quantum technologies.</p>
+      <h4>What We Offer:</h4>
+      <ul>
+        <li><strong>High School Programs:</strong> Introduction to quantum computing concepts without requiring advanced physics</li>
+        <li><strong>Community College Tracks:</strong> Quantum technician certification programs with industry partnerships</li>
+        <li><strong>University Partnerships:</strong> Research opportunities and internships with quantum labs</li>
+        <li><strong>Career Placement:</strong> Direct pipeline to Pennsylvania-based quantum companies</li>
+      </ul>
+      <p>Investment in quantum education today means Pennsylvania-grown talent staying in Pennsylvania tomorrow.</p>
+    `,
+    color: "from-blue-500/15 via-cyan-500/10 to-blue-500/15"
   },
   {
-    id: "02",
-    title: "Energy",
-    apiKey: "energy",
-    mission: "Power Grid. Smarter. Safer.",
     icon: Zap,
-    color: "green",
-    gist: "Quantum computers are the ultimate energy managers. They help power companies balance electricity supply, predict outages before they happen, and prevent cyber-attacks. Early results show major benefits: up to 22% energy savings, cleaner air, and lower monthly energy bills for your family.",
+    title: "Energy",
+    subtitle: "Smarter Grids & Security",
+    description: "Quantum computers help power companies manage electricity better and protect against hackers. Early tests show 22% energy savings—meaning cleaner air and lower bills.",
+    highlights: [
+      "22% energy savings in real tests",
+      "Protection from future cyber attacks",
+      "Better control of power grids"
+    ],
+    detailedContent: `
+      <h3>Quantum-Enhanced Energy Systems</h3>
+      <p>The energy sector faces unprecedented challenges: aging infrastructure, renewable integration, and cybersecurity threats. Quantum computing offers practical solutions today.</p>
+      <h4>Real-World Applications:</h4>
+      <ul>
+        <li><strong>Grid Optimization:</strong> Quantum algorithms reduce waste by 22% in pilot studies</li>
+        <li><strong>Predictive Maintenance:</strong> Quantum sensors detect equipment failures before they happen</li>
+        <li><strong>Post-Quantum Security:</strong> Protect critical infrastructure from quantum-enabled attacks</li>
+        <li><strong>Load Balancing:</strong> Real-time optimization of renewable energy distribution</li>
+      </ul>
+      <p>Pennsylvania's energy companies are already piloting these solutions with measurable ROI.</p>
+    `,
+    color: "from-yellow-500/15 via-orange-500/10 to-yellow-500/15"
   },
   {
-    id: "03",
+    icon: Heart,
     title: "Healthcare",
-    apiKey: "healthcare",
-    mission: "Diagnostics & Discovery. Accelerated.",
-    icon: Activity,
-    color: "fuchsia",
-    gist: "Quantum technology is the ultimate cheat code for medicine. It dramatically speeds up drug discovery, simulates complex protein folding, and powers deep genetic analysis. Advanced quantum sensors will improve diagnostics and allow for truly personalized treatments. The result: faster cures and healthier communities.",
+    subtitle: "Better Medicine, Faster",
+    description: "Quantum tech speeds up drug discovery by testing molecules virtually. Better sensors mean better diagnoses. The result? Medicine tailored to each person.",
+    highlights: [
+      "Discover new drugs faster",
+      "More accurate diagnoses",
+      "Treatment plans just for you"
+    ],
+    detailedContent: `
+      <h3>Quantum Healthcare Revolution</h3>
+      <p>Healthcare is data-rich but insight-poor. Quantum computing and quantum sensing unlock patterns invisible to classical systems, accelerating discovery and improving patient outcomes.</p>
+      <h4>Key Benefits:</h4>
+      <ul>
+        <li><strong>Drug Discovery:</strong> Simulate molecular interactions 1000x faster than traditional methods</li>
+        <li><strong>Personalized Medicine:</strong> Analyze genetic data to tailor treatments to individual patients</li>
+        <li><strong>Early Detection:</strong> Quantum sensors identify biomarkers years before symptoms appear</li>
+        <li><strong>Clinical Trials:</strong> Optimize trial design and reduce time-to-market for new therapies</li>
+      </ul>
+      <p>Pennsylvania hospitals and research institutions are pioneering quantum healthcare applications.</p>
+    `,
+    color: "from-red-500/15 via-pink-500/10 to-red-500/15"
   },
   {
-    id: "04",
+    icon: Scale,
     title: "Government",
-    apiKey: "governance",
-    mission: "Policy Frameworks. Future-Ready.",
-    icon: Shield,
-    color: "orange",
-    gist: "We work with state lawmakers to create practical rules and ethical guidelines that ensure Pennsylvania is the leader in quantum tech. This guarantees public safety, protects data privacy, and ensures fair access for everyone, all while promoting rapid innovation.",
-  },
+    subtitle: "Policies That Work",
+    description: "We help lawmakers create practical rules and guidelines that make Pennsylvania a leader in quantum tech while keeping the public safe and informed.",
+    highlights: [
+      "Advisory boards with real experts",
+      "Clear ethics rules everyone understands",
+      "Economic independence, not reliance"
+    ],
+    detailedContent: `
+      <h3>Quantum Policy & Governance</h3>
+      <p>Effective quantum policy requires balancing innovation with security, economic growth with ethical considerations. We help policymakers navigate this complex landscape.</p>
+      <h4>Our Approach:</h4>
+      <ul>
+        <li><strong>Advisory Councils:</strong> Connect lawmakers with quantum experts for evidence-based policy</li>
+        <li><strong>Ethical Frameworks:</strong> Clear guidelines for responsible quantum development</li>
+        <li><strong>Economic Strategy:</strong> Build quantum industries in Pennsylvania, not offshore dependencies</li>
+        <li><strong>Public Education:</strong> Transparent communication about quantum benefits and risks</li>
+      </ul>
+      <p>Pennsylvania can lead the nation in quantum governance—practical, ethical, and economically sound.</p>
+    `,
+    color: "from-purple-500/15 via-indigo-500/10 to-purple-500/15"
+  }
 ];
 
-const SectorCard = ({ sector, index }: { sector: typeof sectorFocusData[0]; index: number }) => {
-  const [highlightsOpen, setHighlightsOpen] = useState(false);
-  const [learnMoreOpen, setLearnMoreOpen] = useState(false);
-  const { data, isLoading } = useSectorData(sector.apiKey);
-  const Icon = sector.icon;
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: index * 0.1, duration: 0.6 }}
-      className="group glass-card-3d backdrop-blur-xl border border-border rounded-2xl p-6 hover:border-primary/50 transition-all duration-300 transform hover:scale-[1.02] will-change-transform"
-      style={{ 
-        transform: 'translateZ(0)',
-        backfaceVisibility: 'hidden',
-      }}
-    >
-      <div className="flex items-start gap-4 mb-4">
-        <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-          <Icon className="w-6 h-6 text-primary" />
-        </div>
-        <div className="flex-1">
-          <h3 className="text-sm font-semibold uppercase text-accent tracking-widest mb-1">
-            Sector Focus {sector.id}: {sector.title}
-          </h3>
-          <h4 className="text-2xl font-bold text-foreground">
-            Mission: {sector.mission}
-          </h4>
-        </div>
-      </div>
-      <p className="text-base sm:text-lg text-muted-foreground/90 leading-loose mb-6">
-        <span className="font-bold text-foreground">The Gist:</span> {sector.gist}
-      </p>
-
-      {/* Live Market Data */}
-      {data && (
-        <div className="mb-6">
-          <MarketDataPanel data={data.marketData} isLoading={isLoading} />
-        </div>
-      )}
-
-      <div className="space-y-3">
-        <Collapsible open={highlightsOpen} onOpenChange={setHighlightsOpen}>
-          <CollapsibleTrigger className="flex items-center justify-between w-full p-4 min-h-[48px] rounded-lg bg-primary/5 hover:bg-primary/10 transition-colors touch-manipulation">
-            <span className="font-semibold text-foreground">Key Highlights</span>
-            <ChevronDown
-              className={`h-5 w-5 text-primary transition-transform duration-300 ${
-                highlightsOpen ? "rotate-180" : ""
-              }`}
-            />
-          </CollapsibleTrigger>
-          <CollapsibleContent className="mt-3 p-4 rounded-lg bg-card/50 border border-border">
-            {isLoading ? (
-              <Skeleton className="h-16 w-full" />
-            ) : (
-              <p className="text-sm sm:text-base text-muted-foreground/90 leading-relaxed">
-                {data?.highlights}
-              </p>
-            )}
-          </CollapsibleContent>
-        </Collapsible>
-
-        <Collapsible open={learnMoreOpen} onOpenChange={setLearnMoreOpen}>
-          <CollapsibleTrigger className="flex items-center justify-between w-full p-4 min-h-[48px] rounded-lg bg-accent/5 hover:bg-accent/10 transition-colors touch-manipulation">
-            <span className="font-semibold text-foreground">Learn More & APIs</span>
-            <ChevronDown
-              className={`h-5 w-5 text-accent transition-transform duration-300 ${
-                learnMoreOpen ? "rotate-180" : ""
-              }`}
-            />
-          </CollapsibleTrigger>
-          <CollapsibleContent className="mt-3 p-4 rounded-lg bg-card/50 border border-border space-y-4">
-            {isLoading ? (
-              <Skeleton className="h-32 w-full" />
-            ) : (
-              <>
-                <p className="text-sm sm:text-base text-muted-foreground/90 leading-relaxed">
-                  {data?.learnMore}
-                </p>
-                {data?.apis && <APIExplorer apis={data.apis} />}
-              </>
-            )}
-          </CollapsibleContent>
-        </Collapsible>
-      </div>
-    </motion.div>
-  );
-};
-
-const ROISection = () => {
-  const [highlightsOpen, setHighlightsOpen] = useState(false);
-  const [learnMoreOpen, setLearnMoreOpen] = useState(false);
-  const [viewMode, setViewMode] = useState<'table' | 'chart'>('table');
-
-  const roiData = [
-    { sector: "Education", payback: "18 mo", roi: "4.3x", roiValue: 4.3 },
-    { sector: "Energy", payback: "15 mo", roi: "3.8x", roiValue: 3.8 },
-    { sector: "Healthcare", payback: "19 mo", roi: "3.2x", roiValue: 3.2 },
-    { sector: "Governance", payback: "12 mo", roi: "5.1x", roiValue: 5.1 },
-  ];
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 40 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ delay: 0.4, duration: 0.6 }}
-      className="group glass-card-3d backdrop-blur-xl border border-border rounded-2xl p-6 hover:border-primary/50 transition-all duration-300 transform hover:scale-[1.02] will-change-transform"
-      style={{ 
-        transform: 'translateZ(0)',
-        backfaceVisibility: 'hidden',
-      }}
-    >
-      <div className="flex items-start gap-4 mb-4">
-        <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-          <TrendingUp className="w-6 h-6 text-primary" />
-        </div>
-        <div className="flex-1">
-          <h3 className="text-sm font-semibold uppercase text-accent tracking-widest mb-1">
-            Sector Focus 05: Return on Investment (ROI)
-          </h3>
-          <h4 className="text-2xl font-bold text-foreground">
-            Core Metric: Exponential Payback
-          </h4>
-        </div>
-      </div>
-      <p className="text-base sm:text-lg text-muted-foreground/90 leading-loose mb-6">
-        Quantum investments deliver measurable, accelerated returns much faster than traditional 
-        technology projects. These are not estimates; these are real-world results:
-      </p>
-
-      {/* View Toggle */}
-      <div className="flex items-center gap-2 mb-6">
-        <button
-          onClick={() => setViewMode('table')}
-          className={`flex items-center gap-2 px-4 py-2 rounded-lg font-semibold transition-all min-h-[44px] touch-manipulation ${
-            viewMode === 'table'
-              ? 'bg-primary text-primary-foreground'
-              : 'bg-muted/50 text-muted-foreground hover:bg-muted'
-          }`}
-        >
-          Table View
-        </button>
-        <button
-          onClick={() => setViewMode('chart')}
-          className={`flex items-center gap-2 px-4 py-2 rounded-lg font-semibold transition-all min-h-[44px] touch-manipulation ${
-            viewMode === 'chart'
-              ? 'bg-primary text-primary-foreground'
-              : 'bg-muted/50 text-muted-foreground hover:bg-muted'
-          }`}
-        >
-          <BarChart3 className="w-4 h-4" />
-          Chart View
-        </button>
-      </div>
-
-      {viewMode === 'table' ? (
-        <div className="overflow-x-auto mb-6 scrollbar-thin touch-pan-x">
-          <table className="w-full border-collapse min-w-[500px]">
-            <thead>
-              <tr className="border-b-2 border-border">
-                <th className="text-left p-3 sm:p-4 font-bold text-foreground font-cyber text-sm sm:text-base">Sector</th>
-                <th className="text-left p-3 sm:p-4 font-bold text-foreground font-cyber text-sm sm:text-base">Payback Time</th>
-                <th className="text-left p-3 sm:p-4 font-bold text-foreground font-cyber text-sm sm:text-base">ROI Multiplier</th>
-              </tr>
-            </thead>
-            <tbody>
-              {roiData.map((row, i) => (
-                <tr key={i} className="border-b border-border/50 hover:bg-primary/5 transition-colors">
-                  <td className="p-3 sm:p-4 text-muted-foreground/90 text-sm sm:text-base">{row.sector}</td>
-                  <td className="p-3 sm:p-4 text-muted-foreground/90 text-sm sm:text-base">{row.payback}</td>
-                  <td className="p-3 sm:p-4 font-bold text-primary text-sm sm:text-base">{row.roi}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      ) : (
-        <ROIChart data={roiData} />
-      )}
-
-      <div className="space-y-4">
-        <Collapsible open={highlightsOpen} onOpenChange={setHighlightsOpen}>
-          <CollapsibleTrigger className="flex items-center justify-between w-full p-4 min-h-[48px] rounded-lg bg-primary/5 hover:bg-primary/10 transition-colors touch-manipulation">
-            <span className="font-semibold text-foreground">Key Highlights</span>
-            <ChevronDown
-              className={`h-5 w-5 text-primary transition-transform duration-300 ${
-                highlightsOpen ? "rotate-180" : ""
-              }`}
-            />
-          </CollapsibleTrigger>
-          <CollapsibleContent className="mt-3 p-4 rounded-lg bg-card/50 border border-border">
-            <p className="text-sm sm:text-base text-muted-foreground/90 leading-relaxed">
-              Quantum technology accelerates learning, efficiency, and innovation.
-            </p>
-          </CollapsibleContent>
-        </Collapsible>
-
-        <Collapsible open={learnMoreOpen} onOpenChange={setLearnMoreOpen}>
-          <CollapsibleTrigger className="flex items-center justify-between w-full p-4 min-h-[48px] rounded-lg bg-accent/5 hover:bg-accent/10 transition-colors touch-manipulation">
-            <span className="font-semibold text-foreground">Learn More</span>
-            <ChevronDown
-              className={`h-5 w-5 text-accent transition-transform duration-300 ${
-                learnMoreOpen ? "rotate-180" : ""
-              }`}
-            />
-          </CollapsibleTrigger>
-          <CollapsibleContent className="mt-3 p-4 rounded-lg bg-card/50 border border-border">
-            <p className="text-sm sm:text-base text-muted-foreground/90 leading-relaxed">
-              See how each sector benefits from measurable results.
-            </p>
-          </CollapsibleContent>
-        </Collapsible>
-      </div>
-    </motion.div>
-  );
-};
-
-const VisionCoreSection = () => {
-  const [highlightsOpen, setHighlightsOpen] = useState(false);
-
-  return (
-    <section className="relative z-10 py-20 sm:py-24 md:py-32">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center space-y-8"
-        >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary via-primary-glow to-accent bg-clip-text text-transparent">
-            Vision Core: Pennsylvania 2.0
-          </h2>
-          
-          <div className="max-w-3xl mx-auto space-y-6 text-left">
-            <p className="text-lg sm:text-xl font-bold text-foreground">We aim to:</p>
-            <ol className="space-y-5 text-base sm:text-lg text-muted-foreground/90 leading-loose">
-              <li className="flex gap-3">
-                <span className="font-bold text-primary">1.</span>
-                <span>Train the next generation of quantum innovators—that's you.</span>
-              </li>
-              <li className="flex gap-3">
-                <span className="font-bold text-primary">2.</span>
-                <span>Power smarter energy grids and secure our critical infrastructure.</span>
-              </li>
-              <li className="flex gap-3">
-                <span className="font-bold text-primary">3.</span>
-                <span>Revolutionize medicine and healthcare delivery.</span>
-              </li>
-              <li className="flex gap-3">
-                <span className="font-bold text-primary">4.</span>
-                <span>Support evidence-based policies for a quantum-ready future.</span>
-              </li>
-            </ol>
-
-            <p className="text-xl sm:text-2xl font-bold text-center text-foreground pt-8">
-              Final Transmission: Empower students, advance industries, and transform Pennsylvania.
-            </p>
-          </div>
-
-          <div className="max-w-2xl mx-auto space-y-4 pt-8">
-            <Collapsible open={highlightsOpen} onOpenChange={setHighlightsOpen}>
-              <CollapsibleTrigger className="flex items-center justify-between w-full p-4 min-h-[48px] rounded-lg bg-primary/5 hover:bg-primary/10 transition-colors touch-manipulation">
-                <span className="font-semibold text-foreground">Key Highlights</span>
-                <ChevronDown
-                  className={`h-5 w-5 text-primary transition-transform duration-300 ${
-                    highlightsOpen ? "rotate-180" : ""
-                  }`}
-                />
-              </CollapsibleTrigger>
-              <CollapsibleContent className="mt-3 p-4 rounded-lg bg-card/50 border border-border">
-                <p className="text-sm sm:text-base text-muted-foreground/90 leading-relaxed">
-                  Hands-on learning, career pathways, and real-world impact.
-                </p>
-              </CollapsibleContent>
-            </Collapsible>
-
-            <a
-              href="https://docs.google.com/document/d/1NlzqlnBLt_iWwqLGH3SUTUlASFIZBEaimJYq6MFXB8I/edit?usp=sharing"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center w-full p-4 min-h-[48px] rounded-lg bg-accent/5 hover:bg-accent/10 transition-colors font-semibold text-foreground hover:text-accent touch-manipulation"
-            >
-              See Proposal
-            </a>
-          </div>
-        </motion.div>
-      </div>
-    </section>
-  );
-};
+const investmentMetrics = [
+  { sector: "Education", payback: "18 months", roi: "4.3x", icon: GraduationCap },
+  { sector: "Energy", payback: "15 months", roi: "3.8x", icon: Zap },
+  { sector: "Healthcare", payback: "19 months", roi: "3.2x", icon: Heart },
+  { sector: "Governance", payback: "12 months", roi: "5.1x", icon: Scale }
+];
 
 const About = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navigation />
       
-      <div className="relative overflow-hidden">
-        {/* Ambient Motion Light */}
-        <div className="absolute inset-0 pointer-events-none ambient-light" />
-
-        {/* Hero Section */}
-        <section className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-24 md:py-32 text-center space-y-8">
+      {/* Hero Section */}
+      <section className="relative pt-24 pb-12 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-accent/10 to-background animate-gradient" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--primary))_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--primary))_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-[0.03] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,#000_70%,transparent_110%)]" />
+        
+        <div className="container relative mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-4"
-            style={{ 
-              transform: 'translateZ(0)',
-              backfaceVisibility: 'hidden',
-              willChange: 'transform, opacity',
-            }}
-          >
-            <Target className="w-4 h-4 text-primary" />
-            <span className="text-sm font-semibold text-primary uppercase tracking-wider">System Online</span>
-          </motion.div>
-          <motion.h1
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: "easeOut" }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-tight bg-gradient-to-r from-primary via-primary-glow to-accent bg-clip-text text-transparent"
-            style={{ 
-              transform: 'translateZ(0)',
-              backfaceVisibility: 'hidden',
-              willChange: 'transform, opacity',
-            }}
+            className="text-center space-y-3"
           >
-            Access Point: Quantum Future
-          </motion.h1>
-          <motion.h2
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.7, ease: "easeOut" }}
-            className="text-2xl sm:text-3xl md:text-4xl font-semibold bg-gradient-to-r from-accent to-primary bg-clip-text text-transparent"
-            style={{ 
-              transform: 'translateZ(0)',
-              backfaceVisibility: 'hidden',
-            }}
-          >
-            Pennsylvania Quantum Initiative
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.7, ease: "easeOut" }}
-            className="max-w-3xl mx-auto text-base sm:text-lg text-muted-foreground leading-relaxed"
-          >
-            This is an AI consultancy that helps local businesses grow while also running open-source, 
-            experimental AI projects that let students and tech enthusiasts learn, build, and explore in 
-            a hands-on way. They're blending real-world impact with community-driven innovation.
-          </motion.p>
-        </section>
-
-        {/* Live Dashboard Section */}
-        <section className="relative z-10 py-20 sm:py-24 md:py-32 bg-muted/30">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="mb-12"
+              initial={{ scale: 0.9 }}
+              animate={{ scale: 1 }}
+              transition={{ duration: 0.5 }}
+              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-to-r from-primary/20 to-accent/20 border border-primary/40 glass-card-3d"
+              role="status"
+              aria-label="Pennsylvania Quantum Initiative"
             >
-              <h2 className="text-3xl sm:text-4xl font-bold text-center bg-gradient-to-r from-primary via-primary-glow to-accent bg-clip-text text-transparent mb-4">
-                Live System Metrics
-              </h2>
-              <p className="text-center text-muted-foreground/90 max-w-2xl mx-auto mb-8">
-                Real-time data from Pennsylvania's quantum initiatives
-              </p>
-              <QuantumDashboard />
+              <Brain className="w-3 h-3 text-primary animate-pulse" aria-hidden="true" />
+              <span className="text-[11px] font-medium bg-gradient-hero bg-clip-text text-transparent">
+                Pennsylvania Quantum Initiative
+              </span>
             </motion.div>
-          </div>
-        </section>
 
-        {/* Sector Focus Cards */}
-        <section className="relative z-10 py-20 sm:py-24 md:py-32">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-12">
-            {sectorFocusData.map((sector, i) => (
-              <SectorCard key={sector.id} sector={sector} index={i} />
+            <h1 className="text-xl sm:text-2xl md:text-3xl font-bold">
+              <span className="block text-foreground text-sm sm:text-base md:text-lg mb-1">The Quantum Leap</span>
+              <span className="block bg-gradient-hero bg-clip-text text-transparent">
+                Pennsylvania's Path Forward
+              </span>
+            </h1>
+            
+            <p className="text-xs sm:text-sm text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              Connecting students to tech careers, helping companies run smarter, speeding up healthcare breakthroughs.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Stakeholder Perspectives */}
+      <section className="py-12 bg-gradient-to-b from-muted/30 to-background" aria-labelledby="stakeholder-heading">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-8"
+          >
+            <h2 id="stakeholder-heading" className="text-lg sm:text-xl md:text-2xl font-bold mb-2 bg-gradient-hero bg-clip-text text-transparent">
+              Four Perspectives, One Vision
+            </h2>
+            <p className="text-xs sm:text-sm text-muted-foreground max-w-xl mx-auto">
+              Real people, real results. Here's how quantum helps everyone.
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 gap-4">
+            {stakeholders.map((stakeholder, index) => (
+              <InteractiveCard
+                key={index}
+                {...stakeholder}
+                index={index}
+              />
             ))}
-
-            {/* ROI Section */}
-            <ROISection />
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Vision Core Section */}
-        <VisionCoreSection />
-      </div>
+      {/* ROI Metrics */}
+      <section className="py-12" aria-labelledby="roi-heading">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-8"
+          >
+            <h2 id="roi-heading" className="text-lg sm:text-xl md:text-2xl font-bold mb-2 bg-gradient-hero bg-clip-text text-transparent">
+              Return on Investment
+            </h2>
+            <p className="text-xs sm:text-sm text-muted-foreground max-w-xl mx-auto">
+              Real numbers from real tests—quantum pays back fast.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+            {investmentMetrics.map((metric, index) => (
+              <MetricCard
+                key={index}
+                {...metric}
+                index={index}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Vision Statement */}
+      <section className="py-12 bg-gradient-to-b from-background to-muted/30" aria-labelledby="vision-heading">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="space-y-4"
+          >
+            <div className="text-center space-y-2">
+              <Users className="h-7 w-7 text-primary mx-auto animate-pulse" aria-hidden="true" />
+              <h2 id="vision-heading" className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-hero bg-clip-text text-transparent">Our Vision</h2>
+            </div>
+            
+            <div className="space-y-3 text-xs sm:text-sm text-muted-foreground leading-relaxed">
+              <p>
+                Pennsylvania is ready to lead. We're connecting students to careers, companies to efficiency, healthcare to breakthroughs, and policy to practice. No buzzwords—just systems that work.
+              </p>
+              <p>
+                With smart investment, clear rules, and hands-on training, Pennsylvania becomes a quantum leader—not just in tech, but in jobs, security, and quality of life.
+              </p>
+              <blockquote className="border-l-3 border-primary pl-4 py-1.5 italic text-xs sm:text-sm bg-gradient-to-r from-primary/5 to-transparent rounded-r">
+                "Quantum won't just compute—it will sense, simulate, and secure. Pennsylvania can build that future first."
+              </blockquote>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Call to Action */}
+      <section className="py-12" aria-labelledby="cta-heading">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center"
+          >
+            <Card className="glass-card-3d bg-gradient-to-br from-primary/15 via-accent/10 to-primary/15 border border-primary/40">
+              <CardContent className="p-6 sm:p-8 space-y-4">
+                <h2 id="cta-heading" className="text-xl sm:text-2xl font-bold bg-gradient-hero bg-clip-text text-transparent">
+                  Join Pennsylvania's Quantum Future
+                </h2>
+                <p className="text-xs sm:text-sm text-muted-foreground max-w-xl mx-auto">
+                  Whether you're in education, energy, healthcare, government, or business—Pennsylvania's quantum future needs you.
+                </p>
+                <motion.button
+                  onClick={() => window.location.href = "/#contact"}
+                  className="btn-3d-primary px-6 py-2.5 rounded-lg font-semibold text-xs sm:text-sm"
+                  whileHover={{ scale: 1.03, y: -2 }}
+                  whileTap={{ scale: 0.97 }}
+                  aria-label="Get involved in Pennsylvania's Quantum Initiative"
+                >
+                  Get Involved Today
+                </motion.button>
+              </CardContent>
+            </Card>
+          </motion.div>
+        </div>
+      </section>
 
       <Footer />
+      
+      {/* AI Chatbot */}
       <AIChatbot />
     </div>
   );

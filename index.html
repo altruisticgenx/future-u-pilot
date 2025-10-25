@@ -19,50 +19,26 @@
     <!-- DNS prefetch for external domains -->
     <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
     <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
-    <link rel="dns-prefetch" href="https://qwrkaktntdjsulthaask.supabase.co" />
-    <link rel="dns-prefetch" href="https://us.i.posthog.com" />
-    <link rel="dns-prefetch" href="https://storage.googleapis.com" />
     
     <!-- Preconnect to critical origins -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://qwrkaktntdjsulthaask.supabase.co" crossorigin />
-    <link rel="preconnect" href="https://storage.googleapis.com" />
     
-    <!-- Preload critical fonts with proper CORS -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap" as="style" crossorigin="anonymous">
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&display=swap" as="style" crossorigin="anonymous">
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" as="style" crossorigin="anonymous">
+    <!-- Preload critical font -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" as="style">
     
-    <!-- Optimized font loading with font-display swap for better performance -->
-    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" crossorigin="anonymous" />
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'" crossorigin="anonymous" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'" crossorigin="anonymous" />
-    <noscript>
-      <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet" />
-      <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet" />
-      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-    </noscript>
+    <!-- Optimized font loading with font-display swap -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" /></noscript>
     
     <!-- Critical CSS for above-the-fold content -->
     <style>
       /* Prevent FOUC with minimal critical styles */
       *{box-sizing:border-box;margin:0;padding:0}
-      body{font-family:'Rajdhani','Inter',system-ui,sans-serif;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;background:#0a0a0a;color:#fafafa;overflow-x:hidden}
-      #root{min-height:100vh;display:flex;flex-direction:column}
+      body{font-family:'Inter',system-ui,sans-serif;font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased;background:#0a0a0a;color:#fafafa}
+      #root{min-height:100vh}
       .container{max-width:80rem;margin:0 auto;padding:0 1rem}
-      nav{position:fixed;top:0;left:0;right:0;z-index:50}
-      #hero-section{min-height:100vh;position:relative}
-      .flex{display:flex}.grid{display:grid}.hidden{display:none}
-      .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border-width:0}
-      /* Content visibility optimization */
-      section{content-visibility:auto;contain-intrinsic-size:auto 500px}
-      .glass-light{backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
-      /* Initial loading state - cyberpunk spin */
-      #root:empty::before{content:'';position:fixed;top:50%;left:50%;width:48px;height:48px;margin:-24px 0 0 -24px;border:3px solid #00ff9f;border-top-color:transparent;border-radius:50%;animation:spin 0.8s linear infinite;box-shadow:0 0 20px rgba(0,255,159,0.5)}
-      @keyframes spin{to{transform:rotate(360deg)}}
       @media(min-width:640px){body{font-size:16px}}
-      @media(min-width:768px){body{font-size:18px}}
     </style>
 
     
@@ -91,7 +67,6 @@
 
   <body>
     <div id="root"></div>
-    <!-- Defer non-critical scripts -->
-    <script type="module" src="/src/main.tsx" fetchpriority="high" async></script>
+    <script type="module" src="/src/main.tsx" fetchpriority="high"></script>
   </body>
 </html>
