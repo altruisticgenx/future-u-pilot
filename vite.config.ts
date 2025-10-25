@@ -19,41 +19,45 @@ export default defineConfig(({ mode }) => ({
     rollupOptions: {
       output: {
         manualChunks: (id) => {
-          // Defer analytics to separate chunk
-          if (id.includes('posthog')) {
-            return 'analytics';
+          // Aggressively separate analytics to keep it off critical path
+          if (id.includes('posthog') || id.includes('lib/posthog')) {
+            return 'analytics-async';
           }
-          // Core React bundle
-          if (id.includes('react') || id.includes('react-dom') || id.includes('react-router-dom')) {
+          // Defer chart libraries
+          if (id.includes('recharts') || id.includes('chart.js') || id.includes('react-chartjs')) {
+            return 'charts-deferred';
+          }
+          // Defer syntax highlighting
+          if (id.includes('react-syntax-highlighter') || id.includes('prismjs')) {
+            return 'syntax-deferred';
+          }
+          // Core React bundle (critical)
+          if (id.includes('node_modules/react/') || id.includes('node_modules/react-dom/')) {
             return 'vendor-react';
           }
-          // Animation library
+          // React Router (critical for SPA)
+          if (id.includes('react-router-dom')) {
+            return 'vendor-router';
+          }
+          // Animation library (used above fold)
           if (id.includes('framer-motion')) {
             return 'vendor-motion';
           }
-          // UI components
+          // UI components (used above fold)
           if (id.includes('@radix-ui')) {
             return 'vendor-ui';
           }
-          // Forms
+          // Forms (below fold, can be split)
           if (id.includes('react-hook-form') || id.includes('zod')) {
             return 'vendor-forms';
           }
-          // Data fetching
+          // Data fetching (critical for app functionality)
           if (id.includes('@tanstack/react-query')) {
             return 'vendor-query';
           }
-          // Backend
+          // Backend (critical for app functionality)
           if (id.includes('@supabase/supabase-js')) {
             return 'vendor-supabase';
-          }
-          // Chart libraries (defer)
-          if (id.includes('recharts') || id.includes('chart.js')) {
-            return 'vendor-charts';
-          }
-          // Syntax highlighting (defer)
-          if (id.includes('react-syntax-highlighter')) {
-            return 'vendor-syntax';
           }
         },
       },
@@ -64,16 +68,22 @@ export default defineConfig(({ mode }) => ({
       compress: {
         drop_console: true,
         drop_debugger: true,
-        pure_funcs: ['console.log', 'console.info', 'console.debug'],
+        pure_funcs: ['console.log', 'console.info', 'console.debug', 'console.trace'],
         passes: 3,
         dead_code: true,
         unused: true,
+        pure_getters: true,
+        unsafe: true,
+        unsafe_comps: true,
+        unsafe_math: true,
       },
       mangle: {
         safari10: true,
+        toplevel: true,
       },
       format: {
         comments: false,
+        ecma: 2020,
       },
     },
     cssMinify: true,
@@ -81,5 +91,6 @@ export default defineConfig(({ mode }) => ({
     target: 'es2020',
     sourcemap: false,
     reportCompressedSize: false,
+    assetsInlineLimit: 4096,
   },
 }));
