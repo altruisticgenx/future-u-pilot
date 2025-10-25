@@ -22,6 +22,11 @@ export default {
         "slide-in": "slide-in 0.3s ease-out",
         "bounce-subtle": "bounce-subtle 2s ease-in-out infinite",
         "float": "float 3s ease-in-out infinite",
+        "spring-bounce": "spring-bounce 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)",
+        "flow": "flow 1.5s ease-in-out infinite",
+        "shimmer-flow": "shimmer-flow 3s linear infinite",
+        "float-3d": "float-3d 6s ease-in-out infinite",
+        "rotate-3d": "rotate-3d 20s linear infinite",
       },
       keyframes: {
         "accordion-down": {
@@ -81,6 +86,27 @@ export default {
           "50%": {
             transform: "translateY(-20px)",
           },
+        },
+        "spring-bounce": {
+          "0%": { transform: "scale(0.95) translateY(0)" },
+          "50%": { transform: "scale(1.05) translateY(-4px)" },
+          "100%": { transform: "scale(1) translateY(0)" },
+        },
+        "float-3d": {
+          "0%, 100%": {
+            transform: "translateY(0) translateZ(0) rotateX(0deg)",
+          },
+          "33%": {
+            transform: "translateY(-20px) translateZ(10px) rotateX(2deg)",
+          },
+          "66%": {
+            transform: "translateY(-10px) translateZ(-10px) rotateX(-2deg)",
+          },
+        },
+        "rotate-3d": {
+          "0%": { transform: "rotate(0deg) scale(1)" },
+          "50%": { transform: "rotate(180deg) scale(1.1)" },
+          "100%": { transform: "rotate(360deg) scale(1)" },
         },
       },
       colors: {
@@ -160,6 +186,7 @@ export default {
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-hero": "linear-gradient(135deg, hsl(var(--gradient-start)), hsl(var(--gradient-mid)), hsl(var(--gradient-end)))",
+        "gradient-ocean": "linear-gradient(135deg, hsl(195 85% 16%) 0%, hsl(190 84% 29%) 50%, hsl(173 80% 40%) 100%)",
       },
     },
   },
