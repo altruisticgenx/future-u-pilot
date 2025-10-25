@@ -45,6 +45,7 @@ const QueryWrapper = lazy(() =>
 const App = () => (
   <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
     <TooltipProvider>
+      <div className="overflow-x-hidden">
       {/* Skip to main content link for accessibility */}
       <a
         href="#main-content"
@@ -72,6 +73,7 @@ const App = () => (
         </main>
       </Suspense>
     </BrowserRouter>
+    </div>
     </TooltipProvider>
   </ThemeProvider>
 );

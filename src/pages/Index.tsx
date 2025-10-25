@@ -98,7 +98,7 @@ const Index = () => {
       </motion.div>
       
       {/* Contact Section - Enhanced with trust signals */}
-      <section id="contact" className="py-16 sm:py-20 md:py-24 relative overflow-hidden" aria-labelledby="contact-heading">
+      <section id="contact" className="py-20 sm:py-24 md:py-28 lg:py-36 relative overflow-hidden" aria-labelledby="contact-heading">
         <div className="absolute inset-0 bg-gradient-to-b from-background via-accent/5 to-background" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,hsl(var(--primary)/0.1),transparent_70%)]" />
         
@@ -113,7 +113,7 @@ const Index = () => {
             <h2 id="contact-heading" className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold">
               Let's Plan Your Next 8 Weeks
             </h2>
-            <p className="text-xs sm:text-sm md:text-base lg:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
+            <p className="text-sm sm:text-base md:text-lg lg:text-xl text-muted-foreground/90 max-w-2xl mx-auto px-4 leading-relaxed">
               Tell us where you are and we'll propose a pilot that proves value—fast.
             </p>
             
@@ -125,15 +125,15 @@ const Index = () => {
               viewport={{ once: true }}
               className="flex flex-wrap justify-center gap-4 sm:gap-6 pt-4"
             >
-              <div className="flex items-center gap-2 text-muted-foreground text-xs sm:text-sm">
+              <div className="flex items-center gap-2 text-muted-foreground/90 text-xs sm:text-sm">
                 <Calendar className="h-4 w-4 text-primary" />
                 <span>8-week pilots</span>
               </div>
-              <div className="flex items-center gap-2 text-muted-foreground text-xs sm:text-sm">
+              <div className="flex items-center gap-2 text-muted-foreground/90 text-xs sm:text-sm">
                 <Users className="h-4 w-4 text-primary" />
                 <span>Collaborative approach</span>
               </div>
-              <div className="flex items-center gap-2 text-muted-foreground text-xs sm:text-sm">
+              <div className="flex items-center gap-2 text-muted-foreground/90 text-xs sm:text-sm">
                 <Target className="h-4 w-4 text-primary" />
                 <span>Measurable outcomes</span>
               </div>

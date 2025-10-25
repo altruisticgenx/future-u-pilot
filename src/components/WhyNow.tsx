@@ -15,7 +15,7 @@ const challenges = [
 
 export const WhyNow = () => {
   return (
-    <section className="py-12 sm:py-16 md:py-20 border-t border-primary/20 glass-card-3d bg-gradient-to-b from-muted/30 to-background relative overflow-hidden elevation-1" aria-labelledby="why-now-heading">
+    <section className="py-16 sm:py-20 md:py-24 lg:py-32 border-t border-primary/20 glass-card-3d bg-gradient-to-b from-muted/30 to-background relative overflow-hidden elevation-1" aria-labelledby="why-now-heading">
       {/* Animated background */}
       <div className="absolute inset-0 opacity-20 pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/20 rounded-full blur-3xl animate-float" style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden' }} />
@@ -31,7 +31,7 @@ export const WhyNow = () => {
           className="text-center space-y-2 sm:space-y-3 mb-8 sm:mb-10 md:mb-12"
         >
           <h2 id="why-now-heading" className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-foreground dark:text-foreground/95">Why Now?</h2>
-          <p className="text-xs sm:text-sm md:text-base lg:text-lg text-foreground dark:text-foreground/95 max-w-2xl mx-auto px-4 font-medium">
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-foreground/90 dark:text-foreground/90 max-w-2xl mx-auto px-4 leading-relaxed">
             Quantum timelines are uncertain; preparedness isn't.
           </p>
         </motion.div>
@@ -70,7 +70,7 @@ export const WhyNow = () => {
                   >
                     <Icon className="h-5 w-5 sm:h-6 sm:w-6 text-primary" aria-hidden="true" />
                   </motion.div>
-                  <p className="text-xs sm:text-sm md:text-base text-foreground dark:text-foreground/95 pt-0.5 sm:pt-1 leading-relaxed font-medium">
+                  <p className="text-sm sm:text-base md:text-lg text-foreground/90 dark:text-foreground/90 pt-1 leading-loose">
                     {challenge.text}
                   </p>
                 </motion.div>

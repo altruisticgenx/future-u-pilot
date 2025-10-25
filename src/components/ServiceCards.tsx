@@ -169,7 +169,7 @@ export const ServiceCards = () => {
   const [expandedCard, setExpandedCard] = useState<string | null>(null);
 
   return (
-    <section id="services" className="py-12 sm:py-16 md:py-20 relative overflow-hidden" aria-labelledby="services-heading">
+    <section id="services" className="py-16 sm:py-20 md:py-24 lg:py-32 relative overflow-hidden" aria-labelledby="services-heading">
       <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/5 to-background" />
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-1/4 left-10 w-96 h-96 bg-primary/30 rounded-full blur-3xl animate-float" />
@@ -185,12 +185,12 @@ export const ServiceCards = () => {
           className="text-center space-y-2 sm:space-y-3 mb-8 sm:mb-10"
         >
           <h2 id="services-heading" className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold">Current Initiatives</h2>
-          <p className="text-xs sm:text-sm md:text-base lg:text-lg text-foreground/80 max-w-3xl mx-auto px-4 font-medium">
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-foreground/90 max-w-3xl mx-auto px-4 leading-relaxed">
             Empowering Quantum & AI Literacy through active programs across education, government, energy, and enterprise sectors worldwide.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 md:gap-5 mb-6 sm:mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5 md:gap-6 lg:gap-8 mb-8 sm:mb-10 md:mb-12">
           {services.map((service, index) => (
             <motion.div
               key={service.id}
@@ -252,7 +252,7 @@ export const ServiceCards = () => {
                     </div>
                   </div>
                   <CardTitle className="text-sm sm:text-base md:text-lg leading-tight">{service.title}</CardTitle>
-                  <CardDescription className="text-[11px] sm:text-xs md:text-sm leading-relaxed">
+                  <CardDescription className="text-xs sm:text-sm md:text-base leading-relaxed">
                     {service.shortDesc}
                   </CardDescription>
                 </CardHeader>
@@ -260,11 +260,11 @@ export const ServiceCards = () => {
                 <CardContent className="relative space-y-4 pt-0">
                   <div className="grid grid-cols-2 gap-3 py-3 border-t-2 border-dashed border-border/50">
                     <div className="space-y-1">
-                      <span className="text-xs font-bold text-foreground/70 uppercase tracking-wider">Impact</span>
+                      <span className="text-xs font-bold text-foreground/90 uppercase tracking-wider">Impact</span>
                       <p className="text-sm font-semibold">{service.impact}</p>
                     </div>
                     <div className="space-y-1">
-                      <span className="text-xs font-bold text-foreground/70 uppercase tracking-wider">Timeline</span>
+                      <span className="text-xs font-bold text-foreground/90 uppercase tracking-wider">Timeline</span>
                       <p className="text-sm font-semibold">{service.timeline}</p>
                     </div>
                   </div>
@@ -289,17 +289,17 @@ export const ServiceCards = () => {
                         className="space-y-4 overflow-hidden"
                       >
                         <div className="pt-4 border-t-2 border-dashed border-border/50 space-y-4">
-                          <p className="text-sm text-foreground/80 leading-relaxed font-medium">
+                          <p className="text-sm sm:text-base text-foreground/90 leading-loose">
                             {service.fullDesc}
                           </p>
                           
                           <div className="space-y-3 p-4 rounded-lg bg-background/60 backdrop-blur-sm border-2 shadow-[2px_2px_0px_0px_hsl(var(--border))]">
                             <p className="text-sm font-semibold uppercase tracking-wider text-primary">Key Deliverables</p>
-                            <ul className="space-y-2">
+                            <ul className="space-y-3">
                               {service.deliverables.map((deliverable, idx) => (
-                                <li key={idx} className="text-sm text-foreground/80 flex items-start gap-2 font-medium">
-                                  <ChevronRight className="w-4 h-4 mt-0.5 text-primary flex-shrink-0" />
-                                  <span>{deliverable}</span>
+                                <li key={idx} className="text-sm sm:text-base text-foreground/90 flex items-start gap-2">
+                                  <ChevronRight className="w-4 h-4 mt-1 text-primary flex-shrink-0" />
+                                  <span className="leading-relaxed">{deliverable}</span>
                                 </li>
                               ))}
                             </ul>
