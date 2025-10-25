@@ -1,68 +1,35 @@
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { lazy, Suspense } from "react";
-import { ThemeProvider } from "next-themes";
+import { useState } from 'react'
+import reactLogo from './assets/react.svg'
+import viteLogo from '/vite.svg'
+import './App.css'
 
-// Eager load homepage for fast FCP
-import Index from "./pages/Index";
-import IndexNew from "./pages/IndexNew";
+function App() {
+  const [count, setCount] = useState(0)
 
-// Lazy load non-critical UI components
-const Toaster = lazy(() => import("@/components/ui/toaster").then(m => ({ default: m.Toaster })));
-const Sonner = lazy(() => import("@/components/ui/sonner").then(m => ({ default: m.Toaster })));
+  return (
+    <>
+      <div>
+        <a href="https://vite.dev" target="_blank">
+          <img src={viteLogo} className="logo" alt="Vite logo" />
+        </a>
+        <a href="https://react.dev" target="_blank">
+          <img src={reactLogo} className="logo react" alt="React logo" />
+        </a>
+      </div>
+      <h1>Vite + React</h1>
+      <div className="card">
+        <button onClick={() => setCount((count) => count + 1)}>
+          count is {count}
+        </button>
+        <p>
+          Edit <code>src/App.tsx</code> and save to test HMR
+        </p>
+      </div>
+      <p className="read-the-docs">
+        Click on the Vite and React logos to learn more
+      </p>
+    </>
+  )
+}
 
-// Lazy load non-critical routes to reduce initial bundle
-const Storytelling = lazy(() => import("./pages/Storytelling"));
-const About = lazy(() => import("./pages/About"));
-const Terminal = lazy(() => import("./pages/Terminal"));
-const NotFound = lazy(() => import("./pages/NotFound"));
-
-// Lazy wrapper that only loads QueryClient when needed
-const QueryWrapper = lazy(() =>
-  import("@tanstack/react-query").then(({ QueryClient, QueryClientProvider }) => {
-    const queryClient = new QueryClient({
-      defaultOptions: {
-        queries: {
-          staleTime: 60 * 1000,
-          gcTime: 5 * 60 * 1000,
-          refetchOnWindowFocus: false,
-          retry: 1,
-        },
-      },
-    });
-    
-    return {
-      default: ({ children }: { children: React.ReactNode }) => (
-        <QueryClientProvider client={queryClient}>
-          {children}
-        </QueryClientProvider>
-      ),
-    };
-  })
-);
-
-const App = () => (
-  <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-    <TooltipProvider>
-      <Suspense fallback={null}>
-        <Toaster />
-        <Sonner />
-      </Suspense>
-      <BrowserRouter>
-      <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div></div>}>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/new" element={<IndexNew />} />
-          <Route path="/storytelling" element={<Storytelling />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/terminal" element={<QueryWrapper><Terminal /></QueryWrapper>} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </Suspense>
-    </BrowserRouter>
-    </TooltipProvider>
-  </ThemeProvider>
-);
-
-export default App;
+export default App
