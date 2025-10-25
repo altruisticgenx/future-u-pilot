@@ -4,7 +4,6 @@ import { Menu, X, LogIn } from "lucide-react";
 import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
 import { useNavigate } from "react-router-dom";
 import { ThemeToggle } from "@/components/ThemeToggle";
-import { ThemeSelector } from "@/components/ThemeSelector";
 import { AnimatedLogo } from "@/components/AnimatedLogo";
 
 export const Navigation = () => {
@@ -105,12 +104,6 @@ export const Navigation = () => {
               >
                 <ThemeToggle />
               </motion.div>
-              <motion.div
-                whileHover={{ scale: 1.1 }}
-                transition={{ duration: 0.3 }}
-              >
-                <ThemeSelector />
-              </motion.div>
             </div>
             
             {/* Auth Button with Interactive Hover */}
@@ -206,10 +199,8 @@ export const Navigation = () => {
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.3 }}
-                  className="flex gap-2"
                 >
                   <ThemeToggle />
-                  <ThemeSelector />
                 </motion.div>
                 <motion.div
                   initial={{ opacity: 0, x: -20 }}

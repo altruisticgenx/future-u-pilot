@@ -8,41 +8,41 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Base Color Scale - Bumblebee Theme */
-    --base-100: 272 10% 96%;
-    --base-200: 273 15% 93%;
-    --base-300: 274 30% 87%;
-    --base: 272 10% 96%;
-    --base-content: 279 60% 25%;
+    /* Base Color Scale - Pink Theme */
+    --base-100: 346 90% 94%;
+    --base-200: 346 80% 91%;
+    --base-300: 346 70% 88%;
+    --base: 346 90% 94%;
+    --base-content: 0 0% 32%;
 
-    /* Primary Color Scale - Yellow Gold (Bumblebee) */
-    --primary-100: 48 100% 95%;
-    --primary-200: 48 95% 85%;
-    --primary-300: 48 90% 75%;
-    --primary: 48 85% 60%;
-    --primary-foreground: 272 10% 96%;
-    --primary-glow: 48 90% 75%;
+    /* Primary Color Scale - Pink/Rose */
+    --primary-100: 348 95% 92%;
+    --primary-200: 348 85% 82%;
+    --primary-300: 348 75% 72%;
+    --primary: 348 80% 56%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 350 85% 68%;
 
-    /* Secondary Color Scale - Purple/Blue */
-    --secondary-100: 260 85% 95%;
-    --secondary-200: 260 75% 85%;
-    --secondary-300: 260 70% 70%;
-    --secondary: 260 70% 55%;
-    --secondary-foreground: 272 10% 96%;
+    /* Secondary Color Scale - Blue */
+    --secondary-100: 198 60% 95%;
+    --secondary-200: 198 50% 85%;
+    --secondary-300: 198 40% 75%;
+    --secondary: 198 35% 68%;
+    --secondary-foreground: 0 0% 32%;
 
-    /* Accent Color Scale - Yellow Gold (matches Primary) */
-    --accent-100: 48 100% 95%;
-    --accent-200: 48 95% 85%;
-    --accent-300: 48 90% 75%;
-    --accent: 48 85% 60%;
-    --accent-foreground: 279 60% 25%;
+    /* Accent Color Scale - Yellow-Green */
+    --accent-100: 88 90% 95%;
+    --accent-200: 88 80% 85%;
+    --accent-300: 88 70% 75%;
+    --accent: 88 60% 78%;
+    --accent-foreground: 0 0% 32%;
 
-    /* Neutral Color Scale - Dark Blue-Purple */
-    --neutral-100: 279 40% 95%;
-    --neutral-200: 279 40% 85%;
-    --neutral-300: 279 50% 65%;
-    --neutral: 279 60% 25%;
-    --neutral-content: 272 10% 96%;
+    /* Neutral Color Scale - Pink */
+    --neutral-100: 0 0% 95%;
+    --neutral-200: 0 0% 85%;
+    --neutral-300: 0 0% 75%;
+    --neutral: 0 0% 47%;
+    --neutral-content: 346 90% 94%;
 
     /* Info Color Scale - Blue */
     --info-100: 222 80% 95%;
@@ -72,43 +72,43 @@ All colors MUST be HSL.
     --error: 0 85% 55%;
     --error-content: 0 100% 15%;
     
-    /* Bumblebee Gradient Colors - Yellow to Purple */
-    --ocean-deep: 48 85% 30%;
-    --ocean-mid: 260 70% 40%;
-    --ocean-bright: 48 90% 60%;
+    /* Pink Gradient Colors */
+    --ocean-deep: 348 80% 40%;
+    --ocean-mid: 198 35% 55%;
+    --ocean-bright: 88 60% 70%;
     
-    /* Terminal Colors - Bumblebee */
-    --terminal-bg: 279 60% 12%;
-    --terminal-surface: 279 50% 16%;
-    --terminal-border: 48 60% 50%;
-    --terminal-text: 272 10% 90%;
+    /* Terminal Colors - Pink Theme */
+    --terminal-bg: 343 70% 20%;
+    --terminal-surface: 343 60% 25%;
+    --terminal-border: 348 70% 50%;
+    --terminal-text: 346 50% 92%;
 
-    /* Command Colors - Bumblebee */
+    /* Command Colors - Pink Theme */
     --cmd-success: 132 70% 55%;
-    --cmd-error: 0 85% 55%;
-    --cmd-info: 222 60% 60%;
-    --cmd-warning: 58 75% 60%;
+    --cmd-error: 22 80% 58%;
+    --cmd-info: 198 35% 68%;
+    --cmd-warning: 88 60% 78%;
 
-    /* Syntax Highlighting - Bumblebee */
-    --syntax-keyword: 48 85% 60%;
+    /* Syntax Highlighting - Pink Theme */
+    --syntax-keyword: 348 80% 56%;
     --syntax-string: 132 70% 55%;
-    --syntax-number: 260 70% 55%;
-    --syntax-comment: 279 30% 55%;
+    --syntax-number: 198 35% 68%;
+    --syntax-comment: 0 0% 60%;
 
-    /* Core UI Colors - Bumblebee Theme */
-    --background: 272 10% 96%;
-    --foreground: 279 60% 25%;
-    --card: 272 10% 98%;
-    --card-foreground: 279 60% 25%;
-    --popover: 272 10% 98%;
-    --popover-foreground: 279 60% 25%;
-    --muted: 273 15% 90%;
-    --muted-foreground: 279 40% 45%;
-    --destructive: 0 85% 55%;
-    --destructive-foreground: 272 10% 96%;
-    --border: 274 20% 85%;
-    --input: 274 20% 85%;
-    --ring: 48 85% 60%;
+    /* Core UI Colors - Pink Theme */
+    --background: 346 90% 94%;
+    --foreground: 0 0% 47%;
+    --card: 87 40% 90%;
+    --card-foreground: 0 0% 47%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 47%;
+    --muted: 212 40% 84%;
+    --muted-foreground: 0 0% 58%;
+    --destructive: 22 80% 58%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 348 80% 56%;
+    --input: 0 0% 92%;
+    --ring: 350 75% 63%;
 
     /* Component Radius - Bumblebee Theme */
     --radius: 0.5rem;
@@ -187,23 +187,23 @@ All colors MUST be HSL.
                           0 8px 16px hsl(var(--primary) / 0.12),
                           inset 0 -2px 4px hsl(0 0% 0% / 0.15);
 
-    /* Gradients - Bumblebee Yellow to Purple */
-    --gradient-start: 48 85% 60%;
-    --gradient-mid: 260 70% 55%;
-    --gradient-end: 48 90% 75%;
+    /* Gradients - Pink to Blue */
+    --gradient-start: 348 80% 56%;
+    --gradient-mid: 198 35% 68%;
+    --gradient-end: 88 60% 78%;
 
-    /* Glassmorphism - Bumblebee Yellow Glass */
-    --glass-bg: 48 85% 60% / 0.08;
-    --glass-border: 48 85% 60% / 0.2;
+    /* Glassmorphism - Pink Glass */
+    --glass-bg: 348 80% 56% / 0.08;
+    --glass-border: 348 80% 56% / 0.2;
 
-    /* Sidebar Variables - Bumblebee Theme */
-    --sidebar-background: 272 10% 96%;
-    --sidebar-foreground: 279 60% 25%;
-    --sidebar-primary: 48 85% 60%;
-    --sidebar-primary-foreground: 272 10% 96%;
-    --sidebar-accent: 273 15% 93%;
-    --sidebar-accent-foreground: 279 60% 25%;
-    --sidebar-border: 274 20% 85%;
+    /* Sidebar Variables - Pink Theme */
+    --sidebar-background: 343 75% 88%;
+    --sidebar-foreground: 0 0% 32%;
+    --sidebar-primary: 354 85% 59%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 346 60% 79%;
+    --sidebar-accent-foreground: 0 0% 32%;
+    --sidebar-border: 307 50% 92%;
     --sidebar-ring: 185 85% 45%;
   }
 
@@ -260,41 +260,41 @@ All colors MUST be HSL.
   }
 
   .dark {
-    /* Base Color Scale - Dark Bumblebee */
-    --base-100: 279 40% 12%;
-    --base-200: 279 40% 18%;
-    --base-300: 279 40% 25%;
-    --base: 279 60% 8%;
-    --base-content: 272 10% 96%;
+    /* Base Color Scale - Dark Pink */
+    --base-100: 343 50% 12%;
+    --base-200: 343 50% 18%;
+    --base-300: 343 50% 25%;
+    --base: 343 60% 8%;
+    --base-content: 346 90% 94%;
 
-    /* Primary Color Scale - Dark Bumblebee Yellow */
-    --primary-100: 48 85% 25%;
-    --primary-200: 48 85% 40%;
-    --primary-300: 48 85% 55%;
-    --primary: 48 85% 60%;
-    --primary-foreground: 279 60% 10%;
-    --primary-glow: 48 90% 75%;
+    /* Primary Color Scale - Dark Pink */
+    --primary-100: 348 75% 25%;
+    --primary-200: 348 75% 40%;
+    --primary-300: 348 75% 50%;
+    --primary: 350 75% 63%;
+    --primary-foreground: 0 0% 100%;
+    --primary-glow: 350 80% 70%;
 
-    /* Secondary Color Scale - Dark Purple */
-    --secondary-100: 260 60% 25%;
-    --secondary-200: 260 65% 40%;
-    --secondary-300: 260 70% 50%;
-    --secondary: 260 70% 55%;
-    --secondary-foreground: 272 10% 96%;
+    /* Secondary Color Scale - Dark Blue */
+    --secondary-100: 198 30% 25%;
+    --secondary-200: 198 30% 40%;
+    --secondary-300: 198 30% 55%;
+    --secondary: 198 30% 65%;
+    --secondary-foreground: 346 90% 94%;
 
-    /* Accent Color Scale - Dark Bumblebee Yellow */
-    --accent-100: 48 85% 25%;
-    --accent-200: 48 85% 40%;
-    --accent-300: 48 85% 55%;
-    --accent: 48 85% 60%;
-    --accent-foreground: 279 60% 10%;
+    /* Accent Color Scale - Dark Yellow-Green */
+    --accent-100: 88 50% 25%;
+    --accent-200: 88 50% 40%;
+    --accent-300: 88 55% 60%;
+    --accent: 88 55% 75%;
+    --accent-foreground: 0 0% 32%;
 
     /* Neutral Color Scale - Dark */
-    --neutral-100: 279 40% 25%;
-    --neutral-200: 279 40% 35%;
-    --neutral-300: 279 40% 45%;
-    --neutral: 279 50% 65%;
-    --neutral-content: 272 10% 96%;
+    --neutral-100: 0 0% 25%;
+    --neutral-200: 0 0% 35%;
+    --neutral-300: 0 0% 45%;
+    --neutral: 0 0% 60%;
+    --neutral-content: 346 90% 94%;
 
     /* Info Color Scale - Dark Blue */
     --info-100: 222 60% 25%;
@@ -324,65 +324,65 @@ All colors MUST be HSL.
     --error: 0 85% 55%;
     --error-content: 0 100% 95%;
     
-    /* Terminal Colors - Dark Bumblebee */
-    --terminal-bg: 279 60% 8%;
-    --terminal-surface: 279 50% 12%;
-    --terminal-border: 48 60% 35%;
-    --terminal-text: 272 10% 85%;
+    /* Terminal Colors - Dark Pink */
+    --terminal-bg: 343 60% 8%;
+    --terminal-surface: 343 50% 12%;
+    --terminal-border: 350 65% 40%;
+    --terminal-text: 346 50% 88%;
 
-    /* Command Colors - Dark Bumblebee */
+    /* Command Colors - Dark Pink */
     --cmd-success: 132 70% 55%;
-    --cmd-error: 0 85% 55%;
-    --cmd-info: 222 60% 60%;
-    --cmd-warning: 58 75% 60%;
+    --cmd-error: 22 80% 58%;
+    --cmd-info: 198 30% 65%;
+    --cmd-warning: 88 55% 75%;
 
-    /* Syntax Highlighting - Dark Bumblebee */
-    --syntax-keyword: 48 85% 60%;
+    /* Syntax Highlighting - Dark Pink */
+    --syntax-keyword: 350 75% 63%;
     --syntax-string: 132 70% 55%;
-    --syntax-number: 260 70% 55%;
-    --syntax-comment: 279 30% 60%;
+    --syntax-number: 198 30% 65%;
+    --syntax-comment: 0 0% 65%;
 
-    /* Core UI Colors - Dark Bumblebee */
-    --background: 279 60% 8%;
-    --foreground: 272 10% 96%;
-    --card: 279 50% 12%;
-    --card-foreground: 272 10% 96%;
-    --popover: 279 50% 12%;
-    --popover-foreground: 272 10% 96%;
-    --muted: 279 40% 18%;
-    --muted-foreground: 279 30% 70%;
-    --destructive: 0 85% 55%;
-    --destructive-foreground: 272 10% 96%;
-    --border: 279 40% 25%;
-    --input: 279 40% 25%;
-    --ring: 48 85% 60%;
+    /* Core UI Colors - Dark Pink */
+    --background: 343 60% 8%;
+    --foreground: 346 90% 94%;
+    --card: 343 50% 12%;
+    --card-foreground: 346 90% 94%;
+    --popover: 343 50% 12%;
+    --popover-foreground: 346 90% 94%;
+    --muted: 343 40% 18%;
+    --muted-foreground: 346 30% 70%;
+    --destructive: 22 80% 58%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 343 40% 25%;
+    --input: 343 40% 25%;
+    --ring: 350 75% 63%;
 
-    /* 3D Depth Effects - Dark Bumblebee */
-    --depth-shadow: 0 2px 4px hsl(48 85% 60% / 0.2), 
-                    0 4px 8px hsl(48 85% 60% / 0.15),
+    /* 3D Depth Effects - Dark Pink */
+    --depth-shadow: 0 2px 4px hsl(350 75% 63% / 0.2), 
+                    0 4px 8px hsl(350 75% 63% / 0.15),
                     inset 0 -2px 4px hsl(0 0% 0% / 0.3);
-    --depth-shadow-hover: 0 4px 8px hsl(48 85% 60% / 0.3), 
-                          0 8px 16px hsl(48 85% 60% / 0.2),
+    --depth-shadow-hover: 0 4px 8px hsl(350 75% 63% / 0.3), 
+                          0 8px 16px hsl(350 75% 63% / 0.2),
                           inset 0 -2px 4px hsl(0 0% 0% / 0.4);
 
-    /* Gradients - Bumblebee Dark Yellow to Purple */
-    --gradient-start: 48 85% 40%;
-    --gradient-mid: 260 70% 45%;
-    --gradient-end: 48 90% 60%;
+    /* Gradients - Dark Pink to Blue */
+    --gradient-start: 348 75% 40%;
+    --gradient-mid: 198 30% 50%;
+    --gradient-end: 88 55% 65%;
 
-    /* Glassmorphism - Dark Bumblebee Yellow Glass */
-    --glass-bg: 48 85% 60% / 0.12;
-    --glass-border: 48 85% 60% / 0.25;
+    /* Glassmorphism - Dark Pink Glass */
+    --glass-bg: 350 75% 63% / 0.12;
+    --glass-border: 350 75% 63% / 0.25;
 
-    /* Sidebar Variables - Dark Bumblebee */
-    --sidebar-background: 279 50% 12%;
-    --sidebar-foreground: 272 10% 90%;
-    --sidebar-primary: 48 85% 60%;
-    --sidebar-primary-foreground: 279 60% 10%;
-    --sidebar-accent: 279 40% 18%;
-    --sidebar-accent-foreground: 272 10% 96%;
-    --sidebar-border: 279 40% 25%;
-    --sidebar-ring: 48 85% 60%;
+    /* Sidebar Variables - Dark Pink */
+    --sidebar-background: 343 50% 12%;
+    --sidebar-foreground: 346 90% 90%;
+    --sidebar-primary: 354 85% 59%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 343 40% 18%;
+    --sidebar-accent-foreground: 346 90% 94%;
+    --sidebar-border: 343 40% 25%;
+    --sidebar-ring: 354 85% 59%;
   }
   
   /* Custom scrollbar styles */
