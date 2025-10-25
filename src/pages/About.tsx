@@ -70,7 +70,7 @@ const About = () => {
       <Navigation />
       
       {/* Hero Section */}
-      <section className="relative pt-28 pb-16 overflow-hidden">
+      <section className="relative pt-24 pb-12 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-accent/10 to-background animate-gradient" />
         <div className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--primary))_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--primary))_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-[0.03] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_50%,#000_70%,transparent_110%)]" />
         
@@ -78,52 +78,54 @@ const About = () => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="text-center space-y-5"
+            className="text-center space-y-3"
           >
             <motion.div
               initial={{ scale: 0.9 }}
               animate={{ scale: 1 }}
               transition={{ duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gradient-to-r from-primary/20 to-accent/20 border border-primary/40 backdrop-blur-sm"
+              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-to-r from-primary/20 to-accent/20 border border-primary/40 glass-card-3d"
+              role="status"
+              aria-label="Pennsylvania Quantum Initiative"
             >
-              <Brain className="w-3.5 h-3.5 text-primary animate-pulse" />
-              <span className="text-xs font-medium bg-gradient-hero bg-clip-text text-transparent">
+              <Brain className="w-3 h-3 text-primary animate-pulse" aria-hidden="true" />
+              <span className="text-[11px] font-medium bg-gradient-hero bg-clip-text text-transparent">
                 Pennsylvania Quantum Initiative
               </span>
             </motion.div>
 
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold">
-              <span className="block text-foreground">The Quantum Leap</span>
-              <span className="block bg-gradient-hero bg-clip-text text-transparent mt-1.5">
+            <h1 className="text-xl sm:text-2xl md:text-3xl font-bold">
+              <span className="block text-foreground text-sm sm:text-base md:text-lg mb-1">The Quantum Leap</span>
+              <span className="block bg-gradient-hero bg-clip-text text-transparent">
                 Pennsylvania's Path Forward
               </span>
             </h1>
             
-            <p className="text-sm sm:text-base text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-              We're connecting students to tech careers, helping companies run smarter, speeding up healthcare breakthroughs, and making policies that work—all with real pilots that show results fast.
+            <p className="text-xs sm:text-sm text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              Connecting students to tech careers, helping companies run smarter, speeding up healthcare breakthroughs.
             </p>
           </motion.div>
         </div>
       </section>
 
       {/* Stakeholder Perspectives */}
-      <section className="py-16 bg-gradient-to-b from-muted/30 to-background">
+      <section className="py-12 bg-gradient-to-b from-muted/30 to-background" aria-labelledby="stakeholder-heading">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="text-center mb-8"
           >
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2.5 bg-gradient-hero bg-clip-text text-transparent">
+            <h2 id="stakeholder-heading" className="text-lg sm:text-xl md:text-2xl font-bold mb-2 bg-gradient-hero bg-clip-text text-transparent">
               Four Perspectives, One Vision
             </h2>
-            <p className="text-sm sm:text-base text-muted-foreground max-w-2xl mx-auto">
-              Real people, real results. Here's how quantum tech helps everyone.
+            <p className="text-xs sm:text-sm text-muted-foreground max-w-xl mx-auto">
+              Real people, real results. Here's how quantum helps everyone.
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-5">
+          <div className="grid md:grid-cols-2 gap-4">
             {stakeholders.map((stakeholder, index) => (
               <StakeholderCard
                 key={index}
@@ -136,23 +138,23 @@ const About = () => {
       </section>
 
       {/* ROI Metrics */}
-      <section className="py-16">
+      <section className="py-12" aria-labelledby="roi-heading">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-6xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-center mb-12"
+            className="text-center mb-8"
           >
-            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold mb-2.5 bg-gradient-hero bg-clip-text text-transparent">
+            <h2 id="roi-heading" className="text-lg sm:text-xl md:text-2xl font-bold mb-2 bg-gradient-hero bg-clip-text text-transparent">
               Return on Investment
             </h2>
-            <p className="text-sm sm:text-base text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-xs sm:text-sm text-muted-foreground max-w-xl mx-auto">
               Real numbers from real tests—quantum pays back fast.
             </p>
           </motion.div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
             {investmentMetrics.map((metric, index) => (
               <MetricCard
                 key={index}
@@ -165,27 +167,27 @@ const About = () => {
       </section>
 
       {/* Vision Statement */}
-      <section className="py-16 bg-gradient-to-b from-background to-muted/30">
+      <section className="py-12 bg-gradient-to-b from-background to-muted/30" aria-labelledby="vision-heading">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="space-y-6"
+            className="space-y-4"
           >
-            <div className="text-center space-y-2.5">
-              <Users className="h-9 w-9 text-primary mx-auto animate-pulse" />
-              <h2 className="text-xl sm:text-2xl md:text-3xl font-bold bg-gradient-hero bg-clip-text text-transparent">Our Vision</h2>
+            <div className="text-center space-y-2">
+              <Users className="h-7 w-7 text-primary mx-auto animate-pulse" aria-hidden="true" />
+              <h2 id="vision-heading" className="text-lg sm:text-xl md:text-2xl font-bold bg-gradient-hero bg-clip-text text-transparent">Our Vision</h2>
             </div>
             
-            <div className="space-y-4 text-sm sm:text-base text-muted-foreground leading-relaxed">
+            <div className="space-y-3 text-xs sm:text-sm text-muted-foreground leading-relaxed">
               <p>
                 Pennsylvania is ready to lead. We're connecting students to careers, companies to efficiency, healthcare to breakthroughs, and policy to practice. No buzzwords—just systems that work.
               </p>
               <p>
                 With smart investment, clear rules, and hands-on training, Pennsylvania becomes a quantum leader—not just in tech, but in jobs, security, and quality of life.
               </p>
-              <blockquote className="border-l-4 border-primary pl-5 py-2 italic text-base sm:text-lg bg-gradient-to-r from-primary/5 to-transparent rounded-r">
+              <blockquote className="border-l-3 border-primary pl-4 py-1.5 italic text-xs sm:text-sm bg-gradient-to-r from-primary/5 to-transparent rounded-r">
                 "Quantum won't just compute—it will sense, simulate, and secure. Pennsylvania can build that future first."
               </blockquote>
             </div>
@@ -194,7 +196,7 @@ const About = () => {
       </section>
 
       {/* Call to Action */}
-      <section className="py-16">
+      <section className="py-12" aria-labelledby="cta-heading">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-3xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -202,19 +204,20 @@ const About = () => {
             viewport={{ once: true }}
             className="text-center"
           >
-            <Card className="bg-gradient-to-br from-primary/15 via-accent/10 to-primary/15 border border-primary/40 shadow-[0_10px_40px_rgba(var(--primary-rgb),0.2)]">
-              <CardContent className="p-8 sm:p-10 space-y-5">
-                <h2 className="text-2xl sm:text-3xl font-bold bg-gradient-hero bg-clip-text text-transparent">
+            <Card className="glass-card-3d bg-gradient-to-br from-primary/15 via-accent/10 to-primary/15 border border-primary/40">
+              <CardContent className="p-6 sm:p-8 space-y-4">
+                <h2 id="cta-heading" className="text-xl sm:text-2xl font-bold bg-gradient-hero bg-clip-text text-transparent">
                   Join Pennsylvania's Quantum Future
                 </h2>
-                <p className="text-sm sm:text-base text-muted-foreground max-w-xl mx-auto">
+                <p className="text-xs sm:text-sm text-muted-foreground max-w-xl mx-auto">
                   Whether you're in education, energy, healthcare, government, or business—Pennsylvania's quantum future needs you.
                 </p>
                 <motion.button
                   onClick={() => window.location.href = "/#contact"}
-                  className="px-7 py-3.5 bg-primary text-primary-foreground rounded-lg font-semibold shadow-lg hover:shadow-xl transition-all text-sm"
+                  className="btn-3d-primary px-6 py-2.5 rounded-lg font-semibold text-xs sm:text-sm"
                   whileHover={{ scale: 1.03, y: -2 }}
                   whileTap={{ scale: 0.97 }}
+                  aria-label="Get involved in Pennsylvania's Quantum Initiative"
                 >
                   Get Involved Today
                 </motion.button>

@@ -39,25 +39,30 @@ export const Navigation = () => {
     }
     setIsMobileMenuOpen(false);
   };
-  return <nav className="fixed top-0 left-0 right-0 z-50 backdrop-blur-lg bg-background/80 border-b border-border/50 shadow-lg">
+  return <nav className="fixed top-0 left-0 right-0 z-50 glass-card-3d backdrop-blur-xl bg-background/85 border-b border-primary/20 shadow-lg" role="navigation" aria-label="Main navigation">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
-        <div className="flex items-center justify-between h-16 sm:h-20">
+        <div className="flex items-center justify-between h-14 sm:h-16">
           {/* Logo */}
-          <motion.a href="/" className="text-lg sm:text-xl font-bold bg-gradient-hero bg-clip-text text-transparent" whileHover={{
-          scale: 1.05
-        }} whileTap={{
-          scale: 0.95
-        }}>
+          <motion.a 
+            href="/" 
+            className="text-base sm:text-lg font-bold bg-gradient-hero bg-clip-text text-transparent" 
+            whileHover={{ scale: 1.05 }} 
+            whileTap={{ scale: 0.95 }}
+            aria-label="AltruisticXAI Home"
+          >
             AltruisticXAI
           </motion.a>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-1">
-            {navItems.map(item => <motion.button key={item.label} onClick={() => handleNavClick(item.href)} className="px-3 py-2 rounded-lg text-xs sm:text-sm font-medium text-foreground hover:bg-primary/10 hover:text-primary transition-all" whileHover={{
-            y: -2
-          }} whileTap={{
-            scale: 0.95
-          }}>
+          <div className="hidden lg:flex items-center gap-0.5">
+            {navItems.map(item => <motion.button 
+              key={item.label} 
+              onClick={() => handleNavClick(item.href)} 
+              className="px-2.5 py-1.5 rounded-lg text-xs font-medium text-foreground hover:bg-primary/10 hover:text-primary transition-all glass-card-3d" 
+              whileHover={{ y: -1, scale: 1.02 }} 
+              whileTap={{ scale: 0.98 }}
+              aria-label={`Navigate to ${item.label}`}
+            >
                 {item.label}
               </motion.button>)}
             

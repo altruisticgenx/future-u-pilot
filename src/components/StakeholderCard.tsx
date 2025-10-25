@@ -23,40 +23,42 @@ export const StakeholderCard = ({
 }: StakeholderCardProps) => {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 15 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ delay: index * 0.1 }}
-      whileHover={{ y: -5, scale: 1.01 }}
+      transition={{ delay: index * 0.08 }}
+      whileHover={{ y: -3, scale: 1.01 }}
+      className="h-full"
     >
-      <Card className={`h-full bg-gradient-to-br ${color} border border-primary/30 hover:border-primary/60 transition-all duration-300 hover:shadow-[0_10px_40px_rgba(var(--primary-rgb),0.2)]`}>
-        <CardContent className="p-5 space-y-4">
-          <div className="flex items-start gap-3">
+      <Card className={`glass-card-3d h-full bg-gradient-to-br ${color} border border-primary/25 hover:border-primary/50 transition-all duration-300`}>
+        <CardContent className="p-4 space-y-3">
+          <div className="flex items-start gap-2.5">
             <motion.div 
-              className="p-2.5 rounded-xl bg-primary/20 shrink-0"
+              className="p-2 rounded-lg bg-primary/15 shrink-0 shadow-sm"
               whileHover={{ rotate: 360 }}
               transition={{ duration: 0.5 }}
+              aria-hidden="true"
             >
-              <Icon className="h-6 w-6 text-primary" />
+              <Icon className="h-5 w-5 text-primary" />
             </motion.div>
             <div>
-              <h3 className="text-base font-bold text-foreground">{title}</h3>
-              <p className="text-xs text-muted-foreground/80 italic">{subtitle}</p>
+              <h3 className="text-sm font-bold text-foreground leading-tight">{title}</h3>
+              <p className="text-[11px] text-muted-foreground/80 italic mt-0.5">{subtitle}</p>
             </div>
           </div>
           
-          <p className="text-sm text-foreground/80 leading-relaxed">
+          <p className="text-xs text-foreground/75 leading-relaxed">
             {description}
           </p>
 
-          <div className="space-y-1.5 pt-2">
+          <ul className="space-y-1 pt-1" role="list">
             {highlights.map((highlight, idx) => (
-              <div key={idx} className="flex items-start gap-2 text-sm text-foreground/70">
-                <CheckCircle2 className="h-4 w-4 text-primary mt-0.5 shrink-0" />
+              <li key={idx} className="flex items-start gap-1.5 text-xs text-foreground/70">
+                <CheckCircle2 className="h-3.5 w-3.5 text-cmd-success mt-0.5 shrink-0" aria-hidden="true" />
                 <span>{highlight}</span>
-              </div>
+              </li>
             ))}
-          </div>
+          </ul>
         </CardContent>
       </Card>
     </motion.div>

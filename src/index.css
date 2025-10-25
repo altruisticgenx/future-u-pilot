@@ -8,120 +8,142 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Terminal colors */
-    --terminal-bg: 222 47% 7%;
-    --terminal-surface: 217 33% 12%;
-    --terminal-border: 215 16% 22%;
-    --terminal-text: 210 20% 98%;
-    
-    /* Command colors */
-    --cmd-success: 142 76% 60%;
-    --cmd-error: 0 84% 60%;
-    --cmd-info: 199 89% 65%;
+    /* Terminal Colors - Teal Ocean */
+    --terminal-bg: 195 100% 8%;
+    --terminal-surface: 195 95% 12%;
+    --terminal-border: 195 60% 25%;
+    --terminal-text: 180 30% 85%;
+
+    /* Command Colors */
+    --cmd-success: 160 84% 39%;
+    --cmd-error: 0 72% 51%;
+    --cmd-info: 185 90% 55%;
     --cmd-warning: 43 96% 56%;
-    
-    /* Syntax highlighting */
-    --syntax-keyword: 280 100% 80%;
-    --syntax-string: 142 76% 60%;
+
+    /* Syntax Highlighting */
+    --syntax-keyword: 185 90% 55%;
+    --syntax-string: 160 84% 39%;
     --syntax-number: 43 96% 56%;
-    --syntax-comment: 215 16% 42%;
+    --syntax-comment: 195 30% 50%;
+
+    /* Core UI Colors - Teal Glass & Quantum Light */
+    --background: 200 20% 98%;
+    --foreground: 195 100% 8%;
+    --card: 180 100% 99%;
+    --card-foreground: 195 100% 10%;
+    --popover: 180 100% 99%;
+    --popover-foreground: 195 100% 10%;
     
-    /* Core colors */
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 174 80% 32%;
-    --primary-foreground: 0 0% 100%;
+    /* Primary: Deep Teal */
+    --primary: 185 85% 45%;
+    --primary-foreground: 180 100% 99%;
+    --primary-glow: 185 90% 70%;
     
-    --primary-glow: 174 70% 60%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 274 80% 65%;
-    --accent-foreground: 0 0% 100%;
+    /* Secondary: Ocean Blue */
+    --secondary: 195 65% 55%;
+    --secondary-foreground: 195 100% 10%;
     
-    --gradient-start: 243 75% 59%;
-    --gradient-mid: 274 80% 65%;
-    --gradient-end: 174 80% 40%;
-
+    --muted: 195 20% 94%;
+    --muted-foreground: 195 15% 45%;
+    
+    /* Accent: Gold (trust) */
+    --accent: 43 96% 56%;
+    --accent-foreground: 195 100% 10%;
+    
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
+    --border: 195 30% 88%;
+    --input: 195 30% 88%;
+    --ring: 185 85% 45%;
+    --radius: 0.875rem;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 174 80% 40%;
+    /* Gradients - Deep Ocean to Teal */
+    --gradient-start: 195 100% 20%;
+    --gradient-mid: 185 85% 45%;
+    --gradient-end: 175 80% 60%;
 
-    --radius: 1rem;
-    
-    --glass-bg: 0 0% 100% / 0.6;
-    --glass-border: 0 0% 100% / 0.2;
+    /* Glassmorphism - Teal Glass */
+    --glass-bg: 185 85% 45% / 0.08;
+    --glass-border: 185 85% 45% / 0.2;
 
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Sidebar Variables */
+    --sidebar-background: 195 30% 97%;
+    --sidebar-foreground: 195 50% 25%;
+    --sidebar-primary: 185 85% 45%;
+    --sidebar-primary-foreground: 180 100% 99%;
+    --sidebar-accent: 195 25% 92%;
+    --sidebar-accent-foreground: 195 100% 10%;
+    --sidebar-border: 195 30% 88%;
+    --sidebar-ring: 185 85% 45%;
   }
 
   .dark {
-    --background: 222.2 47% 11%;
-    --foreground: 210 40% 98%;
+    /* Terminal Colors - Dark Ocean */
+    --terminal-bg: 195 100% 5%;
+    --terminal-surface: 195 90% 8%;
+    --terminal-border: 195 60% 18%;
+    --terminal-text: 180 40% 80%;
 
-    --card: 222.2 47% 15%;
-    --card-foreground: 210 40% 98%;
+    /* Command Colors (same) */
+    --cmd-success: 160 84% 39%;
+    --cmd-error: 0 72% 51%;
+    --cmd-info: 185 90% 55%;
+    --cmd-warning: 43 96% 56%;
 
-    --popover: 222.2 47% 15%;
-    --popover-foreground: 210 40% 98%;
+    /* Syntax Highlighting (same) */
+    --syntax-keyword: 185 90% 55%;
+    --syntax-string: 160 84% 39%;
+    --syntax-number: 43 96% 56%;
+    --syntax-comment: 195 30% 50%;
 
-    --primary: 174 80% 50%;
-    --primary-foreground: 222.2 47% 11%;
+    /* Core UI Colors - Dark Teal Ocean */
+    --background: 195 100% 5%;
+    --foreground: 180 40% 95%;
+    --card: 195 90% 8%;
+    --card-foreground: 180 40% 95%;
+    --popover: 195 90% 8%;
+    --popover-foreground: 180 40% 95%;
     
-    --primary-glow: 174 70% 60%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 274 80% 65%;
-    --accent-foreground: 222.2 47% 11%;
+    /* Primary: Bright Teal */
+    --primary: 185 90% 55%;
+    --primary-foreground: 195 100% 5%;
+    --primary-glow: 185 100% 75%;
     
-    --gradient-start: 243 75% 59%;
-    --gradient-mid: 274 80% 65%;
-    --gradient-end: 174 80% 50%;
-
+    /* Secondary: Light Ocean */
+    --secondary: 195 60% 40%;
+    --secondary-foreground: 180 40% 95%;
+    
+    --muted: 195 40% 15%;
+    --muted-foreground: 195 25% 65%;
+    
+    /* Accent: Gold */
+    --accent: 43 96% 56%;
+    --accent-foreground: 195 100% 5%;
+    
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
+    --border: 195 50% 20%;
+    --input: 195 50% 20%;
+    --ring: 185 90% 55%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 174 80% 50%;
-    
-    --glass-bg: 0 0% 0% / 0.4;
-    --glass-border: 255 255 255 / 0.2;
+    /* Gradients - Deep Ocean to Bright Teal */
+    --gradient-start: 195 100% 25%;
+    --gradient-mid: 185 90% 50%;
+    --gradient-end: 175 85% 65%;
 
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Glassmorphism - Dark Teal Glass */
+    --glass-bg: 185 90% 55% / 0.12;
+    --glass-border: 185 90% 55% / 0.25;
+
+    /* Sidebar Variables */
+    --sidebar-background: 195 90% 8%;
+    --sidebar-foreground: 180 40% 90%;
+    --sidebar-primary: 185 90% 55%;
+    --sidebar-primary-foreground: 195 100% 5%;
+    --sidebar-accent: 195 60% 15%;
+    --sidebar-accent-foreground: 180 40% 90%;
+    --sidebar-border: 195 50% 20%;
+    --sidebar-ring: 185 90% 55%;
   }
   
   /* Custom scrollbar styles */
@@ -240,23 +262,47 @@ All colors MUST be HSL.
     perspective: 1000px;
   }
   
-  /* 3D Button Styles */
+  /* 3D Button Styles - Teal Glass with depth */
   .btn-3d-primary {
-    @apply bg-gradient-to-br from-primary to-primary-glow text-primary-foreground;
-    @apply shadow-[0_6px_0_hsl(var(--primary)/0.6),0_10px_20px_hsl(var(--primary)/0.4)];
-    @apply hover:shadow-[0_4px_0_hsl(var(--primary)/0.6),0_8px_25px_hsl(var(--primary)/0.6)];
-    @apply active:shadow-[0_2px_0_hsl(var(--primary)/0.6),0_4px_15px_hsl(var(--primary)/0.5)];
-    @apply active:translate-y-1;
-    @apply transition-all duration-150;
+    @apply relative bg-gradient-to-br from-primary to-primary-glow text-primary-foreground;
+    @apply shadow-[0_2px_0_hsl(var(--primary)/0.8),0_4px_8px_hsl(var(--primary)/0.4),inset_0_1px_0_hsl(var(--primary-glow)/0.5)];
+    @apply hover:shadow-[0_3px_0_hsl(var(--primary)/0.8),0_8px_16px_hsl(var(--primary)/0.5),inset_0_1px_0_hsl(var(--primary-glow)/0.6)];
+    @apply active:shadow-[0_1px_0_hsl(var(--primary)/0.8),0_2px_4px_hsl(var(--primary)/0.3),inset_0_1px_0_hsl(var(--primary-glow)/0.4)];
+    @apply hover:-translate-y-[1px] active:translate-y-[1px];
+    @apply transition-all duration-200;
+    @apply border border-primary-glow/30;
+    transform-style: preserve-3d;
   }
   
   .btn-3d-accent {
-    @apply bg-gradient-to-br from-accent to-accent/80 text-accent-foreground;
-    @apply shadow-[0_6px_0_hsl(var(--accent)/0.6),0_10px_20px_hsl(var(--accent)/0.4)];
-    @apply hover:shadow-[0_4px_0_hsl(var(--accent)/0.6),0_8px_25px_hsl(var(--accent)/0.6)];
-    @apply active:shadow-[0_2px_0_hsl(var(--accent)/0.6),0_4px_15px_hsl(var(--accent)/0.5)];
-    @apply active:translate-y-1;
-    @apply transition-all duration-150;
+    @apply relative bg-gradient-to-br from-accent via-accent to-[hsl(43_100%_65%)] text-accent-foreground;
+    @apply shadow-[0_2px_0_hsl(var(--accent)/0.9),0_4px_8px_hsl(var(--accent)/0.4),inset_0_1px_0_hsl(43_100%_70%/0.5)];
+    @apply hover:shadow-[0_3px_0_hsl(var(--accent)/0.9),0_8px_16px_hsl(var(--accent)/0.5),inset_0_1px_0_hsl(43_100%_70%/0.6)];
+    @apply active:shadow-[0_1px_0_hsl(var(--accent)/0.9),0_2px_4px_hsl(var(--accent)/0.3),inset_0_1px_0_hsl(43_100%_70%/0.4)];
+    @apply hover:-translate-y-[1px] active:translate-y-[1px];
+    @apply transition-all duration-200;
+    @apply border border-[hsl(43_100%_70%/0.4)];
+    transform-style: preserve-3d;
+  }
+  
+  /* Glass Card 3D Effect */
+  .glass-card-3d {
+    @apply backdrop-blur-xl border;
+    background: hsl(var(--glass-bg));
+    border-color: hsl(var(--glass-border));
+    box-shadow: 
+      0 4px 6px hsl(var(--primary) / 0.1),
+      0 8px 16px hsl(var(--primary) / 0.08),
+      inset 0 1px 0 hsl(var(--primary-glow) / 0.15);
+    @apply transition-all duration-300;
+  }
+
+  .glass-card-3d:hover {
+    @apply -translate-y-[2px];
+    box-shadow: 
+      0 6px 12px hsl(var(--primary) / 0.15),
+      0 12px 24px hsl(var(--primary) / 0.12),
+      inset 0 1px 0 hsl(var(--primary-glow) / 0.2);
   }
   
   /* Mobile-optimized animations */

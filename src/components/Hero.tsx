@@ -144,32 +144,34 @@ export const Hero = () => {
               </p>
             </div>
 
-            {/* CTAs - Uniform Buttons */}
-            <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 items-stretch sm:items-center">
+            {/* CTAs - Compact 3D Buttons */}
+            <div className="flex flex-col sm:flex-row gap-2 items-stretch sm:items-center">
               <Button
                 onClick={scrollToContact}
-                className="btn-3d-primary text-xs sm:text-sm px-4 sm:px-5 py-3 sm:py-3.5 font-semibold border border-primary/20 shadow-md hover:shadow-lg transition-all duration-200 w-full sm:w-auto min-w-[120px] flex items-center justify-center gap-2"
+                className="btn-3d-primary text-[11px] sm:text-xs px-3 sm:px-4 py-2 sm:py-2.5 font-semibold w-full sm:w-auto min-w-[100px] flex items-center justify-center gap-1.5"
+                data-analytics-id="cta_book_strategy"
+                aria-label="Book a strategy session"
               >
-                📅 Book Session
-                <ArrowRight className="h-3.5 w-3.5" />
+                📅 Book
+                <ArrowRight className="h-3 w-3" aria-hidden="true" />
               </Button>
               
               <Button
                 onClick={navigateToAbout}
-                className="btn-3d-accent text-xs sm:text-sm px-4 sm:px-5 py-3 sm:py-3.5 font-semibold border border-accent/20 shadow-md hover:shadow-lg transition-all duration-200 w-full sm:w-auto min-w-[120px] flex items-center justify-center gap-2"
+                className="btn-3d-accent text-[11px] sm:text-xs px-3 sm:px-4 py-2 sm:py-2.5 font-semibold w-full sm:w-auto min-w-[100px] flex items-center justify-center gap-1.5"
                 aria-label="Learn about our approach"
               >
-                <Play className="h-3.5 w-3.5" />
-                About Us
+                <Play className="h-3 w-3" aria-hidden="true" />
+                About
               </Button>
 
               <Button
                 onClick={() => window.open('https://drive.google.com/file/d/1vuiN0NYOvToHIxkqjSSFFEYLitv-zyK7/view?usp=sharing', '_blank')}
-                className="text-xs sm:text-sm px-4 sm:px-5 py-3 sm:py-3.5 font-semibold border border-primary/30 shadow-md hover:shadow-lg transition-all duration-200 w-full sm:w-auto min-w-[120px] flex items-center justify-center gap-2 bg-gradient-to-r from-primary/10 to-accent/10 hover:from-primary/20 hover:to-accent/20"
+                className="glass-card-3d text-[11px] sm:text-xs px-3 sm:px-4 py-2 sm:py-2.5 font-semibold w-full sm:w-auto min-w-[100px] flex items-center justify-center gap-1.5 bg-gradient-to-r from-primary/10 to-accent/10 hover:from-primary/15 hover:to-accent/15"
                 aria-label="Watch intro video"
               >
-                <Video className="h-3.5 w-3.5" />
-                Intro Video
+                <Video className="h-3 w-3" aria-hidden="true" />
+                Video
               </Button>
             </div>
           </motion.div>
