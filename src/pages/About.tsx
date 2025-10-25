@@ -8,6 +8,7 @@ import { SmartChatbot } from "@/components/SmartChatbot";
 import { ROIChart } from "@/components/ROIChart";
 import { ContrastMonitor } from "@/components/ContrastMonitor";
 import { RAGSearch } from "@/components/RAGSearch";
+import { SandboxPanel, sandboxExamples } from "@/components/SandboxPanel";
 
 const stakeholders = [
   {
@@ -248,6 +249,80 @@ const About = () => {
           </motion.div>
 
           <ROIChart />
+        </div>
+      </section>
+
+      {/* Interactive Code Sandboxes */}
+      <section className="py-16 sm:py-20 md:py-24 bg-gradient-to-b from-background to-muted/30" aria-labelledby="sandbox-heading">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-12"
+          >
+            <h2 id="sandbox-heading" className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 bg-gradient-hero bg-clip-text text-transparent">
+              Try It Yourself
+            </h2>
+            <p className="text-sm sm:text-base text-muted-foreground max-w-2xl mx-auto">
+              Explore real quantum computing examples for each sector. All code runs in your browser—no setup required.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-6xl mx-auto">
+            {/* Student Sandbox */}
+            <SandboxPanel
+              title="🎓 Student Training: Bell State"
+              description="Learn quantum circuits with Qiskit"
+              code={sandboxExamples.students}
+              language="python"
+              output="Bell State Results: {'00': 512, '11': 488}"
+              color="primary"
+            />
+
+            {/* Energy Sandbox */}
+            <SandboxPanel
+              title="⚡ Energy Grid Optimization"
+              description="Minimize transmission losses"
+              code={sandboxExamples.energy}
+              language="python"
+              output="Optimized Distribution:\nEnergy Savings: 234.8 kWh\nGrid Efficiency: 94.3%"
+              color="success"
+            />
+
+            {/* Healthcare Sandbox */}
+            <SandboxPanel
+              title="🩺 Drug Discovery Simulation"
+              description="Molecular property prediction"
+              code={sandboxExamples.healthcare}
+              language="python"
+              output="Ground State: -1.137 Hartree\nDrug binding affinity: 713.4 kcal/mol"
+              color="secondary"
+            />
+
+            {/* Governance Sandbox */}
+            <SandboxPanel
+              title="🏛️ Policy Impact Model"
+              description="Economic multiplier analysis"
+              code={sandboxExamples.governance}
+              language="python"
+              output="Total Investment: $45M\nExpected Return: $186M\nROI: 4.13x\nJobs Created: 1,560"
+              color="accent"
+            />
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.5 }}
+            className="text-center mt-8"
+          >
+            <p className="text-xs text-muted-foreground">
+              ℹ️ Code is read-only. Click "Run" to see simulated output. Real execution requires backend setup.
+            </p>
+          </motion.div>
         </div>
       </section>
 
