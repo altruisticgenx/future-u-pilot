@@ -15,23 +15,23 @@ const challenges = [
 
 export const WhyNow = () => {
   return (
-    <section className="py-12 sm:py-16 md:py-20 border-t border-primary/20 glass-card-3d bg-gradient-to-b from-muted/30 to-background relative overflow-hidden" aria-labelledby="why-now-heading">
+    <section className="py-12 sm:py-16 md:py-20 border-t border-primary/20 glass-card-3d bg-gradient-to-b from-muted/30 to-background relative overflow-hidden elevation-1" aria-labelledby="why-now-heading">
       {/* Animated background */}
-      <div className="absolute inset-0 opacity-20">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/20 rounded-full blur-3xl animate-float" />
-        <div className="absolute bottom-1/4 right-1/4 w-72 h-72 bg-accent/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }} />
+      <div className="absolute inset-0 opacity-20 pointer-events-none">
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-primary/20 rounded-full blur-3xl animate-float" style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden' }} />
+        <div className="absolute bottom-1/4 right-1/4 w-72 h-72 bg-accent/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s', transform: 'translateZ(0)', backfaceVisibility: 'hidden' }} />
       </div>
 
       <div className="container relative mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
           viewport={{ once: true }}
           className="text-center space-y-2 sm:space-y-3 mb-8 sm:mb-10 md:mb-12"
         >
-          <h2 id="why-now-heading" className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-foreground">Why Now?</h2>
-          <p className="text-xs sm:text-sm md:text-base lg:text-lg text-foreground/80 dark:text-foreground/90 max-w-2xl mx-auto px-4 font-medium">
+          <h2 id="why-now-heading" className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-foreground dark:text-foreground/95">Why Now?</h2>
+          <p className="text-xs sm:text-sm md:text-base lg:text-lg text-foreground dark:text-foreground/95 max-w-2xl mx-auto px-4 font-medium">
             Quantum timelines are uncertain; preparedness isn't.
           </p>
         </motion.div>
@@ -41,7 +41,7 @@ export const WhyNow = () => {
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
             viewport={{ once: true }}
             className="space-y-3 sm:space-y-4 md:space-y-5"
           >
@@ -52,16 +52,21 @@ export const WhyNow = () => {
                   key={challenge.text}
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.4, delay: index * 0.1 }}
+                  transition={{ duration: 0.4, delay: index * 0.1, ease: [0.34, 1.56, 0.64, 1] }}
                   viewport={{ once: true }}
                   whileHover={{ x: 5, scale: 1.02 }}
-                  className="flex items-start gap-3 sm:gap-4 p-3 sm:p-4 md:p-5 rounded-xl glass-card-3d bg-card/50 border-2 border-primary/20 hover:border-primary/40 transition-all"
-                  style={{ contain: 'layout style paint' }}
+                  className="flex items-start gap-3 sm:gap-4 p-3 sm:p-4 md:p-5 min-h-[44px] rounded-xl glass-card-3d backdrop-blur-xl bg-card/50 border-2 border-primary/20 hover:border-primary/40 hover-glow elevation-2 hover:elevation-4 transition-all press-scale touch-manipulation"
+                  style={{ 
+                    contain: 'layout style paint',
+                    transform: 'translateZ(0)',
+                    backfaceVisibility: 'hidden',
+                    WebkitTapHighlightColor: 'transparent'
+                  }}
                 >
                   <motion.div 
-                    className="p-2 rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 shrink-0"
+                    className="p-2 rounded-lg bg-gradient-to-br from-primary/20 to-accent/20 shrink-0 min-w-[44px] min-h-[44px] flex items-center justify-center"
                     whileHover={{ rotate: 360, scale: 1.1 }}
-                    transition={{ duration: 0.6 }}
+                    transition={{ duration: 0.6, ease: [0.34, 1.56, 0.64, 1] }}
                   >
                     <Icon className="h-5 w-5 sm:h-6 sm:w-6 text-primary" aria-hidden="true" />
                   </motion.div>
@@ -77,11 +82,11 @@ export const WhyNow = () => {
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
             viewport={{ once: true }}
             className="relative"
           >
-            <div className="p-4 sm:p-6 md:p-8 rounded-2xl glass-card-3d bg-card/70 border-2 border-primary/30">
+            <div className="p-4 sm:p-6 md:p-8 rounded-2xl glass-card-3d backdrop-blur-xl bg-card/70 border-2 border-primary/30 hover-glow elevation-3 hover:elevation-4 transition-all" style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden' }}>
               <h3 className="text-base sm:text-lg md:text-xl font-bold mb-6 sm:mb-8 text-center bg-gradient-hero bg-clip-text text-transparent">
                 Evolution Timeline
               </h3>
@@ -90,11 +95,12 @@ export const WhyNow = () => {
               <div className="relative h-28 sm:h-32">
                 {/* Background line */}
                 <motion.div 
-                  className="absolute top-1/2 left-0 right-0 h-1 sm:h-1.5 bg-gradient-to-r from-gradient-start via-gradient-mid to-gradient-end rounded-full"
+                  className="absolute top-1/2 left-0 right-0 h-1 sm:h-1.5 bg-gradient-to-r from-gradient-start via-gradient-mid to-gradient-end rounded-full elevation-1"
                   initial={{ scaleX: 0 }}
                   whileInView={{ scaleX: 1 }}
-                  transition={{ duration: 1, delay: 0.2 }}
+                  transition={{ duration: 1, delay: 0.2, ease: [0.65, 0, 0.35, 1] }}
                   viewport={{ once: true }}
+                  style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden' }}
                 />
                 
                 {/* Milestones */}
@@ -111,13 +117,18 @@ export const WhyNow = () => {
                     }}
                     viewport={{ once: true }}
                     whileHover={{ scale: 1.2, y: -5 }}
-                    className="absolute top-1/2 -translate-y-1/2"
-                    style={{ left: `${milestone.position}%`, transform: `translateX(-50%) translateY(-50%)` }}
+                    className="absolute top-1/2 -translate-y-1/2 press-scale touch-manipulation min-w-[44px] min-h-[44px] flex items-center justify-center"
+                    style={{ 
+                      left: `${milestone.position}%`, 
+                      transform: `translateX(-50%) translateY(-50%) translateZ(0)`,
+                      backfaceVisibility: 'hidden',
+                      WebkitTapHighlightColor: 'transparent'
+                    }}
                   >
                     <div className="relative">
                       {/* Dot */}
                       <motion.div 
-                        className="w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-primary border-2 sm:border-4 border-background shadow-lg"
+                        className="w-3 h-3 sm:w-4 sm:h-4 rounded-full bg-primary border-2 sm:border-4 border-background shadow-lg elevation-2"
                         animate={{ 
                           boxShadow: [
                             "0 0 10px hsl(var(--primary) / 0.5)",
@@ -125,7 +136,8 @@ export const WhyNow = () => {
                             "0 0 10px hsl(var(--primary) / 0.5)"
                           ]
                         }}
-                        transition={{ duration: 2, repeat: Infinity }}
+                        transition={{ duration: 2, repeat: Infinity, ease: [0.4, 0, 0.6, 1] }}
+                        style={{ transform: 'translateZ(0)', backfaceVisibility: 'hidden' }}
                       />
                       
                       {/* Label */}
