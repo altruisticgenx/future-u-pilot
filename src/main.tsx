@@ -1,7 +1,19 @@
 import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
-import { initPostHog } from "./lib/posthog";
+
+// Polyfill for requestIdleCallback
+if (!('requestIdleCallback' in window)) {
+  (window as any).requestIdleCallback = (cb: IdleRequestCallback) => {
+    const start = Date.now();
+    return setTimeout(() => {
+      cb({
+        didTimeout: false,
+        timeRemaining: () => Math.max(0, 50 - (Date.now() - start))
+      });
+    }, 1);
+  };
+}
 
 // Show loading screen immediately
 const rootElement = document.getElementById("root")!;
@@ -14,14 +26,10 @@ rootElement.innerHTML = `
   </div>
 `;
 
-// Initialize PostHog async
-initPostHog();
+// Render app immediately for fast TTI
+createRoot(rootElement).render(<App />);
 
-// Render app after fonts load
-if (document.fonts) {
-  document.fonts.ready.then(() => {
-    createRoot(rootElement).render(<App />);
-  });
-} else {
-  createRoot(rootElement).render(<App />);
-}
+// Defer analytics initialization until after app is interactive
+requestIdleCallback(() => {
+  import("./lib/posthog").then(({ initPostHog }) => initPostHog());
+}, { timeout: 2000 });
