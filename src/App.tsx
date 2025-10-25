@@ -17,6 +17,7 @@ const FAQ = lazy(() => import("./pages/FAQ"));
 const Terminal = lazy(() => import("./pages/Terminal"));
 const Auth = lazy(() => import("./pages/Auth"));
 const MapDemo = lazy(() => import("./pages/MapDemo"));
+const PALobby = lazy(() => import("./pages/PALobby"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 
 // Lazy wrapper that only loads QueryClient when needed
@@ -57,6 +58,7 @@ const App = () => (
           <Route path="/storytelling" element={<Storytelling />} />
           <Route path="/about" element={<QueryWrapper><About /></QueryWrapper>} />
           <Route path="/faq" element={<FAQ />} />
+          <Route path="/pa-lobby" element={<PALobby />} />
           <Route path="/map" element={<MapDemo />} />
           <Route path="/auth" element={<QueryWrapper><Auth /></QueryWrapper>} />
           <Route path="/terminal" element={<QueryWrapper><Terminal /></QueryWrapper>} />

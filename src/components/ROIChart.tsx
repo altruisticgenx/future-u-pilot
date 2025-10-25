@@ -20,9 +20,9 @@ export const ROIChart = () => {
 
   if (isLoading) {
     return (
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5 lg:gap-6">
         {[...Array(4)].map((_, i) => (
-          <Skeleton key={i} className="h-48 rounded-xl" />
+          <Skeleton key={i} className="h-64 rounded-xl" />
         ))}
       </div>
     );
@@ -30,7 +30,7 @@ export const ROIChart = () => {
 
   return (
     <div ref={ref} className="space-y-6">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5 lg:gap-6">
         {roiData?.map((item, index) => {
           const Icon = iconMap[item.icon as keyof typeof iconMap] || GraduationCap;
           
@@ -41,7 +41,7 @@ export const ROIChart = () => {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <Card className="glass-card-3d h-full hover:shadow-lg transition-all duration-300 group">
+              <Card className="glass-card-3d h-full min-h-[280px] hover:shadow-lg hover:scale-[1.02] transition-all duration-300 group">
                 <CardHeader className="pb-3">
                   <div className="flex items-center gap-3">
                     <div className={cn(
@@ -68,15 +68,15 @@ export const ROIChart = () => {
                     <div className="text-xs text-muted-foreground mb-2">
                       Expected Return
                     </div>
-                    <div className="relative h-2 bg-muted rounded-full overflow-hidden">
+                    <div className="relative h-2 bg-muted rounded-full overflow-hidden shadow-inner">
                       <motion.div
                         className={cn(
-                          "absolute inset-y-0 left-0 rounded-full bg-gradient-to-r shadow-lg",
+                          "absolute inset-y-0 left-0 rounded-full bg-gradient-to-r",
                           item.colorClass,
                           item.glowClass
                         )}
                         initial={{ width: 0 }}
-                        animate={isInView ? { width: `${(item.roi / 5.1) * 100}%` } : {}}
+                        animate={isInView ? { width: `${Math.min((item.roi / 5.1) * 100, 100)}%` } : {}}
                         transition={{ duration: 1.5, delay: index * 0.1 + 0.3, ease: "easeOut" }}
                       />
                     </div>

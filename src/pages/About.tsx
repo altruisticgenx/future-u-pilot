@@ -181,6 +181,22 @@ const About = () => {
             Empower students. Modernize industries. Make Pennsylvania a quantum leader.
           </blockquote>
         </div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="flex justify-end mt-4"
+        >
+          <motion.a
+            href="/pa-lobby"
+            className="inline-flex items-center gap-1 text-xs px-3 py-1.5 rounded-md border border-primary/40 bg-primary/5 hover:bg-primary/10 hover:scale-105 transition-all duration-200 text-foreground font-medium"
+            whileHover={{ y: -1 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            PA Lobby →
+          </motion.a>
+        </motion.div>
       </motion.div>
     </div>
   </section>
