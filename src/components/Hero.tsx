@@ -237,7 +237,7 @@ export const Hero = () => {
                   textShadow: '0 2px 10px rgba(20, 184, 166, 0.3), 0 4px 20px rgba(14, 116, 144, 0.2)',
                 }}
               >
-                <span className="block text-white">
+                <span className="block text-primary-foreground font-bold">
                   {animationsReady ? (
                     <TypeAnimation
                       sequence={[
@@ -278,7 +278,7 @@ export const Hero = () => {
               </h1>
               
               <motion.p 
-                className="text-sm sm:text-base md:text-lg text-white/90 max-w-2xl leading-relaxed"
+                className="text-sm sm:text-base md:text-lg text-primary-foreground/95 max-w-2xl leading-relaxed font-medium"
                 initial={prefersReducedMotion ? {} : { opacity: 0, rotateX: -10 }}
                 animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, rotateX: 0 }}
                 transition={prefersReducedMotion ? {} : { delay: 0.3, duration: 0.4 }}

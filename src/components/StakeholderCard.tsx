@@ -43,7 +43,7 @@ export const StakeholderCard = ({
             </motion.div>
             <div>
               <h3 className="text-sm font-bold text-foreground leading-tight">{title}</h3>
-              <p className="text-[11px] text-muted-foreground/80 italic mt-0.5">{subtitle}</p>
+              <p className="text-[11px] text-foreground/70 italic mt-0.5 font-medium">{subtitle}</p>
             </div>
           </div>
           

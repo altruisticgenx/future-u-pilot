@@ -141,7 +141,7 @@ export const AIShowcase = () => {
             AI-Powered Solutions
           </h2>
           
-          <p className="text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-foreground/80 max-w-2xl mx-auto font-medium">
             Experience our AI capabilities firsthand. Generate visualizations and analyze policies in real-time.
           </p>
         </motion.div>
