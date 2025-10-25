@@ -15,15 +15,17 @@ const Terminal = () => {
   const [paletteOpen, setPaletteOpen] = useState(false);
   const WELCOME_MESSAGES = [
     '🚀 Quantum-AI Command Center  |  Type "help" to begin',
+    '🤖 AI Assistant Online  |  Try "/ai" to ask anything',
     '🔬 Lab Terminal Online  |  Try "experiments" to see active research',
-    '🤖 AI Operations Center  |  Run "ai-models" to view available models',
+    '🌐 Web Scraper Ready  |  Use "/scrape <url>" to analyze any webpage',
     '🔐 Security Console  |  Type "pqc-status" for quantum-readiness',
     '📊 Analytics Dashboard  |  Use "trending" to see hot topics',
     '⚛️  Quantum Lab  |  Run "qc-status" to check qubit systems',
     '📋 Policy Center  |  Type "policy-check" for compliance status',
     '🛡️  Security Ops  |  Run "security-scan" for vulnerability check',
     '📚 Research Hub  |  Type "research quantum" to search papers',
-    '🎓 Learning Center  |  Run "tutorial" to start interactive guides'
+    '🎓 Learning Center  |  Run "tutorial" to start interactive guides',
+    '🔌 API Gateway Active  |  Try "/api arxiv" for real research data'
   ];
 
   const randomWelcome = WELCOME_MESSAGES[Math.floor(Math.random() * WELCOME_MESSAGES.length)];
@@ -51,11 +53,23 @@ const Terminal = () => {
     },
     {
       type: 'list',
-      content: '  qc-status      - Quantum computing system status',
+      content: '  ai <question>  - Ask AI anything about quantum/AI/policy',
     },
     {
       type: 'list',
-      content: '  ai-models      - List available AI models',
+      content: '  api <source>   - Query real APIs (arxiv, github, nist, pjm)',
+    },
+    {
+      type: 'list',
+      content: '  scrape <url>   - Fetch and analyze any webpage',
+    },
+    {
+      type: 'list',
+      content: '  news [topic]   - Get latest quantum & AI updates',
+    },
+    {
+      type: 'list',
+      content: '  qc-status      - Quantum computing system status',
     },
     {
       type: 'list',
@@ -67,19 +81,7 @@ const Terminal = () => {
     },
     {
       type: 'list',
-      content: '  policy-check   - Check AI policy compliance',
-    },
-    {
-      type: 'list',
       content: '  research       - Search research papers',
-    },
-    {
-      type: 'list',
-      content: '  experiments    - View lab experiments',
-    },
-    {
-      type: 'list',
-      content: '  tutorial       - Start interactive learning',
     },
     {
       type: 'system',

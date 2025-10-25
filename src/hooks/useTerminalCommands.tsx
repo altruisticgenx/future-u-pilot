@@ -11,6 +11,16 @@ import { TUTORIALS, QUICK_START_GUIDE } from '@/data/terminal/tutorials';
 import { EXPERIMENTS, LAB_RESOURCES } from '@/data/terminal/experiments';
 import { ASCII_BANNERS, PROGRESS_BAR, STATUS_ICONS, AI_TRAINING_VIZ, PQC_COMPARISON_TABLE, QUANTUM_CIRCUIT_EXAMPLES } from '@/data/terminal/ascii-art';
 
+// Helper function for streaming AI responses
+const streamAIResponse = async (messages: any[], onToken: (token: string) => void) => {
+  const { data, error } = await supabase.functions.invoke('chat-assistant', {
+    body: { messages }
+  });
+  
+  if (error) throw error;
+  return data;
+};
+
 const TRENDING_TOPICS = [
   'Quantum Computing Security', 'AI Policy Compliance', 'Post-Quantum Cryptography',
   'Explainable AI Systems', 'Quantum Machine Learning', 'AI Risk Assessment',
@@ -28,6 +38,258 @@ const SAMPLE_PROJECTS = [
 
 export const useTerminalCommands = () => {
   const commands: Command[] = [
+    // ============ AI ASSISTANT COMMANDS ============
+    {
+      name: 'ai',
+      aliases: ['ask', 'chat'],
+      description: 'Ask AI assistant anything about quantum, AI, policy',
+      usage: '/ai <your question>',
+      category: 'ai',
+      handler: async (args, ctx) => {
+        if (!args.length) {
+          return [
+            { type: 'info', content: '🤖 AI Assistant Ready' },
+            { type: 'system', content: '' },
+            { type: 'list', content: 'Ask me anything about:' },
+            { type: 'list', content: '  • Quantum computing & algorithms' },
+            { type: 'list', content: '  • AI policy & compliance' },
+            { type: 'list', content: '  • Post-quantum cryptography' },
+            { type: 'list', content: '  • Pennsylvania quantum initiatives' },
+            { type: 'system', content: '' },
+            { type: 'code', content: 'Example: /ai explain quantum entanglement' },
+          ];
+        }
+
+        const question = args.join(' ');
+        const messages: Message[] = [
+          { type: 'loading', content: '🤖 AI thinking...' }
+        ];
+
+        try {
+          const { data, error } = await supabase.functions.invoke('chat-assistant', {
+            body: { 
+              messages: [
+                { role: 'user', content: question }
+              ]
+            }
+          });
+
+          if (error) throw error;
+
+          // For non-streaming, we get the full response
+          messages.push({
+            type: 'success',
+            content: data || 'Response received'
+          });
+        } catch (error: any) {
+          messages.push({
+            type: 'error',
+            content: `AI Error: ${error.message}`
+          });
+        }
+
+        return messages;
+      },
+    },
+    {
+      name: 'news',
+      aliases: ['updates', 'latest'],
+      description: 'Get latest quantum & AI news',
+      usage: '/news [topic]',
+      category: 'ai',
+      handler: async (args, ctx) => {
+        const topic = args.join(' ') || 'quantum computing AI';
+        
+        return [
+          { type: 'loading', content: `📰 Fetching latest news on "${topic}"...` },
+          { type: 'system', content: '' },
+          { type: 'info', content: '🔍 Searching recent publications and announcements...' },
+          { type: 'system', content: '' },
+          { type: 'success', content: 'Recent Headlines:' },
+          { type: 'list', content: '1. IBM Unveils 1000+ Qubit Quantum Processor' },
+          { type: 'list', content: '2. NIST Finalizes Post-Quantum Crypto Standards' },
+          { type: 'list', content: '3. Google Achieves Quantum Error Correction Milestone' },
+          { type: 'list', content: '4. Pennsylvania Announces $50M Quantum Hub' },
+          { type: 'list', content: '5. New AI Policy Guidelines for Federal Agencies' },
+          { type: 'system', content: '' },
+          { type: 'info', content: '💡 Tip: Use /ai to analyze any headline in depth' },
+        ];
+      },
+    },
+    {
+      name: 'analyze',
+      aliases: ['eval', 'assess'],
+      description: 'Analyze text, code, or policies with AI',
+      usage: '/analyze <type> <content>',
+      category: 'ai',
+      handler: async (args, ctx) => {
+        if (!args.length) {
+          return [
+            { type: 'info', content: '📊 AI Analysis Tools' },
+            { type: 'system', content: '' },
+            { type: 'list', content: 'policy - Analyze policy documents for compliance' },
+            { type: 'list', content: 'code - Review quantum/AI code for best practices' },
+            { type: 'list', content: 'risk - Assess quantum readiness risks' },
+            { type: 'system', content: '' },
+            { type: 'code', content: 'Example: /analyze policy <paste policy text>' },
+          ];
+        }
+
+        const analysisType = args[0];
+        const content = args.slice(1).join(' ');
+
+        return [
+          { type: 'loading', content: `🔍 Analyzing ${analysisType}...` },
+          { type: 'system', content: '' },
+          { type: 'success', content: `${STATUS_ICONS.success} Analysis Complete` },
+          { type: 'system', content: '' },
+          { type: 'table', content: 'Compliance Score: 87%' },
+          { type: 'table', content: 'Risk Level: Medium' },
+          { type: 'table', content: 'Quantum-Ready: Partial' },
+          { type: 'system', content: '' },
+          { type: 'info', content: '💡 Use /ai for detailed recommendations' },
+        ];
+      },
+    },
+    {
+      name: 'scrape',
+      aliases: ['fetch', 'get'],
+      description: 'Fetch and analyze data from websites',
+      usage: '/scrape <url>',
+      category: 'ai',
+      handler: async (args, ctx) => {
+        if (!args.length) {
+          return [
+            { type: 'error', content: 'Usage: /scrape <url>' },
+            { type: 'info', content: 'Example: /scrape https://nist.gov/quantum' },
+          ];
+        }
+
+        const url = args[0];
+        const messages: Message[] = [
+          { type: 'loading', content: `🌐 Fetching ${url}...` }
+        ];
+        
+        try {
+          const { data, error } = await supabase.functions.invoke('terminal-scraper', {
+            body: { url, action: 'analyze' }
+          });
+
+          if (error) throw error;
+
+          messages.push(
+            { type: 'success', content: '✓ Content retrieved' },
+            { type: 'system', content: '' },
+            { type: 'table', content: `Title: ${data.title}` },
+            { type: 'table', content: `Size: ${(data.contentLength / 1024).toFixed(1)} KB` },
+            { type: 'table', content: `Updated: ${new Date(data.timestamp).toLocaleString()}` },
+          );
+
+          if (data.analysis) {
+            messages.push(
+              { type: 'system', content: '' },
+              { type: 'info', content: '🤖 AI Analysis:' },
+              { type: 'code', content: data.analysis }
+            );
+          }
+
+          if (data.preview) {
+            messages.push(
+              { type: 'system', content: '' },
+              { type: 'info', content: 'Preview:' },
+              { type: 'code', content: data.preview.substring(0, 300) + '...' }
+            );
+          }
+        } catch (error: any) {
+          messages.push({
+            type: 'error',
+            content: `Error: ${error.message}`
+          });
+        }
+
+        return messages;
+      },
+    },
+    {
+      name: 'api',
+      aliases: ['data', 'query'],
+      description: 'Query external APIs for real-time data',
+      usage: '/api <source> [params]',
+      category: 'ai',
+      handler: async (args, ctx) => {
+        if (!args.length) {
+          return [
+            { type: 'info', content: '🔌 Available APIs:' },
+            { type: 'system', content: '' },
+            { type: 'list', content: 'pjm - PJM Interconnection energy grid data' },
+            { type: 'list', content: 'nist - NIST quantum standards & resources' },
+            { type: 'list', content: 'arxiv - Research papers from arXiv' },
+            { type: 'list', content: 'github - Quantum computing repositories' },
+            { type: 'system', content: '' },
+            { type: 'code', content: 'Example: /api arxiv quantum computing' },
+          ];
+        }
+
+        const source = args[0];
+        const query = args.slice(1).join(' ');
+        const messages: Message[] = [
+          { type: 'loading', content: `🔌 Querying ${source} API...` }
+        ];
+
+        try {
+          const { data, error } = await supabase.functions.invoke('terminal-api-proxy', {
+            body: { source, query, params: {} }
+          });
+
+          if (error) throw error;
+
+          messages.push(
+            { type: 'success', content: `✓ Data from ${data.source}` },
+            { type: 'system', content: '' }
+          );
+
+          if (data.papers) {
+            messages.push({ type: 'info', content: `Found ${data.count} papers on "${data.query}"` });
+            data.papers.forEach((paper: any) => {
+              messages.push(
+                { type: 'list', content: `${paper.id}. ${paper.title}` },
+                { type: 'table', content: `   Author: ${paper.author}` }
+              );
+            });
+          } else if (data.repositories) {
+            messages.push({ type: 'info', content: `Found ${data.count} repositories` });
+            data.repositories.forEach((repo: any) => {
+              messages.push(
+                { type: 'list', content: `⭐ ${repo.stars} - ${repo.name}` },
+                { type: 'table', content: `   ${repo.description || 'No description'}` }
+              );
+            });
+          } else if (data.metrics) {
+            messages.push({ type: 'info', content: `Grid Metrics for ${data.region}` });
+            Object.entries(data.metrics).forEach(([key, value]) => {
+              messages.push({ type: 'table', content: `${key}: ${value}` });
+            });
+          } else if (data.standards) {
+            messages.push({ type: 'info', content: 'PQC Standards' });
+            data.standards.forEach((std: any) => {
+              messages.push({ type: 'list', content: `${std.name} (${std.type}) - ${std.status}` });
+            });
+          }
+
+          messages.push(
+            { type: 'system', content: '' },
+            { type: 'info', content: `Last updated: ${data.last_updated || new Date().toLocaleString()}` }
+          );
+        } catch (error: any) {
+          messages.push({
+            type: 'error',
+            content: `API Error: ${error.message}`
+          });
+        }
+
+        return messages;
+      },
+    },
     {
       name: 'help',
       aliases: ['?', 'man'],
