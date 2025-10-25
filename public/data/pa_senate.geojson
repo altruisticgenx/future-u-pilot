@@ -1,0 +1,59 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "SD-001",
+        "name": "Senate District 1",
+        "county": "Erie"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-80.5195, 42.2695],
+          [-79.7621, 42.2695],
+          [-79.7621, 41.7145],
+          [-80.5195, 41.7145],
+          [-80.5195, 42.2695]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "SD-002",
+        "name": "Senate District 2",
+        "county": "Allegheny"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-80.3195, 40.6545],
+          [-79.6821, 40.6545],
+          [-79.6821, 40.3195],
+          [-80.3195, 40.3195],
+          [-80.3195, 40.6545]
+        ]]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "id": "SD-003",
+        "name": "Senate District 3",
+        "county": "Philadelphia"
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [[
+          [-75.2803, 40.1379],
+          [-74.9557, 40.1379],
+          [-74.9557, 39.8671],
+          [-75.2803, 39.8671],
+          [-75.2803, 40.1379]
+        ]]
+      }
+    }
+  ]
+}

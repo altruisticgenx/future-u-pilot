@@ -18,6 +18,9 @@ export const Navigation = () => {
     label: "FAQ",
     href: "/faq"
   }, {
+    label: "PA Lobby",
+    href: "/pa-lobby"
+  }, {
     label: "Open Project(s)",
     href: "https://keen-hardboard-afe.notion.site/28cf142372ef8050ac86f4a3b4c813db?v=28cf142372ef8073b8cf000c0ebfca06&source=copy_link"
   }, {
