@@ -132,6 +132,46 @@ All colors MUST be HSL.
     
     /* Border Width */
     --border-width: 1px;
+
+    /* Motion Design Language */
+    --motion-instant: 0ms;
+    --motion-fast: 150ms;
+    --motion-medium: 300ms;
+    --motion-slow: 600ms;
+    --motion-slower: 900ms;
+    --easing-standard: cubic-bezier(0.4, 0, 0.2, 1);
+    --easing-emphatic: cubic-bezier(0.34, 1.56, 0.64, 1);
+    --easing-decelerate: cubic-bezier(0, 0, 0.2, 1);
+    --easing-accelerate: cubic-bezier(0.4, 0, 1, 1);
+    --easing-smooth: cubic-bezier(0.4, 0, 0.6, 1);
+
+    /* Elevation System (3D Depth Tokens) */
+    --elevation-0: none;
+    --elevation-1: 0 1px 2px hsl(var(--primary) / 0.05);
+    --elevation-2: 0 2px 8px hsl(var(--primary) / 0.08), 0 1px 4px hsl(var(--primary) / 0.04);
+    --elevation-3: 0 8px 24px hsl(var(--primary) / 0.12), 0 4px 12px hsl(var(--primary) / 0.06);
+    --elevation-4: 0 12px 40px hsl(var(--primary) / 0.16), 0 6px 20px hsl(var(--primary) / 0.08);
+    --elevation-5: 0 20px 60px hsl(var(--primary) / 0.2), 0 10px 30px hsl(var(--primary) / 0.1);
+
+    /* Typography Tokens */
+    --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-display: 'Inter', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
+    --text-xs: 0.75rem;
+    --text-sm: 0.875rem;
+    --text-base: 1rem;
+    --text-lg: 1.125rem;
+    --text-xl: 1.25rem;
+    --text-2xl: 1.5rem;
+    --text-3xl: 1.875rem;
+    --text-4xl: 2.25rem;
+    --leading-tight: 1.25;
+    --leading-normal: 1.5;
+    --leading-relaxed: 1.75;
+
+    /* Interactive Light Position */
+    --light-x: 50%;
+    --light-y: 50%;
     
     /* 3D Depth Effects */
     --depth-shadow: 0 2px 4px hsl(var(--primary) / 0.1), 
@@ -355,15 +395,27 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    font-size: 14px;
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    line-height: var(--leading-normal);
   }
   
   /* Mobile font optimization */
   @media (min-width: 640px) {
     body {
-      font-size: 16px;
+      font-size: var(--text-base);
     }
+  }
+
+  /* Typography Scale */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    line-height: var(--leading-tight);
+  }
+
+  code, pre, kbd {
+    font-family: var(--font-mono);
   }
   
   /* Better mobile text sizing */
@@ -553,12 +605,12 @@ All colors MUST be HSL.
     background: linear-gradient(135deg, hsl(173 80% 40%) 0%, hsl(190 84% 29%) 100%);
     box-shadow: 
       0 4px 0 hsl(190 84% 20%),
-      0 8px 20px hsl(173 80% 40% / 0.4),
+      var(--elevation-2),
       inset 0 1px 0 hsl(173 80% 50% / 0.3);
     color: white;
     font-weight: 600;
     transform: translateY(0) translateZ(0);
-    transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: all var(--motion-medium) var(--easing-emphatic);
     border: 1px solid hsl(173 80% 50% / 0.3);
   }
 
@@ -566,7 +618,7 @@ All colors MUST be HSL.
     transform: translateY(-3px) translateZ(10px);
     box-shadow: 
       0 7px 0 hsl(190 84% 20%),
-      0 14px 28px hsl(173 80% 40% / 0.6),
+      var(--elevation-4),
       inset 0 1px 0 hsl(173 80% 50% / 0.4);
     animation: flow 1.5s ease-in-out infinite;
   }
@@ -575,7 +627,7 @@ All colors MUST be HSL.
     transform: translateY(2px) translateZ(0);
     box-shadow: 
       0 2px 0 hsl(190 84% 20%),
-      0 4px 10px hsl(173 80% 40% / 0.3),
+      var(--elevation-1),
       inset 0 1px 0 hsl(173 80% 50% / 0.2);
   }
 
@@ -583,12 +635,12 @@ All colors MUST be HSL.
     background: linear-gradient(135deg, hsl(258 90% 66%) 0%, hsl(262 83% 58%) 100%);
     box-shadow: 
       0 4px 0 hsl(258 59% 38%),
-      0 8px 20px hsl(258 90% 66% / 0.4),
+      var(--elevation-2),
       inset 0 1px 0 hsl(258 90% 76% / 0.3);
     color: white;
     font-weight: 600;
     transform: translateY(0) translateZ(0);
-    transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: all var(--motion-medium) var(--easing-emphatic);
     border: 1px solid hsl(258 90% 76% / 0.3);
   }
 
@@ -596,7 +648,7 @@ All colors MUST be HSL.
     transform: translateY(-3px) translateZ(10px);
     box-shadow: 
       0 7px 0 hsl(258 59% 38%),
-      0 14px 28px hsl(258 90% 66% / 0.6),
+      var(--elevation-4),
       inset 0 1px 0 hsl(258 90% 76% / 0.4);
     animation: flow 1.5s ease-in-out infinite;
   }
@@ -605,7 +657,7 @@ All colors MUST be HSL.
     transform: translateY(2px) translateZ(0);
     box-shadow: 
       0 2px 0 hsl(258 59% 38%),
-      0 4px 10px hsl(258 90% 66% / 0.3),
+      var(--elevation-1),
       inset 0 1px 0 hsl(258 90% 76% / 0.2);
   }
 
@@ -613,12 +665,12 @@ All colors MUST be HSL.
     background: linear-gradient(135deg, hsl(38 92% 50%) 0%, hsl(32 95% 44%) 100%);
     box-shadow: 
       0 4px 0 hsl(30 100% 34%),
-      0 8px 20px hsl(38 92% 50% / 0.4),
+      var(--elevation-2),
       inset 0 1px 0 hsl(38 92% 60% / 0.3);
     color: white;
     font-weight: 600;
     transform: translateY(0) translateZ(0);
-    transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: all var(--motion-medium) var(--easing-emphatic);
     border: 1px solid hsl(38 92% 60% / 0.3);
   }
 
@@ -626,7 +678,7 @@ All colors MUST be HSL.
     transform: translateY(-3px) translateZ(10px);
     box-shadow: 
       0 7px 0 hsl(30 100% 34%),
-      0 14px 28px hsl(38 92% 50% / 0.6),
+      var(--elevation-4),
       inset 0 1px 0 hsl(38 92% 60% / 0.4);
     animation: flow 1.5s ease-in-out infinite;
   }
@@ -635,7 +687,7 @@ All colors MUST be HSL.
     transform: translateY(2px) translateZ(0);
     box-shadow: 
       0 2px 0 hsl(30 100% 34%),
-      0 4px 10px hsl(38 92% 50% / 0.3),
+      var(--elevation-1),
       inset 0 1px 0 hsl(38 92% 60% / 0.2);
   }
 
@@ -643,12 +695,12 @@ All colors MUST be HSL.
     background: linear-gradient(135deg, hsl(187 92% 43%) 0%, hsl(189 85% 35%) 100%);
     box-shadow: 
       0 4px 0 hsl(190 84% 29%),
-      0 8px 20px hsl(187 92% 43% / 0.4),
+      var(--elevation-2),
       inset 0 1px 0 hsl(187 92% 53% / 0.3);
     color: white;
     font-weight: 600;
     transform: translateY(0) translateZ(0);
-    transition: all 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transition: all var(--motion-medium) var(--easing-emphatic);
     border: 1px solid hsl(187 92% 53% / 0.3);
   }
 
@@ -656,7 +708,7 @@ All colors MUST be HSL.
     transform: translateY(-3px) translateZ(10px);
     box-shadow: 
       0 7px 0 hsl(190 84% 29%),
-      0 14px 28px hsl(187 92% 43% / 0.6),
+      var(--elevation-4),
       inset 0 1px 0 hsl(187 92% 53% / 0.4);
     animation: flow 1.5s ease-in-out infinite;
   }
@@ -665,7 +717,7 @@ All colors MUST be HSL.
     transform: translateY(2px) translateZ(0);
     box-shadow: 
       0 2px 0 hsl(190 84% 29%),
-      0 4px 10px hsl(187 92% 43% / 0.3),
+      var(--elevation-1),
       inset 0 1px 0 hsl(187 92% 53% / 0.2);
   }
   
@@ -934,5 +986,175 @@ All colors MUST be HSL.
     .hero-light-overlay {
       display: none;
     }
+  }
+}
+
+/* ============================================
+   UTILITY LAYER - Motion, Lighting, Interactions
+   ============================================ */
+@layer utilities {
+  /* Elevation Utilities */
+  .elevation-0 { box-shadow: var(--elevation-0); }
+  .elevation-1 { box-shadow: var(--elevation-1); }
+  .elevation-2 { box-shadow: var(--elevation-2); }
+  .elevation-3 { box-shadow: var(--elevation-3); }
+  .elevation-4 { box-shadow: var(--elevation-4); }
+  .elevation-5 { box-shadow: var(--elevation-5); }
+
+  /* Motion Utilities */
+  .transition-fast { transition-duration: var(--motion-fast); }
+  .transition-medium { transition-duration: var(--motion-medium); }
+  .transition-slow { transition-duration: var(--motion-slow); }
+  .transition-slower { transition-duration: var(--motion-slower); }
+  
+  .ease-standard { transition-timing-function: var(--easing-standard); }
+  .ease-emphatic { transition-timing-function: var(--easing-emphatic); }
+  .ease-decelerate { transition-timing-function: var(--easing-decelerate); }
+  .ease-accelerate { transition-timing-function: var(--easing-accelerate); }
+  .ease-smooth { transition-timing-function: var(--easing-smooth); }
+
+  /* Ambient Lighting Effect */
+  .ambient-light {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ambient-light::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      circle at var(--light-x, 50%) var(--light-y, 50%),
+      hsl(var(--primary) / 0.3) 0%,
+      hsl(var(--primary) / 0.15) 30%,
+      transparent 70%
+    );
+    pointer-events: none;
+    transition: background var(--motion-medium) var(--easing-smooth);
+    z-index: 0;
+  }
+
+  .ambient-light > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Interactive Gradient Background */
+  .gradient-interactive {
+    background: radial-gradient(
+      circle at var(--light-x, 50%) var(--light-y, 50%),
+      hsl(var(--primary) / 0.2),
+      hsl(var(--accent) / 0.1),
+      transparent 80%
+    );
+    transition: background var(--motion-slow) var(--easing-smooth);
+  }
+
+  /* Micro-interaction: Button Ripple */
+  .btn-ripple {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-ripple::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      circle,
+      hsl(var(--primary-glow) / 0.5) 10%,
+      transparent 10.01%
+    );
+    transform: scale(10);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform var(--motion-slow) var(--easing-standard),
+                opacity var(--motion-medium);
+  }
+
+  .btn-ripple:active::after {
+    transform: scale(0);
+    opacity: 0.6;
+    transition: transform 0ms, opacity var(--motion-fast);
+  }
+
+  /* Micro-interaction: Focus Halo */
+  .focus-halo:focus-visible {
+    outline: none;
+    box-shadow: 
+      0 0 0 3px hsl(var(--background)),
+      0 0 0 5px hsl(var(--primary)),
+      0 0 20px hsl(var(--primary) / 0.4);
+    transition: box-shadow var(--motion-fast) var(--easing-standard);
+  }
+
+  /* Micro-interaction: Hover Glow */
+  .hover-glow {
+    position: relative;
+    transition: all var(--motion-medium) var(--easing-standard);
+  }
+
+  .hover-glow::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(
+      135deg,
+      hsl(var(--primary) / 0.4),
+      hsl(var(--accent) / 0.4)
+    );
+    border-radius: inherit;
+    opacity: 0;
+    filter: blur(8px);
+    transition: opacity var(--motion-medium) var(--easing-standard);
+    z-index: -1;
+  }
+
+  .hover-glow:hover::before {
+    opacity: 1;
+  }
+
+  /* Micro-interaction: Press Scale */
+  .press-scale {
+    transition: transform var(--motion-fast) var(--easing-emphatic);
+  }
+
+  .press-scale:active {
+    transform: scale(0.96);
+  }
+
+  /* Micro-interaction: Magnetic Hover */
+  .magnetic-hover {
+    transition: transform var(--motion-medium) var(--easing-smooth);
+  }
+
+  .magnetic-hover:hover {
+    transform: translateY(-2px);
+  }
+
+  /* Typography Utilities */
+  .text-display {
+    font-family: var(--font-display);
+  }
+
+  .text-mono {
+    font-family: var(--font-mono);
+  }
+
+  .leading-tight { line-height: var(--leading-tight); }
+  .leading-normal { line-height: var(--leading-normal); }
+  .leading-relaxed { line-height: var(--leading-relaxed); }
+
+  /* Smooth Performance */
+  .smooth-rendering {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  .gpu-accelerated {
+    will-change: transform;
+    transform: translateZ(0);
+    backface-visibility: hidden;
   }
 }
