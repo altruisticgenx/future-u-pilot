@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Star, Users, ExternalLink } from 'lucide-react';
 
 export default function OpenProjectsGrid() {
-  const colorMap = {
+  const colorMap: Record<string, string> = {
     red: 'from-red-500/20 to-red-600/10 border-red-500/30',
     yellow: 'from-yellow-500/20 to-yellow-600/10 border-yellow-500/30',
     pink: 'from-pink-500/20 to-pink-600/10 border-pink-500/30',
@@ -32,7 +32,7 @@ export default function OpenProjectsGrid() {
         </motion.div>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-          {openProjects.map((project, index) => {
+          {openProjects.map((project: any, index: number) => {
             const Icon = project.icon;
             return (
               <motion.div
@@ -65,7 +65,7 @@ export default function OpenProjectsGrid() {
                 </p>
 
                 <div className="flex flex-wrap gap-1.5 mb-4">
-                  {project.techStack.map((tech) => (
+                  {project.techStack.map((tech: string) => (
                     <Badge key={tech} variant="outline" className="text-xs">
                       {tech}
                     </Badge>

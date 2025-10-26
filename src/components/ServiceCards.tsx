@@ -14,7 +14,6 @@ import {
   Zap,
   Shield,
   Sparkles,
-  AlertTriangle,
   Scale
 } from "lucide-react";
 

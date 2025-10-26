@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import { programs } from '@/data/programs';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 
 export default function ProgramsSection() {
@@ -25,7 +24,7 @@ export default function ProgramsSection() {
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-6">
-          {programs.map((program, index) => {
+          {programs.map((program: any, index: number) => {
             const Icon = program.icon;
             return (
               <motion.div

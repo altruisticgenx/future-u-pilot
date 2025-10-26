@@ -1,5 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { LucideIcon, TrendingUp } from "lucide-react";
+import { type LucideIcon, TrendingUp } from "lucide-react";
 
 interface MetricCardProps {
   icon: LucideIcon;

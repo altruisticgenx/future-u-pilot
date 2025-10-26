@@ -51,7 +51,7 @@ export default function OpenLetterSection() {
                   <div className="flex items-start gap-2 text-muted-foreground">
                     <MapPin className="h-4 w-4 mt-0.5 flex-shrink-0" />
                     <div>
-                      {openLetter.contact.address.map((line, i) => (
+                      {openLetter.contact.address.map((line: string, i: number) => (
                         <p key={i}>{line}</p>
                       ))}
                     </div>
@@ -92,7 +92,7 @@ export default function OpenLetterSection() {
           >
             <div className="relative p-8 rounded-xl border border-border/40 bg-card/30 backdrop-blur-sm">
               <div className="prose prose-sm prose-invert max-w-none">
-                {openLetter.content.slice(0, 3).map((paragraph, index) => (
+                {openLetter.content.slice(0, 3).map((paragraph: string, index: number) => (
                   <p key={index} className="text-foreground/90 leading-relaxed mb-4">
                     {paragraph}
                   </p>

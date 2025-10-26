@@ -88,6 +88,9 @@ export const ContactForm = () => {
       consent: formData.consent,
     };
     
+    // Log sanitized payload
+    console.log('Contact form submission:', sanitizedData);
+    
     // Simulate API call with sanitized data
     setTimeout(() => {
       setIsSubmitting(false);
@@ -142,7 +145,7 @@ export const ContactForm = () => {
             id="name"
             autoComplete="name"
             value={formData.name}
-            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFormData({ ...formData, name: e.target.value })}
             aria-invalid={!!errors.name}
             aria-describedby={errors.name ? "name-error" : undefined}
             className="h-8 text-sm bg-card/60 border-2 shadow-[4px_4px_0px_0px_hsl(var(--primary)/0.3)] hover:shadow-[6px_6px_0px_0px_hsl(var(--primary)/0.4)] transition-shadow px-2.5"
@@ -161,7 +164,7 @@ export const ContactForm = () => {
             id="organization"
             autoComplete="organization"
             value={formData.organization}
-            onChange={(e) => setFormData({ ...formData, organization: e.target.value })}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFormData({ ...formData, organization: e.target.value })}
             aria-invalid={!!errors.organization}
             aria-describedby={errors.organization ? "organization-error" : undefined}
             className="h-8 text-sm bg-card/60 border-2 shadow-[4px_4px_0px_0px_hsl(var(--accent)/0.3)] hover:shadow-[6px_6px_0px_0px_hsl(var(--accent)/0.4)] transition-shadow px-2.5"
@@ -182,7 +185,7 @@ export const ContactForm = () => {
           type="email"
           autoComplete="email"
           value={formData.email}
-          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFormData({ ...formData, email: e.target.value })}
           aria-invalid={!!errors.email}
           aria-describedby={errors.email ? "email-error" : undefined}
           className="h-8 text-sm bg-card/60 border-2 shadow-[4px_4px_0px_0px_hsl(var(--secondary)/0.3)] hover:shadow-[6px_6px_0px_0px_hsl(var(--secondary)/0.4)] transition-shadow px-2.5"
@@ -198,7 +201,7 @@ export const ContactForm = () => {
         {/* Sector */}
         <div className="space-y-1">
           <Label htmlFor="sector" className="text-xs">Sector *</Label>
-          <Select value={formData.sector} onValueChange={(value) => setFormData({ ...formData, sector: value })}>
+          <Select value={formData.sector} onValueChange={(value: string) => setFormData({ ...formData, sector: value })}>
             <SelectTrigger id="sector" className="h-8 text-sm bg-card/60 border-2 shadow-[4px_4px_0px_0px_hsl(var(--primary)/0.2)]" aria-invalid={!!errors.sector}>
               <SelectValue placeholder="Select sector" />
             </SelectTrigger>
@@ -218,7 +221,7 @@ export const ContactForm = () => {
         {/* Timeline */}
         <div className="space-y-1">
           <Label htmlFor="timeline" className="text-xs">Timeline *</Label>
-          <Select value={formData.timeline} onValueChange={(value) => setFormData({ ...formData, timeline: value })}>
+          <Select value={formData.timeline} onValueChange={(value: string) => setFormData({ ...formData, timeline: value })}>
             <SelectTrigger id="timeline" className="h-8 text-sm bg-card/60 border-2 shadow-[4px_4px_0px_0px_hsl(var(--accent)/0.2)]" aria-invalid={!!errors.timeline}>
               <SelectValue placeholder="Select timeline" />
             </SelectTrigger>
@@ -276,7 +279,7 @@ export const ContactForm = () => {
         <Textarea
           id="message"
           value={formData.message}
-          onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+          onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setFormData({ ...formData, message: e.target.value })}
           rows={3}
           placeholder="Tell us about your specific needs..."
           className="text-sm bg-card/60 resize-none border-2 shadow-[4px_4px_0px_0px_hsl(var(--muted)/0.3)]"
@@ -288,7 +291,7 @@ export const ContactForm = () => {
         <Checkbox
           id="consent"
           checked={formData.consent}
-          onCheckedChange={(checked) => setFormData({ ...formData, consent: checked as boolean })}
+          onCheckedChange={(checked: boolean | "indeterminate") => setFormData({ ...formData, consent: Boolean(checked) })}
           aria-invalid={!!errors.consent}
         />
         <label

@@ -1,5 +1,5 @@
 import { Card, CardContent } from "@/components/ui/card";
-import { LucideIcon, CheckCircle2 } from "lucide-react";
+import { type LucideIcon, CheckCircle2 } from "lucide-react";
 
 interface StakeholderCardProps {
   icon: LucideIcon;
